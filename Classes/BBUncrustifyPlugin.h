@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <AppKit/AppKit.h>
 
-@interface BBUncrustifyPlugin : NSObject 
+@interface BBUncrustifyPlugin : NSObject
 
 @end
