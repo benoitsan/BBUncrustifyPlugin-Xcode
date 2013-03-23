@@ -24,14 +24,14 @@
 
 + (NSArray *)selectedObjCFileNavigableItems {
     NSMutableArray *mutableArray = [NSMutableArray array];
-    
+
     id currentWindowController = [[NSApp keyWindow] windowController];
     if ([currentWindowController isKindOfClass:NSClassFromString(@"IDEWorkspaceWindowController")]) {
         IDEWorkspaceWindowController *workspaceController = currentWindowController;
         IDEWorkspaceTabController *workspaceTabController = [workspaceController activeWorkspaceTabController];
         IDENavigatorArea *navigatorArea = [workspaceTabController navigatorArea];
         id currentNavigator = [navigatorArea currentNavigator];
-        
+
         if ([currentNavigator isKindOfClass:NSClassFromString(@"IDEStructureNavigator")]) {
             IDEStructureNavigator *structureNavigator = currentNavigator;
             for (id selectedObject in structureNavigator.selectedObjects) {
@@ -43,17 +43,16 @@
                     }
                 }
             }
-            
         }
     }
-    
-    if (mutableArray.count ) {
+
+    if (mutableArray.count) {
         return [mutableArray copy];
     }
     return nil;
 }
 
-+ (BOOL)uncrustifyCodeOfDocument:(IDESourceCodeDocument*)document {
++ (BOOL)uncrustifyCodeOfDocument:(IDESourceCodeDocument *)document {
     BOOL uncrustified = NO;
     DVTSourceTextStorage *textStorage = [document textStorage];
     if (textStorage.string.length > 0) {

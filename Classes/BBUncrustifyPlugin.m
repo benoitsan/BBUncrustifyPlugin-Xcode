@@ -26,12 +26,12 @@
         NSMenuItem *editMenuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
         if (editMenuItem) {
             [[editMenuItem submenu] addItem:[NSMenuItem separatorItem]];
-            
+
             NSMenuItem *menuItem;
-            menuItem= [[NSMenuItem alloc] initWithTitle:@"Uncrustify" action:@selector(uncrustify:) keyEquivalent:@""];
+            menuItem = [[NSMenuItem alloc] initWithTitle:@"Uncrustify" action:@selector(uncrustify:) keyEquivalent:@""];
             [menuItem setTarget:self];
             [[editMenuItem submenu] addItem:menuItem];
-            
+
             menuItem = [[NSMenuItem alloc] initWithTitle:@"Uncrustify Selected Files" action:@selector(uncrustifySelectedFiles:) keyEquivalent:@""];
             [menuItem setTarget:self];
             [[editMenuItem submenu] addItem:menuItem];
@@ -55,9 +55,9 @@
 - (IBAction)uncrustifySelectedFiles:(id)sender {
     NSArray *fileNavigableItems = [BBXcode selectedObjCFileNavigableItems];
     for (IDEFileNavigableItem *fileNavigableItem in fileNavigableItems) {
-        NSDocument* document = [IDEDocumentController retainedEditorDocumentForNavigableItem:fileNavigableItem error:nil];
+        NSDocument *document = [IDEDocumentController retainedEditorDocumentForNavigableItem:fileNavigableItem error:nil];
         if ([document isKindOfClass:NSClassFromString(@"IDESourceCodeDocument")]) {
-            IDESourceCodeDocument *sourceCodeDocument = (IDESourceCodeDocument*)document;
+            IDESourceCodeDocument *sourceCodeDocument = (IDESourceCodeDocument *)document;
             BOOL uncrustified = [BBXcode uncrustifyCodeOfDocument:sourceCodeDocument];
             if (uncrustified) {
                 [document saveDocument:nil];
@@ -72,8 +72,7 @@
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
     if ([menuItem action] == @selector(uncrustify:)) {
         return ([[BBXcode currentEditor] isKindOfClass:NSClassFromString(@"IDESourceCodeEditor")]);
-    }
-    else if ([menuItem action] == @selector(uncrustifySelectedFiles:)) {
+    } else if ([menuItem action] == @selector(uncrustifySelectedFiles:)) {
         return ([BBXcode selectedObjCFileNavigableItems].count > 0);
     }
     return YES;

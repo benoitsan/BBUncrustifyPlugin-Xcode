@@ -17,16 +17,16 @@
 @end
 
 @interface DVTFileDataType : NSObject
-@property(readonly) NSString *identifier;
+@property (readonly) NSString *identifier;
 @end
 
 @interface IDEFileNavigableItem : NSObject
-@property(readonly) DVTFileDataType *documentType;
-@property(readonly) NSURL *fileURL;
+@property (readonly) DVTFileDataType *documentType;
+@property (readonly) NSURL *fileURL;
 @end
 
 @interface IDEStructureNavigator : NSObject
-@property(retain) NSArray *selectedObjects;
+@property (retain) NSArray *selectedObjects;
 @end
 
 @interface IDENavigatorArea : NSObject
@@ -34,7 +34,7 @@
 @end
 
 @interface IDEWorkspaceTabController : NSObject
-@property(readonly) IDENavigatorArea *navigatorArea;
+@property (readonly) IDENavigatorArea *navigatorArea;
 @end
 
 @interface IDEDocumentController : NSDocumentController
@@ -62,12 +62,12 @@
 @end
 
 @interface IDEWorkspaceWindowController : NSObject
-@property(readonly) IDEWorkspaceTabController *activeWorkspaceTabController;
+@property (readonly) IDEWorkspaceTabController *activeWorkspaceTabController;
 - (IDEEditorArea *)editorArea;
 @end
 
 @interface BBXcode : NSObject
 + (id)currentEditor;
 + (NSArray *)selectedObjCFileNavigableItems;
-+ (BOOL)uncrustifyCodeOfDocument:(IDESourceCodeDocument*)document;
++ (BOOL)uncrustifyCodeOfDocument:(IDESourceCodeDocument *)document;
 @end
