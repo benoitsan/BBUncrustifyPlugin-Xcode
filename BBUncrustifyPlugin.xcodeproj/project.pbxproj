@@ -8,10 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		141251A216F4AA8600A18D23 /* BBXcode.m in Sources */ = {isa = PBXBuildFile; fileRef = 141251A116F4AA8600A18D23 /* BBXcode.m */; };
+		1435669616FD0E0000FECDEB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1435669516FD0E0000FECDEB /* Cocoa.framework */; };
+		1435669816FD0E0400FECDEB /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1435669716FD0E0400FECDEB /* AppKit.framework */; };
+		14617B3316FD9BDB00C7C91B /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14617B2F16FD9BDB00C7C91B /* DVTKit.framework */; };
+		14617B3416FD9BDB00C7C91B /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14617B3016FD9BDB00C7C91B /* DVTFoundation.framework */; };
+		14617B3516FD9BDB00C7C91B /* IDEFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14617B3116FD9BDB00C7C91B /* IDEFoundation.framework */; };
+		14617B3616FD9BDB00C7C91B /* IDEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14617B3216FD9BDB00C7C91B /* IDEKit.framework */; };
 		14CE84DC16F4A57A008082AB /* uncrustify.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 14CE84DA16F49D6F008082AB /* uncrustify.cfg */; };
 		14CE84DD16F4A57D008082AB /* uncrustify in Resources */ = {isa = PBXBuildFile; fileRef = 14CE84D916F49A02008082AB /* uncrustify */; };
 		14FF378D16F490F60049868C /* BBUncrustify.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FF378C16F490F60049868C /* BBUncrustify.m */; };
-		7F2EB89C145057F200E97A87 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F2EB899145057EA00E97A87 /* AppKit.framework */; };
 		DA1B5D020E64686800921439 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 089C1672FE841209C02AAC07 /* Foundation.framework */; };
 		DA37E2DC0E6291C8001BDFEF /* BBUncrustifyPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = DA37E2DB0E6291C8001BDFEF /* BBUncrustifyPlugin.m */; };
 /* End PBXBuildFile section */
@@ -19,14 +24,19 @@
 /* Begin PBXFileReference section */
 		089C1672FE841209C02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		141251A116F4AA8600A18D23 /* BBXcode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBXcode.m; sourceTree = "<group>"; };
+		1435669516FD0E0000FECDEB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		1435669716FD0E0400FECDEB /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		14617B2F16FD9BDB00C7C91B /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTKit.framework; path = ../../../../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTKit.framework; sourceTree = "<group>"; };
+		14617B3016FD9BDB00C7C91B /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTFoundation.framework; path = ../../../../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework; sourceTree = "<group>"; };
+		14617B3116FD9BDB00C7C91B /* IDEFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEFoundation.framework; path = ../../../../../../../Applications/Xcode.app/Contents/Frameworks/IDEFoundation.framework; sourceTree = "<group>"; };
+		14617B3216FD9BDB00C7C91B /* IDEKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEKit.framework; path = ../../../../../../../Applications/Xcode.app/Contents/Frameworks/IDEKit.framework; sourceTree = "<group>"; };
 		149B117816F483D3000F9C01 /* BBXcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBXcode.h; sourceTree = "<group>"; };
 		14CE84D916F49A02008082AB /* uncrustify */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = uncrustify; sourceTree = "<group>"; };
 		14CE84DA16F49D6F008082AB /* uncrustify.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = uncrustify.cfg; sourceTree = "<group>"; };
 		14FF378B16F490F60049868C /* BBUncrustify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBUncrustify.h; sourceTree = "<group>"; };
 		14FF378C16F490F60049868C /* BBUncrustify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBUncrustify.m; sourceTree = "<group>"; };
 		7F2B355F15FA59D000DB3249 /* BBUncrustifyPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBUncrustifyPlugin.h; sourceTree = "<group>"; };
-		7F2EB899145057EA00E97A87 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		8D5B49B6048680CD000E48DA /* BBUncrustifyPlugin.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BBUncrustifyPlugin.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D5B49B6048680CD000E48DA /* UncrustifyPlugin.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UncrustifyPlugin.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA37E2DB0E6291C8001BDFEF /* BBUncrustifyPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBUncrustifyPlugin.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -36,8 +46,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1435669816FD0E0400FECDEB /* AppKit.framework in Frameworks */,
+				1435669616FD0E0000FECDEB /* Cocoa.framework in Frameworks */,
 				DA1B5D020E64686800921439 /* Foundation.framework in Frameworks */,
-				7F2EB89C145057F200E97A87 /* AppKit.framework in Frameworks */,
+				14617B3316FD9BDB00C7C91B /* DVTKit.framework in Frameworks */,
+				14617B3416FD9BDB00C7C91B /* DVTFoundation.framework in Frameworks */,
+				14617B3516FD9BDB00C7C91B /* IDEFoundation.framework in Frameworks */,
+				14617B3616FD9BDB00C7C91B /* IDEKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,7 +73,12 @@
 		089C1671FE841209C02AAC07 /* Frameworks and Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				7F2EB899145057EA00E97A87 /* AppKit.framework */,
+				14617B2F16FD9BDB00C7C91B /* DVTKit.framework */,
+				14617B3016FD9BDB00C7C91B /* DVTFoundation.framework */,
+				14617B3116FD9BDB00C7C91B /* IDEFoundation.framework */,
+				14617B3216FD9BDB00C7C91B /* IDEKit.framework */,
+				1435669716FD0E0400FECDEB /* AppKit.framework */,
+				1435669516FD0E0000FECDEB /* Cocoa.framework */,
 				089C1672FE841209C02AAC07 /* Foundation.framework */,
 			);
 			name = "Frameworks and Libraries";
@@ -77,7 +97,7 @@
 		19C28FB8FE9D52D311CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D5B49B6048680CD000E48DA /* BBUncrustifyPlugin.xcplugin */,
+				8D5B49B6048680CD000E48DA /* UncrustifyPlugin.xcplugin */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -113,7 +133,7 @@
 			name = BBUncrustifyPlugin;
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = QuietXcode;
-			productReference = 8D5B49B6048680CD000E48DA /* BBUncrustifyPlugin.xcplugin */;
+			productReference = 8D5B49B6048680CD000E48DA /* UncrustifyPlugin.xcplugin */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -178,6 +198,11 @@
 				DEPLOYMENT_LOCATION = YES;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				DSTROOT = "$(HOME)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks\"",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_GC = supported;
 				GCC_OPTIMIZATION_LEVEL = 0;

@@ -8,7 +8,6 @@
 
 #import "BBUncrustifyPlugin.h"
 #import "BBXcode.h"
-#import "BBUncrustify.h"
 
 @implementation BBUncrustifyPlugin
 
@@ -27,9 +26,15 @@
         NSMenuItem *editMenuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
         if (editMenuItem) {
             [[editMenuItem submenu] addItem:[NSMenuItem separatorItem]];
-            NSMenuItem *pluginMenuItem = [[NSMenuItem alloc] initWithTitle:@"Uncrustify" action:@selector(uncrustify:) keyEquivalent:@""];
-            [pluginMenuItem setTarget:self];
-            [[editMenuItem submenu] addItem:pluginMenuItem];
+            
+            NSMenuItem *menuItem;
+            menuItem= [[NSMenuItem alloc] initWithTitle:@"Uncrustify" action:@selector(uncrustify:) keyEquivalent:@""];
+            [menuItem setTarget:self];
+            [[editMenuItem submenu] addItem:menuItem];
+            
+            menuItem = [[NSMenuItem alloc] initWithTitle:@"Uncrustify Selected Files" action:@selector(uncrustifySelectedFiles:) keyEquivalent:@""];
+            [menuItem setTarget:self];
+            [[editMenuItem submenu] addItem:menuItem];
         }
     }
     return self;
@@ -44,13 +49,21 @@
 
     IDESourceCodeEditor *editor = [BBXcode currentEditor];
     IDESourceCodeDocument *document = [editor sourceCodeDocument];
-    DVTSourceTextStorage *textStorage = [document textStorage];
+    [BBXcode uncrustifyCodeOfDocument:document];
+}
 
-    //NSLog(@"current selection %@",editor.currentSelectedDocumentLocations);
-
-    if (textStorage.string.length > 0) {
-        NSString *uncrustifiedCode = [BBUncrustify uncrustifyCodeFragment:textStorage.string];
-        [textStorage replaceCharactersInRange:NSMakeRange(0, textStorage.string.length) withString:uncrustifiedCode withUndoManager:[document undoManager]];
+- (IBAction)uncrustifySelectedFiles:(id)sender {
+    NSArray *fileNavigableItems = [BBXcode selectedObjCFileNavigableItems];
+    for (IDEFileNavigableItem *fileNavigableItem in fileNavigableItems) {
+        NSDocument* document = [IDEDocumentController retainedEditorDocumentForNavigableItem:fileNavigableItem error:nil];
+        if ([document isKindOfClass:NSClassFromString(@"IDESourceCodeDocument")]) {
+            IDESourceCodeDocument *sourceCodeDocument = (IDESourceCodeDocument*)document;
+            BOOL uncrustified = [BBXcode uncrustifyCodeOfDocument:sourceCodeDocument];
+            if (uncrustified) {
+                [document saveDocument:nil];
+            }
+        }
+        [IDEDocumentController releaseEditorDocument:document];
     }
 }
 
@@ -59,6 +72,9 @@
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
     if ([menuItem action] == @selector(uncrustify:)) {
         return ([[BBXcode currentEditor] isKindOfClass:NSClassFromString(@"IDESourceCodeEditor")]);
+    }
+    else if ([menuItem action] == @selector(uncrustifySelectedFiles:)) {
+        return ([BBXcode selectedObjCFileNavigableItems].count > 0);
     }
     return YES;
 }
