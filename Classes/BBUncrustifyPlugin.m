@@ -8,6 +8,8 @@
 
 #import "BBUncrustifyPlugin.h"
 #import "BBXcode.h"
+#import "BBUncrustify.h"
+#import "MWSubstring.h"
 
 @implementation BBUncrustifyPlugin
 
@@ -33,6 +35,10 @@
             [[editMenuItem submenu] addItem:menuItem];
 
             menuItem = [[NSMenuItem alloc] initWithTitle:@"Uncrustify Selected Files" action:@selector(uncrustifySelectedFiles:) keyEquivalent:@""];
+            [menuItem setTarget:self];
+            [[editMenuItem submenu] addItem:menuItem];
+
+            menuItem = [[NSMenuItem alloc] initWithTitle:@"Uncrustify Selected Text" action:@selector(uncrustifySelectedText:) keyEquivalent:@""];
             [menuItem setTarget:self];
             [[editMenuItem submenu] addItem:menuItem];
         }
@@ -67,6 +73,33 @@
     }
 }
 
+- (IBAction)uncrustifySelectedText:(id)sender {
+    IDESourceCodeEditor *editor = [BBXcode currentEditor];
+    NSTextView *sourceTextView = editor.textView;
+
+    if ([sourceTextView isKindOfClass:NSClassFromString(@"DVTSourceTextView")]) {
+        NSMutableArray *substrings = [[NSMutableArray alloc] init];
+        NSArray *selectedRanges = sourceTextView.selectedRanges;
+
+        // Create substrings from selections
+        for (NSValue *value in selectedRanges) {
+            NSString *selectedString = [sourceTextView.textStorage.string substringWithRange:[value rangeValue]];
+            MWSubstring *substring = [[MWSubstring alloc] initWithString:selectedString rangeValue:[value rangeValue]];
+
+            // -- Insert at beginning to do substitutions from bottom-up, ie. no need to recalculate ranges.
+            [substrings insertObject:substring atIndex:0];
+        }
+
+        // Do substitutions
+        DVTSourceTextStorage *textStorage = (DVTSourceTextStorage *)sourceTextView.textStorage;
+        NSUndoManager *undoManager = [editor undoManagerForTextView:sourceTextView];
+        for (MWSubstring *substring in substrings) {
+            NSString *uncrustifiedString = [BBUncrustify uncrustifyCodeFragment:substring.string];
+            [textStorage replaceCharactersInRange:substring.range withString:uncrustifiedString withUndoManager:undoManager];
+        }
+    }
+}
+
 #pragma mark - NSMenuValidation
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
@@ -74,7 +107,14 @@
         return ([[BBXcode currentEditor] isKindOfClass:NSClassFromString(@"IDESourceCodeEditor")]);
     } else if ([menuItem action] == @selector(uncrustifySelectedFiles:)) {
         return ([BBXcode selectedObjCFileNavigableItems].count > 0);
+    } else if ([menuItem action] == @selector(uncrustifySelectedText:)) {
+        if ([[[BBXcode currentEditor] textView] isKindOfClass:NSClassFromString(@"DVTSourceTextView")]) {
+            return [[[BBXcode currentEditor] textView] selectedRange].length > 0;
+        } else {
+            return NO;
+        }
     }
+
     return YES;
 }
 

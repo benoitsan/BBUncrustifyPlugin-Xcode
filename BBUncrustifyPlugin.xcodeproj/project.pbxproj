@@ -19,6 +19,7 @@
 		14FF378D16F490F60049868C /* BBUncrustify.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FF378C16F490F60049868C /* BBUncrustify.m */; };
 		DA1B5D020E64686800921439 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 089C1672FE841209C02AAC07 /* Foundation.framework */; };
 		DA37E2DC0E6291C8001BDFEF /* BBUncrustifyPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = DA37E2DB0E6291C8001BDFEF /* BBUncrustifyPlugin.m */; };
+		E331943516FF83720015D6DC /* MWSubstring.m in Sources */ = {isa = PBXBuildFile; fileRef = E331943416FF83720015D6DC /* MWSubstring.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,8 @@
 		8D5B49B6048680CD000E48DA /* UncrustifyPlugin.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UncrustifyPlugin.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA37E2DB0E6291C8001BDFEF /* BBUncrustifyPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBUncrustifyPlugin.m; sourceTree = "<group>"; };
+		E331943316FF83720015D6DC /* MWSubstring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWSubstring.h; sourceTree = "<group>"; };
+		E331943416FF83720015D6DC /* MWSubstring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWSubstring.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +114,8 @@
 				141251A116F4AA8600A18D23 /* BBXcode.m */,
 				14FF378B16F490F60049868C /* BBUncrustify.h */,
 				14FF378C16F490F60049868C /* BBUncrustify.m */,
+				E331943316FF83720015D6DC /* MWSubstring.h */,
+				E331943416FF83720015D6DC /* MWSubstring.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -183,6 +188,7 @@
 				DA37E2DC0E6291C8001BDFEF /* BBUncrustifyPlugin.m in Sources */,
 				14FF378D16F490F60049868C /* BBUncrustify.m in Sources */,
 				141251A216F4AA8600A18D23 /* BBXcode.m in Sources */,
+				E331943516FF83720015D6DC /* MWSubstring.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
