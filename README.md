@@ -4,7 +4,7 @@ Xcode plugin to [uncrustify](http://uncrustify.sourceforge.net) the source code 
 
 ## Requirements
 
-Tested with Xcode 4.6.1 on 10.8.
+Tested with Xcode 4.6+ on OS X 10.7 or higher.
 
 ## Installation
 
