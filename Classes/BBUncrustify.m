@@ -49,7 +49,14 @@ static NSString * BBUUIDString() {
 + (void)uncrustifyFilesAtURLs:(NSArray *)fileURLs {
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
 
-    NSURL *configurationFileURL = [bundle URLForResource:@"uncrustify" withExtension:@"cfg"];
+    NSURL *configurationFileURL;
+	NSString *homeUncrustifyConfig = [@"~/uncrustify.cfg" stringByExpandingTildeInPath];
+
+	if ([[NSFileManager defaultManager] fileExistsAtPath:homeUncrustifyConfig])
+		configurationFileURL = [NSURL fileURLWithPath:homeUncrustifyConfig];
+	else
+    	configurationFileURL = [bundle URLForResource:@"uncrustify" withExtension:@"cfg"];
+
     NSURL *executableFileURL = [bundle URLForResource:@"uncrustify" withExtension:@""];
 
     BOOL filesExists = [[NSFileManager defaultManager] fileExistsAtPath:configurationFileURL.path] && [[NSFileManager defaultManager] fileExistsAtPath:configurationFileURL.path];
