@@ -8,6 +8,7 @@
 
 #import "BBUncrustifyPlugin.h"
 #import "BBXcode.h"
+#import "BBUncrustify.h"
 
 @implementation BBUncrustifyPlugin
 
@@ -33,6 +34,10 @@
             [[editMenuItem submenu] addItem:menuItem];
 
             menuItem = [[NSMenuItem alloc] initWithTitle:@"Uncrustify Selected Files" action:@selector(uncrustifySelectedFiles:) keyEquivalent:@""];
+            [menuItem setTarget:self];
+            [[editMenuItem submenu] addItem:menuItem];
+
+			menuItem = [[NSMenuItem alloc] initWithTitle:@"Uncrustify selection" action:@selector(uncrustifySelection:) keyEquivalent:@""];
             [menuItem setTarget:self];
             [[editMenuItem submenu] addItem:menuItem];
         }
@@ -65,6 +70,27 @@
         }
         [IDEDocumentController releaseEditorDocument:document];
     }
+}
+
+- (IBAction)uncrustifySelection:(id)sender {
+    if (![[BBXcode currentEditor] isKindOfClass:NSClassFromString(@"IDESourceCodeEditor")]) {
+        return;
+    }
+
+	NSResponder *responder = [[NSApp keyWindow] firstResponder];
+
+	if([responder conformsToProtocol:@protocol(NSTextInputClient)]) {
+		id client = responder;
+		// TODO per la selezione
+		NSRange selectedRange = [client selectedRange];
+		NSMutableAttributedString *src = [[[client attributedString] mutableCopy] autorelease];
+		NSMutableString *text = [NSMutableString stringWithString:[[src string] substringWithRange:selectedRange]];
+		NSLog(@"%@", text);
+        NSString *uncrustifiedCode = [BBUncrustify uncrustifyCodeFragment:text];
+        if (![uncrustifiedCode isEqualToString:text]) {
+			[client insertText:uncrustifiedCode];
+		}
+	}
 }
 
 #pragma mark - NSMenuValidation
