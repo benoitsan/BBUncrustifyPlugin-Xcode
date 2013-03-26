@@ -28,11 +28,13 @@
             [[editMenuItem submenu] addItem:[NSMenuItem separatorItem]];
 
             NSMenuItem *menuItem;
-            menuItem = [[NSMenuItem alloc] initWithTitle:@"Uncrustify" action:@selector(uncrustify:) keyEquivalent:@""];
+            menuItem = [[NSMenuItem alloc] initWithTitle:@"Uncrustify" action:@selector(uncrustify:) keyEquivalent:@"u"];
+            menuItem.keyEquivalentModifierMask = NSControlKeyMask;
             [menuItem setTarget:self];
             [[editMenuItem submenu] addItem:menuItem];
 
-            menuItem = [[NSMenuItem alloc] initWithTitle:@"Uncrustify Selected Files" action:@selector(uncrustifySelectedFiles:) keyEquivalent:@""];
+            menuItem = [[NSMenuItem alloc] initWithTitle:@"Uncrustify Selected Files" action:@selector(uncrustifySelectedFiles:) keyEquivalent:@"u"];
+            menuItem.keyEquivalentModifierMask = NSControlKeyMask | NSAlternateKeyMask;
             [menuItem setTarget:self];
             [[editMenuItem submenu] addItem:menuItem];
         }
