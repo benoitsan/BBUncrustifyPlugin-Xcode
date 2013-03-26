@@ -8,6 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 
+@interface DVTCompletingTextView : NSTextView
+@end
+
+@interface DVTSourceTextView : DVTCompletingTextView
+@end
+
 @interface DVTTextDocumentLocation : NSObject
 - (NSRange)characterRange;
 @end
@@ -49,8 +55,10 @@
 @end
 
 @interface IDESourceCodeEditor : NSObject
+- (DVTSourceTextView *)textView;
 - (IDESourceCodeDocument *)sourceCodeDocument;
 - (NSArray *)currentSelectedDocumentLocations; // DVTTextDocumentLocation objects
+- (id)undoManagerForTextView:(id)textView;
 @end
 
 @interface IDEEditorContext : NSObject
