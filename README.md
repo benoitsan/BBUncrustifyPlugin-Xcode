@@ -22,6 +22,8 @@ To uninstall, just remove the plugin from `~/Library/Application Support/Develop
 
 PS: Modifications are recorded in the undo. So undo reverts the modifications.
 
+You can create keyboard shortcuts for the menu items in the [Keyboard Preferences](http://support.apple.com/kb/ph3957) of OS X System Preferences.
+
 
 ## How to customize the uncrustify configuration?
 
