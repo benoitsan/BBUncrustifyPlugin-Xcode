@@ -16,9 +16,11 @@ To uninstall, just remove the plugin from `~/Library/Application Support/Develop
 
 ## How does it work?
 
-* Use the menu `Edit > Uncrustify` to uncrustify the source code actually opened in the editor. 
-
 * Use the menu `Edit > Uncrustify Selected Files` to uncrustify the selected items in the project navigator.
+
+* Use the menu `Edit > Uncrustify Active File` to uncrustify the source file actually opened in the editor. 
+
+* Use the menu `Edit > Uncrustify Selected Lines` to uncrustify the selected source code (multiple selection is supported). The selection is automatically extended in full lines. If the selection is empty, it uses the line under the cursor.
 
 PS: Modifications are recorded in the undo. So undo reverts the modifications.
 

@@ -9,6 +9,22 @@
 #import "BBXcode.h"
 #import "BBUncrustify.h"
 
+NSArray *BBMergeContinuousRanges(NSArray* ranges) {
+    if (ranges.count == 0) return nil;
+    
+    NSMutableIndexSet *mIndexes = [NSMutableIndexSet indexSet];
+    for (NSValue *rangeValue in ranges) {
+        NSRange range = [rangeValue rangeValue];
+        [mIndexes addIndexesInRange:range];
+    }
+    
+    NSMutableArray *mergedRanges = [NSMutableArray array];
+    [mIndexes enumerateRangesUsingBlock:^(NSRange range, BOOL *stop) {
+        [mergedRanges addObject:[NSValue valueWithRange:range]];
+    }];
+    return [mergedRanges copy];
+}
+
 @implementation BBXcode
 
 + (id)currentEditor {
@@ -62,6 +78,52 @@
             uncrustified = YES;
         }
     }
+    return uncrustified;
+}
+
++ (BOOL)uncrustifyCodeAtRanges:(NSArray *)ranges document:(IDESourceCodeDocument *)document {
+    BOOL uncrustified = NO;
+    DVTSourceTextStorage *textStorage = [document textStorage];
+    
+    NSArray *linesRangeValues = nil;
+    {
+        NSMutableArray *mLinesRangeValues = [NSMutableArray array];
+        for (NSValue *rangeValue in ranges) {
+            NSRange range = [rangeValue rangeValue];
+            NSRange lineRange = [textStorage lineRangeForCharacterRange:range];
+            [mLinesRangeValues addObject:[NSValue valueWithRange:lineRange]];
+        }
+        linesRangeValues = BBMergeContinuousRanges(mLinesRangeValues);
+    }
+    
+    NSMutableArray *textFragments = [NSMutableArray array];
+    
+    for (NSValue *linesRangeValue in linesRangeValues) {
+        NSRange linesRange = [linesRangeValue rangeValue];
+        NSRange characterRange = [textStorage characterRangeForLineRange:linesRange];
+        if (characterRange.location != NSNotFound) {
+            NSString *string = [textStorage.string substringWithRange:characterRange];
+            if (string.length > 0) {
+                NSString *uncrustifiedString = [BBUncrustify uncrustifyCodeFragment:string];
+                if (uncrustifiedString.length > 0) {
+                    [textFragments addObject:@{@"textFragment" : uncrustifiedString, @"range" : [NSValue valueWithRange:characterRange]}];
+                }
+            }
+        }
+    }
+    
+    __block NSString *uncrustifiedCode = textStorage.string;
+    
+    [textFragments enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(NSDictionary *textFragment, NSUInteger idx, BOOL *stop) {
+        NSRange range = [textFragment[@"range"] rangeValue];
+        uncrustifiedCode = [uncrustifiedCode stringByReplacingCharactersInRange:range withString:textFragment[@"textFragment"]];
+    }];
+    
+    if (![uncrustifiedCode isEqualToString:textStorage.string]) {
+        [textStorage replaceCharactersInRange:NSMakeRange(0, textStorage.string.length) withString:uncrustifiedCode withUndoManager:[document undoManager]];
+        uncrustified = YES;
+    }
+    
     return uncrustified;
 }
 

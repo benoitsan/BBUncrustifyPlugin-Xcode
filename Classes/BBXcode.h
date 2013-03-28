@@ -9,11 +9,14 @@
 #import <Cocoa/Cocoa.h>
 
 @interface DVTTextDocumentLocation : NSObject
-- (NSRange)characterRange;
+@property(readonly) NSRange characterRange;
+@property(readonly) NSRange lineRange;
 @end
 
 @interface DVTSourceTextStorage : NSTextStorage
 - (void)replaceCharactersInRange:(NSRange)range withString:(NSString *)string withUndoManager:(id)undoManager;
+- (NSRange)lineRangeForCharacterRange:(NSRange)range;
+- (NSRange)characterRangeForLineRange:(NSRange)range;
 @end
 
 @interface DVTFileDataType : NSObject
@@ -49,6 +52,7 @@
 @end
 
 @interface IDESourceCodeEditor : NSObject
+@property(retain) NSTextView *textView;
 - (IDESourceCodeDocument *)sourceCodeDocument;
 - (NSArray *)currentSelectedDocumentLocations; // DVTTextDocumentLocation objects
 @end
@@ -70,4 +74,5 @@
 + (id)currentEditor;
 + (NSArray *)selectedObjCFileNavigableItems;
 + (BOOL)uncrustifyCodeOfDocument:(IDESourceCodeDocument *)document;
++ (BOOL)uncrustifyCodeAtRanges:(NSArray *)ranges document:(IDESourceCodeDocument *)document;
 @end
