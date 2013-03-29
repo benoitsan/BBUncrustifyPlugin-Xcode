@@ -14,5 +14,8 @@
 
 + (NSString *)uncrustifyCodeFragment:(NSString *)codeFragment;
 + (void)uncrustifyFilesAtURLs:(NSArray *)fileURLs;
-
++ (NSURL *)uncrustifyXApplicationURL;
++ (NSURL *)configurationFileURL; // returns the config file URL actually used by Uncrustify.
++ (NSURL *)builtInConfigurationFileURL; // returns the default config file URL of the plugin.
++ (NSArray *)proposedConfigurationFileURLs; // returns suggested custom config file URLs.
 @end

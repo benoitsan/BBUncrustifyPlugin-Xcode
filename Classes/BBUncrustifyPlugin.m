@@ -7,6 +7,7 @@
 //
 
 #import "BBUncrustifyPlugin.h"
+#import "BBUncrustify.h"
 #import "BBXcode.h"
 
 @implementation BBUncrustifyPlugin
@@ -37,6 +38,10 @@
             [[editMenuItem submenu] addItem:menuItem];
             
             menuItem = [[NSMenuItem alloc] initWithTitle:@"Uncrustify Selected Lines" action:@selector(uncrustifySelectedLines:) keyEquivalent:@""];
+            [menuItem setTarget:self];
+            [[editMenuItem submenu] addItem:menuItem];
+            
+            menuItem = [[NSMenuItem alloc] initWithTitle:@"Open with UncrustifyX" action:@selector(openWithUncrustifyX:) keyEquivalent:@""];
             [menuItem setTarget:self];
             [[editMenuItem submenu] addItem:menuItem];
         }
@@ -83,6 +88,39 @@
     [BBXcode uncrustifyCodeAtRanges:selectedRanges document:document];
 }
 
+- (IBAction)openWithUncrustifyX:(id)sender {
+    NSURL *appURL = [BBUncrustify uncrustifyXApplicationURL];
+    
+    NSURL *configurationFileURL = [BBUncrustify configurationFileURL];
+    NSURL *builtInConfigurationFileURL = [BBUncrustify builtInConfigurationFileURL];
+    if ([configurationFileURL isEqual:builtInConfigurationFileURL]) {
+        configurationFileURL = [BBUncrustify proposedConfigurationFileURLs][0];
+        NSAlert *alert = [NSAlert alertWithMessageText:@"Custom Configuration File Not Found" defaultButton:@"Create Configuration File & Open UncrustifyX" alternateButton:@"Cancel" otherButton:nil informativeTextWithFormat:@"Do you want to create a configuration file at this path \n%@",configurationFileURL.path];
+        if ([alert runModal] == NSAlertDefaultReturn) {
+            [[NSFileManager defaultManager] copyItemAtPath:builtInConfigurationFileURL.path toPath:configurationFileURL.path error:nil];
+        }
+        else {
+            configurationFileURL = nil;
+        }
+    }
+    
+    if (configurationFileURL) {
+        if ([[BBXcode currentEditor] isKindOfClass:NSClassFromString(@"IDESourceCodeEditor")]) {
+            IDESourceCodeEditor *editor = [BBXcode currentEditor];
+            IDESourceCodeDocument *document = [editor sourceCodeDocument];
+            DVTSourceTextStorage *textStorage = [document textStorage];
+            if (textStorage.string) {
+                [[NSPasteboard pasteboardWithName:@"BBUncrustifyPlugin-source-code"] writeObjects:@[textStorage.string]];
+            }
+            else {
+                [[NSPasteboard pasteboardWithName:@"BBUncrustifyPlugin-source-code"] clearContents];
+            }
+        }
+        NSDictionary* configuration = @{NSWorkspaceLaunchConfigurationArguments : @[[NSString stringWithFormat:@"-bbuncrustifyplugin -configpath %@",configurationFileURL.path]]};
+        [[NSWorkspace sharedWorkspace]launchApplicationAtURL:appURL options:0 configuration:configuration error:nil];
+    }
+}
+
 
 #pragma mark - NSMenuValidation
 
@@ -104,6 +142,12 @@
             validated = (selectedRanges.count > 0);
         }
         return validated;
+    }
+    else if ([menuItem action] == @selector(openWithUncrustifyX:)) {
+        BOOL appExists = NO;
+        NSURL *appURL = [BBUncrustify uncrustifyXApplicationURL];
+        if (appURL) appExists = [[NSFileManager defaultManager] fileExistsAtPath:appURL.path];
+        [menuItem setHidden:!appExists];
     }
     return YES;
 }

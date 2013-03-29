@@ -9,6 +9,8 @@
 #import "BBUncrustify.h"
 #import <Cocoa/Cocoa.h>
 
+static NSString* const BBUncrustifyXBundleIdentifier = @"nz.co.xwell.UncrustifyX";
+
 static NSString * BBUUIDString() {
     NSString *uuidString = nil;
     CFUUIDRef uuid = CFUUIDCreate(NULL);
@@ -46,23 +48,24 @@ static NSString * BBUUIDString() {
     return result;
 }
 
-+ (NSURL *)configurationFileURL {
-    NSURL *homeDirectoryURL = [NSURL fileURLWithPath:NSHomeDirectory()];
-    
-    NSURL *url;
-    
-    url = [homeDirectoryURL URLByAppendingPathComponent:@"uncrustify.cfg" isDirectory:NO];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:url.path]) {
-        return url;
-    }
-    
-    url = [homeDirectoryURL URLByAppendingPathComponent:@".uncrustifyconfig" isDirectory:NO];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:url.path]) {
-        return url;
-    }
-    
++ (NSURL *)builtInConfigurationFileURL {
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     return [bundle URLForResource:@"uncrustify" withExtension:@"cfg"];
+}
+
++ (NSArray *)proposedConfigurationFileURLs {
+    NSURL *homeDirectoryURL = [NSURL fileURLWithPath:NSHomeDirectory()];
+    NSArray *array = @[[homeDirectoryURL URLByAppendingPathComponent:@".uncrustifyconfig" isDirectory:NO], [homeDirectoryURL URLByAppendingPathComponent:@"uncrustify.cfg" isDirectory:NO]];
+    return array;
+}
+
++ (NSURL *)configurationFileURL {
+    for (NSURL * url in [BBUncrustify proposedConfigurationFileURLs]) {
+        if ([[NSFileManager defaultManager] fileExistsAtPath:url.path]) {
+            return url;
+        }
+    }
+    return [BBUncrustify builtInConfigurationFileURL];
 }
 
 + (void)uncrustifyFilesAtURLs:(NSArray *)fileURLs {
@@ -102,6 +105,10 @@ static NSString * BBUUIDString() {
             [task waitUntilExit];
         }
     }];
+}
+
++ (NSURL *)uncrustifyXApplicationURL {
+    return [[NSWorkspace sharedWorkspace] URLForApplicationWithBundleIdentifier:BBUncrustifyXBundleIdentifier];
 }
 
 @end
