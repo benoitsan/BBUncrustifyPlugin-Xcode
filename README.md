@@ -29,7 +29,11 @@ You can create keyboard shortcuts for the menu items in the [Keyboard Preference
 
 ## How to customize the uncrustify configuration?
 
-I recommend to use [UncrustifyX](https://github.com/ryanmaxwell/UncrustifyX). Overwite the file `uncrustify.cfg` with your own configuration and rebuild the plugin (and restart Xcode).
+I recommend to use [UncrustifyX](https://github.com/ryanmaxwell/UncrustifyX). 
+
+By default, the plugin uses the configuration file `uncrustify.cfg` found in the bundle.
+
+To customize the configuration, copy the file `uncrustify.cfg` or your own to `~/uncrustify.cfg` or `~/.uncrustifyconfig`.
 
 ## Creator
 
