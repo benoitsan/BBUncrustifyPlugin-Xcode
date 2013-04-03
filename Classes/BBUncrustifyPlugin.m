@@ -10,6 +10,8 @@
 #import "BBUncrustify.h"
 #import "BBXcode.h"
 
+//#define UNCRUSTIFYX_FEATURE_ENABLED
+
 @implementation BBUncrustifyPlugin
 
 #pragma mark - Setup and Teardown
@@ -41,9 +43,11 @@
             [menuItem setTarget:self];
             [[editMenuItem submenu] addItem:menuItem];
             
+#ifdef UNCRUSTIFYX_FEATURE_ENABLED
             menuItem = [[NSMenuItem alloc] initWithTitle:@"Open with UncrustifyX" action:@selector(openWithUncrustifyX:) keyEquivalent:@""];
             [menuItem setTarget:self];
             [[editMenuItem submenu] addItem:menuItem];
+#endif
         }
     }
     return self;
@@ -87,6 +91,7 @@
     NSArray *selectedRanges = [editor.textView selectedRanges];
     [BBXcode uncrustifyCodeAtRanges:selectedRanges document:document];
 }
+
 
 - (IBAction)openWithUncrustifyX:(id)sender {
     NSURL *appURL = [BBUncrustify uncrustifyXApplicationURL];

@@ -10,10 +10,12 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString * const BBUncrustifyOptionEvictCommentInsertion;
+extern NSString * const BBUncrustifyOptionSourceFilename;
+
 @interface BBUncrustify : NSObject
 
-+ (NSString *)uncrustifyCodeFragment:(NSString *)codeFragment;
-+ (void)uncrustifyFilesAtURLs:(NSArray *)fileURLs;
++ (NSString *)uncrustifyCodeFragment:(NSString *)codeFragment options:(NSDictionary *)options;
 + (NSURL *)uncrustifyXApplicationURL;
 + (NSURL *)configurationFileURL; // returns the config file URL actually used by Uncrustify.
 + (NSURL *)builtInConfigurationFileURL; // returns the default config file URL of the plugin.

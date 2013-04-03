@@ -72,7 +72,7 @@ NSArray *BBMergeContinuousRanges(NSArray* ranges) {
     BOOL uncrustified = NO;
     DVTSourceTextStorage *textStorage = [document textStorage];
     if (textStorage.string.length > 0) {
-        NSString *uncrustifiedCode = [BBUncrustify uncrustifyCodeFragment:textStorage.string];
+        NSString *uncrustifiedCode = [BBUncrustify uncrustifyCodeFragment:textStorage.string options:@{BBUncrustifyOptionSourceFilename : document.fileURL.lastPathComponent}];
         if (![uncrustifiedCode isEqualToString:textStorage.string]) {
             [textStorage replaceCharactersInRange:NSMakeRange(0, textStorage.string.length) withString:uncrustifiedCode withUndoManager:[document undoManager]];
             uncrustified = YES;
@@ -104,7 +104,7 @@ NSArray *BBMergeContinuousRanges(NSArray* ranges) {
         if (characterRange.location != NSNotFound) {
             NSString *string = [textStorage.string substringWithRange:characterRange];
             if (string.length > 0) {
-                NSString *uncrustifiedString = [BBUncrustify uncrustifyCodeFragment:string];
+                NSString *uncrustifiedString = [BBUncrustify uncrustifyCodeFragment:string options:@{BBUncrustifyOptionEvictCommentInsertion : @YES, BBUncrustifyOptionSourceFilename : document.fileURL.lastPathComponent}];
                 if (uncrustifiedString.length > 0) {
                     [textFragments addObject:@{@"textFragment" : uncrustifiedString, @"range" : [NSValue valueWithRange:characterRange]}];
                 }
