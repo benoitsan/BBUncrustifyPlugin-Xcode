@@ -29,11 +29,15 @@ You can create keyboard shortcuts for the menu items in the [Keyboard Preference
 
 ## How to customize the uncrustify configuration?
 
-I recommend to use [UncrustifyX](https://github.com/ryanmaxwell/UncrustifyX). 
-
 By default, the plugin uses the configuration file `uncrustify.cfg` found in the bundle.
 
 To customize the configuration, copy the file `uncrustify.cfg` or your own to `~/uncrustify.cfg` or `~/.uncrustifyconfig`.
+
+### Using UncrustifyX
+
+A more easy way to edit the configuration is to use the Mac appplication [UncrustifyX](https://github.com/ryanmaxwell/UncrustifyX). 
+
+Once UncrustifyX is installed, the plugin will add a menu item `Open with UncrustifyX` to open the actual source code and configuration in UncrustifyX.
 
 ## Creator
 
