@@ -121,7 +121,7 @@
                 [[NSPasteboard pasteboardWithName:@"BBUncrustifyPlugin-source-code"] clearContents];
             }
         }
-        NSDictionary* configuration = @{NSWorkspaceLaunchConfigurationArguments : @[[NSString stringWithFormat:@"-bbuncrustifyplugin -configpath %@",configurationFileURL.path]]};
+        NSDictionary* configuration = @{NSWorkspaceLaunchConfigurationArguments : @[@"-bbuncrustifyplugin", @"-configpath", configurationFileURL.path]};
         [[NSWorkspace sharedWorkspace]launchApplicationAtURL:appURL options:0 configuration:configuration error:nil];
     }
 }
