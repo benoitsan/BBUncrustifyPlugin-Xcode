@@ -9,8 +9,9 @@
 #import "BBUncrustifyPlugin.h"
 #import "BBUncrustify.h"
 #import "BBXcode.h"
+#import "BBPluginUpdater.h"
 
-@implementation BBUncrustifyPlugin
+@implementation BBUncrustifyPlugin {}
 
 #pragma mark - Setup and Teardown
 
@@ -44,6 +45,10 @@
             menuItem = [[NSMenuItem alloc] initWithTitle:@"Open with UncrustifyX" action:@selector(openWithUncrustifyX:) keyEquivalent:@""];
             [menuItem setTarget:self];
             [[editMenuItem submenu] addItem:menuItem];
+            
+            [BBPluginUpdater sharedUpdater].delegate = self;
+            
+            NSLog(@"BBUncrustifyPlugin (V%@) loaded",[[[NSBundle bundleForClass:[self class]] infoDictionary] objectForKey:@"CFBundleVersion"]);
         }
     }
     return self;
@@ -64,6 +69,8 @@
         }
         [IDEDocumentController releaseEditorDocument:document];
     }
+    
+    [[BBPluginUpdater sharedUpdater] checkForUpdatesIfNeeded];
 }
 
 - (IBAction)uncrustifyActiveFile:(id)sender {
@@ -74,6 +81,8 @@
     IDESourceCodeEditor *editor = [BBXcode currentEditor];
     IDESourceCodeDocument *document = [editor sourceCodeDocument];
     [BBXcode uncrustifyCodeOfDocument:document];
+    
+    [[BBPluginUpdater sharedUpdater] checkForUpdatesIfNeeded];
 }
 
 - (IBAction)uncrustifySelectedLines:(id)sender {
@@ -86,6 +95,8 @@
     DVTSourceTextStorage *textStorage = [document textStorage];
     NSArray *selectedRanges = [editor.textView selectedRanges];
     [BBXcode uncrustifyCodeAtRanges:selectedRanges document:document];
+    
+    [[BBPluginUpdater sharedUpdater] checkForUpdatesIfNeeded];
 }
 
 
@@ -118,6 +129,8 @@
         NSDictionary* configuration = @{NSWorkspaceLaunchConfigurationArguments : @[@"-bbuncrustifyplugin", @"-configpath", configurationFileURL.path]};
         [[NSWorkspace sharedWorkspace]launchApplicationAtURL:appURL options:0 configuration:configuration error:nil];
     }
+    
+    [[BBPluginUpdater sharedUpdater] checkForUpdatesIfNeeded];
 }
 
 
@@ -149,6 +162,12 @@
         [menuItem setHidden:!appExists];
     }
     return YES;
+}
+
+#pragma mark - SUUpdater Delegate
+
+- (NSString *)pathToRelaunchForUpdater:(SUUpdater *)updater {
+    return [[NSBundle mainBundle].bundleURL path];
 }
 
 @end

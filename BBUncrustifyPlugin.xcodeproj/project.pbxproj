@@ -8,28 +8,52 @@
 
 /* Begin PBXBuildFile section */
 		141251A216F4AA8600A18D23 /* BBXcode.m in Sources */ = {isa = PBXBuildFile; fileRef = 141251A116F4AA8600A18D23 /* BBXcode.m */; };
+		1414D3C51710D549002378C0 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1414D3C41710D549002378C0 /* Sparkle.framework */; };
+		1414D3C8171163CA002378C0 /* BBPluginUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 1414D3C7171163CA002378C0 /* BBPluginUpdater.m */; };
+		1414D3CA17116556002378C0 /* sparkle_dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 1414D3C917116556002378C0 /* sparkle_dsa_pub.pem */; };
 		1435669616FD0E0000FECDEB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1435669516FD0E0000FECDEB /* Cocoa.framework */; };
 		1435669816FD0E0400FECDEB /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1435669716FD0E0400FECDEB /* AppKit.framework */; };
 		14617B3316FD9BDB00C7C91B /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14617B2F16FD9BDB00C7C91B /* DVTKit.framework */; };
 		14617B3416FD9BDB00C7C91B /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14617B3016FD9BDB00C7C91B /* DVTFoundation.framework */; };
 		14617B3516FD9BDB00C7C91B /* IDEFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14617B3116FD9BDB00C7C91B /* IDEFoundation.framework */; };
 		14617B3616FD9BDB00C7C91B /* IDEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14617B3216FD9BDB00C7C91B /* IDEKit.framework */; };
+		147264381711732F002BC0BE /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 147264371711732F002BC0BE /* icon.icns */; };
 		14CE84DC16F4A57A008082AB /* uncrustify.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 14CE84DA16F49D6F008082AB /* uncrustify.cfg */; };
 		14CE84DD16F4A57D008082AB /* uncrustify in Resources */ = {isa = PBXBuildFile; fileRef = 14CE84D916F49A02008082AB /* uncrustify */; };
+		14EFEEDA171167BB0068BB83 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 1414D3C41710D549002378C0 /* Sparkle.framework */; };
 		14FF378D16F490F60049868C /* BBUncrustify.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FF378C16F490F60049868C /* BBUncrustify.m */; };
 		DA1B5D020E64686800921439 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 089C1672FE841209C02AAC07 /* Foundation.framework */; };
 		DA37E2DC0E6291C8001BDFEF /* BBUncrustifyPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = DA37E2DB0E6291C8001BDFEF /* BBUncrustifyPlugin.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		14EFEED9171167950068BB83 /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				14EFEEDA171167BB0068BB83 /* Sparkle.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		089C1672FE841209C02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		141251A116F4AA8600A18D23 /* BBXcode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBXcode.m; sourceTree = "<group>"; };
+		1414D3C41710D549002378C0 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		1414D3C6171163CA002378C0 /* BBPluginUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBPluginUpdater.h; sourceTree = "<group>"; };
+		1414D3C7171163CA002378C0 /* BBPluginUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBPluginUpdater.m; sourceTree = "<group>"; };
+		1414D3C917116556002378C0 /* sparkle_dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sparkle_dsa_pub.pem; sourceTree = "<group>"; };
 		1435669516FD0E0000FECDEB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		1435669716FD0E0400FECDEB /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		14617B2F16FD9BDB00C7C91B /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTKit.framework; path = ../../../../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTKit.framework; sourceTree = "<group>"; };
 		14617B3016FD9BDB00C7C91B /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTFoundation.framework; path = ../../../../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework; sourceTree = "<group>"; };
 		14617B3116FD9BDB00C7C91B /* IDEFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEFoundation.framework; path = ../../../../../../../Applications/Xcode.app/Contents/Frameworks/IDEFoundation.framework; sourceTree = "<group>"; };
 		14617B3216FD9BDB00C7C91B /* IDEKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEKit.framework; path = ../../../../../../../Applications/Xcode.app/Contents/Frameworks/IDEKit.framework; sourceTree = "<group>"; };
+		147264371711732F002BC0BE /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		149B117816F483D3000F9C01 /* BBXcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBXcode.h; sourceTree = "<group>"; };
 		14CE84D916F49A02008082AB /* uncrustify */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = uncrustify; sourceTree = "<group>"; };
 		14CE84DA16F49D6F008082AB /* uncrustify.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = uncrustify.cfg; sourceTree = "<group>"; };
@@ -53,6 +77,7 @@
 				14617B3416FD9BDB00C7C91B /* DVTFoundation.framework in Frameworks */,
 				14617B3516FD9BDB00C7C91B /* IDEFoundation.framework in Frameworks */,
 				14617B3616FD9BDB00C7C91B /* IDEKit.framework in Frameworks */,
+				1414D3C51710D549002378C0 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +98,7 @@
 		089C1671FE841209C02AAC07 /* Frameworks and Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				1414D3C41710D549002378C0 /* Sparkle.framework */,
 				14617B2F16FD9BDB00C7C91B /* DVTKit.framework */,
 				14617B3016FD9BDB00C7C91B /* DVTFoundation.framework */,
 				14617B3116FD9BDB00C7C91B /* IDEFoundation.framework */,
@@ -88,8 +114,10 @@
 			isa = PBXGroup;
 			children = (
 				8D5B49B7048680CD000E48DA /* Info.plist */,
+				147264371711732F002BC0BE /* icon.icns */,
 				14CE84DA16F49D6F008082AB /* uncrustify.cfg */,
 				14CE84D916F49A02008082AB /* uncrustify */,
+				1414D3C917116556002378C0 /* sparkle_dsa_pub.pem */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -107,10 +135,12 @@
 			children = (
 				7F2B355F15FA59D000DB3249 /* BBUncrustifyPlugin.h */,
 				DA37E2DB0E6291C8001BDFEF /* BBUncrustifyPlugin.m */,
-				149B117816F483D3000F9C01 /* BBXcode.h */,
-				141251A116F4AA8600A18D23 /* BBXcode.m */,
 				14FF378B16F490F60049868C /* BBUncrustify.h */,
 				14FF378C16F490F60049868C /* BBUncrustify.m */,
+				149B117816F483D3000F9C01 /* BBXcode.h */,
+				141251A116F4AA8600A18D23 /* BBXcode.m */,
+				1414D3C6171163CA002378C0 /* BBPluginUpdater.h */,
+				1414D3C7171163CA002378C0 /* BBPluginUpdater.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -125,6 +155,7 @@
 				8D5B49B1048680CD000E48DA /* Sources */,
 				8D5B49B3048680CD000E48DA /* Frameworks */,
 				14CE84DB16F4A573008082AB /* Resources */,
+				14EFEED9171167950068BB83 /* Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -170,6 +201,8 @@
 			files = (
 				14CE84DC16F4A57A008082AB /* uncrustify.cfg in Resources */,
 				14CE84DD16F4A57D008082AB /* uncrustify in Resources */,
+				1414D3CA17116556002378C0 /* sparkle_dsa_pub.pem in Resources */,
+				147264381711732F002BC0BE /* icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,6 +216,7 @@
 				DA37E2DC0E6291C8001BDFEF /* BBUncrustifyPlugin.m in Sources */,
 				14FF378D16F490F60049868C /* BBUncrustify.m in Sources */,
 				141251A216F4AA8600A18D23 /* BBXcode.m in Sources */,
+				1414D3C8171163CA002378C0 /* BBPluginUpdater.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,6 +236,7 @@
 					"$(inherited)",
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks\"",
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks\"",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_GC = supported;
