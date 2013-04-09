@@ -17,6 +17,7 @@
 - (void)replaceCharactersInRange:(NSRange)range withString:(NSString *)string withUndoManager:(id)undoManager;
 - (NSRange)lineRangeForCharacterRange:(NSRange)range;
 - (NSRange)characterRangeForLineRange:(NSRange)range;
+- (void)indentCharacterRange:(NSRange)range undoManager:(id)undoManager;
 @end
 
 @interface DVTFileDataType : NSObject
