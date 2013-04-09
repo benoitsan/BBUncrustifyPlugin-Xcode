@@ -92,7 +92,6 @@
     
     IDESourceCodeEditor *editor = [BBXcode currentEditor];
     IDESourceCodeDocument *document = [editor sourceCodeDocument];
-    DVTSourceTextStorage *textStorage = [document textStorage];
     NSArray *selectedRanges = [editor.textView selectedRanges];
     [BBXcode uncrustifyCodeAtRanges:selectedRanges document:document];
     
@@ -147,8 +146,6 @@
         BOOL validated = NO;
         if ([[BBXcode currentEditor] isKindOfClass:NSClassFromString(@"IDESourceCodeEditor")]) {
             IDESourceCodeEditor *editor = [BBXcode currentEditor];
-            IDESourceCodeDocument *document = [editor sourceCodeDocument];
-            DVTSourceTextStorage *textStorage = [document textStorage];
             NSArray *selectedRanges = [editor.textView selectedRanges];
             
             validated = (selectedRanges.count > 0);
