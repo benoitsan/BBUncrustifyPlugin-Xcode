@@ -99,76 +99,35 @@
     IDESourceCodeEditor *editor = [BBXcode currentEditor];
     IDESourceCodeDocument *document = [editor sourceCodeDocument];
     NSArray *selectedRanges = [editor.textView selectedRanges];
-    [BBXcode uncrustifyCodeAtRanges:selectedRanges document:document];
+    [BBXcode uncrustifyCodeAtRanges:selectedRanges document:document reindent:YES];
     
     [[BBPluginUpdater sharedUpdater] checkForUpdatesIfNeeded];
 }
 
 - (IBAction)uncrustifyAndReindentSelectedLines:(id)sender {
-    [self uncrustifySelectedLines:sender];
-
     if (![[BBXcode currentEditor] isKindOfClass:NSClassFromString(@"IDESourceCodeEditor")]) {
         return;
     }
 
     IDESourceCodeEditor *editor = [BBXcode currentEditor];
-    NSTextView *textView = editor.textView;
+    IDESourceCodeDocument *document = [editor sourceCodeDocument];
+    NSUndoManager *undoManager = [document undoManager];
 
-    // Archive pasteboard
-    NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
-	NSArray *pasteboardItems = [pasteboard pasteboardItems];
-	NSMutableArray *pasteboardDataItems = [NSMutableArray arrayWithCapacity:[pasteboardItems count]];
+    [undoManager beginUndoGrouping];
+    
+    NSArray *selectedRanges = [editor.textView selectedRanges];
+    [BBXcode uncrustifyCodeAtRanges:selectedRanges document:document reindent:NO];
 
-	for (NSPasteboardItem *item in pasteboardItems) {
-		NSArray *types = [item types];
-		NSUInteger count = [types count];
-		NSMutableArray *itemTypes = [NSMutableArray arrayWithCapacity:count];
-		NSMutableDictionary *itemData = [NSMutableDictionary dictionaryWithCapacity:count];
-
-		for (NSString *type in [item types]) {
-			id data = [item dataForType:type];
-
-			if (data == nil) {
-				data = [NSNull null];
-			}
-
-			[itemTypes addObject:type];
-			[itemData setObject:data forKey:type];
-		}
-        
-        NSDictionary *itemDictionary = [NSDictionary dictionaryWithObjectsAndKeys:itemTypes, @"types", itemData, @"data", nil];
-
-		[pasteboardDataItems addObject:itemDictionary];
-	}
+    DVTSourceTextView *textView = editor.textView;
 
     // Let Xcode re-indent the cleaned code
     [textView selectAll:sender];
-    [textView copy:sender];
-    [textView paste:sender];
+    [textView indentSelection:sender];
     [textView setSelectedRange:NSMakeRange([[textView string] length], 0)];
 
-    // Restore pasteboard
-	NSMutableArray *archivPasteboardItems = [NSMutableArray arrayWithCapacity:[pasteboardDataItems count]];
+    [undoManager endUndoGrouping];
 
-	for (NSDictionary *pasteboardDataItem in pasteboardDataItems) {
-		NSDictionary *dataDictionary = [pasteboardDataItem objectForKey:@"data"];
-		NSArray *typesArray = [pasteboardDataItem objectForKey:@"types"];
-
-		NSPasteboardItem *archiveItem = [[[NSPasteboardItem alloc] init] autorelease];
-
-		for (NSString *uti in typesArray) {
-			id data = [dataDictionary objectForKey:uti];
-
-			if ([data isKindOfClass:[NSData class]]) {
-				[archiveItem setData:data forType:uti];
-			}
-		}
-
-		[archivPasteboardItems addObject:archiveItem];
-	}
-
-	[pasteboard clearContents];
-	[pasteboard writeObjects:archivPasteboardItems];
+    [[BBPluginUpdater sharedUpdater] checkForUpdatesIfNeeded];
 }
 
 - (IBAction)openWithUncrustifyX:(id)sender {

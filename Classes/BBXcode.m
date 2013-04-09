@@ -82,7 +82,7 @@ NSArray *BBMergeContinuousRanges(NSArray* ranges) {
     return uncrustified;
 }
 
-+ (BOOL)uncrustifyCodeAtRanges:(NSArray *)ranges document:(IDESourceCodeDocument *)document {
++ (BOOL)uncrustifyCodeAtRanges:(NSArray *)ranges document:(IDESourceCodeDocument *)document reindent:(BOOL)reindent {
     BOOL uncrustified = NO;
     DVTSourceTextStorage *textStorage = [document textStorage];
     
@@ -125,7 +125,7 @@ NSArray *BBMergeContinuousRanges(NSArray* ranges) {
         uncrustified = YES;
     }
     
-    if (uncrustified) {
+    if (uncrustified && reindent) {
         [textStorage indentCharacterRange:NSMakeRange(0, textStorage.string.length) undoManager:[document undoManager]];
     }
     

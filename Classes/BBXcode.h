@@ -52,8 +52,13 @@
 - (NSUndoManager *)undoManager;
 @end
 
+@interface DVTSourceTextView : NSTextView
+- (void)indentSelectionIfIndentable:(id)sender;
+- (void)indentSelection:(id)sender;
+@end
+
 @interface IDESourceCodeEditor : NSObject
-@property(retain) NSTextView *textView;
+@property(retain) DVTSourceTextView *textView;
 - (IDESourceCodeDocument *)sourceCodeDocument;
 - (NSArray *)currentSelectedDocumentLocations; // DVTTextDocumentLocation objects
 @end
@@ -75,5 +80,5 @@
 + (id)currentEditor;
 + (NSArray *)selectedObjCFileNavigableItems;
 + (BOOL)uncrustifyCodeOfDocument:(IDESourceCodeDocument *)document;
-+ (BOOL)uncrustifyCodeAtRanges:(NSArray *)ranges document:(IDESourceCodeDocument *)document;
++ (BOOL)uncrustifyCodeAtRanges:(NSArray *)ranges document:(IDESourceCodeDocument *)document reindent:(BOOL)reindent;
 @end
