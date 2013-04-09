@@ -117,18 +117,28 @@
     // Archive pasteboard
     NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
 	NSArray *pasteboardItems = [pasteboard pasteboardItems];
-	NSMutableArray *archivePasteboardItems = [NSMutableArray arrayWithCapacity:[pasteboardItems count]];
+	NSMutableArray *pasteboardDataItems = [NSMutableArray arrayWithCapacity:[pasteboardItems count]];
 
-	for (NSPasteboardItem *item in [pasteboard pasteboardItems]) {
-        NSPasteboardItem *archiveItem = [[[NSPasteboardItem alloc] init] autorelease];
+	for (NSPasteboardItem *item in pasteboardItems) {
+		NSArray *types = [item types];
+		NSUInteger count = [types count];
+		NSMutableArray *itemTypes = [NSMutableArray arrayWithCapacity:count];
+		NSMutableDictionary *itemData = [NSMutableDictionary dictionaryWithCapacity:count];
 
 		for (NSString *type in [item types]) {
-			NSData *itemData = [[[item dataForType:type] mutableCopy] autorelease];
+			id data = [item dataForType:type];
 
-            [archiveItem setData:itemData forType:type];
+			if (data == nil) {
+				data = [NSNull null];
+			}
 
-            [archivePasteboardItems addObject:item];
+			[itemTypes addObject:type];
+			[itemData setObject:data forKey:type];
 		}
+        
+        NSDictionary *itemDictionary = [NSDictionary dictionaryWithObjectsAndKeys:itemTypes, @"types", itemData, @"data", nil];
+
+		[pasteboardDataItems addObject:itemDictionary];
 	}
 
     // Let Xcode re-indent the cleaned code
@@ -138,8 +148,27 @@
     [textView setSelectedRange:NSMakeRange([[textView string] length], 0)];
 
     // Restore pasteboard
+	NSMutableArray *archivPasteboardItems = [NSMutableArray arrayWithCapacity:[pasteboardDataItems count]];
+
+	for (NSDictionary *pasteboardDataItem in pasteboardDataItems) {
+		NSDictionary *dataDictionary = [pasteboardDataItem objectForKey:@"data"];
+		NSArray *typesArray = [pasteboardDataItem objectForKey:@"types"];
+
+		NSPasteboardItem *archiveItem = [[[NSPasteboardItem alloc] init] autorelease];
+
+		for (NSString *uti in typesArray) {
+			id data = [dataDictionary objectForKey:uti];
+
+			if ([data isKindOfClass:[NSData class]]) {
+				[archiveItem setData:data forType:uti];
+			}
+		}
+
+		[archivPasteboardItems addObject:archiveItem];
+	}
+
 	[pasteboard clearContents];
-	[pasteboard writeObjects:archivePasteboardItems];
+	[pasteboard writeObjects:archivPasteboardItems];
 }
 
 - (IBAction)openWithUncrustifyX:(id)sender {
