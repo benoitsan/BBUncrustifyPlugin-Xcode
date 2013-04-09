@@ -21,7 +21,7 @@ static NSString * BBUUIDString() {
         uuidString = (NSString *)CFUUIDCreateString(NULL, uuid);
         CFRelease(uuid);
     }
-    return [uuidString autorelease];
+    return [NSMakeCollectable(uuidString) autorelease];
 }
 
 @interface BBUncrustify ()
@@ -151,6 +151,8 @@ static NSString * BBUUIDString() {
 
             [task launch];
             [task waitUntilExit];
+
+            [task release];
         }
     }];
 }

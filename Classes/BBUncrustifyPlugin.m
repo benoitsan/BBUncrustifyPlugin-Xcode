@@ -16,9 +16,11 @@
 #pragma mark - Setup and Teardown
 
 + (void)pluginDidLoad:(NSBundle *)plugin {
+    static BBUncrustifyPlugin *uncrustifyPlugin = nil;
+    
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [[self alloc] init];
+        uncrustifyPlugin = [[self alloc] init];
     });
 }
 
@@ -118,12 +120,9 @@
 	NSMutableArray *archivePasteboardItems = [NSMutableArray arrayWithCapacity:[pasteboardItems count]];
 
 	for (NSPasteboardItem *item in [pasteboard pasteboardItems]) {
-		NSArray *types = [item types];
-		NSUInteger count = [types count];
-
         NSPasteboardItem *archiveItem = [[[NSPasteboardItem alloc] init] autorelease];
 
-		for (NSString *type in types) {
+		for (NSString *type in [item types]) {
 			NSData *itemData = [[[item dataForType:type] mutableCopy] autorelease];
 
             [archiveItem setData:itemData forType:type];
@@ -190,8 +189,6 @@
         BOOL validated = NO;
         if ([[BBXcode currentEditor] isKindOfClass:NSClassFromString(@"IDESourceCodeEditor")]) {
             IDESourceCodeEditor *editor = [BBXcode currentEditor];
-            IDESourceCodeDocument *document = [editor sourceCodeDocument];
-            DVTSourceTextStorage *textStorage = [document textStorage];
             NSArray *selectedRanges = [editor.textView selectedRanges];
 
             validated = (selectedRanges.count > 0);

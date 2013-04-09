@@ -22,7 +22,7 @@ NSArray *BBMergeContinuousRanges(NSArray* ranges) {
     [mIndexes enumerateRangesUsingBlock:^(NSRange range, BOOL *stop) {
         [mergedRanges addObject:[NSValue valueWithRange:range]];
     }];
-    return [mergedRanges copy];
+    return [[mergedRanges copy] autorelease];
 }
 
 @implementation BBXcode
@@ -63,7 +63,7 @@ NSArray *BBMergeContinuousRanges(NSArray* ranges) {
     }
 
     if (mutableArray.count) {
-        return [mutableArray copy];
+        return [[mutableArray copy] autorelease];
     }
     return nil;
 }
