@@ -16,9 +16,11 @@
 #pragma mark - Setup and Teardown
 
 + (void)pluginDidLoad:(NSBundle *)plugin {
+    static BBUncrustifyPlugin *uncrustifyPlugin = nil;
+    
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [[self alloc] init];
+        uncrustifyPlugin = [[self alloc] init];
     });
 }
 
@@ -41,7 +43,11 @@
             menuItem = [[NSMenuItem alloc] initWithTitle:@"Uncrustify Selected Lines" action:@selector(uncrustifySelectedLines:) keyEquivalent:@""];
             [menuItem setTarget:self];
             [[editMenuItem submenu] addItem:menuItem];
-            
+
+            menuItem = [[NSMenuItem alloc] initWithTitle:@"Uncrustify And Reindent Selected Lines" action:@selector(uncrustifyAndReindentSelectedLines:) keyEquivalent:@""];
+            [menuItem setTarget:self];
+            [[editMenuItem submenu] addItem:menuItem];
+
             menuItem = [[NSMenuItem alloc] initWithTitle:@"Open with UncrustifyX" action:@selector(openWithUncrustifyX:) keyEquivalent:@""];
             [menuItem setTarget:self];
             [[editMenuItem submenu] addItem:menuItem];
@@ -93,11 +99,36 @@
     IDESourceCodeEditor *editor = [BBXcode currentEditor];
     IDESourceCodeDocument *document = [editor sourceCodeDocument];
     NSArray *selectedRanges = [editor.textView selectedRanges];
-    [BBXcode uncrustifyCodeAtRanges:selectedRanges document:document];
+    [BBXcode uncrustifyCodeAtRanges:selectedRanges document:document reindent:YES];
     
     [[BBPluginUpdater sharedUpdater] checkForUpdatesIfNeeded];
 }
 
+- (IBAction)uncrustifyAndReindentSelectedLines:(id)sender {
+    if (![[BBXcode currentEditor] isKindOfClass:NSClassFromString(@"IDESourceCodeEditor")]) {
+        return;
+    }
+
+    IDESourceCodeEditor *editor = [BBXcode currentEditor];
+    IDESourceCodeDocument *document = [editor sourceCodeDocument];
+    NSUndoManager *undoManager = [document undoManager];
+
+    [undoManager beginUndoGrouping];
+    
+    NSArray *selectedRanges = [editor.textView selectedRanges];
+    [BBXcode uncrustifyCodeAtRanges:selectedRanges document:document reindent:NO];
+
+    DVTSourceTextView *textView = editor.textView;
+
+    // Let Xcode re-indent the cleaned code
+    [textView selectAll:sender];
+    [textView indentSelection:sender];
+    [textView setSelectedRange:NSMakeRange([[textView string] length], 0)];
+
+    [undoManager endUndoGrouping];
+
+    [[BBPluginUpdater sharedUpdater] checkForUpdatesIfNeeded];
+}
 
 - (IBAction)openWithUncrustifyX:(id)sender {
     NSURL *appURL = [BBUncrustify uncrustifyXApplicationURL];
@@ -142,12 +173,12 @@
     else if ([menuItem action] == @selector(uncrustifyActiveFile:)) {
         return ([[BBXcode currentEditor] isKindOfClass:NSClassFromString(@"IDESourceCodeEditor")]);
     }
-    else if ([menuItem action] == @selector(uncrustifySelectedLines:)) {
+    else if (([menuItem action] == @selector(uncrustifySelectedLines:)) || ([menuItem action] == @selector(uncrustifyAndReindentSelectedLines:))) {
         BOOL validated = NO;
         if ([[BBXcode currentEditor] isKindOfClass:NSClassFromString(@"IDESourceCodeEditor")]) {
             IDESourceCodeEditor *editor = [BBXcode currentEditor];
             NSArray *selectedRanges = [editor.textView selectedRanges];
-            
+
             validated = (selectedRanges.count > 0);
         }
         return validated;
