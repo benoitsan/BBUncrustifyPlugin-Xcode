@@ -22,7 +22,7 @@ NSArray *BBMergeContinuousRanges(NSArray* ranges) {
     [mIndexes enumerateRangesUsingBlock:^(NSRange range, BOOL *stop) {
         [mergedRanges addObject:[NSValue valueWithRange:range]];
     }];
-    return [[mergedRanges copy] autorelease];
+    return [NSArray arrayWithArray:mergedRanges];
 }
 
 @implementation BBXcode
@@ -63,7 +63,7 @@ NSArray *BBMergeContinuousRanges(NSArray* ranges) {
     }
 
     if (mutableArray.count) {
-        return [[mutableArray copy] autorelease];
+        return [NSArray arrayWithArray:mutableArray];
     }
     return nil;
 }
@@ -75,6 +75,7 @@ NSArray *BBMergeContinuousRanges(NSArray* ranges) {
         NSString *uncrustifiedCode = [BBUncrustify uncrustifyCodeFragment:textStorage.string options:@{BBUncrustifyOptionSourceFilename : document.fileURL.lastPathComponent}];
         if (![uncrustifiedCode isEqualToString:textStorage.string]) {
             [textStorage replaceCharactersInRange:NSMakeRange(0, textStorage.string.length) withString:uncrustifiedCode withUndoManager:[document undoManager]];
+            [textStorage indentCharacterRange:NSMakeRange(0, textStorage.string.length) undoManager:[document undoManager]];
             uncrustified = YES;
         }
     }
@@ -122,6 +123,10 @@ NSArray *BBMergeContinuousRanges(NSArray* ranges) {
     if (![uncrustifiedCode isEqualToString:textStorage.string]) {
         [textStorage replaceCharactersInRange:NSMakeRange(0, textStorage.string.length) withString:uncrustifiedCode withUndoManager:[document undoManager]];
         uncrustified = YES;
+    }
+    
+    if (uncrustified) {
+        [textStorage indentCharacterRange:NSMakeRange(0, textStorage.string.length) undoManager:[document undoManager]];
     }
     
     return uncrustified;

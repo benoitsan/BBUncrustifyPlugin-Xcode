@@ -151,7 +151,6 @@ static NSString * BBUUIDString() {
 
             [task launch];
             [task waitUntilExit];
-
             [task release];
         }
     }];
