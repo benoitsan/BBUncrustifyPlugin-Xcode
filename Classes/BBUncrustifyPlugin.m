@@ -41,7 +41,11 @@
             menuItem = [[NSMenuItem alloc] initWithTitle:@"Uncrustify Selected Lines" action:@selector(uncrustifySelectedLines:) keyEquivalent:@""];
             [menuItem setTarget:self];
             [[editMenuItem submenu] addItem:menuItem];
-            
+
+            menuItem = [[NSMenuItem alloc] initWithTitle:@"Uncrustify And Reindent Selected Lines" action:@selector(uncrustifyAndReindentSelectedLines:) keyEquivalent:@""];
+            [menuItem setTarget:self];
+            [[editMenuItem submenu] addItem:menuItem];
+
             menuItem = [[NSMenuItem alloc] initWithTitle:@"Open with UncrustifyX" action:@selector(openWithUncrustifyX:) keyEquivalent:@""];
             [menuItem setTarget:self];
             [[editMenuItem submenu] addItem:menuItem];
@@ -92,13 +96,52 @@
     
     IDESourceCodeEditor *editor = [BBXcode currentEditor];
     IDESourceCodeDocument *document = [editor sourceCodeDocument];
-    DVTSourceTextStorage *textStorage = [document textStorage];
     NSArray *selectedRanges = [editor.textView selectedRanges];
     [BBXcode uncrustifyCodeAtRanges:selectedRanges document:document];
     
     [[BBPluginUpdater sharedUpdater] checkForUpdatesIfNeeded];
 }
 
+- (IBAction)uncrustifyAndReindentSelectedLines:(id)sender {
+    [self uncrustifySelectedLines:sender];
+
+    if (![[BBXcode currentEditor] isKindOfClass:NSClassFromString(@"IDESourceCodeEditor")]) {
+        return;
+    }
+
+    IDESourceCodeEditor *editor = [BBXcode currentEditor];
+    NSTextView *textView = editor.textView;
+
+    // Archive pasteboard
+    NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
+	NSArray *pasteboardItems = [pasteboard pasteboardItems];
+	NSMutableArray *archivePasteboardItems = [NSMutableArray arrayWithCapacity:[pasteboardItems count]];
+
+	for (NSPasteboardItem *item in [pasteboard pasteboardItems]) {
+		NSArray *types = [item types];
+		NSUInteger count = [types count];
+
+        NSPasteboardItem *archiveItem = [[[NSPasteboardItem alloc] init] autorelease];
+
+		for (NSString *type in types) {
+			NSData *itemData = [[[item dataForType:type] mutableCopy] autorelease];
+
+            [archiveItem setData:itemData forType:type];
+
+            [archivePasteboardItems addObject:item];
+		}
+	}
+
+    // Let Xcode re-indent the cleaned code
+    [textView selectAll:sender];
+    [textView copy:sender];
+    [textView paste:sender];
+    [textView setSelectedRange:NSMakeRange([[textView string] length], 0)];
+
+    // Restore pasteboard
+	[pasteboard clearContents];
+	[pasteboard writeObjects:archivePasteboardItems];
+}
 
 - (IBAction)openWithUncrustifyX:(id)sender {
     NSURL *appURL = [BBUncrustify uncrustifyXApplicationURL];
@@ -143,14 +186,14 @@
     else if ([menuItem action] == @selector(uncrustifyActiveFile:)) {
         return ([[BBXcode currentEditor] isKindOfClass:NSClassFromString(@"IDESourceCodeEditor")]);
     }
-    else if ([menuItem action] == @selector(uncrustifySelectedLines:)) {
+    else if (([menuItem action] == @selector(uncrustifySelectedLines:)) || ([menuItem action] == @selector(uncrustifyAndReindentSelectedLines:))) {
         BOOL validated = NO;
         if ([[BBXcode currentEditor] isKindOfClass:NSClassFromString(@"IDESourceCodeEditor")]) {
             IDESourceCodeEditor *editor = [BBXcode currentEditor];
             IDESourceCodeDocument *document = [editor sourceCodeDocument];
             DVTSourceTextStorage *textStorage = [document textStorage];
             NSArray *selectedRanges = [editor.textView selectedRanges];
-            
+
             validated = (selectedRanges.count > 0);
         }
         return validated;
