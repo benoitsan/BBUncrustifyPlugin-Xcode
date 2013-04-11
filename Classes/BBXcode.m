@@ -83,7 +83,7 @@ NSArray *BBMergeContinuousRanges(NSArray* ranges) {
 }
 
 + (BOOL)uncrustifyCodeAtRanges:(NSArray *)ranges document:(IDESourceCodeDocument *)document {
-    BOOL uncrustified = NO;
+    __block BOOL uncrustified = NO;
     DVTSourceTextStorage *textStorage = [document textStorage];
     
     NSArray *linesRangeValues = nil;
@@ -113,20 +113,46 @@ NSArray *BBMergeContinuousRanges(NSArray* ranges) {
         }
     }
     
-    __block NSString *uncrustifiedCode = textStorage.string;
-    
+    NSMutableArray *selectionRanges = [NSMutableArray array];
+    NSRange editedRange = { NSNotFound, 0 };
     [textFragments enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(NSDictionary *textFragment, NSUInteger idx, BOOL *stop) {
-        NSRange range = [textFragment[@"range"] rangeValue];
-        uncrustifiedCode = [uncrustifiedCode stringByReplacingCharactersInRange:range withString:textFragment[@"textFragment"]];
+
+        NSRange oldRange = [textFragment[@"range"] rangeValue];
+        [textStorage beginEditing];
+        [textStorage replaceCharactersInRange:oldRange withString:textFragment[@"textFragment"]
+                              withUndoManager:[document undoManager]];
+
+        NSRange editedRange = [textStorage editedRange];
+
+        if (editedRange.location != NSNotFound) {
+            if (!uncrustified) {
+                uncrustified = YES;
+            }
+
+            [textStorage indentCharacterRange:NSMakeRange(editedRange.location, editedRange.length)
+                                  undoManager:[document undoManager]];
+
+            // -- If more than one selection update previous range.locations by adding changeInLength
+            if (selectionRanges.count > 0) {
+                int i = 0;
+                while (i < selectionRanges.count) {
+                    NSRange range = [[selectionRanges objectAtIndex:i] rangeValue];
+                    range.location = range.location + [textStorage changeInLength];
+                    [selectionRanges replaceObjectAtIndex:i withObject:[NSValue valueWithRange:range]];
+
+                    i++;
+                }
+            }
+
+            NSRange newSelectionRange = { [textStorage editedRange].location, [textStorage editedRange].length };
+            [selectionRanges addObject:[NSValue valueWithRange:newSelectionRange]];
+        }
+
+        [textStorage endEditing];
     }];
-    
-    if (![uncrustifiedCode isEqualToString:textStorage.string]) {
-        [textStorage replaceCharactersInRange:NSMakeRange(0, textStorage.string.length) withString:uncrustifiedCode withUndoManager:[document undoManager]];
-        uncrustified = YES;
-    }
-    
+
     if (uncrustified) {
-        [textStorage indentCharacterRange:NSMakeRange(0, textStorage.string.length) undoManager:[document undoManager]];
+        [[[BBXcode currentEditor] textView] setSelectedRanges:selectionRanges];
     }
     
     return uncrustified;
