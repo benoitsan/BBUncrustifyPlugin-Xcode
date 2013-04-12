@@ -59,10 +59,14 @@
 - (NSUndoManager *)undoManager;
 @end
 
+@interface IDESourceCodeComparisonEditor : NSObject
+@property(readonly) NSTextView *keyTextView;
+@property(retain) NSDocument *primaryDocument;
+@end
+
 @interface IDESourceCodeEditor : NSObject
 @property(retain) NSTextView *textView;
 - (IDESourceCodeDocument *)sourceCodeDocument;
-- (NSArray *)currentSelectedDocumentLocations; // DVTTextDocumentLocation objects
 @end
 
 @interface IDEEditorContext : NSObject
@@ -79,7 +83,8 @@
 @end
 
 @interface BBXcode : NSObject
-+ (id)currentEditor;
++ (IDESourceCodeDocument *)currentSourceCodeDocument;
++ (NSTextView *)currentSourceCodeTextView;
 + (NSArray *)selectedObjCFileNavigableItems;
 + (BOOL)uncrustifyCodeOfDocument:(IDESourceCodeDocument *)document;
 + (BOOL)uncrustifyCodeAtRanges:(NSArray *)ranges document:(IDESourceCodeDocument *)document;

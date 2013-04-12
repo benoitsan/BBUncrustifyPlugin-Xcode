@@ -74,25 +74,20 @@
 }
 
 - (IBAction)uncrustifyActiveFile:(id)sender {
-    if (![[BBXcode currentEditor] isKindOfClass:NSClassFromString(@"IDESourceCodeEditor")]) {
-        return;
-    }
+    IDESourceCodeDocument *document = [BBXcode currentSourceCodeDocument];
+    if (!document) return;
 
-    IDESourceCodeEditor *editor = [BBXcode currentEditor];
-    IDESourceCodeDocument *document = [editor sourceCodeDocument];
     [BBXcode uncrustifyCodeOfDocument:document];
     
     [[BBPluginUpdater sharedUpdater] checkForUpdatesIfNeeded];
 }
 
 - (IBAction)uncrustifySelectedLines:(id)sender {
-    if (![[BBXcode currentEditor] isKindOfClass:NSClassFromString(@"IDESourceCodeEditor")]) {
-        return;
-    }
+    IDESourceCodeDocument *document = [BBXcode currentSourceCodeDocument];
+    NSTextView *textView = [BBXcode currentSourceCodeTextView];
+    if (!document || !textView) return;
     
-    IDESourceCodeEditor *editor = [BBXcode currentEditor];
-    IDESourceCodeDocument *document = [editor sourceCodeDocument];
-    NSArray *selectedRanges = [editor.textView selectedRanges];
+    NSArray *selectedRanges = [textView selectedRanges];
     [BBXcode uncrustifyCodeAtRanges:selectedRanges document:document];
     
     [[BBPluginUpdater sharedUpdater] checkForUpdatesIfNeeded];
@@ -116,9 +111,8 @@
     }
     
     if (configurationFileURL) {
-        if ([[BBXcode currentEditor] isKindOfClass:NSClassFromString(@"IDESourceCodeEditor")]) {
-            IDESourceCodeEditor *editor = [BBXcode currentEditor];
-            IDESourceCodeDocument *document = [editor sourceCodeDocument];
+        IDESourceCodeDocument *document = [BBXcode currentSourceCodeDocument];
+        if (document) {
             DVTSourceTextStorage *textStorage = [document textStorage];
             [[NSPasteboard pasteboardWithName:@"BBUncrustifyPlugin-source-code"] clearContents];
             if (textStorage.string) {
@@ -140,14 +134,15 @@
         return ([BBXcode selectedObjCFileNavigableItems].count > 0);
     }
     else if ([menuItem action] == @selector(uncrustifyActiveFile:)) {
-        return ([[BBXcode currentEditor] isKindOfClass:NSClassFromString(@"IDESourceCodeEditor")]);
+        IDESourceCodeDocument *document = [BBXcode currentSourceCodeDocument];
+        return (document != nil);
     }
     else if ([menuItem action] == @selector(uncrustifySelectedLines:)) {
         BOOL validated = NO;
-        if ([[BBXcode currentEditor] isKindOfClass:NSClassFromString(@"IDESourceCodeEditor")]) {
-            IDESourceCodeEditor *editor = [BBXcode currentEditor];
-            NSArray *selectedRanges = [editor.textView selectedRanges];
-            
+        IDESourceCodeDocument *document = [BBXcode currentSourceCodeDocument];
+        NSTextView *textView = [BBXcode currentSourceCodeTextView];
+        if (document && textView) {
+            NSArray *selectedRanges = [textView selectedRanges];
             validated = (selectedRanges.count > 0);
         }
         return validated;

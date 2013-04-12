@@ -46,6 +46,37 @@ NSString * BBStringByTrimmingTrailingCharactersFromString(NSString *string, NSCh
     return nil;
 }
 
++ (IDESourceCodeDocument *)currentSourceCodeDocument {
+    if ([[BBXcode currentEditor] isKindOfClass:NSClassFromString(@"IDESourceCodeEditor")]) {
+        IDESourceCodeEditor *editor = [BBXcode currentEditor];
+        return editor.sourceCodeDocument;
+    }
+    
+    if ([[BBXcode currentEditor] isKindOfClass:NSClassFromString(@"IDESourceCodeComparisonEditor")]) {
+        IDESourceCodeComparisonEditor *editor = [BBXcode currentEditor];
+        if ([[editor primaryDocument] isKindOfClass:NSClassFromString(@"IDESourceCodeDocument")]) {
+            IDESourceCodeDocument *document = (IDESourceCodeDocument *)editor.primaryDocument;
+            return document;
+        }
+    }
+    
+    return nil;
+}
+
++ (NSTextView *)currentSourceCodeTextView {
+    if ([[BBXcode currentEditor] isKindOfClass:NSClassFromString(@"IDESourceCodeEditor")]) {
+        IDESourceCodeEditor *editor = [BBXcode currentEditor];
+        return editor.textView;
+    }
+    
+    if ([[BBXcode currentEditor] isKindOfClass:NSClassFromString(@"IDESourceCodeComparisonEditor")]) {
+        IDESourceCodeComparisonEditor *editor = [BBXcode currentEditor];
+        return editor.keyTextView;
+    }
+    
+    return nil;
+}
+
 + (NSArray *)selectedObjCFileNavigableItems {
     NSMutableArray *mutableArray = [NSMutableArray array];
     
@@ -155,7 +186,7 @@ NSString * BBStringByTrimmingTrailingCharactersFromString(NSString *string, NSCh
     }];
     
     if (newSelectionRanges.count > 0) {
-        [[[BBXcode currentEditor] textView] setSelectedRanges:newSelectionRanges];
+        [[BBXcode currentSourceCodeTextView] setSelectedRanges:newSelectionRanges];
     }
     
     BOOL codeHasChanged = (![originalString isEqualToString:textStorage.string]);
