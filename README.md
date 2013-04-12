@@ -1,6 +1,6 @@
 #BBUncrustifyPlugin-Xcode
 
-Xcode plugin to [uncrustify](http://uncrustify.sourceforge.net) the source code opened in the editor. 
+Xcode plugin to [uncrustify](http://uncrustify.sourceforge.net) code in Xcode. 
 
 ## Requirements
 
@@ -38,6 +38,15 @@ To customize the configuration, copy the file `uncrustify.cfg` or your own to `~
 A more easy way to edit the configuration is to use the Mac appplication [UncrustifyX](https://github.com/ryanmaxwell/UncrustifyX). 
 
 Once UncrustifyX is installed, the plugin will add a menu item `Open with UncrustifyX` to open the actual source code and configuration in UncrustifyX.
+
+## Notes
+
+After uncrustification, the plugin:
+
+* performs a syntax-aware indenting if checked in the Xcode preferences (Preferences > Text Editing > Indentation > Syntax-aware indenting).
+
+* Trims trailing whitespaces and white-only lines if checked in the Xcode preferences (Preferences > Text Editing > Editing).
+
 
 ## Creator
 

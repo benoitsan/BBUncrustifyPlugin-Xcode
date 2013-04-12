@@ -13,6 +13,13 @@
 @property(readonly) NSRange lineRange;
 @end
 
+@interface DVTTextPreferences : NSObject
++ (id)preferences;
+@property BOOL trimWhitespaceOnlyLines;
+@property BOOL trimTrailingWhitespace;
+@property BOOL useSyntaxAwareIndenting;
+@end
+
 @interface DVTSourceTextStorage : NSTextStorage
 - (void)replaceCharactersInRange:(NSRange)range withString:(NSString *)string withUndoManager:(id)undoManager;
 - (NSRange)lineRangeForCharacterRange:(NSRange)range;

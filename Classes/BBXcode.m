@@ -25,7 +25,15 @@ NSArray *BBMergeContinuousRanges(NSArray* ranges) {
     return [NSArray arrayWithArray:mergedRanges];
 }
 
-@implementation BBXcode
+NSString * BBStringByTrimmingTrailingCharactersFromString(NSString *string, NSCharacterSet * characterSet) {
+    NSRange rangeOfLastWantedCharacter = [string rangeOfCharacterFromSet:[characterSet invertedSet] options:NSBackwardsSearch];
+    if (rangeOfLastWantedCharacter.location == NSNotFound) return @"";
+    return [string substringToIndex:rangeOfLastWantedCharacter.location + 1];
+}
+
+@implementation BBXcode {}
+
+#pragma mark - Helpers
 
 + (id)currentEditor {
     id currentWindowController = [[NSApp keyWindow] windowController];
@@ -68,22 +76,26 @@ NSArray *BBMergeContinuousRanges(NSArray* ranges) {
     return nil;
 }
 
+#pragma mark - Uncrustify
+
 + (BOOL)uncrustifyCodeOfDocument:(IDESourceCodeDocument *)document {
-    BOOL uncrustified = NO;
     DVTSourceTextStorage *textStorage = [document textStorage];
+    NSString *originalString = textStorage.string;
     if (textStorage.string.length > 0) {
         NSString *uncrustifiedCode = [BBUncrustify uncrustifyCodeFragment:textStorage.string options:@{BBUncrustifyOptionSourceFilename : document.fileURL.lastPathComponent}];
         if (![uncrustifiedCode isEqualToString:textStorage.string]) {
             [textStorage replaceCharactersInRange:NSMakeRange(0, textStorage.string.length) withString:uncrustifiedCode withUndoManager:[document undoManager]];
-            [textStorage indentCharacterRange:NSMakeRange(0, textStorage.string.length) undoManager:[document undoManager]];
-            uncrustified = YES;
         }
+        [BBXcode normalizeCodeAtRange:NSMakeRange(0, textStorage.string.length) document:document];
     }
-    return uncrustified;
+
+    BOOL codeHasChanged = (originalString && ![originalString isEqualToString:textStorage.string]);
+    return codeHasChanged;
 }
 
 + (BOOL)uncrustifyCodeAtRanges:(NSArray *)ranges document:(IDESourceCodeDocument *)document {
     BOOL uncrustified = NO;
+        
     DVTSourceTextStorage *textStorage = [document textStorage];
     
     NSArray *linesRangeValues = nil;
@@ -113,23 +125,76 @@ NSArray *BBMergeContinuousRanges(NSArray* ranges) {
         }
     }
     
-    __block NSString *uncrustifiedCode = textStorage.string;
+    NSString *originalString = textStorage.string;
     
     [textFragments enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(NSDictionary *textFragment, NSUInteger idx, BOOL *stop) {
         NSRange range = [textFragment[@"range"] rangeValue];
-        uncrustifiedCode = [uncrustifiedCode stringByReplacingCharactersInRange:range withString:textFragment[@"textFragment"]];
+        NSString *newString = textFragment[@"textFragment"];
+        [textStorage replaceCharactersInRange:range withString:newString withUndoManager:[document undoManager]];
+        [BBXcode normalizeCodeAtRange:NSMakeRange(range.location, newString.length) document:document];
+    }];
+
+    BOOL codeHasChanged = (![originalString isEqualToString:textStorage.string]);
+    return codeHasChanged;
+}
+
+#pragma mark - Normalizing
+
++ (void)normalizeCodeAtRange:(NSRange)range document:(IDESourceCodeDocument *)document {
+    DVTSourceTextStorage *textStorage = [document textStorage];
+    
+    const NSRange scopeLineRange = [textStorage lineRangeForCharacterRange:range]; // the line range stays unchanged during the normalization
+
+    NSRange characterRange = [textStorage characterRangeForLineRange:scopeLineRange];
+    
+    DVTTextPreferences *preferences = [DVTTextPreferences preferences];
+
+    if (preferences.useSyntaxAwareIndenting) {
+        // PS: The method [DVTSourceTextStorage indentCharacterRange:undoManager:] always indents empty lines to the same level as code (ignoring the preferences in Xcode concerning the identation of whitespace only lines).
+        [textStorage indentCharacterRange:characterRange undoManager:[document undoManager]];
+        characterRange = [textStorage characterRangeForLineRange:scopeLineRange];
+    }
+
+    if (preferences.trimTrailingWhitespace) {
+        BOOL trimTrailingWhitespace = preferences.trimTrailingWhitespace;
+        BOOL trimWhitespaceOnlyLines = trimTrailingWhitespace && preferences.trimWhitespaceOnlyLines; // only enabled in Xcode preferences if trimTrailingWhitespace is enabled
+        NSString *string = [textStorage.string substringWithRange:characterRange];
+        NSString *trimString = [BBXcode stringByTrimmingString:string trimWhitespaceOnlyLines:trimWhitespaceOnlyLines trimTrailingWhitespace:trimTrailingWhitespace];        
+        [textStorage replaceCharactersInRange:characterRange withString:trimString withUndoManager:[document undoManager]];
+    }
+}
+
++ (NSString *)stringByTrimmingString:(NSString *)string trimWhitespaceOnlyLines:(BOOL)trimWhitespaceOnlyLines trimTrailingWhitespace:(BOOL)trimTrailingWhitespace {
+    
+    NSMutableString *mResultString = [NSMutableString string];
+    
+    // I'm not using [NSString enumerateLinesUsingBlock:] to enumerate the string by lines because the last line of the string is ignored if it's an empty line.
+    NSArray *lines = [string componentsSeparatedByString:@"\n"];
+    
+    NSCharacterSet * characterSet = [NSCharacterSet whitespaceCharacterSet]; // [NSCharacterSet whitespaceCharacterSet] means tabs or spaces
+    
+    [lines enumerateObjectsWithOptions:0 usingBlock:^(NSString *line, NSUInteger idx, BOOL *stop) {
+        if (idx > 0) {
+            [mResultString appendString:@"\n"];
+        }
+        
+        BOOL acceptedLine = YES;
+        
+        NSString *trimSubstring = [line stringByTrimmingCharactersInSet:characterSet];
+        
+        if (trimWhitespaceOnlyLines) {
+            acceptedLine = (trimSubstring.length > 0);
+        }
+        
+        if (acceptedLine) {
+            if (trimTrailingWhitespace && trimSubstring.length > 0) {
+                line = BBStringByTrimmingTrailingCharactersFromString(line, characterSet);
+            }
+            [mResultString appendString:line];
+        }
     }];
     
-    if (![uncrustifiedCode isEqualToString:textStorage.string]) {
-        [textStorage replaceCharactersInRange:NSMakeRange(0, textStorage.string.length) withString:uncrustifiedCode withUndoManager:[document undoManager]];
-        uncrustified = YES;
-    }
-    
-    if (uncrustified) {
-        [textStorage indentCharacterRange:NSMakeRange(0, textStorage.string.length) undoManager:[document undoManager]];
-    }
-    
-    return uncrustified;
+    return [NSString stringWithString:mResultString];
 }
 
 @end
