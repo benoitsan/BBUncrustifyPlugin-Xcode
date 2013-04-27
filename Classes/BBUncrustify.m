@@ -7,6 +7,7 @@
 //
 
 #import "BBUncrustify.h"
+#import "BBXcode.h"
 #import <Cocoa/Cocoa.h>
 
 static NSString * const BBUncrustifyXBundleIdentifier = @"nz.co.xwell.UncrustifyX";
@@ -103,9 +104,21 @@ static NSString * BBUUIDString() {
 }
 
 + (NSArray *)proposedConfigurationFileURLs {
+    NSMutableArray *proposedURLs = [NSMutableArray array];
     NSURL *homeDirectoryURL = [NSURL fileURLWithPath:NSHomeDirectory()];
-    NSArray *array = @[[homeDirectoryURL URLByAppendingPathComponent:@".uncrustifyconfig" isDirectory:NO], [homeDirectoryURL URLByAppendingPathComponent:@"uncrustify.cfg" isDirectory:NO]];
-    return array;
+    NSURL *projectDirectoryURL = [BBXcode projectHomeDirectoryURL];
+
+    if (projectDirectoryURL) {
+        [proposedURLs addObject:
+            [projectDirectoryURL URLByAppendingPathComponent:@"uncrustify.cfg" isDirectory:NO]];
+    }
+
+    [proposedURLs addObject:
+        [homeDirectoryURL URLByAppendingPathComponent:@".uncrustifyconfig" isDirectory:NO]];
+    [proposedURLs addObject:
+        [homeDirectoryURL URLByAppendingPathComponent:@"uncrustify.cfg" isDirectory:NO]];
+
+    return proposedURLs;
 }
 
 + (NSURL *)configurationFileURL {

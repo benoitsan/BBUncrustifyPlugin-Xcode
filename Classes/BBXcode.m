@@ -46,6 +46,26 @@ NSString * BBStringByTrimmingTrailingCharactersFromString(NSString *string, NSCh
     return nil;
 }
 
++ (NSURL *)projectHomeDirectoryURL {
+    id currentWindowController = [[NSApp keyWindow] windowController];
+    id document = [currentWindowController document];
+
+    if ([document isKindOfClass:NSClassFromString(@"IDEWorkspaceDocument")]) {
+        NSURL *fileURL = [document fileURL];
+        NSMutableArray *components = [NSMutableArray arrayWithArray:[fileURL pathComponents]];
+
+        if ([[[components lastObject] pathExtension] isEqualToString:@"xcworkspace"]) {
+            [components removeLastObject];
+        }
+        if ([[[components lastObject] pathExtension] isEqualToString:@"xcodeproj"]) {
+            [components removeLastObject];
+            return [NSURL fileURLWithPath:[NSString pathWithComponents:components]
+                              isDirectory:YES];
+        }
+    }
+    return nil;
+}
+
 + (IDESourceCodeDocument *)currentSourceCodeDocument {
     if ([[BBXcode currentEditor] isKindOfClass:NSClassFromString(@"IDESourceCodeEditor")]) {
         IDESourceCodeEditor *editor = [BBXcode currentEditor];
