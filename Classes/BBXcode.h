@@ -88,4 +88,5 @@
 + (NSArray *)selectedObjCFileNavigableItems;
 + (BOOL)uncrustifyCodeOfDocument:(IDESourceCodeDocument *)document;
 + (BOOL)uncrustifyCodeAtRanges:(NSArray *)ranges document:(IDESourceCodeDocument *)document;
++ (NSURL *)projectHomeDirectoryURL; // returns the directory contains .xcodeproj
 @end
