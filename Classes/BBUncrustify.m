@@ -7,13 +7,13 @@
 //
 
 #import "BBUncrustify.h"
-#import "BBXcode.h"
 #import <Cocoa/Cocoa.h>
 
 static NSString * const BBUncrustifyXBundleIdentifier = @"nz.co.xwell.UncrustifyX";
 
 NSString * const BBUncrustifyOptionEvictCommentInsertion = @"evictCommentInsertion";
 NSString * const BBUncrustifyOptionSourceFilename = @"sourceFilename";
+NSString * const BBUncrustifyOptionSupplementalConfigurationFolders = @"supplementalConfigurationFolders";
 
 static NSString * BBUUIDString() {
     NSString *uuidString = nil;
@@ -44,8 +44,14 @@ static NSString * BBUUIDString() {
 
     [codeFragment writeToURL:codeFragmentFileURL atomically:YES encoding:NSUTF8StringEncoding error:nil];
 
-    NSURL *configurationFileURL = [BBUncrustify configurationFileURL];
-
+    NSArray *additionalLookupFolderURLs = options[BBUncrustifyOptionSupplementalConfigurationFolders];
+    if (additionalLookupFolderURLs.count > 0) {
+        NSLog(@"uncrustify additional lookup folders: %@",additionalLookupFolderURLs);
+    }
+    NSURL *configurationFileURL = [BBUncrustify resolvedConfigurationFileURLWithAdditionalLookupFolderURLs:additionalLookupFolderURLs];
+    
+    NSLog(@"uncrustify configuration file: %@",configurationFileURL);
+    
     if ([options[BBUncrustifyOptionEvictCommentInsertion] boolValue]) {
         NSString *configuration = [[NSString alloc] initWithContentsOfURL:configurationFileURL encoding:NSUTF8StringEncoding error:nil];
         BOOL hasChanged = NO;
@@ -103,26 +109,30 @@ static NSString * BBUUIDString() {
     return [bundle URLForResource:@"uncrustify" withExtension:@"cfg"];
 }
 
-+ (NSArray *)proposedConfigurationFileURLs {
-    NSMutableArray *proposedURLs = [NSMutableArray array];
-    NSURL *homeDirectoryURL = [NSURL fileURLWithPath:NSHomeDirectory()];
-    NSURL *projectDirectoryURL = [BBXcode projectHomeDirectoryURL];
-
-    if (projectDirectoryURL) {
-        [proposedURLs addObject:
-            [projectDirectoryURL URLByAppendingPathComponent:@"uncrustify.cfg" isDirectory:NO]];
++ (NSArray *)makeConfigurationFileURLsFromFolderURLs:(NSArray *)folderURLs {
+    NSMutableArray *mArray = [NSMutableArray array];
+    for (NSURL *folderURL in folderURLs) {
+        [mArray addObject:[folderURL URLByAppendingPathComponent:@".uncrustifyconfig" isDirectory:NO]];
+        [mArray addObject:[folderURL URLByAppendingPathComponent:@"uncrustify.cfg" isDirectory:NO]];
     }
-
-    [proposedURLs addObject:
-        [homeDirectoryURL URLByAppendingPathComponent:@".uncrustifyconfig" isDirectory:NO]];
-    [proposedURLs addObject:
-        [homeDirectoryURL URLByAppendingPathComponent:@"uncrustify.cfg" isDirectory:NO]];
-
-    return proposedURLs;
+    return [NSArray arrayWithArray:mArray];
 }
 
-+ (NSURL *)configurationFileURL {
-    for (NSURL * url in [BBUncrustify proposedConfigurationFileURLs]) {
++ (NSArray *)userConfigurationFileURLs {
+    NSMutableArray *proposedURLs = [NSMutableArray array];
+    NSURL *homeDirectoryURL = [NSURL fileURLWithPath:NSHomeDirectory()];
+    return [BBUncrustify makeConfigurationFileURLsFromFolderURLs:@[homeDirectoryURL]];
+}
+
++ (NSURL *)resolvedConfigurationFileURLWithAdditionalLookupFolderURLs:(NSArray *)lookupFolderURLs { // additionalLocations can be nil (optional parameter)
+    // folders are ordered by priority
+    NSMutableArray *configurationURLs = [NSMutableArray array];
+    if (lookupFolderURLs) {
+        [configurationURLs addObjectsFromArray:[BBUncrustify makeConfigurationFileURLsFromFolderURLs:lookupFolderURLs]];
+    }
+    [configurationURLs addObjectsFromArray:[BBUncrustify userConfigurationFileURLs]];
+
+    for (NSURL * url in configurationURLs) {
         if ([[NSFileManager defaultManager] fileExistsAtPath:url.path]) {
             return url;
         }
@@ -133,7 +143,7 @@ static NSString * BBUUIDString() {
 + (void)uncrustifyFilesAtURLs:(NSArray *)fileURLs configurationFileURL:(NSURL *)configurationFileURL {
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
 
-    NSLog(@"uncrustify configuration file: %@",configurationFileURL);
+    //NSLog(@"uncrustify configuration file: %@",configurationFileURL);
     
     NSURL *executableFileURL = [bundle URLForResource:@"uncrustify" withExtension:@""];
 

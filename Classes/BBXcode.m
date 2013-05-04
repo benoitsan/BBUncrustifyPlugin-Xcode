@@ -31,14 +31,23 @@ NSString * BBStringByTrimmingTrailingCharactersFromString(NSString *string, NSCh
     return [string substringToIndex:rangeOfLastWantedCharacter.location + 1];
 }
 
+static IDENavigableItemCoordinator *sharedNavigableItemCoordinator() {
+    static IDENavigableItemCoordinator *coordinator = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        coordinator = [[IDENavigableItemCoordinator alloc] init];
+    });
+    return coordinator;
+}
+
 @implementation BBXcode {}
 
 #pragma mark - Helpers
 
 + (id)currentEditor {
-    id currentWindowController = [[NSApp keyWindow] windowController];
+    NSWindowController *currentWindowController = [[NSApp keyWindow] windowController];
     if ([currentWindowController isKindOfClass:NSClassFromString(@"IDEWorkspaceWindowController")]) {
-        IDEWorkspaceWindowController *workspaceController = currentWindowController;
+        IDEWorkspaceWindowController *workspaceController = (IDEWorkspaceWindowController *)currentWindowController;
         IDEEditorArea *editorArea = [workspaceController editorArea];
         IDEEditorContext *editorContext = [editorArea lastActiveEditorContext];
         return [editorContext editor];
@@ -46,22 +55,11 @@ NSString * BBStringByTrimmingTrailingCharactersFromString(NSString *string, NSCh
     return nil;
 }
 
-+ (NSURL *)projectHomeDirectoryURL {
-    id currentWindowController = [[NSApp keyWindow] windowController];
++ (IDEWorkspaceDocument *)currentWorkspaceDocument {
+    NSWindowController *currentWindowController = [[NSApp keyWindow] windowController];
     id document = [currentWindowController document];
-
-    if ([document isKindOfClass:NSClassFromString(@"IDEWorkspaceDocument")]) {
-        NSURL *fileURL = [document fileURL];
-        NSMutableArray *components = [NSMutableArray arrayWithArray:[fileURL pathComponents]];
-
-        if ([[[components lastObject] pathExtension] isEqualToString:@"xcworkspace"]) {
-            [components removeLastObject];
-        }
-        if ([[[components lastObject] pathExtension] isEqualToString:@"xcodeproj"]) {
-            [components removeLastObject];
-            return [NSURL fileURLWithPath:[NSString pathWithComponents:components]
-                              isDirectory:YES];
-        }
+    if (currentWindowController && [document isKindOfClass:NSClassFromString(@"IDEWorkspaceDocument")]) {
+        return (IDEWorkspaceDocument *)document;
     }
     return nil;
 }
@@ -127,13 +125,57 @@ NSString * BBStringByTrimmingTrailingCharactersFromString(NSString *string, NSCh
     return nil;
 }
 
++ (NSArray *)containerFolderURLsForNavigableItem:(IDENavigableItem *)navigableItem {
+    NSMutableArray *mArray = [NSMutableArray array];
+    
+    do {
+        NSURL *folderURL = nil;
+        id representedObject = navigableItem.representedObject;
+        if ([navigableItem isKindOfClass:NSClassFromString(@"IDEGroupNavigableItem")]) {
+            // IDE-GROUP (a folder in the navigator)
+            IDEGroup *group = (IDEGroup *)representedObject;
+            folderURL = group.resolvedFilePath.fileURL;
+        }
+        else if ([navigableItem isKindOfClass:NSClassFromString(@"IDEContainerFileReferenceNavigableItem")]) {
+            // CONTAINER (an Xcode project)
+            IDEFileReference *fileReference = representedObject;
+            folderURL = [fileReference.resolvedFilePath.fileURL URLByDeletingLastPathComponent];
+        }
+        else if ([navigableItem isKindOfClass:NSClassFromString(@"IDEKeyDrivenNavigableItem")]) {
+            // WORKSPACE (root: Xcode project or workspace)
+            IDEWorkspace *workspace = representedObject;
+            folderURL = [workspace.representingFilePath.fileURL URLByDeletingLastPathComponent];
+        }
+        if (folderURL && ![mArray containsObject:folderURL]) [mArray addObject:folderURL];
+        navigableItem = [navigableItem parentItem];
+    } while (navigableItem != nil);
+    
+    if (mArray.count > 0) return [NSArray arrayWithArray:mArray];
+    return nil;
+}
+
 #pragma mark - Uncrustify
 
-+ (BOOL)uncrustifyCodeOfDocument:(IDESourceCodeDocument *)document {
++ (BOOL)uncrustifyCodeOfDocument:(IDESourceCodeDocument *)document inWorkspace:(IDEWorkspace *)workspace {
     DVTSourceTextStorage *textStorage = [document textStorage];
     NSString *originalString = textStorage.string;
     if (textStorage.string.length > 0) {
-        NSString *uncrustifiedCode = [BBUncrustify uncrustifyCodeFragment:textStorage.string options:@{BBUncrustifyOptionSourceFilename : document.fileURL.lastPathComponent}];
+        
+        NSArray *additionalConfigurationFolderURLs = nil;
+        if (workspace) {
+            IDENavigableItemCoordinator *coordinator = [[IDENavigableItemCoordinator alloc] init];
+            IDENavigableItem *navigableItem = [coordinator structureNavigableItemForDocumentURL:document.fileURL inWorkspace:workspace error:nil];
+            if (navigableItem) {
+                additionalConfigurationFolderURLs = [BBXcode containerFolderURLsForNavigableItem:navigableItem];
+            }
+        }
+        
+        NSMutableDictionary *options = [NSMutableDictionary dictionaryWithDictionary:@{BBUncrustifyOptionSourceFilename : document.fileURL.lastPathComponent}];
+        if (additionalConfigurationFolderURLs.count > 0) {
+            [options setObject:additionalConfigurationFolderURLs forKey:BBUncrustifyOptionSupplementalConfigurationFolders];
+        }
+        
+        NSString *uncrustifiedCode = [BBUncrustify uncrustifyCodeFragment:textStorage.string options:options];
         if (![uncrustifiedCode isEqualToString:textStorage.string]) {
             [textStorage replaceCharactersInRange:NSMakeRange(0, textStorage.string.length) withString:uncrustifiedCode withUndoManager:[document undoManager]];
         }
@@ -144,7 +186,7 @@ NSString * BBStringByTrimmingTrailingCharactersFromString(NSString *string, NSCh
     return codeHasChanged;
 }
 
-+ (BOOL)uncrustifyCodeAtRanges:(NSArray *)ranges document:(IDESourceCodeDocument *)document {
++ (BOOL)uncrustifyCodeAtRanges:(NSArray *)ranges document:(IDESourceCodeDocument *)document inWorkspace:(IDEWorkspace *)workspace {
     BOOL uncrustified = NO;
     
     DVTSourceTextStorage *textStorage = [document textStorage];
@@ -162,13 +204,27 @@ NSString * BBStringByTrimmingTrailingCharactersFromString(NSString *string, NSCh
     
     NSMutableArray *textFragments = [NSMutableArray array];
     
+    NSArray *additionalConfigurationFolderURLs = nil;
+    if (workspace) {
+        IDENavigableItem *navigableItem = [sharedNavigableItemCoordinator() structureNavigableItemForDocumentURL:document.fileURL inWorkspace:workspace error:nil];
+        if (navigableItem) {
+            additionalConfigurationFolderURLs = [BBXcode containerFolderURLsForNavigableItem:navigableItem];
+        }
+    }
+    
     for (NSValue *linesRangeValue in linesRangeValues) {
         NSRange linesRange = [linesRangeValue rangeValue];
         NSRange characterRange = [textStorage characterRangeForLineRange:linesRange];
         if (characterRange.location != NSNotFound) {
             NSString *string = [textStorage.string substringWithRange:characterRange];
             if (string.length > 0) {
-                NSString *uncrustifiedString = [BBUncrustify uncrustifyCodeFragment:string options:@{BBUncrustifyOptionEvictCommentInsertion : @YES, BBUncrustifyOptionSourceFilename : document.fileURL.lastPathComponent}];
+                
+                NSMutableDictionary *options = [NSMutableDictionary dictionaryWithDictionary:@{BBUncrustifyOptionEvictCommentInsertion : @YES, BBUncrustifyOptionSourceFilename : document.fileURL.lastPathComponent}];
+                if (additionalConfigurationFolderURLs.count > 0) {
+                    [options setObject:additionalConfigurationFolderURLs forKey:BBUncrustifyOptionSupplementalConfigurationFolders];
+                }
+                
+                NSString *uncrustifiedString = [BBUncrustify uncrustifyCodeFragment:string options:options];
                 if (uncrustifiedString.length > 0) {
                     [textFragments addObject:@{@"textFragment" : uncrustifiedString, @"range" : [NSValue valueWithRange:characterRange]}];
                 }

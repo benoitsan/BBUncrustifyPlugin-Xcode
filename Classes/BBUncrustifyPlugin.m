@@ -58,11 +58,12 @@
 
 - (IBAction)uncrustifySelectedFiles:(id)sender {
     NSArray *fileNavigableItems = [BBXcode selectedObjCFileNavigableItems];
+    IDEWorkspace *currentWorkspace = [BBXcode currentWorkspaceDocument].workspace;
     for (IDEFileNavigableItem *fileNavigableItem in fileNavigableItems) {
         NSDocument *document = [IDEDocumentController retainedEditorDocumentForNavigableItem:fileNavigableItem error:nil];
         if ([document isKindOfClass:NSClassFromString(@"IDESourceCodeDocument")]) {
             IDESourceCodeDocument *sourceCodeDocument = (IDESourceCodeDocument *)document;
-            BOOL uncrustified = [BBXcode uncrustifyCodeOfDocument:sourceCodeDocument];
+            BOOL uncrustified = [BBXcode uncrustifyCodeOfDocument:sourceCodeDocument inWorkspace:currentWorkspace];
             if (uncrustified) {
                 [document saveDocument:nil];
             }
@@ -76,8 +77,8 @@
 - (IBAction)uncrustifyActiveFile:(id)sender {
     IDESourceCodeDocument *document = [BBXcode currentSourceCodeDocument];
     if (!document) return;
-
-    [BBXcode uncrustifyCodeOfDocument:document];
+    IDEWorkspace *currentWorkspace = [BBXcode currentWorkspaceDocument].workspace;
+    [BBXcode uncrustifyCodeOfDocument:document inWorkspace:currentWorkspace];
     
     [[BBPluginUpdater sharedUpdater] checkForUpdatesIfNeeded];
 }
@@ -86,9 +87,9 @@
     IDESourceCodeDocument *document = [BBXcode currentSourceCodeDocument];
     NSTextView *textView = [BBXcode currentSourceCodeTextView];
     if (!document || !textView) return;
-    
+    IDEWorkspace *currentWorkspace = [BBXcode currentWorkspaceDocument].workspace;
     NSArray *selectedRanges = [textView selectedRanges];
-    [BBXcode uncrustifyCodeAtRanges:selectedRanges document:document];
+    [BBXcode uncrustifyCodeAtRanges:selectedRanges document:document inWorkspace:currentWorkspace];
     
     [[BBPluginUpdater sharedUpdater] checkForUpdatesIfNeeded];
 }
@@ -97,10 +98,10 @@
 - (IBAction)openWithUncrustifyX:(id)sender {
     NSURL *appURL = [BBUncrustify uncrustifyXApplicationURL];
     
-    NSURL *configurationFileURL = [BBUncrustify configurationFileURL];
+    NSURL *configurationFileURL = [BBUncrustify resolvedConfigurationFileURLWithAdditionalLookupFolderURLs:nil];
     NSURL *builtInConfigurationFileURL = [BBUncrustify builtInConfigurationFileURL];
     if ([configurationFileURL isEqual:builtInConfigurationFileURL]) {
-        configurationFileURL = [BBUncrustify proposedConfigurationFileURLs][0];
+        configurationFileURL = [BBUncrustify userConfigurationFileURLs][0];
         NSAlert *alert = [NSAlert alertWithMessageText:@"Custom Configuration File Not Found" defaultButton:@"Create Configuration File & Open UncrustifyX" alternateButton:@"Cancel" otherButton:nil informativeTextWithFormat:@"Do you want to create a configuration file at this path \n%@",configurationFileURL.path];
         if ([alert runModal] == NSAlertDefaultReturn) {
             [[NSFileManager defaultManager] copyItemAtPath:builtInConfigurationFileURL.path toPath:configurationFileURL.path error:nil];

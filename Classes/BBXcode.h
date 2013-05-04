@@ -31,13 +31,39 @@
 @property (readonly) NSString *identifier;
 @end
 
-@interface IDEFileNavigableItem : NSObject
+@interface DVTFilePath : NSObject
+@property(readonly) NSURL *fileURL;
+@property(readonly) DVTFileDataType *fileDataTypePresumed;
+@end
+
+@interface IDEContainerItem : NSObject
+@property(readonly) DVTFilePath *resolvedFilePath;
+@end
+
+@interface IDEGroup : IDEContainerItem
+
+@end
+
+@interface IDEFileReference : IDEContainerItem
+
+@end
+
+@interface IDENavigableItem : NSObject
+@property(readonly) IDENavigableItem *parentItem;
+@property(readonly) id representedObject;
+@end
+
+@interface IDEFileNavigableItem : IDENavigableItem
 @property (readonly) DVTFileDataType *documentType;
 @property (readonly) NSURL *fileURL;
 @end
 
 @interface IDEStructureNavigator : NSObject
 @property (retain) NSArray *selectedObjects;
+@end
+
+@interface IDENavigableItemCoordinator : NSObject
+- (id)structureNavigableItemForDocumentURL:(id)arg1 inWorkspace:(id)arg2 error:(id *)arg3;
 @end
 
 @interface IDENavigatorArea : NSObject
@@ -82,11 +108,19 @@
 - (IDEEditorArea *)editorArea;
 @end
 
+@interface IDEWorkspace : NSObject
+@property(readonly) DVTFilePath *representingFilePath;
+@end
+
+@interface IDEWorkspaceDocument : NSDocument
+@property(readonly) IDEWorkspace *workspace;
+@end
+
 @interface BBXcode : NSObject
++ (IDEWorkspaceDocument *)currentWorkspaceDocument;
 + (IDESourceCodeDocument *)currentSourceCodeDocument;
 + (NSTextView *)currentSourceCodeTextView;
 + (NSArray *)selectedObjCFileNavigableItems;
-+ (BOOL)uncrustifyCodeOfDocument:(IDESourceCodeDocument *)document;
-+ (BOOL)uncrustifyCodeAtRanges:(NSArray *)ranges document:(IDESourceCodeDocument *)document;
-+ (NSURL *)projectHomeDirectoryURL; // returns the directory contains .xcodeproj
++ (BOOL)uncrustifyCodeOfDocument:(IDESourceCodeDocument *)document inWorkspace:(IDEWorkspace *)workspace;
++ (BOOL)uncrustifyCodeAtRanges:(NSArray *)ranges document:(IDESourceCodeDocument *)document inWorkspace:(IDEWorkspace *)workspace;
 @end

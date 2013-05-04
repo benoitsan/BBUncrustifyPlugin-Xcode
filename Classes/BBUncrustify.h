@@ -12,12 +12,13 @@
 
 extern NSString * const BBUncrustifyOptionEvictCommentInsertion;
 extern NSString * const BBUncrustifyOptionSourceFilename;
+extern NSString * const BBUncrustifyOptionSupplementalConfigurationFolders; // NSArray of NSURL (array of urls representing folders)
 
 @interface BBUncrustify : NSObject
 
 + (NSString *)uncrustifyCodeFragment:(NSString *)codeFragment options:(NSDictionary *)options;
 + (NSURL *)uncrustifyXApplicationURL;
-+ (NSURL *)configurationFileURL; // returns the config file URL actually used by Uncrustify.
++ (NSURL *)resolvedConfigurationFileURLWithAdditionalLookupFolderURLs:(NSArray *)lookupFolderURLs; // returns the config file URL actually used by Uncrustify.
 + (NSURL *)builtInConfigurationFileURL; // returns the default config file URL of the plugin.
-+ (NSArray *)proposedConfigurationFileURLs; // returns suggested custom config file URLs.
++ (NSArray *)userConfigurationFileURLs; // returns suggested custom config file URLs.
 @end
