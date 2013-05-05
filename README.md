@@ -47,6 +47,20 @@ The lookup of the configuration file is made in this order:
 2. Closest Xcode project file ('.xcodeproj') folder ancestor.
 3. Closest Xcode workspace file ('.xcworkspace') folder ancestor.
 
+Example:
+
+```
+|-- workspace.xcworkspace
+|-- uncrustify.cfg
+|-- project folder
+|---- project.xcodeproj
+|---- Third Party Library Folder
+|------ uncrustify.cfg
+|-- An other project folder
+|---- An other project.xcodeproj
+|---- uncrustify.cfg
+````
+
 ### Using UncrustifyX
 
 A more easy way to edit the configuration is to use the Mac appplication [UncrustifyX](https://github.com/ryanmaxwell/UncrustifyX). 
