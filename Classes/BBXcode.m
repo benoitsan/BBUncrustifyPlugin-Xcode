@@ -9,7 +9,7 @@
 #import "BBXcode.h"
 #import "BBUncrustify.h"
 
-NSArray *BBMergeContinuousRanges(NSArray* ranges) {
+NSArray * BBMergeContinuousRanges(NSArray *ranges) {
     if (ranges.count == 0) return nil;
     
     NSMutableIndexSet *mIndexes = [NSMutableIndexSet indexSet];
@@ -25,7 +25,7 @@ NSArray *BBMergeContinuousRanges(NSArray* ranges) {
     return [NSArray arrayWithArray:mergedRanges];
 }
 
-NSString * BBStringByTrimmingTrailingCharactersFromString(NSString *string, NSCharacterSet * characterSet) {
+NSString * BBStringByTrimmingTrailingCharactersFromString(NSString *string, NSCharacterSet *characterSet) {
     NSRange rangeOfLastWantedCharacter = [string rangeOfCharacterFromSet:[characterSet invertedSet] options:NSBackwardsSearch];
     if (rangeOfLastWantedCharacter.location == NSNotFound) return @"";
     return [string substringToIndex:rangeOfLastWantedCharacter.location + 1];
@@ -126,13 +126,11 @@ NSString * BBStringByTrimmingTrailingCharactersFromString(NSString *string, NSCh
             // IDE-GROUP (a folder in the navigator)
             IDEGroup *group = (IDEGroup *)representedObject;
             folderURL = group.resolvedFilePath.fileURL;
-        }
-        else if ([navigableItem isKindOfClass:NSClassFromString(@"IDEContainerFileReferenceNavigableItem")]) {
+        } else if ([navigableItem isKindOfClass:NSClassFromString(@"IDEContainerFileReferenceNavigableItem")]) {
             // CONTAINER (an Xcode project)
             IDEFileReference *fileReference = representedObject;
             folderURL = [fileReference.resolvedFilePath.fileURL URLByDeletingLastPathComponent];
-        }
-        else if ([navigableItem isKindOfClass:NSClassFromString(@"IDEKeyDrivenNavigableItem")]) {
+        } else if ([navigableItem isKindOfClass:NSClassFromString(@"IDEKeyDrivenNavigableItem")]) {
             // WORKSPACE (root: Xcode project or workspace)
             IDEWorkspace *workspace = representedObject;
             folderURL = [workspace.representingFilePath.fileURL URLByDeletingLastPathComponent];
@@ -151,7 +149,6 @@ NSString * BBStringByTrimmingTrailingCharactersFromString(NSString *string, NSCh
     DVTSourceTextStorage *textStorage = [document textStorage];
     NSString *originalString = textStorage.string;
     if (textStorage.string.length > 0) {
-        
         NSArray *additionalConfigurationFolderURLs = nil;
         if (workspace) {
             IDENavigableItemCoordinator *coordinator = [[IDENavigableItemCoordinator alloc] init];
@@ -161,7 +158,7 @@ NSString * BBStringByTrimmingTrailingCharactersFromString(NSString *string, NSCh
             }
         }
         
-        NSMutableDictionary *options = [NSMutableDictionary dictionaryWithDictionary:@{BBUncrustifyOptionSourceFilename : document.fileURL.lastPathComponent}];
+        NSMutableDictionary *options = [NSMutableDictionary dictionaryWithDictionary:@{ BBUncrustifyOptionSourceFilename: document.fileURL.lastPathComponent }];
         if (additionalConfigurationFolderURLs.count > 0) {
             [options setObject:additionalConfigurationFolderURLs forKey:BBUncrustifyOptionSupplementalConfigurationFolders];
         }
@@ -178,7 +175,6 @@ NSString * BBStringByTrimmingTrailingCharactersFromString(NSString *string, NSCh
 }
 
 + (BOOL)uncrustifyCodeAtRanges:(NSArray *)ranges document:(IDESourceCodeDocument *)document inWorkspace:(IDEWorkspace *)workspace {
-    
     DVTSourceTextStorage *textStorage = [document textStorage];
     
     NSArray *linesRangeValues = nil;
@@ -209,15 +205,14 @@ NSString * BBStringByTrimmingTrailingCharactersFromString(NSString *string, NSCh
         if (characterRange.location != NSNotFound) {
             NSString *string = [textStorage.string substringWithRange:characterRange];
             if (string.length > 0) {
-                
-                NSMutableDictionary *options = [NSMutableDictionary dictionaryWithDictionary:@{BBUncrustifyOptionEvictCommentInsertion : @YES, BBUncrustifyOptionSourceFilename : document.fileURL.lastPathComponent}];
+                NSMutableDictionary *options = [NSMutableDictionary dictionaryWithDictionary:@{ BBUncrustifyOptionEvictCommentInsertion: @YES, BBUncrustifyOptionSourceFilename: document.fileURL.lastPathComponent }];
                 if (additionalConfigurationFolderURLs.count > 0) {
                     [options setObject:additionalConfigurationFolderURLs forKey:BBUncrustifyOptionSupplementalConfigurationFolders];
                 }
                 
                 NSString *uncrustifiedString = [BBUncrustify uncrustifyCodeFragment:string options:options];
                 if (uncrustifiedString.length > 0) {
-                    [textFragments addObject:@{@"textFragment" : uncrustifiedString, @"range" : [NSValue valueWithRange:characterRange]}];
+                    [textFragments addObject:@{ @"textFragment": uncrustifiedString, @"range": [NSValue valueWithRange:characterRange] }];
                 }
             }
         }
@@ -287,13 +282,12 @@ NSString * BBStringByTrimmingTrailingCharactersFromString(NSString *string, NSCh
 }
 
 + (NSString *)stringByTrimmingString:(NSString *)string trimWhitespaceOnlyLines:(BOOL)trimWhitespaceOnlyLines trimTrailingWhitespace:(BOOL)trimTrailingWhitespace {
-    
     NSMutableString *mResultString = [NSMutableString string];
     
     // I'm not using [NSString enumerateLinesUsingBlock:] to enumerate the string by lines because the last line of the string is ignored if it's an empty line.
     NSArray *lines = [string componentsSeparatedByString:@"\n"];
     
-    NSCharacterSet * characterSet = [NSCharacterSet whitespaceCharacterSet]; // [NSCharacterSet whitespaceCharacterSet] means tabs or spaces
+    NSCharacterSet *characterSet = [NSCharacterSet whitespaceCharacterSet];  // [NSCharacterSet whitespaceCharacterSet] means tabs or spaces
     
     [lines enumerateObjectsWithOptions:0 usingBlock:^(NSString *line, NSUInteger idx, BOOL *stop) {
         if (idx > 0) {

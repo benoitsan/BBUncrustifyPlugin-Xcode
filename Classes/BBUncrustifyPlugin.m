@@ -28,7 +28,7 @@
         NSMenuItem *editMenuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
         if (editMenuItem) {
             [[editMenuItem submenu] addItem:[NSMenuItem separatorItem]];
-
+            
             NSMenuItem *menuItem;
             menuItem = [[NSMenuItem alloc] initWithTitle:@"Uncrustify Selected Files" action:@selector(uncrustifySelectedFiles:) keyEquivalent:@""];
             [menuItem setTarget:self];
@@ -48,7 +48,7 @@
             
             [BBPluginUpdater sharedUpdater].delegate = self;
             
-            NSLog(@"BBUncrustifyPlugin (V%@) loaded",[[[NSBundle bundleForClass:[self class]] infoDictionary] objectForKey:@"CFBundleVersion"]);
+            NSLog(@"BBUncrustifyPlugin (V%@) loaded", [[[NSBundle bundleForClass:[self class]] infoDictionary] objectForKey:@"CFBundleVersion"]);
         }
     }
     return self;
@@ -94,7 +94,6 @@
     [[BBPluginUpdater sharedUpdater] checkForUpdatesIfNeeded];
 }
 
-
 - (IBAction)openWithUncrustifyX:(id)sender {
     NSURL *appURL = [BBUncrustify uncrustifyXApplicationURL];
     
@@ -102,11 +101,10 @@
     NSURL *builtInConfigurationFileURL = [BBUncrustify builtInConfigurationFileURL];
     if ([configurationFileURL isEqual:builtInConfigurationFileURL]) {
         configurationFileURL = [BBUncrustify userConfigurationFileURLs][0];
-        NSAlert *alert = [NSAlert alertWithMessageText:@"Custom Configuration File Not Found" defaultButton:@"Create Configuration File & Open UncrustifyX" alternateButton:@"Cancel" otherButton:nil informativeTextWithFormat:@"Do you want to create a configuration file at this path \n%@",configurationFileURL.path];
+        NSAlert *alert = [NSAlert alertWithMessageText:@"Custom Configuration File Not Found" defaultButton:@"Create Configuration File & Open UncrustifyX" alternateButton:@"Cancel" otherButton:nil informativeTextWithFormat:@"Do you want to create a configuration file at this path \n%@", configurationFileURL.path];
         if ([alert runModal] == NSAlertDefaultReturn) {
             [[NSFileManager defaultManager] copyItemAtPath:builtInConfigurationFileURL.path toPath:configurationFileURL.path error:nil];
-        }
-        else {
+        } else {
             configurationFileURL = nil;
         }
     }
@@ -120,25 +118,22 @@
                 [[NSPasteboard pasteboardWithName:@"BBUncrustifyPlugin-source-code"] writeObjects:@[textStorage.string]];
             }
         }
-        NSDictionary* configuration = @{NSWorkspaceLaunchConfigurationArguments : @[@"-bbuncrustifyplugin", @"-configpath", configurationFileURL.path]};
+        NSDictionary *configuration = @{ NSWorkspaceLaunchConfigurationArguments: @[@"-bbuncrustifyplugin", @"-configpath", configurationFileURL.path] };
         [[NSWorkspace sharedWorkspace]launchApplicationAtURL:appURL options:0 configuration:configuration error:nil];
     }
     
     [[BBPluginUpdater sharedUpdater] checkForUpdatesIfNeeded];
 }
 
-
 #pragma mark - NSMenuValidation
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
     if ([menuItem action] == @selector(uncrustifySelectedFiles:)) {
         return ([BBXcode selectedObjCFileNavigableItems].count > 0);
-    }
-    else if ([menuItem action] == @selector(uncrustifyActiveFile:)) {
+    } else if ([menuItem action] == @selector(uncrustifyActiveFile:)) {
         IDESourceCodeDocument *document = [BBXcode currentSourceCodeDocument];
         return (document != nil);
-    }
-    else if ([menuItem action] == @selector(uncrustifySelectedLines:)) {
+    } else if ([menuItem action] == @selector(uncrustifySelectedLines:)) {
         BOOL validated = NO;
         IDESourceCodeDocument *document = [BBXcode currentSourceCodeDocument];
         NSTextView *textView = [BBXcode currentSourceCodeTextView];
@@ -147,8 +142,7 @@
             validated = (selectedRanges.count > 0);
         }
         return validated;
-    }
-    else if ([menuItem action] == @selector(openWithUncrustifyX:)) {
+    } else if ([menuItem action] == @selector(openWithUncrustifyX:)) {
         BOOL appExists = NO;
         NSURL *appURL = [BBUncrustify uncrustifyXApplicationURL];
         if (appURL) appExists = [[NSFileManager defaultManager] fileExistsAtPath:appURL.path];

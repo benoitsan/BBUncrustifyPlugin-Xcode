@@ -9,8 +9,8 @@
 #import <Cocoa/Cocoa.h>
 
 @interface DVTTextDocumentLocation : NSObject
-@property(readonly) NSRange characterRange;
-@property(readonly) NSRange lineRange;
+@property (readonly) NSRange characterRange;
+@property (readonly) NSRange lineRange;
 @end
 
 @interface DVTTextPreferences : NSObject
@@ -32,12 +32,12 @@
 @end
 
 @interface DVTFilePath : NSObject
-@property(readonly) NSURL *fileURL;
-@property(readonly) DVTFileDataType *fileDataTypePresumed;
+@property (readonly) NSURL *fileURL;
+@property (readonly) DVTFileDataType *fileDataTypePresumed;
 @end
 
 @interface IDEContainerItem : NSObject
-@property(readonly) DVTFilePath *resolvedFilePath;
+@property (readonly) DVTFilePath *resolvedFilePath;
 @end
 
 @interface IDEGroup : IDEContainerItem
@@ -49,8 +49,8 @@
 @end
 
 @interface IDENavigableItem : NSObject
-@property(readonly) IDENavigableItem *parentItem;
-@property(readonly) id representedObject;
+@property (readonly) IDENavigableItem *parentItem;
+@property (readonly) id representedObject;
 @end
 
 @interface IDEFileNavigableItem : IDENavigableItem
@@ -86,12 +86,12 @@
 @end
 
 @interface IDESourceCodeComparisonEditor : NSObject
-@property(readonly) NSTextView *keyTextView;
-@property(retain) NSDocument *primaryDocument;
+@property (readonly) NSTextView *keyTextView;
+@property (retain) NSDocument *primaryDocument;
 @end
 
 @interface IDESourceCodeEditor : NSObject
-@property(retain) NSTextView *textView;
+@property (retain) NSTextView *textView;
 - (IDESourceCodeDocument *)sourceCodeDocument;
 @end
 
@@ -109,11 +109,11 @@
 @end
 
 @interface IDEWorkspace : NSObject
-@property(readonly) DVTFilePath *representingFilePath;
+@property (readonly) DVTFilePath *representingFilePath;
 @end
 
 @interface IDEWorkspaceDocument : NSDocument
-@property(readonly) IDEWorkspace *workspace;
+@property (readonly) IDEWorkspace *workspace;
 @end
 
 @interface BBXcode : NSObject
