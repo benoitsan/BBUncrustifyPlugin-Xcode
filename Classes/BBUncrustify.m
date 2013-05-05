@@ -119,7 +119,6 @@ static NSString * BBUUIDString() {
 }
 
 + (NSArray *)userConfigurationFileURLs {
-    NSMutableArray *proposedURLs = [NSMutableArray array];
     NSURL *homeDirectoryURL = [NSURL fileURLWithPath:NSHomeDirectory()];
     return [BBUncrustify makeConfigurationFileURLsFromFolderURLs:@[homeDirectoryURL]];
 }

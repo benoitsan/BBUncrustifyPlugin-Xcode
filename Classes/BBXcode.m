@@ -31,15 +31,6 @@ NSString * BBStringByTrimmingTrailingCharactersFromString(NSString *string, NSCh
     return [string substringToIndex:rangeOfLastWantedCharacter.location + 1];
 }
 
-static IDENavigableItemCoordinator *sharedNavigableItemCoordinator() {
-    static IDENavigableItemCoordinator *coordinator = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        coordinator = [[IDENavigableItemCoordinator alloc] init];
-    });
-    return coordinator;
-}
-
 @implementation BBXcode {}
 
 #pragma mark - Helpers
@@ -187,7 +178,6 @@ static IDENavigableItemCoordinator *sharedNavigableItemCoordinator() {
 }
 
 + (BOOL)uncrustifyCodeAtRanges:(NSArray *)ranges document:(IDESourceCodeDocument *)document inWorkspace:(IDEWorkspace *)workspace {
-    BOOL uncrustified = NO;
     
     DVTSourceTextStorage *textStorage = [document textStorage];
     
@@ -206,7 +196,8 @@ static IDENavigableItemCoordinator *sharedNavigableItemCoordinator() {
     
     NSArray *additionalConfigurationFolderURLs = nil;
     if (workspace) {
-        IDENavigableItem *navigableItem = [sharedNavigableItemCoordinator() structureNavigableItemForDocumentURL:document.fileURL inWorkspace:workspace error:nil];
+        IDENavigableItemCoordinator *coordinator = [[IDENavigableItemCoordinator alloc] init];
+        IDENavigableItem *navigableItem = [coordinator structureNavigableItemForDocumentURL:document.fileURL inWorkspace:workspace error:nil];
         if (navigableItem) {
             additionalConfigurationFolderURLs = [BBXcode containerFolderURLsForNavigableItem:navigableItem];
         }
