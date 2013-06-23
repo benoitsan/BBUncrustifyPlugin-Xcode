@@ -8,6 +8,13 @@
 
 #import <Cocoa/Cocoa.h>
 
+extern NSString * const BBUserDefaultsCodeFormattingScheme;
+
+typedef NS_ENUM (NSUInteger, BBCodeFormattingScheme) {
+    BBCodeFormattingSchemeUncrustifyAndXCodeNormalization = 0, // code is formatted using uncrustify program and then normalized following Xcode preferences.
+    BBCodeFormattingSchemeUncrustify = 1 // code is formatted using uncrustify program.
+};
+
 @interface DVTTextDocumentLocation : NSObject
 @property (readonly) NSRange characterRange;
 @property (readonly) NSRange lineRange;

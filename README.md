@@ -4,7 +4,7 @@ Xcode plugin to [uncrustify](http://uncrustify.sourceforge.net) code in Xcode.
 
 ## Requirements
 
-Tested with Xcode 4.6+ on OS X 10.7 or higher.
+Tested with Xcode 4.6+ (also works in Xcode 5) on OS X 10.7 or higher.
 
 ## Installation
 
@@ -67,13 +67,17 @@ A more easy way to edit the configuration is to use the Mac appplication [Uncrus
 
 Once UncrustifyX is installed, the plugin will add a menu item `Open with UncrustifyX` to open the actual source code and configuration in UncrustifyX.
 
-## Notes
+## Xcode Normalization
 
 After uncrustification, the plugin:
 
 * performs a syntax-aware indenting if checked in the Xcode preferences (Preferences > Text Editing > Indentation > Syntax-aware indenting).
 
 * Trims trailing whitespaces and white-only lines if checked in the Xcode preferences (Preferences > Text Editing > Editing).
+
+You can disable this feature by setting the default key `uncrustify_plugin_codeFormattingScheme`to `1` (`0` or not defined means enabled).
+
+    defaults write com.apple.dt.Xcode uncrustify_plugin_codeFormattingScheme -int 1
 
 
 ## Creator

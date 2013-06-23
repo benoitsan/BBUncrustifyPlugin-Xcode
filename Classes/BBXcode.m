@@ -9,6 +9,8 @@
 #import "BBXcode.h"
 #import "BBUncrustify.h"
 
+NSString * const BBUserDefaultsCodeFormattingScheme = @"uncrustify_plugin_codeFormattingScheme";
+
 NSArray * BBMergeContinuousRanges(NSArray *ranges) {
     if (ranges.count == 0) return nil;
     
@@ -258,6 +260,10 @@ NSString * BBStringByTrimmingTrailingCharactersFromString(NSString *string, NSCh
 #pragma mark - Normalizing
 
 + (void)normalizeCodeAtRange:(NSRange)range document:(IDESourceCodeDocument *)document {
+    BBCodeFormattingScheme scheme = [[NSUserDefaults standardUserDefaults] integerForKey:BBUserDefaultsCodeFormattingScheme];
+    NSLog(@"scheme %li",scheme);
+    if (scheme != BBCodeFormattingSchemeUncrustifyAndXCodeNormalization) return;
+    
     DVTSourceTextStorage *textStorage = [document textStorage];
     
     const NSRange scopeLineRange = [textStorage lineRangeForCharacterRange:range]; // the line range stays unchanged during the normalization
