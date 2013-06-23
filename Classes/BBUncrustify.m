@@ -155,7 +155,7 @@ static NSString * BBUUIDString() {
     [fileURLs enumerateObjectsWithOptions:0 usingBlock:^(NSURL *fileURL, NSUInteger idx, BOOL *stop) {
         if ([[NSFileManager defaultManager] fileExistsAtPath:fileURL.path]) {
             NSMutableArray *args = NSMutableArray.array;
-            [args addObjectsFromArray:@[@"-l", @"OC", @"--frag", @"--no-backup"]];
+            [args addObjectsFromArray:@[@"--frag", @"--no-backup"]];
             [args addObjectsFromArray:@[@"-c", configurationFileURL.path, fileURL.path]];
             
             NSPipe *outputPipe = NSPipe.pipe;
