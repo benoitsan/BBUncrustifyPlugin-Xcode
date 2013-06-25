@@ -56,6 +56,7 @@ static NSString * BBUUIDString() {
         NSString *configuration = [[NSString alloc] initWithContentsOfURL:configurationFileURL encoding:NSUTF8StringEncoding error:nil];
         BOOL hasChanged = NO;
         NSString *modifiedConfiguration = [BBUncrustify configurationByRemovingOptions:@[@"cmt_insert_file_"] fromConfiguration:configuration hasChanged:&hasChanged];
+        [configuration release];
         if (hasChanged) {
             configurationFileURL = [[NSURL fileURLWithPath:NSTemporaryDirectory() isDirectory:YES] URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.cfg", BBUUIDString()] isDirectory:NO];
             [modifiedConfiguration writeToURL:configurationFileURL atomically:YES encoding:NSUTF8StringEncoding error:nil];

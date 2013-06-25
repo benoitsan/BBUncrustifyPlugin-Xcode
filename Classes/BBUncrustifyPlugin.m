@@ -15,10 +15,12 @@
 
 #pragma mark - Setup and Teardown
 
+static BBUncrustifyPlugin *sharedPlugin = nil;
+
 + (void)pluginDidLoad:(NSBundle *)plugin {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [[self alloc] init];
+        sharedPlugin = [[self alloc] init];
     });
 }
 
@@ -33,18 +35,22 @@
             menuItem = [[NSMenuItem alloc] initWithTitle:@"Uncrustify Selected Files" action:@selector(uncrustifySelectedFiles:) keyEquivalent:@""];
             [menuItem setTarget:self];
             [[editMenuItem submenu] addItem:menuItem];
+            [menuItem release];
             
             menuItem = [[NSMenuItem alloc] initWithTitle:@"Uncrustify Active File" action:@selector(uncrustifyActiveFile:) keyEquivalent:@""];
             [menuItem setTarget:self];
             [[editMenuItem submenu] addItem:menuItem];
+            [menuItem release];
             
             menuItem = [[NSMenuItem alloc] initWithTitle:@"Uncrustify Selected Lines" action:@selector(uncrustifySelectedLines:) keyEquivalent:@""];
             [menuItem setTarget:self];
             [[editMenuItem submenu] addItem:menuItem];
+            [menuItem release];
             
             menuItem = [[NSMenuItem alloc] initWithTitle:@"Open with UncrustifyX" action:@selector(openWithUncrustifyX:) keyEquivalent:@""];
             [menuItem setTarget:self];
             [[editMenuItem submenu] addItem:menuItem];
+            [menuItem release];
             
             [BBPluginUpdater sharedUpdater].delegate = self;
             
