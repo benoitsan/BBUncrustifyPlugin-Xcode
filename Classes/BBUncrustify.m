@@ -115,6 +115,7 @@ static NSString * BBUUIDString() {
     for (NSURL *folderURL in folderURLs) {
         [mArray addObject:[folderURL URLByAppendingPathComponent:@".uncrustifyconfig" isDirectory:NO]];
         [mArray addObject:[folderURL URLByAppendingPathComponent:@"uncrustify.cfg" isDirectory:NO]];
+        [mArray addObject:[[folderURL URLByAppendingPathComponent:@".uncrustify" isDirectory:YES] URLByAppendingPathComponent:@"uncrustify.cfg" isDirectory:NO]];
     }
     return [NSArray arrayWithArray:mArray];
 }

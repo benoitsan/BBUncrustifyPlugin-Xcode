@@ -34,9 +34,9 @@ By default, the plugin uses the configuration file `uncrustify.cfg` found in the
 #### Per user configuration
 To customize the configuration, copy the file `uncrustify.cfg` or your own to:
 
-1. `uncrustify.cfg` in the same directory of your `.xcodeproj` file or
-2. `~/.uncrustifyconfig` or
-3. `~/uncrustify.cfg`
+1. `~/.uncrustifyconfig` or
+2. `~/uncrustify.cfg` or
+3. `~/.uncrustify/uncrustify.cfg`
 
 #### Per project configuration
 A configuration file named `uncrustify.cfg` or `.uncrustifyconfig` can be defined for a project, a workspace or a Xcode container folder (folder with the yellow icon in the Xcode files navigator).
