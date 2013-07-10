@@ -6,6 +6,8 @@ Xcode plugin to [uncrustify](http://uncrustify.sourceforge.net) code in Xcode.
 
 Tested with Xcode 4.6+ (also works in Xcode 5) on OS X 10.7 or higher.
 
+PS: [This fork](https://github.com/1951FDG/BBUncrustifyPlugin-Xcode) works with Xcode 3.
+
 ## Installation
 
 * Build the Xcode project. The plug-in will automatically be installed in `~/Library/Application Support/Developer/Shared/Xcode/Plug-ins`. 
