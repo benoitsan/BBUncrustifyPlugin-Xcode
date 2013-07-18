@@ -63,7 +63,7 @@ static BBUncrustifyPlugin *sharedPlugin = nil;
 #pragma mark - Actions
 
 - (IBAction)uncrustifySelectedFiles:(id)sender {
-    NSArray *fileNavigableItems = [BBXcode selectedObjCFileNavigableItems];
+    NSArray *fileNavigableItems = [BBXcode selectedSourceCodeFileNavigableItems];
     IDEWorkspace *currentWorkspace = [BBXcode currentWorkspaceDocument].workspace;
     for (IDEFileNavigableItem *fileNavigableItem in fileNavigableItems) {
         NSDocument *document = [IDEDocumentController retainedEditorDocumentForNavigableItem:fileNavigableItem error:nil];
@@ -135,7 +135,7 @@ static BBUncrustifyPlugin *sharedPlugin = nil;
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
     if ([menuItem action] == @selector(uncrustifySelectedFiles:)) {
-        return ([BBXcode selectedObjCFileNavigableItems].count > 0);
+        return ([BBXcode selectedSourceCodeFileNavigableItems].count > 0);
     } else if ([menuItem action] == @selector(uncrustifyActiveFile:)) {
         IDESourceCodeDocument *document = [BBXcode currentSourceCodeDocument];
         return (document != nil);
