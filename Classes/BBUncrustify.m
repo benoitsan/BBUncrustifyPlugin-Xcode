@@ -157,6 +157,13 @@ static NSString * BBUUIDString() {
     [fileURLs enumerateObjectsWithOptions:0 usingBlock:^(NSURL *fileURL, NSUInteger idx, BOOL *stop) {
         if ([[NSFileManager defaultManager] fileExistsAtPath:fileURL.path]) {
             NSMutableArray *args = NSMutableArray.array;
+            
+            NSString *uti = [[NSWorkspace sharedWorkspace] typeOfFile:fileURL.path error:nil];
+            BOOL isObjectiveCFile = ([[NSWorkspace sharedWorkspace] type:uti conformsToType:(NSString *)kUTTypeObjectiveCSource] || [[NSWorkspace sharedWorkspace] type:uti conformsToType:(NSString *)kUTTypeCHeader]);
+            if (isObjectiveCFile) {
+                [args addObjectsFromArray:@[@"-l", @"OC"]];
+            }
+            
             [args addObjectsFromArray:@[@"--frag", @"--no-backup"]];
             [args addObjectsFromArray:@[@"-c", configurationFileURL.path, fileURL.path]];
             

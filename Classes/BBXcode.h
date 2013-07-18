@@ -127,7 +127,7 @@ typedef NS_ENUM (NSUInteger, BBCodeFormattingScheme) {
 + (IDEWorkspaceDocument *)currentWorkspaceDocument;
 + (IDESourceCodeDocument *)currentSourceCodeDocument;
 + (NSTextView *)currentSourceCodeTextView;
-+ (NSArray *)selectedObjCFileNavigableItems;
++ (NSArray *)selectedSourceCodeFileNavigableItems;
 + (BOOL)uncrustifyCodeOfDocument:(IDESourceCodeDocument *)document inWorkspace:(IDEWorkspace *)workspace;
 + (BOOL)uncrustifyCodeAtRanges:(NSArray *)ranges document:(IDESourceCodeDocument *)document inWorkspace:(IDEWorkspace *)workspace;
 @end

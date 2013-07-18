@@ -88,9 +88,8 @@ NSString * BBStringByTrimmingTrailingCharactersFromString(NSString *string, NSCh
     return nil;
 }
 
-+ (NSArray *)selectedObjCFileNavigableItems {
++ (NSArray *)selectedSourceCodeFileNavigableItems {
     NSMutableArray *mutableArray = [NSMutableArray array];
-    
     id currentWindowController = [[NSApp keyWindow] windowController];
     if ([currentWindowController isKindOfClass:NSClassFromString(@"IDEWorkspaceWindowController")]) {
         IDEWorkspaceWindowController *workspaceController = currentWindowController;
@@ -104,7 +103,7 @@ NSString * BBStringByTrimmingTrailingCharactersFromString(NSString *string, NSCh
                 if ([selectedObject isKindOfClass:NSClassFromString(@"IDEFileNavigableItem")]) {
                     IDEFileNavigableItem *fileNavigableItem = selectedObject;
                     NSString *uti = fileNavigableItem.documentType.identifier;
-                    if ([uti isEqualToString:(NSString *)kUTTypeObjectiveCSource] || [uti isEqualToString:(NSString *)kUTTypeCHeader]) {
+                    if ([[NSWorkspace sharedWorkspace] type:uti conformsToType:(NSString *)kUTTypeSourceCode]) {
                         [mutableArray addObject:fileNavigableItem];
                     }
                 }
