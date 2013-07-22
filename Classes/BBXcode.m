@@ -148,7 +148,9 @@ NSString * BBStringByTrimmingTrailingCharactersFromString(NSString *string, NSCh
 
 + (BOOL)uncrustifyCodeOfDocument:(IDESourceCodeDocument *)document inWorkspace:(IDEWorkspace *)workspace {
     DVTSourceTextStorage *textStorage = [document textStorage];
-    NSString *originalString = textStorage.string;
+    
+    NSString *originalString = [NSString stringWithString:textStorage.string];
+    
     if (textStorage.string.length > 0) {
         NSArray *additionalConfigurationFolderURLs = nil;
         if (workspace) {
@@ -165,11 +167,13 @@ NSString * BBStringByTrimmingTrailingCharactersFromString(NSString *string, NSCh
             [options setObject:additionalConfigurationFolderURLs forKey:BBUncrustifyOptionSupplementalConfigurationFolders];
         }
         
+        [textStorage beginEditing];
         NSString *uncrustifiedCode = [BBUncrustify uncrustifyCodeFragment:textStorage.string options:options];
         if (![uncrustifiedCode isEqualToString:textStorage.string]) {
             [textStorage replaceCharactersInRange:NSMakeRange(0, textStorage.string.length) withString:uncrustifiedCode withUndoManager:[document undoManager]];
         }
         [BBXcode normalizeCodeAtRange:NSMakeRange(0, textStorage.string.length) document:document];
+        [textStorage endEditing];
     }
     
     BOOL codeHasChanged = (originalString && ![originalString isEqualToString:textStorage.string]);
@@ -221,7 +225,7 @@ NSString * BBStringByTrimmingTrailingCharactersFromString(NSString *string, NSCh
         }
     }
     
-    NSString *originalString = textStorage.string;
+    NSString *originalString = [NSString stringWithString:textStorage.string];
     
     NSMutableArray *newSelectionRanges = [NSMutableArray array];
     
