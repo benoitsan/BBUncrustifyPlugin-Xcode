@@ -141,12 +141,35 @@ static NSString * BBUUIDString() {
     return [BBUncrustify builtInConfigurationFileURL];
 }
 
++ (NSURL *)builtInExecutableFileURL {
+	NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+	return [bundle URLForResource:@"uncrustify" withExtension:@""];
+}
+
++ (NSArray *)userExecutableFileURLs {
+    NSMutableArray *mArray = [NSMutableArray array];
+    [mArray addObject:[NSURL fileURLWithPath:@"/usr/local/bin/uncrustify"]];
+    [mArray addObject:[NSURL fileURLWithPath:@"/usr/bin/uncrustify"]];
+    return mArray;
+}
+
++ (NSURL *)resolvedExecutableFileURL { 
+    // folders are ordered by priority
+    NSMutableArray *executableURLs = [NSMutableArray array];
+    [executableURLs addObjectsFromArray:[self userExecutableFileURLs]];
+
+    for (NSURL *url in executableURLs) {
+        if ([[NSFileManager defaultManager] fileExistsAtPath:url.path]) {
+            return url;
+        }
+    }
+    return [BBUncrustify builtInExecutableFileURL];
+}
+
 + (void)uncrustifyFilesAtURLs:(NSArray *)fileURLs configurationFileURL:(NSURL *)configurationFileURL {
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    
     //NSLog(@"uncrustify configuration file: %@",configurationFileURL);
     
-    NSURL *executableFileURL = [bundle URLForResource:@"uncrustify" withExtension:@""];
+    NSURL *executableFileURL = [self resolvedExecutableFileURL];
     
     BOOL filesExists = [[NSFileManager defaultManager] fileExistsAtPath:configurationFileURL.path] && [[NSFileManager defaultManager] fileExistsAtPath:configurationFileURL.path];
     
