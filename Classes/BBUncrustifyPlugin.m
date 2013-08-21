@@ -85,7 +85,7 @@ static BBUncrustifyPlugin *sharedPlugin = nil;
     NSTextView *textView = [BBXcode currentSourceCodeTextView];
     NSScrollView * scrollView = [textView enclosingScrollView];
     CGPoint scrollPoint = [scrollView documentVisibleRect].origin;
-    NSRange selectedRange = [textView selectedRange];
+    NSUInteger location = [textView selectedRange].location;
 
     IDESourceCodeDocument *document = [BBXcode currentSourceCodeDocument];
     if (!document) return;
@@ -93,7 +93,7 @@ static BBUncrustifyPlugin *sharedPlugin = nil;
     [BBXcode uncrustifyCodeOfDocument:document inWorkspace:currentWorkspace];
 
     // restore insert and scrollpoint
-    [textView setSelectedRange:selectedRange];
+    [textView setSelectedRange:NSMakeRange(MIN(location, [[textView string ]length]), 0)];
     [[scrollView documentView] scrollPoint:scrollPoint];
     
     [[BBPluginUpdater sharedUpdater] checkForUpdatesIfNeeded];
