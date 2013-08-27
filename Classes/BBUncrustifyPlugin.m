@@ -81,20 +81,35 @@ static BBUncrustifyPlugin *sharedPlugin = nil;
 }
 
 - (IBAction)uncrustifyActiveFile:(id)sender {
-    // save insert and scrollpoint
-    NSTextView *textView = [BBXcode currentSourceCodeTextView];
-    NSScrollView * scrollView = [textView enclosingScrollView];
-    CGPoint scrollPoint = [scrollView documentVisibleRect].origin;
-    NSUInteger location = [textView selectedRange].location;
-
     IDESourceCodeDocument *document = [BBXcode currentSourceCodeDocument];
     if (!document) return;
+    
+    NSTextView *textView = [BBXcode currentSourceCodeTextView];
+    
+    DVTSourceTextStorage *textStorage = [document textStorage];
+    
+    // We try to restore the original cursor position after the uncrustification. We compute a percentage value
+    // expressing the actual selected line compared to the total number of lines of the document. After the uncrustification,
+    // we restore the position taking into account the modified number of lines of the document.
+    
+    NSRange originalCharacterRange = [textView selectedRange];
+    NSRange originalLineRange = [textStorage lineRangeForCharacterRange:originalCharacterRange];
+    NSRange originalDocumentLineRange = [textStorage lineRangeForCharacterRange:NSMakeRange(0, textStorage.string.length)];
+    
+    CGFloat verticalRelativePosition = (CGFloat)originalLineRange.location / (CGFloat)originalDocumentLineRange.length;
+    
     IDEWorkspace *currentWorkspace = [BBXcode currentWorkspaceDocument].workspace;
     [BBXcode uncrustifyCodeOfDocument:document inWorkspace:currentWorkspace];
-
-    // restore insert and scrollpoint
-    [textView setSelectedRange:NSMakeRange(MIN(location, [[textView string ]length]), 0)];
-    [[scrollView documentView] scrollPoint:scrollPoint];
+    
+    NSRange newDocumentLineRange = [textStorage lineRangeForCharacterRange:NSMakeRange(0, textStorage.string.length)];
+    NSUInteger restoredLine = roundf(verticalRelativePosition * (CGFloat)newDocumentLineRange.length);
+    
+    NSRange newCharacterRange = [textStorage characterRangeForLineRange:NSMakeRange(restoredLine, 0)];
+    
+    if (newCharacterRange.location < textStorage.string.length) {
+        [[BBXcode currentSourceCodeTextView] setSelectedRanges:@[[NSValue valueWithRange:newCharacterRange]]];
+        [textView scrollRangeToVisible:newCharacterRange];
+    }
     
     [[BBPluginUpdater sharedUpdater] checkForUpdatesIfNeeded];
 }
