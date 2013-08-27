@@ -155,10 +155,7 @@ static NSString * BBUUIDString() {
 
 + (NSURL *)resolvedExecutableFileURL { 
     // folders are ordered by priority
-    NSMutableArray *executableURLs = [NSMutableArray array];
-    [executableURLs addObjectsFromArray:[self userExecutableFileURLs]];
-
-    for (NSURL *url in executableURLs) {
+    for (NSURL *url in [self userExecutableFileURLs]) {
         if ([[NSFileManager defaultManager] fileExistsAtPath:url.path]) {
             return url;
         }
