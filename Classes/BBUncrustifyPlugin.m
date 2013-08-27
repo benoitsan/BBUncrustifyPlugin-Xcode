@@ -81,10 +81,20 @@ static BBUncrustifyPlugin *sharedPlugin = nil;
 }
 
 - (IBAction)uncrustifyActiveFile:(id)sender {
+    // save insert and scrollpoint
+    NSTextView *textView = [BBXcode currentSourceCodeTextView];
+    NSScrollView * scrollView = [textView enclosingScrollView];
+    CGPoint scrollPoint = [scrollView documentVisibleRect].origin;
+    NSUInteger location = [textView selectedRange].location;
+
     IDESourceCodeDocument *document = [BBXcode currentSourceCodeDocument];
     if (!document) return;
     IDEWorkspace *currentWorkspace = [BBXcode currentWorkspaceDocument].workspace;
     [BBXcode uncrustifyCodeOfDocument:document inWorkspace:currentWorkspace];
+
+    // restore insert and scrollpoint
+    [textView setSelectedRange:NSMakeRange(MIN(location, [[textView string ]length]), 0)];
+    [[scrollView documentView] scrollPoint:scrollPoint];
     
     [[BBPluginUpdater sharedUpdater] checkForUpdatesIfNeeded];
 }
