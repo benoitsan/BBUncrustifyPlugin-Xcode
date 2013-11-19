@@ -156,7 +156,9 @@ NSString * BBStringByTrimmingTrailingCharactersFromString(NSString *string, NSCh
         if (workspace) {
             IDENavigableItemCoordinator *coordinator = [[IDENavigableItemCoordinator alloc] init];
             IDENavigableItem *navigableItem = [coordinator structureNavigableItemForDocumentURL:document.fileURL inWorkspace:workspace error:nil];
+#if !__has_feature(objc_arc)
             [coordinator release];
+#endif
             if (navigableItem) {
                 additionalConfigurationFolderURLs = [BBXcode containerFolderURLsForNavigableItem:navigableItem];
             }
@@ -200,7 +202,9 @@ NSString * BBStringByTrimmingTrailingCharactersFromString(NSString *string, NSCh
     if (workspace) {
         IDENavigableItemCoordinator *coordinator = [[IDENavigableItemCoordinator alloc] init];
         IDENavigableItem *navigableItem = [coordinator structureNavigableItemForDocumentURL:document.fileURL inWorkspace:workspace error:nil];
+#if !__has_feature(objc_arc)
         [coordinator release];
+#endif
         if (navigableItem) {
             additionalConfigurationFolderURLs = [BBXcode containerFolderURLsForNavigableItem:navigableItem];
         }

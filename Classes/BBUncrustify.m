@@ -16,6 +16,9 @@ NSString * const BBUncrustifyOptionSourceFilename = @"sourceFilename";
 NSString * const BBUncrustifyOptionSupplementalConfigurationFolders = @"supplementalConfigurationFolders";
 
 static NSString * BBUUIDString() {
+#if __has_feature(objc_arc)
+    return [[NSUUID UUID] UUIDString]; // ARC is used for Xcode 5.1+, we can use NSUUID available on OS X 10.8+
+#else
     NSString *uuidString = nil;
     CFUUIDRef uuid = CFUUIDCreate(NULL);
     if (uuid) {
@@ -23,6 +26,7 @@ static NSString * BBUUIDString() {
         CFRelease(uuid);
     }
     return [NSMakeCollectable(uuidString) autorelease];
+#endif
 }
 
 @interface BBUncrustify ()
@@ -56,7 +60,9 @@ static NSString * BBUUIDString() {
         NSString *configuration = [[NSString alloc] initWithContentsOfURL:configurationFileURL encoding:NSUTF8StringEncoding error:nil];
         BOOL hasChanged = NO;
         NSString *modifiedConfiguration = [BBUncrustify configurationByRemovingOptions:@[@"cmt_insert_file_"] fromConfiguration:configuration hasChanged:&hasChanged];
+#if !__has_feature(objc_arc)
         [configuration release];
+#endif
         if (hasChanged) {
             configurationFileURL = [[NSURL fileURLWithPath:NSTemporaryDirectory() isDirectory:YES] URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.cfg", BBUUIDString()] isDirectory:NO];
             [modifiedConfiguration writeToURL:configurationFileURL atomically:YES encoding:NSUTF8StringEncoding error:nil];
@@ -202,7 +208,9 @@ static NSString * BBUUIDString() {
             
             [task launch];
             [task waitUntilExit];
+#if !__has_feature(objc_arc)
             [task release];
+#endif
         }
     }];
 }

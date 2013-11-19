@@ -18,6 +18,23 @@
 		14617B3516FD9BDB00C7C91B /* IDEFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14617B3116FD9BDB00C7C91B /* IDEFoundation.framework */; };
 		14617B3616FD9BDB00C7C91B /* IDEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14617B3216FD9BDB00C7C91B /* IDEKit.framework */; };
 		147264381711732F002BC0BE /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 147264371711732F002BC0BE /* icon.icns */; };
+		149F2D5C183C073700DFB8CC /* BBUncrustifyPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = DA37E2DB0E6291C8001BDFEF /* BBUncrustifyPlugin.m */; };
+		149F2D5D183C073700DFB8CC /* BBUncrustify.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FF378C16F490F60049868C /* BBUncrustify.m */; };
+		149F2D5E183C073700DFB8CC /* BBXcode.m in Sources */ = {isa = PBXBuildFile; fileRef = 141251A116F4AA8600A18D23 /* BBXcode.m */; };
+		149F2D5F183C073700DFB8CC /* BBPluginUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 1414D3C7171163CA002378C0 /* BBPluginUpdater.m */; };
+		149F2D61183C073700DFB8CC /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1435669716FD0E0400FECDEB /* AppKit.framework */; };
+		149F2D62183C073700DFB8CC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1435669516FD0E0000FECDEB /* Cocoa.framework */; };
+		149F2D63183C073700DFB8CC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 089C1672FE841209C02AAC07 /* Foundation.framework */; };
+		149F2D64183C073700DFB8CC /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14617B2F16FD9BDB00C7C91B /* DVTKit.framework */; };
+		149F2D65183C073700DFB8CC /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14617B3016FD9BDB00C7C91B /* DVTFoundation.framework */; };
+		149F2D66183C073700DFB8CC /* IDEFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14617B3116FD9BDB00C7C91B /* IDEFoundation.framework */; };
+		149F2D67183C073700DFB8CC /* IDEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14617B3216FD9BDB00C7C91B /* IDEKit.framework */; };
+		149F2D68183C073700DFB8CC /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1414D3C41710D549002378C0 /* Sparkle.framework */; };
+		149F2D6A183C073700DFB8CC /* uncrustify.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 14CE84DA16F49D6F008082AB /* uncrustify.cfg */; };
+		149F2D6B183C073700DFB8CC /* uncrustify in Resources */ = {isa = PBXBuildFile; fileRef = 14CE84D916F49A02008082AB /* uncrustify */; };
+		149F2D6C183C073700DFB8CC /* sparkle_dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 1414D3C917116556002378C0 /* sparkle_dsa_pub.pem */; };
+		149F2D6D183C073700DFB8CC /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 147264371711732F002BC0BE /* icon.icns */; };
+		149F2D6F183C073700DFB8CC /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 1414D3C41710D549002378C0 /* Sparkle.framework */; };
 		14CE84DC16F4A57A008082AB /* uncrustify.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 14CE84DA16F49D6F008082AB /* uncrustify.cfg */; };
 		14CE84DD16F4A57D008082AB /* uncrustify in Resources */ = {isa = PBXBuildFile; fileRef = 14CE84D916F49A02008082AB /* uncrustify */; };
 		14EFEEDA171167BB0068BB83 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 1414D3C41710D549002378C0 /* Sparkle.framework */; };
@@ -27,6 +44,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		149F2D6E183C073700DFB8CC /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				149F2D6F183C073700DFB8CC /* Sparkle.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		14EFEED9171167950068BB83 /* Copy Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -49,12 +77,13 @@
 		1414D3C917116556002378C0 /* sparkle_dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sparkle_dsa_pub.pem; sourceTree = "<group>"; };
 		1435669516FD0E0000FECDEB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		1435669716FD0E0400FECDEB /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		14617B2F16FD9BDB00C7C91B /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTKit.framework; path = ../../../../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTKit.framework; sourceTree = "<group>"; };
+		14617B2F16FD9BDB00C7C91B /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTKit.framework; path = "/Users/benoit/Desktop/BBUncrustifyPlugin-Xcode/../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTKit.framework"; sourceTree = "<absolute>"; };
 		14617B3016FD9BDB00C7C91B /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTFoundation.framework; path = ../../../../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework; sourceTree = "<group>"; };
 		14617B3116FD9BDB00C7C91B /* IDEFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEFoundation.framework; path = ../../../../../../../Applications/Xcode.app/Contents/Frameworks/IDEFoundation.framework; sourceTree = "<group>"; };
 		14617B3216FD9BDB00C7C91B /* IDEKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEKit.framework; path = ../../../../../../../Applications/Xcode.app/Contents/Frameworks/IDEKit.framework; sourceTree = "<group>"; };
 		147264371711732F002BC0BE /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		149B117816F483D3000F9C01 /* BBXcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBXcode.h; sourceTree = "<group>"; };
+		149F2D72183C073700DFB8CC /* UncrustifyPlugin.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UncrustifyPlugin.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		14CE84D916F49A02008082AB /* uncrustify */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = uncrustify; sourceTree = "<group>"; };
 		14CE84DA16F49D6F008082AB /* uncrustify.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = uncrustify.cfg; sourceTree = "<group>"; };
 		14FF378B16F490F60049868C /* BBUncrustify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBUncrustify.h; sourceTree = "<group>"; };
@@ -66,6 +95,21 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		149F2D60183C073700DFB8CC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				149F2D61183C073700DFB8CC /* AppKit.framework in Frameworks */,
+				149F2D62183C073700DFB8CC /* Cocoa.framework in Frameworks */,
+				149F2D63183C073700DFB8CC /* Foundation.framework in Frameworks */,
+				149F2D64183C073700DFB8CC /* DVTKit.framework in Frameworks */,
+				149F2D65183C073700DFB8CC /* DVTFoundation.framework in Frameworks */,
+				149F2D66183C073700DFB8CC /* IDEFoundation.framework in Frameworks */,
+				149F2D67183C073700DFB8CC /* IDEKit.framework in Frameworks */,
+				149F2D68183C073700DFB8CC /* Sparkle.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D5B49B3048680CD000E48DA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -126,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				8D5B49B6048680CD000E48DA /* UncrustifyPlugin.xcplugin */,
+				149F2D72183C073700DFB8CC /* UncrustifyPlugin.xcplugin */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -148,20 +193,41 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8D5B49AC048680CD000E48DA /* BBUncrustifyPlugin */ = {
+		149F2D5A183C073700DFB8CC /* BBUncrustifyPlugin-ARC */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1DEB913A08733D840010E9CD /* Build configuration list for PBXNativeTarget "BBUncrustifyPlugin" */;
+			buildConfigurationList = 149F2D70183C073700DFB8CC /* Build configuration list for PBXNativeTarget "BBUncrustifyPlugin-ARC" */;
 			buildPhases = (
-				8D5B49B1048680CD000E48DA /* Sources */,
-				8D5B49B3048680CD000E48DA /* Frameworks */,
-				14CE84DB16F4A573008082AB /* Resources */,
-				14EFEED9171167950068BB83 /* Copy Frameworks */,
+				149F2D5B183C073700DFB8CC /* Sources */,
+				149F2D60183C073700DFB8CC /* Frameworks */,
+				149F2D69183C073700DFB8CC /* Resources */,
+				149F2D6E183C073700DFB8CC /* Copy Frameworks */,
+				1453E76F183C0D2B00AA9236 /* Sparkle signing */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = BBUncrustifyPlugin;
+			name = "BBUncrustifyPlugin-ARC";
+			productInstallPath = "$(HOME)/Library/Bundles";
+			productName = QuietXcode;
+			productReference = 149F2D72183C073700DFB8CC /* UncrustifyPlugin.xcplugin */;
+			productType = "com.apple.product-type.bundle";
+		};
+		8D5B49AC048680CD000E48DA /* BBUncrustifyPlugin-GC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB913A08733D840010E9CD /* Build configuration list for PBXNativeTarget "BBUncrustifyPlugin-GC" */;
+			buildPhases = (
+				8D5B49B1048680CD000E48DA /* Sources */,
+				8D5B49B3048680CD000E48DA /* Frameworks */,
+				14CE84DB16F4A573008082AB /* Resources */,
+				14EFEED9171167950068BB83 /* Copy Frameworks */,
+				1453E770183C0EC500AA9236 /* Sparkle signing */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "BBUncrustifyPlugin-GC";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = QuietXcode;
 			productReference = 8D5B49B6048680CD000E48DA /* UncrustifyPlugin.xcplugin */;
@@ -189,12 +255,24 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8D5B49AC048680CD000E48DA /* BBUncrustifyPlugin */,
+				8D5B49AC048680CD000E48DA /* BBUncrustifyPlugin-GC */,
+				149F2D5A183C073700DFB8CC /* BBUncrustifyPlugin-ARC */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		149F2D69183C073700DFB8CC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				149F2D6A183C073700DFB8CC /* uncrustify.cfg in Resources */,
+				149F2D6B183C073700DFB8CC /* uncrustify in Resources */,
+				149F2D6C183C073700DFB8CC /* sparkle_dsa_pub.pem in Resources */,
+				149F2D6D183C073700DFB8CC /* icon.icns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		14CE84DB16F4A573008082AB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -208,7 +286,49 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1453E76F183C0D2B00AA9236 /* Sparkle signing */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Sparkle signing";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CODE_SIGN_IDENTITY}\" != \"\" ]; then\necho \"signing identity: ${CODE_SIGN_IDENTITY}\"\ncd \"${TARGET_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Frameworks/\"\nexport CODESIGN_ALLOCATE=\"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/codesign_allocate\"\ncodesign -f -v -s \"${CODE_SIGN_IDENTITY}\" Sparkle.framework\ncd \"${TARGET_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Frameworks/Sparkle.framework/Versions/A/Resources/\"\ncodesign -f -v -s \"${CODE_SIGN_IDENTITY}\" finish_installation.app\ncd \"${TARGET_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/\"\ncodesign -f -v -s \"${CODE_SIGN_IDENTITY}\" uncrustify\nfi";
+		};
+		1453E770183C0EC500AA9236 /* Sparkle signing */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Sparkle signing";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CODE_SIGN_IDENTITY}\" != \"\" ]; then\necho \"signing identity: ${CODE_SIGN_IDENTITY}\"\ncd \"${TARGET_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Frameworks/\"\nexport CODESIGN_ALLOCATE=\"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/codesign_allocate\"\ncodesign -f -v -s \"${CODE_SIGN_IDENTITY}\" Sparkle.framework\ncd \"${TARGET_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Frameworks/Sparkle.framework/Versions/A/Resources/\"\ncodesign -f -v -s \"${CODE_SIGN_IDENTITY}\" finish_installation.app\ncd \"${TARGET_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/\"\ncodesign -f -v -s \"${CODE_SIGN_IDENTITY}\" uncrustify\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		149F2D5B183C073700DFB8CC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				149F2D5C183C073700DFB8CC /* BBUncrustifyPlugin.m in Sources */,
+				149F2D5D183C073700DFB8CC /* BBUncrustify.m in Sources */,
+				149F2D5E183C073700DFB8CC /* BBXcode.m in Sources */,
+				149F2D5F183C073700DFB8CC /* BBPluginUpdater.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D5B49B1048680CD000E48DA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -223,6 +343,38 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		149F2D71183C073700DFB8CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_LOCATION = YES;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DSTROOT = "$(HOME)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks\"",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks\"",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = Resources/Info.plist;
+				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				LD_RUNPATH_SEARCH_PATHS = /Developer;
+				OTHER_CFLAGS = "";
+				PRODUCT_NAME = UncrustifyPlugin;
+				STRIP_INSTALLED_PRODUCT = NO;
+				WRAPPER_EXTENSION = xcplugin;
+			};
+			name = Debug;
+		};
 		1DEB913B08733D840010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -248,6 +400,7 @@
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
 				LD_RUNPATH_SEARCH_PATHS = /Developer;
 				OTHER_CFLAGS = "-fobjc-gc";
+				PRODUCT_NAME = UncrustifyPlugin;
 				STRIP_INSTALLED_PRODUCT = NO;
 				WRAPPER_EXTENSION = xcplugin;
 			};
@@ -264,6 +417,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -285,7 +439,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1DEB913A08733D840010E9CD /* Build configuration list for PBXNativeTarget "BBUncrustifyPlugin" */ = {
+		149F2D70183C073700DFB8CC /* Build configuration list for PBXNativeTarget "BBUncrustifyPlugin-ARC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				149F2D71183C073700DFB8CC /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		1DEB913A08733D840010E9CD /* Build configuration list for PBXNativeTarget "BBUncrustifyPlugin-GC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1DEB913B08733D840010E9CD /* Debug */,
