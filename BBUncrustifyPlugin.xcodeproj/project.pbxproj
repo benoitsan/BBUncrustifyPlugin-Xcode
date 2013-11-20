@@ -201,7 +201,7 @@
 				149F2D60183C073700DFB8CC /* Frameworks */,
 				149F2D69183C073700DFB8CC /* Resources */,
 				149F2D6E183C073700DFB8CC /* Copy Frameworks */,
-				1453E76F183C0D2B00AA9236 /* Sparkle signing */,
+				1453E76F183C0D2B00AA9236 /* Code Signing */,
 			);
 			buildRules = (
 			);
@@ -221,7 +221,7 @@
 				8D5B49B3048680CD000E48DA /* Frameworks */,
 				14CE84DB16F4A573008082AB /* Resources */,
 				14EFEED9171167950068BB83 /* Copy Frameworks */,
-				1453E770183C0EC500AA9236 /* Sparkle signing */,
+				1453E770183C0EC500AA9236 /* Code Signing */,
 			);
 			buildRules = (
 			);
@@ -287,33 +287,33 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1453E76F183C0D2B00AA9236 /* Sparkle signing */ = {
+		1453E76F183C0D2B00AA9236 /* Code Signing */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Sparkle signing";
+			name = "Code Signing";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"${CODE_SIGN_IDENTITY}\" != \"\" ]; then\necho \"signing identity: ${CODE_SIGN_IDENTITY}\"\ncd \"${TARGET_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Frameworks/\"\nexport CODESIGN_ALLOCATE=\"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/codesign_allocate\"\ncodesign -f -v -s \"${CODE_SIGN_IDENTITY}\" Sparkle.framework\ncd \"${TARGET_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Frameworks/Sparkle.framework/Versions/A/Resources/\"\ncodesign -f -v -s \"${CODE_SIGN_IDENTITY}\" finish_installation.app\ncd \"${TARGET_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/\"\ncodesign -f -v -s \"${CODE_SIGN_IDENTITY}\" uncrustify\nfi";
+			shellScript = "if [ \"${CODE_SIGN_IDENTITY}\" != \"\" ] &&[ \"${CONFIGURATION}\" = \"Release\" ]; then\necho \"signing identity: ${CODE_SIGN_IDENTITY}\"\ncd \"${TARGET_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Frameworks/\"\nexport CODESIGN_ALLOCATE=\"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/codesign_allocate\"\ncodesign -f -v -s \"${CODE_SIGN_IDENTITY}\" Sparkle.framework\ncd \"${TARGET_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Frameworks/Sparkle.framework/Versions/A/Resources/\"\ncodesign -f -v -s \"${CODE_SIGN_IDENTITY}\" finish_installation.app\ncd \"${TARGET_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/\"\ncodesign -f -v -s \"${CODE_SIGN_IDENTITY}\" uncrustify\nfi";
 		};
-		1453E770183C0EC500AA9236 /* Sparkle signing */ = {
+		1453E770183C0EC500AA9236 /* Code Signing */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Sparkle signing";
+			name = "Code Signing";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"${CODE_SIGN_IDENTITY}\" != \"\" ]; then\necho \"signing identity: ${CODE_SIGN_IDENTITY}\"\ncd \"${TARGET_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Frameworks/\"\nexport CODESIGN_ALLOCATE=\"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/codesign_allocate\"\ncodesign -f -v -s \"${CODE_SIGN_IDENTITY}\" Sparkle.framework\ncd \"${TARGET_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Frameworks/Sparkle.framework/Versions/A/Resources/\"\ncodesign -f -v -s \"${CODE_SIGN_IDENTITY}\" finish_installation.app\ncd \"${TARGET_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/\"\ncodesign -f -v -s \"${CODE_SIGN_IDENTITY}\" uncrustify\nfi";
+			shellScript = "if [ \"${CODE_SIGN_IDENTITY}\" != \"\" ] &&[ \"${CONFIGURATION}\" = \"Release\" ]; then\necho \"signing identity: ${CODE_SIGN_IDENTITY}\"\ncd \"${TARGET_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Frameworks/\"\nexport CODESIGN_ALLOCATE=\"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/codesign_allocate\"\ncodesign -f -v -s \"${CODE_SIGN_IDENTITY}\" Sparkle.framework\ncd \"${TARGET_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Frameworks/Sparkle.framework/Versions/A/Resources/\"\ncodesign -f -v -s \"${CODE_SIGN_IDENTITY}\" finish_installation.app\ncd \"${TARGET_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/\"\ncodesign -f -v -s \"${CODE_SIGN_IDENTITY}\" uncrustify\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -343,13 +343,42 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		149F2D71183C073700DFB8CC /* Debug */ = {
+		14125330183D4E0600EB7149 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INSTALL_PATH = "$(HOME)/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = UncrustifyPlugin;
+			};
+			name = Release;
+		};
+		14125331183D4E0600EB7149 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
 				DEPLOYMENT_LOCATION = YES;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				DSTROOT = "$(HOME)";
@@ -359,8 +388,57 @@
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks\"",
 					"\"$(SRCROOT)\"",
 				);
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
+				INFOPLIST_FILE = Resources/Info.plist;
+				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				LD_RUNPATH_SEARCH_PATHS = /Developer;
+				OTHER_CFLAGS = "-fobjc-gc";
+				PRODUCT_NAME = UncrustifyPlugin;
+				WRAPPER_EXTENSION = xcplugin;
+			};
+			name = Release;
+		};
+		14125332183D4E0600EB7149 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEPLOYMENT_LOCATION = YES;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DSTROOT = "$(HOME)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks\"",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks\"",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
+				INFOPLIST_FILE = Resources/Info.plist;
+				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				LD_RUNPATH_SEARCH_PATHS = /Developer;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_CFLAGS = "";
+				PRODUCT_NAME = UncrustifyPlugin;
+				WRAPPER_EXTENSION = xcplugin;
+			};
+			name = Release;
+		};
+		149F2D71183C073700DFB8CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEPLOYMENT_LOCATION = YES;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DSTROOT = "$(HOME)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks\"",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks\"",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -368,9 +446,9 @@
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
 				LD_RUNPATH_SEARCH_PATHS = /Developer;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_CFLAGS = "";
 				PRODUCT_NAME = UncrustifyPlugin;
-				STRIP_INSTALLED_PRODUCT = NO;
 				WRAPPER_EXTENSION = xcplugin;
 			};
 			name = Debug;
@@ -380,7 +458,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
 				DEPLOYMENT_LOCATION = YES;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				DSTROOT = "$(HOME)";
@@ -390,8 +467,6 @@
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks\"",
 					"\"$(SRCROOT)\"",
 				);
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -401,7 +476,6 @@
 				LD_RUNPATH_SEARCH_PATHS = /Developer;
 				OTHER_CFLAGS = "-fobjc-gc";
 				PRODUCT_NAME = UncrustifyPlugin;
-				STRIP_INSTALLED_PRODUCT = NO;
 				WRAPPER_EXTENSION = xcplugin;
 			};
 			name = Debug;
@@ -409,16 +483,18 @@
 		1DEB913F08733D840010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
-				GCC_C_LANGUAGE_STANDARD = c99;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -426,13 +502,14 @@
 					"$(inherited)",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INSTALL_PATH = "$(HOME)/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = UncrustifyPlugin;
-				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -443,6 +520,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				149F2D71183C073700DFB8CC /* Debug */,
+				14125332183D4E0600EB7149 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -451,6 +529,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1DEB913B08733D840010E9CD /* Debug */,
+				14125331183D4E0600EB7149 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -459,6 +538,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1DEB913F08733D840010E9CD /* Debug */,
+				14125330183D4E0600EB7149 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
