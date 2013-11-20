@@ -10,11 +10,25 @@ PS: [This fork](https://github.com/1951FDG/BBUncrustifyPlugin-Xcode) works with 
 
 ## Installation
 
+### Compiled Version
+
+* The easiest way to install the plugin is to [download the last available release](https://github.com/benoitsan/BBUncrustifyPlugin-Xcode/releases) (Click on the **green button** corresponding to the last version).
+* Unzip and copy `UncrustifyPlugin.xcplugin` to `~/Library/Application Support/Developer/Shared/Xcode/Plug-ins`.
+* Relaunch Xcode after the copy.
+
+### Build from Source
+
 * Build the Xcode project. The plug-in will automatically be installed in `~/Library/Application Support/Developer/Shared/Xcode/Plug-ins`. 
 
 * Relaunch Xcode.
 
 To uninstall, just remove the plugin from `~/Library/Application Support/Developer/Shared/Xcode/Plug-ins` and restart Xcode.
+
+Note:
+
+* When building on Xcode < 5.1: Build using the scheme `BBUncrustifyPlugin-GC`. This will produce a binary supporting Garbage Collection. **This binary works for Xcode 4 and 5.**
+
+* When building on Xcode 5.1+: Build using the scheme `BBUncrustifyPlugin-ARC` (Garbage Collection is no more supported with Xcode 5.1+). Because This binary doesn't support Garbage collection, **it will only work on Xcode 5.**
 
 ## How does it work?
 
