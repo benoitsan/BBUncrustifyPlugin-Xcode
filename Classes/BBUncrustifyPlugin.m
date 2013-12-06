@@ -133,7 +133,12 @@ static BBUncrustifyPlugin *sharedPlugin = nil;
 - (IBAction)openWithUncrustifyX:(id)sender {
     NSURL *appURL = [BBUncrustify uncrustifyXApplicationURL];
     
-    NSURL *configurationFileURL = [BBUncrustify resolvedConfigurationFileURLWithAdditionalLookupFolderURLs:nil];
+    //look up for cfg in workspace folder
+    IDEWorkspace *currentWorkspace = [BBXcode currentWorkspaceDocument].workspace;
+    NSURL *workspaceFolderURL = [currentWorkspace.representingFilePath.fileURL URLByDeletingLastPathComponent];
+    NSArray *additionalLookupFolderURLs = workspaceFolderURL ? @[workspaceFolderURL] : nil;
+    
+    NSURL *configurationFileURL = [BBUncrustify resolvedConfigurationFileURLWithAdditionalLookupFolderURLs:additionalLookupFolderURLs];
     NSURL *builtInConfigurationFileURL = [BBUncrustify builtInConfigurationFileURL];
     if ([configurationFileURL isEqual:builtInConfigurationFileURL]) {
         configurationFileURL = [BBUncrustify userConfigurationFileURLs][0];
