@@ -133,12 +133,20 @@ static BBUncrustifyPlugin *sharedPlugin = nil;
 - (IBAction)openWithUncrustifyX:(id)sender {
     NSURL *appURL = [BBUncrustify uncrustifyXApplicationURL];
     
-    //look up for cfg in workspace folder
-    IDEWorkspace *currentWorkspace = [BBXcode currentWorkspaceDocument].workspace;
-    NSURL *workspaceFolderURL = [currentWorkspace.representingFilePath.fileURL URLByDeletingLastPathComponent];
-    NSArray *additionalLookupFolderURLs = workspaceFolderURL ? @[workspaceFolderURL] : nil;
+	NSArray *selectedNavigableItems = [BBXcode selectedNavigableItems];
+	IDENavigableItem *navigableItem = (selectedNavigableItems.count > 0) ? selectedNavigableItems[0] : nil;
     
-    NSURL *configurationFileURL = [BBUncrustify resolvedConfigurationFileURLWithAdditionalLookupFolderURLs:additionalLookupFolderURLs];
+    NSArray *lookupFolderURLs = nil;
+    
+    if (navigableItem) {
+        lookupFolderURLs = [BBXcode containerFolderURLsAncestorsToNavigableItem:navigableItem];
+    }
+    else {
+        IDEWorkspace *currentWorkspace = [BBXcode currentWorkspaceDocument].workspace;
+        lookupFolderURLs = @[[currentWorkspace.representingFilePath.fileURL URLByDeletingLastPathComponent]];
+    }
+    
+    NSURL *configurationFileURL = [BBUncrustify resolvedConfigurationFileURLWithAdditionalLookupFolderURLs:lookupFolderURLs];
     NSURL *builtInConfigurationFileURL = [BBUncrustify builtInConfigurationFileURL];
     if ([configurationFileURL isEqual:builtInConfigurationFileURL]) {
         configurationFileURL = [BBUncrustify userConfigurationFileURLs][0];

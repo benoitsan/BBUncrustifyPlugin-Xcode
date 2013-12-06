@@ -88,6 +88,31 @@ NSString * BBStringByTrimmingTrailingCharactersFromString(NSString *string, NSCh
     return nil;
 }
 
++ (NSArray *)selectedNavigableItems {
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    id currentWindowController = [[NSApp keyWindow] windowController];
+    if ([currentWindowController isKindOfClass:NSClassFromString(@"IDEWorkspaceWindowController")]) {
+        IDEWorkspaceWindowController *workspaceController = currentWindowController;
+        IDEWorkspaceTabController *workspaceTabController = [workspaceController activeWorkspaceTabController];
+        IDENavigatorArea *navigatorArea = [workspaceTabController navigatorArea];
+        id currentNavigator = [navigatorArea currentNavigator];
+        
+        if ([currentNavigator isKindOfClass:NSClassFromString(@"IDEStructureNavigator")]) {
+            IDEStructureNavigator *structureNavigator = currentNavigator;
+            for (id selectedObject in structureNavigator.selectedObjects) {
+                if ([selectedObject isKindOfClass:NSClassFromString(@"IDENavigableItem")]) {
+                    [mutableArray addObject:selectedObject];
+                }
+            }
+        }
+    }
+    
+    if (mutableArray.count) {
+        return [NSArray arrayWithArray:mutableArray];
+    }
+    return nil;
+}
+
 + (NSArray *)selectedSourceCodeFileNavigableItems {
     NSMutableArray *mutableArray = [NSMutableArray array];
     id currentWindowController = [[NSApp keyWindow] windowController];
@@ -141,6 +166,13 @@ NSString * BBStringByTrimmingTrailingCharactersFromString(NSString *string, NSCh
     } while (navigableItem != nil);
     
     if (mArray.count > 0) return [NSArray arrayWithArray:mArray];
+    return nil;
+}
+
++ (NSArray *)containerFolderURLsAncestorsToNavigableItem:(IDENavigableItem *)navigableItem {
+    if (navigableItem) {
+        return [BBXcode containerFolderURLsForNavigableItem:navigableItem];
+    }
     return nil;
 }
 
