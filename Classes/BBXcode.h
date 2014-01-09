@@ -8,11 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 
-extern NSString * const BBUserDefaultsCodeFormattingScheme;
+extern NSString *const BBUserDefaultsCodeFormattingScheme;
 
 typedef NS_ENUM (NSUInteger, BBCodeFormattingScheme) {
-    BBCodeFormattingSchemeUncrustifyAndXCodeNormalization = 0, // code is formatted using uncrustify program and then normalized following Xcode preferences.
-    BBCodeFormattingSchemeUncrustify = 1 // code is formatted using uncrustify program.
+	BBCodeFormattingSchemeUncrustifyAndXCodeNormalization = 0, // code is formatted using uncrustify program and then normalized following Xcode preferences.
+	BBCodeFormattingSchemeUncrustify = 1 // code is formatted using uncrustify program.
 };
 
 @interface DVTTextDocumentLocation : NSObject
@@ -57,12 +57,17 @@ typedef NS_ENUM (NSUInteger, BBCodeFormattingScheme) {
 
 @interface IDENavigableItem : NSObject
 @property (readonly) IDENavigableItem *parentItem;
+@property (readonly) NSArray *childItems;
 @property (readonly) id representedObject;
 @end
 
 @interface IDEFileNavigableItem : IDENavigableItem
 @property (readonly) DVTFileDataType *documentType;
 @property (readonly) NSURL *fileURL;
+@end
+
+@interface IDEGroupNavigableItem : IDENavigableItem
+@property (readonly) IDEGroup *group;
 @end
 
 @interface IDEStructureNavigator : NSObject

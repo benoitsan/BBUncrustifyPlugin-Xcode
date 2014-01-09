@@ -10,9 +10,9 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString * const BBUncrustifyOptionEvictCommentInsertion;
-extern NSString * const BBUncrustifyOptionSourceFilename;
-extern NSString * const BBUncrustifyOptionSupplementalConfigurationFolders;  // NSArray of NSURL (array of urls representing folders)
+extern NSString *const BBUncrustifyOptionEvictCommentInsertion;
+extern NSString *const BBUncrustifyOptionSourceFilename;
+extern NSString *const BBUncrustifyOptionSupplementalConfigurationFolders;   // NSArray of NSURL (array of urls representing folders)
 
 @interface BBUncrustify : NSObject
 
