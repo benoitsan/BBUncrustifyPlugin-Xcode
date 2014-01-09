@@ -125,12 +125,9 @@ NSString * BBStringByTrimmingTrailingCharactersFromString(NSString *string, NSCh
         if ([currentNavigator isKindOfClass:NSClassFromString(@"IDEStructureNavigator")]) {
             IDEStructureNavigator *structureNavigator = currentNavigator;
             for (id selectedObject in structureNavigator.selectedObjects) {
-                if ([selectedObject isKindOfClass:NSClassFromString(@"IDEFileNavigableItem")]) {
-                    IDEFileNavigableItem *fileNavigableItem = selectedObject;
-                    NSString *uti = fileNavigableItem.documentType.identifier;
-                    if ([[NSWorkspace sharedWorkspace] type:uti conformsToType:(NSString *)kUTTypeSourceCode]) {
-                        [mutableArray addObject:fileNavigableItem];
-                    }
+                NSArray *arrayOfFiles = [self recursivlyCollectFileNavigableItemsFrom:selectedObject];
+                if (arrayOfFiles.count) {
+                    [mutableArray addObjectsFromArray:arrayOfFiles];
                 }
             }
         }
@@ -140,6 +137,32 @@ NSString * BBStringByTrimmingTrailingCharactersFromString(NSString *string, NSCh
         return [NSArray arrayWithArray:mutableArray];
     }
     return nil;
+}
+
++ (NSArray *)recursivlyCollectFileNavigableItemsFrom:(IDENavigableItem *)selectedObject {
+    id items = nil;
+    
+    if ([selectedObject isKindOfClass:NSClassFromString(@"IDEGroupNavigableItem")]) {
+        //|| [selectedObject isKindOfClass:NSClassFromString(@"IDEContainerFileReferenceNavigableItem")]) { //disallow project
+        NSMutableArray *mItems = [NSMutableArray array];
+        IDEGroupNavigableItem *groupNavigableItem = (IDEGroupNavigableItem *)selectedObject;
+        for (IDENavigableItem *child in groupNavigableItem.childItems) {
+            NSArray *childItems = [self recursivlyCollectFileNavigableItemsFrom:child];
+            if (childItems.count) {
+                [mItems addObjectsFromArray:childItems];
+            }
+        }
+        items = mItems;
+    }
+    else if ([selectedObject isKindOfClass:NSClassFromString(@"IDEFileNavigableItem")]) {
+        IDEFileNavigableItem *fileNavigableItem = (IDEFileNavigableItem *)selectedObject;
+        NSString *uti = fileNavigableItem.documentType.identifier;
+        if ([[NSWorkspace sharedWorkspace] type:uti conformsToType:(NSString *)kUTTypeSourceCode]) {
+            items = @[fileNavigableItem];
+        }
+    }
+    
+    return items;
 }
 
 + (NSArray *)containerFolderURLsForNavigableItem:(IDENavigableItem *)navigableItem {

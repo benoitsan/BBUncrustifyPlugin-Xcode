@@ -57,12 +57,17 @@ typedef NS_ENUM (NSUInteger, BBCodeFormattingScheme) {
 
 @interface IDENavigableItem : NSObject
 @property (readonly) IDENavigableItem *parentItem;
+@property (readonly) NSArray *childItems;
 @property (readonly) id representedObject;
 @end
 
 @interface IDEFileNavigableItem : IDENavigableItem
 @property (readonly) DVTFileDataType *documentType;
 @property (readonly) NSURL *fileURL;
+@end
+
+@interface IDEGroupNavigableItem : IDENavigableItem
+@property (readonly) IDEGroup *group;
 @end
 
 @interface IDEStructureNavigator : NSObject
