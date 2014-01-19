@@ -1,22 +1,40 @@
 #BBUncrustifyPlugin-Xcode
 
-Xcode plugin to [uncrustify](http://uncrustify.sourceforge.net) code in Xcode. 
+Xcode plugin to format code using [Uncrustify](http://uncrustify.sourceforge.net) or [ClangFormat](http://clang.llvm.org/docs/ClangFormat.html). 
+
+![menu](http://f.cl.ly/items/2b2y1v403x2H3U2Y0l2K/BBUncrustifyPlugin-menu.png)
+
+![preferences](http://f.cl.ly/items/27080O1F3w3g2a3h0m32/BBUncrustifyPlugin.png)
+
+## BBUncrustifyPlugin 2.0
+
+#### New
+* Added ClangFormat.
+* Preferences window to easily adjust the settings.
+* Opening the formatter configuration in an external editor.
+* Create factory configuration files (in the preferences window).
+
+#### Changes from 1.0 to 2.0
+
+* Uncrustify configuration: The configuration file must be located in the current directory or any parent directories of the source file. The file is named `.uncrustifyconfig` or `uncrustify.cfg`. Uncrustify looks for the configuration in the additional folders: `Home Folder` and `~/.uncrustify/uncrustify.cfg`.
+
+* Minimum requirement is Xcode 5.0+ on OS X 10.9+.
 
 ## Requirements
 
-Tested with Xcode 4.6+ (also works in Xcode 5) on OS X 10.7 or higher.
+Xcode 5.0+ on OS X 10.9+.
 
 PS: [This fork](https://github.com/1951FDG/BBUncrustifyPlugin-Xcode) works with Xcode 3.
 
 ## Installation
 
-### Compiled Version
+#### Compiled Version
 
 * The easiest way to install the plugin is to [download the last available release](https://github.com/benoitsan/BBUncrustifyPlugin-Xcode/releases) (Click on the **green button** corresponding to the last version).
 * Unzip and copy `UncrustifyPlugin.xcplugin` to `~/Library/Application Support/Developer/Shared/Xcode/Plug-ins`.
 * Relaunch Xcode after the copy.
 
-### Build from Source
+#### Build from Source
 
 * Build the Xcode project. The plug-in will automatically be installed in `~/Library/Application Support/Developer/Shared/Xcode/Plug-ins`. 
 
@@ -24,76 +42,25 @@ PS: [This fork](https://github.com/1951FDG/BBUncrustifyPlugin-Xcode) works with 
 
 To uninstall, just remove the plugin from `~/Library/Application Support/Developer/Shared/Xcode/Plug-ins` and restart Xcode.
 
-Note:
-
-* When building on Xcode < 5.1: Build using the scheme `BBUncrustifyPlugin-GC`. This will produce a binary supporting Garbage Collection. **This binary works for Xcode 4 and 5.**
-
-* When building on Xcode 5.1+: Build using the scheme `BBUncrustifyPlugin-ARC` (Garbage Collection is no more supported with Xcode 5.1+). Because This binary doesn't support Garbage collection, **it will only work on Xcode 5.**
-
 ## How does it work?
 
-* Use the menu `Edit > Uncrustify Selected Files` to uncrustify the selected items in the project navigator.
+* Use the menu `Edit > Format Selected Files` to format the selected items in the project navigator.
 
-* Use the menu `Edit > Uncrustify Active File` to uncrustify the source file actually opened in the editor. 
+* Use the menu `Edit > Format Active File` to format the source file actually opened in the editor. 
 
-* Use the menu `Edit > Uncrustify Selected Lines` to uncrustify the selected source code (multiple selection is supported). The selection is automatically extended in full lines. If the selection is empty, it uses the line under the cursor.
+* Use the menu `Edit > Format Selected Lines` to format the selected source code (multiple selection is supported). The selection is automatically extended in full lines. If the selection is empty, it uses the line under the cursor.
 
-PS: Modifications are recorded in the undo. So undo reverts the modifications.
+* Use the menu `Edit > Edit Configuration` to edit the formatter configuration in an external editor.
+
+* Use the menu `Edit > BBUncrustifyPlugin Preferences` to change the plugin preferences.
+
+## Notes
+
+When the code is reformated, the modifications are recorded in the undo. So undo reverts the modifications.
+
+The Preferences window contains detailed informations to customize the formatter settings.
 
 You can create keyboard shortcuts for the menu items in the [Keyboard Preferences](http://support.apple.com/kb/ph3957) of OS X System Preferences.
-
-
-## How to customize the uncrustify configuration?
-
-By default, the plugin uses the configuration file `uncrustify.cfg` found in the bundle.
-
-#### Per user configuration
-To customize the configuration, copy the file `uncrustify.cfg` or your own to:
-
-1. `~/.uncrustifyconfig` or
-2. `~/uncrustify.cfg` or
-3. `~/.uncrustify/uncrustify.cfg`
-
-#### Per project configuration
-A configuration file named `uncrustify.cfg` or `.uncrustifyconfig` can be defined for a project, a workspace or a Xcode container folder (folder with the yellow icon in the Xcode files navigator).
-
-The lookup of the configuration file is made in this order:
-
-1. Closest Xcode container folder ancestor.
-2. Closest Xcode project file ('.xcodeproj') folder ancestor.
-3. Closest Xcode workspace file ('.xcworkspace') folder ancestor.
-
-Example:
-
-```
-|-- workspace.xcworkspace
-|-- uncrustify.cfg
-|-- project folder
-|---- project.xcodeproj
-|---- Third Party Library Folder
-|------ uncrustify.cfg
-|-- An other project folder
-|---- An other project.xcodeproj
-|---- uncrustify.cfg
-````
-
-### Using UncrustifyX
-
-A more easy way to edit the configuration is to use the Mac appplication [UncrustifyX](https://github.com/ryanmaxwell/UncrustifyX). 
-
-Once UncrustifyX is installed, the plugin will add a menu item `Open with UncrustifyX` to open the actual source code and configuration in UncrustifyX.
-
-## Xcode Normalization
-
-After uncrustification, the plugin:
-
-* performs a syntax-aware indenting if checked in the Xcode preferences (Preferences > Text Editing > Indentation > Syntax-aware indenting).
-
-* Trims trailing whitespaces and white-only lines if checked in the Xcode preferences (Preferences > Text Editing > Editing).
-
-You can disable this feature by setting the default key `uncrustify_plugin_codeFormattingScheme`to `1` (`0` or not defined means enabled).
-
-    defaults write com.apple.dt.Xcode uncrustify_plugin_codeFormattingScheme -int 1
 
 
 ## Creator

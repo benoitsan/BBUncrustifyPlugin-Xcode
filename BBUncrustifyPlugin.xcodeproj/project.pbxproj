@@ -7,20 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		141251A216F4AA8600A18D23 /* BBXcode.m in Sources */ = {isa = PBXBuildFile; fileRef = 141251A116F4AA8600A18D23 /* BBXcode.m */; };
-		1414D3C51710D549002378C0 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1414D3C41710D549002378C0 /* Sparkle.framework */; };
-		1414D3C8171163CA002378C0 /* BBPluginUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 1414D3C7171163CA002378C0 /* BBPluginUpdater.m */; };
-		1414D3CA17116556002378C0 /* sparkle_dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 1414D3C917116556002378C0 /* sparkle_dsa_pub.pem */; };
-		1435669616FD0E0000FECDEB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1435669516FD0E0000FECDEB /* Cocoa.framework */; };
-		1435669816FD0E0400FECDEB /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1435669716FD0E0400FECDEB /* AppKit.framework */; };
-		14617B3316FD9BDB00C7C91B /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14617B2F16FD9BDB00C7C91B /* DVTKit.framework */; };
-		14617B3416FD9BDB00C7C91B /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14617B3016FD9BDB00C7C91B /* DVTFoundation.framework */; };
-		14617B3516FD9BDB00C7C91B /* IDEFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14617B3116FD9BDB00C7C91B /* IDEFoundation.framework */; };
-		14617B3616FD9BDB00C7C91B /* IDEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14617B3216FD9BDB00C7C91B /* IDEKit.framework */; };
-		147264381711732F002BC0BE /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 147264371711732F002BC0BE /* icon.icns */; };
-		149F2D5C183C073700DFB8CC /* BBUncrustifyPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = DA37E2DB0E6291C8001BDFEF /* BBUncrustifyPlugin.m */; };
-		149F2D5D183C073700DFB8CC /* BBUncrustify.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FF378C16F490F60049868C /* BBUncrustify.m */; };
-		149F2D5E183C073700DFB8CC /* BBXcode.m in Sources */ = {isa = PBXBuildFile; fileRef = 141251A116F4AA8600A18D23 /* BBXcode.m */; };
+		14626CD618832E5100F5B23F /* XCFPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14626CD318832E5100F5B23F /* XCFPreferencesWindowController.m */; };
+		147572B9188BFEED00B3AF8D /* XCFClangFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 147572B8188BFEED00B3AF8D /* XCFClangFormatter.m */; };
+		147572BC188BFF0100B3AF8D /* XCFUncrustifyFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 147572BB188BFF0100B3AF8D /* XCFUncrustifyFormatter.m */; };
+		147572C4188C012900B3AF8D /* XCFPreferencesWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 147572C3188C012900B3AF8D /* XCFPreferencesWindowController.xib */; };
+		147572CB188C01AA00B3AF8D /* CFOFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 147572C6188C01AA00B3AF8D /* CFOFormatter.m */; };
+		147572CC188C01AA00B3AF8D /* CFOClangFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 147572C8188C01AA00B3AF8D /* CFOClangFormatter.m */; };
+		147572CD188C01AA00B3AF8D /* CFOUncrustifyFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 147572CA188C01AA00B3AF8D /* CFOUncrustifyFormatter.m */; };
+		14767CE6188C0E1400080F69 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14767CE5188C0E1400080F69 /* Sparkle.framework */; };
+		14767CE7188C0E1B00080F69 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 14767CE5188C0E1400080F69 /* Sparkle.framework */; };
+		1486F51D188C06AF003483D5 /* clang-format in Resources */ = {isa = PBXBuildFile; fileRef = 1486F51C188C06AF003483D5 /* clang-format */; };
+		14910D4E188C0D1F005497C9 /* DiffMatchPatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 14910D42188C0D1F005497C9 /* DiffMatchPatch.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		14910D4F188C0D1F005497C9 /* DiffMatchPatchCFUtilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 14910D43188C0D1F005497C9 /* DiffMatchPatchCFUtilities.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		14910D50188C0D1F005497C9 /* NSMutableDictionary+DMPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 14910D47188C0D1F005497C9 /* NSMutableDictionary+DMPExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		14910D51188C0D1F005497C9 /* NSString+JavaSubstring.m in Sources */ = {isa = PBXBuildFile; fileRef = 14910D49188C0D1F005497C9 /* NSString+JavaSubstring.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		14910D52188C0D1F005497C9 /* NSString+UnicharUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 14910D4B188C0D1F005497C9 /* NSString+UnicharUtilities.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		14910D53188C0D1F005497C9 /* NSString+UriCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 14910D4D188C0D1F005497C9 /* NSString+UriCompatibility.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		149F2D5C183C073700DFB8CC /* XCFPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = DA37E2DB0E6291C8001BDFEF /* XCFPlugin.m */; };
+		149F2D5E183C073700DFB8CC /* XCFXcodeFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 141251A116F4AA8600A18D23 /* XCFXcodeFormatter.m */; };
 		149F2D5F183C073700DFB8CC /* BBPluginUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 1414D3C7171163CA002378C0 /* BBPluginUpdater.m */; };
 		149F2D61183C073700DFB8CC /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1435669716FD0E0400FECDEB /* AppKit.framework */; };
 		149F2D62183C073700DFB8CC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1435669516FD0E0000FECDEB /* Cocoa.framework */; };
@@ -29,18 +33,13 @@
 		149F2D65183C073700DFB8CC /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14617B3016FD9BDB00C7C91B /* DVTFoundation.framework */; };
 		149F2D66183C073700DFB8CC /* IDEFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14617B3116FD9BDB00C7C91B /* IDEFoundation.framework */; };
 		149F2D67183C073700DFB8CC /* IDEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14617B3216FD9BDB00C7C91B /* IDEKit.framework */; };
-		149F2D68183C073700DFB8CC /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1414D3C41710D549002378C0 /* Sparkle.framework */; };
 		149F2D6A183C073700DFB8CC /* uncrustify.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 14CE84DA16F49D6F008082AB /* uncrustify.cfg */; };
 		149F2D6B183C073700DFB8CC /* uncrustify in Resources */ = {isa = PBXBuildFile; fileRef = 14CE84D916F49A02008082AB /* uncrustify */; };
 		149F2D6C183C073700DFB8CC /* sparkle_dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 1414D3C917116556002378C0 /* sparkle_dsa_pub.pem */; };
 		149F2D6D183C073700DFB8CC /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 147264371711732F002BC0BE /* icon.icns */; };
-		149F2D6F183C073700DFB8CC /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 1414D3C41710D549002378C0 /* Sparkle.framework */; };
-		14CE84DC16F4A57A008082AB /* uncrustify.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 14CE84DA16F49D6F008082AB /* uncrustify.cfg */; };
-		14CE84DD16F4A57D008082AB /* uncrustify in Resources */ = {isa = PBXBuildFile; fileRef = 14CE84D916F49A02008082AB /* uncrustify */; };
-		14EFEEDA171167BB0068BB83 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 1414D3C41710D549002378C0 /* Sparkle.framework */; };
-		14FF378D16F490F60049868C /* BBUncrustify.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FF378C16F490F60049868C /* BBUncrustify.m */; };
-		DA1B5D020E64686800921439 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 089C1672FE841209C02AAC07 /* Foundation.framework */; };
-		DA37E2DC0E6291C8001BDFEF /* BBUncrustifyPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = DA37E2DB0E6291C8001BDFEF /* BBUncrustifyPlugin.m */; };
+		14A54E55188AF61900B154C6 /* XCFFormatterUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A54E54188AF61900B154C6 /* XCFFormatterUtilities.m */; };
+		14C006C11884936A00488011 /* BBHyperLinkButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C006BF1884936A00488011 /* BBHyperLinkButtonCell.m */; };
+		14D323C21884980B00AB663E /* XCFDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D323C01884980500AB663E /* XCFDefaults.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -50,18 +49,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				149F2D6F183C073700DFB8CC /* Sparkle.framework in Copy Frameworks */,
-			);
-			name = "Copy Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		14EFEED9171167950068BB83 /* Copy Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				14EFEEDA171167BB0068BB83 /* Sparkle.framework in Copy Frameworks */,
+				14767CE7188C0E1B00080F69 /* Sparkle.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -70,8 +58,7 @@
 
 /* Begin PBXFileReference section */
 		089C1672FE841209C02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		141251A116F4AA8600A18D23 /* BBXcode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBXcode.m; sourceTree = "<group>"; };
-		1414D3C41710D549002378C0 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		141251A116F4AA8600A18D23 /* XCFXcodeFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCFXcodeFormatter.m; sourceTree = "<group>"; };
 		1414D3C6171163CA002378C0 /* BBPluginUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBPluginUpdater.h; sourceTree = "<group>"; };
 		1414D3C7171163CA002378C0 /* BBPluginUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBPluginUpdater.m; sourceTree = "<group>"; };
 		1414D3C917116556002378C0 /* sparkle_dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sparkle_dsa_pub.pem; sourceTree = "<group>"; };
@@ -81,17 +68,50 @@
 		14617B3016FD9BDB00C7C91B /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTFoundation.framework; path = ../../../../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework; sourceTree = "<group>"; };
 		14617B3116FD9BDB00C7C91B /* IDEFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEFoundation.framework; path = ../../../../../../../Applications/Xcode.app/Contents/Frameworks/IDEFoundation.framework; sourceTree = "<group>"; };
 		14617B3216FD9BDB00C7C91B /* IDEKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEKit.framework; path = ../../../../../../../Applications/Xcode.app/Contents/Frameworks/IDEKit.framework; sourceTree = "<group>"; };
+		14626CD218832E5100F5B23F /* XCFPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCFPreferencesWindowController.h; sourceTree = "<group>"; };
+		14626CD318832E5100F5B23F /* XCFPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCFPreferencesWindowController.m; sourceTree = "<group>"; };
 		147264371711732F002BC0BE /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
-		149B117816F483D3000F9C01 /* BBXcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBXcode.h; sourceTree = "<group>"; };
+		147572B7188BFEED00B3AF8D /* XCFClangFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCFClangFormatter.h; sourceTree = "<group>"; };
+		147572B8188BFEED00B3AF8D /* XCFClangFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCFClangFormatter.m; sourceTree = "<group>"; };
+		147572BA188BFF0100B3AF8D /* XCFUncrustifyFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCFUncrustifyFormatter.h; sourceTree = "<group>"; };
+		147572BB188BFF0100B3AF8D /* XCFUncrustifyFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCFUncrustifyFormatter.m; sourceTree = "<group>"; };
+		147572C3188C012900B3AF8D /* XCFPreferencesWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XCFPreferencesWindowController.xib; sourceTree = "<group>"; };
+		147572C5188C01AA00B3AF8D /* CFOFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFOFormatter.h; sourceTree = "<group>"; };
+		147572C6188C01AA00B3AF8D /* CFOFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFOFormatter.m; sourceTree = "<group>"; };
+		147572C7188C01AA00B3AF8D /* CFOClangFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFOClangFormatter.h; sourceTree = "<group>"; };
+		147572C8188C01AA00B3AF8D /* CFOClangFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFOClangFormatter.m; sourceTree = "<group>"; };
+		147572C9188C01AA00B3AF8D /* CFOUncrustifyFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFOUncrustifyFormatter.h; sourceTree = "<group>"; };
+		147572CA188C01AA00B3AF8D /* CFOUncrustifyFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFOUncrustifyFormatter.m; sourceTree = "<group>"; };
+		14767CE5188C0E1400080F69 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Externals/Sparkle.framework; sourceTree = "<group>"; };
+		1486F51C188C06AF003483D5 /* clang-format */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "clang-format"; sourceTree = "<group>"; };
+		14910D41188C0D1F005497C9 /* DiffMatchPatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiffMatchPatch.h; sourceTree = "<group>"; };
+		14910D42188C0D1F005497C9 /* DiffMatchPatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiffMatchPatch.m; sourceTree = "<group>"; };
+		14910D43188C0D1F005497C9 /* DiffMatchPatchCFUtilities.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = DiffMatchPatchCFUtilities.c; sourceTree = "<group>"; };
+		14910D44188C0D1F005497C9 /* DiffMatchPatchCFUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiffMatchPatchCFUtilities.h; sourceTree = "<group>"; };
+		14910D45188C0D1F005497C9 /* MinMaxMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinMaxMacros.h; sourceTree = "<group>"; };
+		14910D46188C0D1F005497C9 /* NSMutableDictionary+DMPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+DMPExtensions.h"; sourceTree = "<group>"; };
+		14910D47188C0D1F005497C9 /* NSMutableDictionary+DMPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+DMPExtensions.m"; sourceTree = "<group>"; };
+		14910D48188C0D1F005497C9 /* NSString+JavaSubstring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+JavaSubstring.h"; sourceTree = "<group>"; };
+		14910D49188C0D1F005497C9 /* NSString+JavaSubstring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+JavaSubstring.m"; sourceTree = "<group>"; };
+		14910D4A188C0D1F005497C9 /* NSString+UnicharUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+UnicharUtilities.h"; sourceTree = "<group>"; };
+		14910D4B188C0D1F005497C9 /* NSString+UnicharUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+UnicharUtilities.m"; sourceTree = "<group>"; };
+		14910D4C188C0D1F005497C9 /* NSString+UriCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+UriCompatibility.h"; sourceTree = "<group>"; };
+		14910D4D188C0D1F005497C9 /* NSString+UriCompatibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+UriCompatibility.m"; sourceTree = "<group>"; };
+		149B117816F483D3000F9C01 /* XCFXcodeFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCFXcodeFormatter.h; sourceTree = "<group>"; };
 		149F2D72183C073700DFB8CC /* UncrustifyPlugin.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UncrustifyPlugin.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		14A54E4B188AE09400B154C6 /* XCFXcodePrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XCFXcodePrivate.h; sourceTree = "<group>"; };
+		14A54E53188AF61900B154C6 /* XCFFormatterUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCFFormatterUtilities.h; sourceTree = "<group>"; };
+		14A54E54188AF61900B154C6 /* XCFFormatterUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCFFormatterUtilities.m; sourceTree = "<group>"; };
+		14A54E56188AF6C800B154C6 /* XCFConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCFConstants.h; sourceTree = "<group>"; };
+		14C006BE1884936A00488011 /* BBHyperLinkButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBHyperLinkButtonCell.h; sourceTree = "<group>"; };
+		14C006BF1884936A00488011 /* BBHyperLinkButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBHyperLinkButtonCell.m; sourceTree = "<group>"; };
 		14CE84D916F49A02008082AB /* uncrustify */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = uncrustify; sourceTree = "<group>"; };
 		14CE84DA16F49D6F008082AB /* uncrustify.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = uncrustify.cfg; sourceTree = "<group>"; };
-		14FF378B16F490F60049868C /* BBUncrustify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBUncrustify.h; sourceTree = "<group>"; };
-		14FF378C16F490F60049868C /* BBUncrustify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBUncrustify.m; sourceTree = "<group>"; };
-		7F2B355F15FA59D000DB3249 /* BBUncrustifyPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBUncrustifyPlugin.h; sourceTree = "<group>"; };
-		8D5B49B6048680CD000E48DA /* UncrustifyPlugin.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UncrustifyPlugin.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		14D323BF1884980500AB663E /* XCFDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCFDefaults.h; sourceTree = "<group>"; };
+		14D323C01884980500AB663E /* XCFDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCFDefaults.m; sourceTree = "<group>"; };
+		7F2B355F15FA59D000DB3249 /* XCFPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XCFPlugin.h; sourceTree = "<group>"; };
 		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DA37E2DB0E6291C8001BDFEF /* BBUncrustifyPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBUncrustifyPlugin.m; sourceTree = "<group>"; };
+		DA37E2DB0E6291C8001BDFEF /* XCFPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCFPlugin.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,22 +126,7 @@
 				149F2D65183C073700DFB8CC /* DVTFoundation.framework in Frameworks */,
 				149F2D66183C073700DFB8CC /* IDEFoundation.framework in Frameworks */,
 				149F2D67183C073700DFB8CC /* IDEKit.framework in Frameworks */,
-				149F2D68183C073700DFB8CC /* Sparkle.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8D5B49B3048680CD000E48DA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1435669816FD0E0400FECDEB /* AppKit.framework in Frameworks */,
-				1435669616FD0E0000FECDEB /* Cocoa.framework in Frameworks */,
-				DA1B5D020E64686800921439 /* Foundation.framework in Frameworks */,
-				14617B3316FD9BDB00C7C91B /* DVTKit.framework in Frameworks */,
-				14617B3416FD9BDB00C7C91B /* DVTFoundation.framework in Frameworks */,
-				14617B3516FD9BDB00C7C91B /* IDEFoundation.framework in Frameworks */,
-				14617B3616FD9BDB00C7C91B /* IDEKit.framework in Frameworks */,
-				1414D3C51710D549002378C0 /* Sparkle.framework in Frameworks */,
+				14767CE6188C0E1400080F69 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				7F411B0C15FABAC6002F77B6 /* Classes */,
+				14910D3F188C0CD0005497C9 /* Externals */,
 				089C167CFE841241C02AAC07 /* Resources */,
 				089C1671FE841209C02AAC07 /* Frameworks and Libraries */,
 				19C28FB8FE9D52D311CA2CBB /* Products */,
@@ -142,7 +148,7 @@
 		089C1671FE841209C02AAC07 /* Frameworks and Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				1414D3C41710D549002378C0 /* Sparkle.framework */,
+				14767CE5188C0E1400080F69 /* Sparkle.framework */,
 				14617B2F16FD9BDB00C7C91B /* DVTKit.framework */,
 				14617B3016FD9BDB00C7C91B /* DVTFoundation.framework */,
 				14617B3116FD9BDB00C7C91B /* IDEFoundation.framework */,
@@ -157,19 +163,112 @@
 		089C167CFE841241C02AAC07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				147572C3188C012900B3AF8D /* XCFPreferencesWindowController.xib */,
 				8D5B49B7048680CD000E48DA /* Info.plist */,
 				147264371711732F002BC0BE /* icon.icns */,
 				14CE84DA16F49D6F008082AB /* uncrustify.cfg */,
 				14CE84D916F49A02008082AB /* uncrustify */,
+				1486F51C188C06AF003483D5 /* clang-format */,
 				1414D3C917116556002378C0 /* sparkle_dsa_pub.pem */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		147572B5188BFD2900B3AF8D /* CFOFormatter */ = {
+			isa = PBXGroup;
+			children = (
+				147572C5188C01AA00B3AF8D /* CFOFormatter.h */,
+				147572C6188C01AA00B3AF8D /* CFOFormatter.m */,
+				147572C7188C01AA00B3AF8D /* CFOClangFormatter.h */,
+				147572C8188C01AA00B3AF8D /* CFOClangFormatter.m */,
+				147572C9188C01AA00B3AF8D /* CFOUncrustifyFormatter.h */,
+				147572CA188C01AA00B3AF8D /* CFOUncrustifyFormatter.m */,
+			);
+			name = CFOFormatter;
+			sourceTree = "<group>";
+		};
+		147572BD188BFF2900B3AF8D /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				14A54E4B188AE09400B154C6 /* XCFXcodePrivate.h */,
+				149B117816F483D3000F9C01 /* XCFXcodeFormatter.h */,
+				141251A116F4AA8600A18D23 /* XCFXcodeFormatter.m */,
+				14A54E53188AF61900B154C6 /* XCFFormatterUtilities.h */,
+				14A54E54188AF61900B154C6 /* XCFFormatterUtilities.m */,
+				147572B7188BFEED00B3AF8D /* XCFClangFormatter.h */,
+				147572B8188BFEED00B3AF8D /* XCFClangFormatter.m */,
+				147572BA188BFF0100B3AF8D /* XCFUncrustifyFormatter.h */,
+				147572BB188BFF0100B3AF8D /* XCFUncrustifyFormatter.m */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		147572BE188BFF8C00B3AF8D /* Definitions */ = {
+			isa = PBXGroup;
+			children = (
+				14A54E56188AF6C800B154C6 /* XCFConstants.h */,
+				14D323BF1884980500AB663E /* XCFDefaults.h */,
+				14D323C01884980500AB663E /* XCFDefaults.m */,
+			);
+			name = Definitions;
+			sourceTree = "<group>";
+		};
+		147572BF188BFFB300B3AF8D /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				14C006BE1884936A00488011 /* BBHyperLinkButtonCell.h */,
+				14C006BF1884936A00488011 /* BBHyperLinkButtonCell.m */,
+				1414D3C6171163CA002378C0 /* BBPluginUpdater.h */,
+				1414D3C7171163CA002378C0 /* BBPluginUpdater.m */,
+			);
+			name = Misc;
+			sourceTree = "<group>";
+		};
+		147572C0188C004000B3AF8D /* Plugin */ = {
+			isa = PBXGroup;
+			children = (
+				147572BF188BFFB300B3AF8D /* Misc */,
+				147572BE188BFF8C00B3AF8D /* Definitions */,
+				147572BD188BFF2900B3AF8D /* Core */,
+				7F2B355F15FA59D000DB3249 /* XCFPlugin.h */,
+				DA37E2DB0E6291C8001BDFEF /* XCFPlugin.m */,
+				14626CD218832E5100F5B23F /* XCFPreferencesWindowController.h */,
+				14626CD318832E5100F5B23F /* XCFPreferencesWindowController.m */,
+			);
+			name = Plugin;
+			sourceTree = "<group>";
+		};
+		14910D3F188C0CD0005497C9 /* Externals */ = {
+			isa = PBXGroup;
+			children = (
+				14910D40188C0D11005497C9 /* google-diff-match-patch */,
+			);
+			path = Externals;
+			sourceTree = "<group>";
+		};
+		14910D40188C0D11005497C9 /* google-diff-match-patch */ = {
+			isa = PBXGroup;
+			children = (
+				14910D41188C0D1F005497C9 /* DiffMatchPatch.h */,
+				14910D42188C0D1F005497C9 /* DiffMatchPatch.m */,
+				14910D43188C0D1F005497C9 /* DiffMatchPatchCFUtilities.c */,
+				14910D44188C0D1F005497C9 /* DiffMatchPatchCFUtilities.h */,
+				14910D45188C0D1F005497C9 /* MinMaxMacros.h */,
+				14910D46188C0D1F005497C9 /* NSMutableDictionary+DMPExtensions.h */,
+				14910D47188C0D1F005497C9 /* NSMutableDictionary+DMPExtensions.m */,
+				14910D48188C0D1F005497C9 /* NSString+JavaSubstring.h */,
+				14910D49188C0D1F005497C9 /* NSString+JavaSubstring.m */,
+				14910D4A188C0D1F005497C9 /* NSString+UnicharUtilities.h */,
+				14910D4B188C0D1F005497C9 /* NSString+UnicharUtilities.m */,
+				14910D4C188C0D1F005497C9 /* NSString+UriCompatibility.h */,
+				14910D4D188C0D1F005497C9 /* NSString+UriCompatibility.m */,
+			);
+			path = "google-diff-match-patch";
+			sourceTree = "<group>";
+		};
 		19C28FB8FE9D52D311CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D5B49B6048680CD000E48DA /* UncrustifyPlugin.xcplugin */,
 				149F2D72183C073700DFB8CC /* UncrustifyPlugin.xcplugin */,
 			);
 			name = Products;
@@ -178,14 +277,8 @@
 		7F411B0C15FABAC6002F77B6 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				7F2B355F15FA59D000DB3249 /* BBUncrustifyPlugin.h */,
-				DA37E2DB0E6291C8001BDFEF /* BBUncrustifyPlugin.m */,
-				14FF378B16F490F60049868C /* BBUncrustify.h */,
-				14FF378C16F490F60049868C /* BBUncrustify.m */,
-				149B117816F483D3000F9C01 /* BBXcode.h */,
-				141251A116F4AA8600A18D23 /* BBXcode.m */,
-				1414D3C6171163CA002378C0 /* BBPluginUpdater.h */,
-				1414D3C7171163CA002378C0 /* BBPluginUpdater.m */,
+				147572C0188C004000B3AF8D /* Plugin */,
+				147572B5188BFD2900B3AF8D /* CFOFormatter */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -193,9 +286,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		149F2D5A183C073700DFB8CC /* BBUncrustifyPlugin-ARC */ = {
+		149F2D5A183C073700DFB8CC /* BBUncrustifyPlugin */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 149F2D70183C073700DFB8CC /* Build configuration list for PBXNativeTarget "BBUncrustifyPlugin-ARC" */;
+			buildConfigurationList = 149F2D70183C073700DFB8CC /* Build configuration list for PBXNativeTarget "BBUncrustifyPlugin" */;
 			buildPhases = (
 				149F2D5B183C073700DFB8CC /* Sources */,
 				149F2D60183C073700DFB8CC /* Frameworks */,
@@ -207,30 +300,10 @@
 			);
 			dependencies = (
 			);
-			name = "BBUncrustifyPlugin-ARC";
+			name = BBUncrustifyPlugin;
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = QuietXcode;
 			productReference = 149F2D72183C073700DFB8CC /* UncrustifyPlugin.xcplugin */;
-			productType = "com.apple.product-type.bundle";
-		};
-		8D5B49AC048680CD000E48DA /* BBUncrustifyPlugin-GC */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1DEB913A08733D840010E9CD /* Build configuration list for PBXNativeTarget "BBUncrustifyPlugin-GC" */;
-			buildPhases = (
-				8D5B49B1048680CD000E48DA /* Sources */,
-				8D5B49B3048680CD000E48DA /* Frameworks */,
-				14CE84DB16F4A573008082AB /* Resources */,
-				14EFEED9171167950068BB83 /* Copy Frameworks */,
-				1453E770183C0EC500AA9236 /* Code Signing */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "BBUncrustifyPlugin-GC";
-			productInstallPath = "$(HOME)/Library/Bundles";
-			productName = QuietXcode;
-			productReference = 8D5B49B6048680CD000E48DA /* UncrustifyPlugin.xcplugin */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -255,8 +328,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8D5B49AC048680CD000E48DA /* BBUncrustifyPlugin-GC */,
-				149F2D5A183C073700DFB8CC /* BBUncrustifyPlugin-ARC */,
+				149F2D5A183C073700DFB8CC /* BBUncrustifyPlugin */,
 			);
 		};
 /* End PBXProject section */
@@ -267,20 +339,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				149F2D6A183C073700DFB8CC /* uncrustify.cfg in Resources */,
+				1486F51D188C06AF003483D5 /* clang-format in Resources */,
 				149F2D6B183C073700DFB8CC /* uncrustify in Resources */,
+				147572C4188C012900B3AF8D /* XCFPreferencesWindowController.xib in Resources */,
 				149F2D6C183C073700DFB8CC /* sparkle_dsa_pub.pem in Resources */,
 				149F2D6D183C073700DFB8CC /* icon.icns in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		14CE84DB16F4A573008082AB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				14CE84DC16F4A57A008082AB /* uncrustify.cfg in Resources */,
-				14CE84DD16F4A57D008082AB /* uncrustify in Resources */,
-				1414D3CA17116556002378C0 /* sparkle_dsa_pub.pem in Resources */,
-				147264381711732F002BC0BE /* icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,21 +362,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"${CODE_SIGN_IDENTITY}\" != \"\" ] &&[ \"${CONFIGURATION}\" = \"Release\" ]; then\necho \"signing identity: ${CODE_SIGN_IDENTITY}\"\ncd \"${TARGET_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Frameworks/\"\nexport CODESIGN_ALLOCATE=\"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/codesign_allocate\"\ncodesign -f -v -s \"${CODE_SIGN_IDENTITY}\" Sparkle.framework\ncd \"${TARGET_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Frameworks/Sparkle.framework/Versions/A/Resources/\"\ncodesign -f -v -s \"${CODE_SIGN_IDENTITY}\" finish_installation.app\ncd \"${TARGET_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/\"\ncodesign -f -v -s \"${CODE_SIGN_IDENTITY}\" uncrustify\nfi";
-		};
-		1453E770183C0EC500AA9236 /* Code Signing */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Code Signing";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ \"${CODE_SIGN_IDENTITY}\" != \"\" ] &&[ \"${CONFIGURATION}\" = \"Release\" ]; then\necho \"signing identity: ${CODE_SIGN_IDENTITY}\"\ncd \"${TARGET_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Frameworks/\"\nexport CODESIGN_ALLOCATE=\"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/codesign_allocate\"\ncodesign -f -v -s \"${CODE_SIGN_IDENTITY}\" Sparkle.framework\ncd \"${TARGET_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Frameworks/Sparkle.framework/Versions/A/Resources/\"\ncodesign -f -v -s \"${CODE_SIGN_IDENTITY}\" finish_installation.app\ncd \"${TARGET_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/\"\ncodesign -f -v -s \"${CODE_SIGN_IDENTITY}\" uncrustify\nfi";
+			shellScript = "if [ \"${CODE_SIGN_IDENTITY}\" != \"\" ] &&[ \"${CONFIGURATION}\" = \"Release\" ]; then\necho \"signing identity: ${CODE_SIGN_IDENTITY}\"\ncd \"${TARGET_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Frameworks/\"\nexport CODESIGN_ALLOCATE=\"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/codesign_allocate\"\ncodesign -f -v -s \"${CODE_SIGN_IDENTITY}\" Sparkle.framework\ncd \"${TARGET_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Frameworks/Sparkle.framework/Versions/A/Resources/\"\ncodesign -f -v -s \"${CODE_SIGN_IDENTITY}\" finish_installation.app\ncd \"${TARGET_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/\"\ncodesign -f -v -s \"${CODE_SIGN_IDENTITY}\" uncrustify\ncodesign -f -v -s \"${CODE_SIGN_IDENTITY}\" clang-format\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -322,21 +371,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				149F2D5C183C073700DFB8CC /* BBUncrustifyPlugin.m in Sources */,
-				149F2D5D183C073700DFB8CC /* BBUncrustify.m in Sources */,
-				149F2D5E183C073700DFB8CC /* BBXcode.m in Sources */,
+				149F2D5C183C073700DFB8CC /* XCFPlugin.m in Sources */,
+				14D323C21884980B00AB663E /* XCFDefaults.m in Sources */,
+				14910D50188C0D1F005497C9 /* NSMutableDictionary+DMPExtensions.m in Sources */,
+				14A54E55188AF61900B154C6 /* XCFFormatterUtilities.m in Sources */,
+				147572CB188C01AA00B3AF8D /* CFOFormatter.m in Sources */,
+				147572B9188BFEED00B3AF8D /* XCFClangFormatter.m in Sources */,
+				14910D4E188C0D1F005497C9 /* DiffMatchPatch.m in Sources */,
+				14626CD618832E5100F5B23F /* XCFPreferencesWindowController.m in Sources */,
+				149F2D5E183C073700DFB8CC /* XCFXcodeFormatter.m in Sources */,
+				14910D51188C0D1F005497C9 /* NSString+JavaSubstring.m in Sources */,
+				14910D52188C0D1F005497C9 /* NSString+UnicharUtilities.m in Sources */,
 				149F2D5F183C073700DFB8CC /* BBPluginUpdater.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8D5B49B1048680CD000E48DA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DA37E2DC0E6291C8001BDFEF /* BBUncrustifyPlugin.m in Sources */,
-				14FF378D16F490F60049868C /* BBUncrustify.m in Sources */,
-				141251A216F4AA8600A18D23 /* BBXcode.m in Sources */,
-				1414D3C8171163CA002378C0 /* BBPluginUpdater.m in Sources */,
+				14C006C11884936A00488011 /* BBHyperLinkButtonCell.m in Sources */,
+				147572CC188C01AA00B3AF8D /* CFOClangFormatter.m in Sources */,
+				14910D4F188C0D1F005497C9 /* DiffMatchPatchCFUtilities.c in Sources */,
+				147572BC188BFF0100B3AF8D /* XCFUncrustifyFormatter.m in Sources */,
+				147572CD188C01AA00B3AF8D /* CFOUncrustifyFormatter.m in Sources */,
+				14910D53188C0D1F005497C9 /* NSString+UriCompatibility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,30 +426,6 @@
 			};
 			name = Release;
 		};
-		14125331183D4E0600EB7149 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEPLOYMENT_LOCATION = YES;
-				DEPLOYMENT_POSTPROCESSING = YES;
-				DSTROOT = "$(HOME)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks\"",
-					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks\"",
-					"\"$(SRCROOT)\"",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
-				INFOPLIST_FILE = Resources/Info.plist;
-				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
-				LD_RUNPATH_SEARCH_PATHS = /Developer;
-				OTHER_CFLAGS = "-fobjc-gc";
-				PRODUCT_NAME = UncrustifyPlugin;
-				WRAPPER_EXTENSION = xcplugin;
-			};
-			name = Release;
-		};
 		14125332183D4E0600EB7149 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -411,9 +439,16 @@
 					"$(inherited)",
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks\"",
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks\"",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Externals",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Applications/Xcode51-Beta3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+				);
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
 				LD_RUNPATH_SEARCH_PATHS = /Developer;
@@ -437,44 +472,24 @@
 					"$(inherited)",
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks\"",
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks\"",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Externals",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Applications/Xcode51-Beta3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
 				);
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
 				LD_RUNPATH_SEARCH_PATHS = /Developer;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_CFLAGS = "";
-				PRODUCT_NAME = UncrustifyPlugin;
-				WRAPPER_EXTENSION = xcplugin;
-			};
-			name = Debug;
-		};
-		1DEB913B08733D840010E9CD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEPLOYMENT_LOCATION = YES;
-				DEPLOYMENT_POSTPROCESSING = YES;
-				DSTROOT = "$(HOME)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks\"",
-					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks\"",
-					"\"$(SRCROOT)\"",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = Resources/Info.plist;
-				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
-				LD_RUNPATH_SEARCH_PATHS = /Developer;
-				OTHER_CFLAGS = "-fobjc-gc";
 				PRODUCT_NAME = UncrustifyPlugin;
 				WRAPPER_EXTENSION = xcplugin;
 			};
@@ -516,20 +531,11 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		149F2D70183C073700DFB8CC /* Build configuration list for PBXNativeTarget "BBUncrustifyPlugin-ARC" */ = {
+		149F2D70183C073700DFB8CC /* Build configuration list for PBXNativeTarget "BBUncrustifyPlugin" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				149F2D71183C073700DFB8CC /* Debug */,
 				14125332183D4E0600EB7149 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		1DEB913A08733D840010E9CD /* Build configuration list for PBXNativeTarget "BBUncrustifyPlugin-GC" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1DEB913B08733D840010E9CD /* Debug */,
-				14125331183D4E0600EB7149 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

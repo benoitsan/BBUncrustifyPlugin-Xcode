@@ -1,9 +1,6 @@
 //
-//  BBPluginUpdater.h
-//  BBUncrustifyPlugin
-//
-//  Created by Benoît on 07/04/13.
-//
+//  Created by Benoît on 11/01/14.
+//  Copyright (c) 2014 Pragmatic Code. All rights reserved.
 //
 
 #import <Sparkle/Sparkle.h>
