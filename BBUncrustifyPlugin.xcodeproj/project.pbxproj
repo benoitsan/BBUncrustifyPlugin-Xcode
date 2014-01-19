@@ -40,6 +40,7 @@
 		14A54E55188AF61900B154C6 /* XCFFormatterUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A54E54188AF61900B154C6 /* XCFFormatterUtilities.m */; };
 		14C006C11884936A00488011 /* BBHyperLinkButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C006BF1884936A00488011 /* BBHyperLinkButtonCell.m */; };
 		14D323C21884980B00AB663E /* XCFDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D323C01884980500AB663E /* XCFDefaults.m */; };
+		B47FB397188C6AFD004CC601 /* NSDocument+BBUncrustify.m in Sources */ = {isa = PBXBuildFile; fileRef = B47FB396188C6AFD004CC601 /* NSDocument+BBUncrustify.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -111,6 +112,8 @@
 		14D323C01884980500AB663E /* XCFDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCFDefaults.m; sourceTree = "<group>"; };
 		7F2B355F15FA59D000DB3249 /* XCFPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XCFPlugin.h; sourceTree = "<group>"; };
 		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B47FB395188C6AFD004CC601 /* NSDocument+BBUncrustify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDocument+BBUncrustify.h"; sourceTree = "<group>"; };
+		B47FB396188C6AFD004CC601 /* NSDocument+BBUncrustify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDocument+BBUncrustify.m"; sourceTree = "<group>"; };
 		DA37E2DB0E6291C8001BDFEF /* XCFPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCFPlugin.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -190,6 +193,8 @@
 		147572BD188BFF2900B3AF8D /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				B47FB395188C6AFD004CC601 /* NSDocument+BBUncrustify.h */,
+				B47FB396188C6AFD004CC601 /* NSDocument+BBUncrustify.m */,
 				14A54E4B188AE09400B154C6 /* XCFXcodePrivate.h */,
 				149B117816F483D3000F9C01 /* XCFXcodeFormatter.h */,
 				141251A116F4AA8600A18D23 /* XCFXcodeFormatter.m */,
@@ -386,6 +391,7 @@
 				14C006C11884936A00488011 /* BBHyperLinkButtonCell.m in Sources */,
 				147572CC188C01AA00B3AF8D /* CFOClangFormatter.m in Sources */,
 				14910D4F188C0D1F005497C9 /* DiffMatchPatchCFUtilities.c in Sources */,
+				B47FB397188C6AFD004CC601 /* NSDocument+BBUncrustify.m in Sources */,
 				147572BC188BFF0100B3AF8D /* XCFUncrustifyFormatter.m in Sources */,
 				147572CD188C01AA00B3AF8D /* CFOUncrustifyFormatter.m in Sources */,
 				14910D53188C0D1F005497C9 /* NSString+UriCompatibility.m in Sources */,
