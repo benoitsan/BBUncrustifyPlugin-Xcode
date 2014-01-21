@@ -42,27 +42,35 @@ static XCFPlugin *sharedPlugin = nil;
         NSMenuItem *editMenuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
         if (editMenuItem) {
             [[editMenuItem submenu] addItem:[NSMenuItem separatorItem]];
-            
+
+            NSMenu *formatCodeMenu = [[NSMenu alloc] initWithTitle:@"Format Code"];
+
             NSMenuItem *menuItem;
             menuItem = [[NSMenuItem alloc] initWithTitle:@"Format Selected Files" action:@selector(formatSelectedFiles:) keyEquivalent:@""];
             [menuItem setTarget:self];
-            [[editMenuItem submenu] addItem:menuItem];
+            [formatCodeMenu addItem:menuItem];
             
             menuItem = [[NSMenuItem alloc] initWithTitle:@"Format Active File" action:@selector(formatActiveFile:) keyEquivalent:@""];
             [menuItem setTarget:self];
-            [[editMenuItem submenu] addItem:menuItem];
+            [formatCodeMenu addItem:menuItem];
 
             menuItem = [[NSMenuItem alloc] initWithTitle:@"Format Selected Lines" action:@selector(formatSelectedLines:) keyEquivalent:@""];
             [menuItem setTarget:self];
-            [[editMenuItem submenu] addItem:menuItem];
-            
-            menuItem = [[NSMenuItem alloc] initWithTitle:@"Edit Configuration" action:@selector(launchConfigurationEditor:) keyEquivalent:@""];
+            [formatCodeMenu addItem:menuItem];
+
+            [formatCodeMenu addItem:[NSMenuItem separatorItem]];
+
+            menuItem = [[NSMenuItem alloc] initWithTitle:@"Edit Configuration…" action:@selector(launchConfigurationEditor:) keyEquivalent:@""];
             [menuItem setTarget:self];
-            [[editMenuItem submenu] addItem:menuItem];
+            [formatCodeMenu addItem:menuItem];
             
             menuItem = [[NSMenuItem alloc] initWithTitle:@"BBUncrustifyPlugin Preferences…" action:@selector(showPreferences:) keyEquivalent:@""];
             [menuItem setTarget:self];
-            [[editMenuItem submenu] addItem:menuItem];
+            [formatCodeMenu addItem:menuItem];
+
+            NSMenuItem *formatCodeMenuItem = [[NSMenuItem alloc] initWithTitle:@"Format Code" action:nil keyEquivalent:@""];
+            [formatCodeMenuItem setSubmenu:formatCodeMenu];
+            [[editMenuItem submenu] addItem:formatCodeMenuItem];
 
             [BBPluginUpdater sharedUpdater].delegate = self;
             
