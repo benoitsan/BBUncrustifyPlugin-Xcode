@@ -4,6 +4,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AppKit/NSDocument.h>
 #import "XCFConstants.h"
 
 @interface XCFXcodeFormatter : NSObject
@@ -19,5 +20,8 @@
 
 + (BOOL)canLaunchConfigurationEditor;
 + (void)launchConfigurationEditorWithError:(NSError **)outError;
+
++ (BOOL)canFormatDocument:(NSDocument *)document;
++ (void)formatDocument:(NSDocument *)document withError:(NSError **)outError;
 
 @end

@@ -5,6 +5,7 @@
 
 #import "CFOClangFormatter.h"
 #import "DiffMatchPatch.h"
+#import "BBMacros.h"
 
 NSString * const CFOClangStyleFile = @"file";
 NSString * const CFOClangStylePredefinedLLVM = @"LLVM";
@@ -90,7 +91,7 @@ NSString * const CFOClangDumpConfigurationOptionsStyle = @"style";
         
         if (errorData.length > 0) {
             NSString *warning = [[NSString alloc] initWithData:errorData encoding:NSUTF8StringEncoding];
-            NSLog(@"!!! Parser Warning: %@", warning);
+            BBLogRelease(@"Parser Warning: %@", warning);
         }
         
         
@@ -200,7 +201,7 @@ NSString * const CFOClangDumpConfigurationOptionsStyle = @"style";
         
         if (errorData.length > 0) {
             NSString *warning = [[NSString alloc] initWithData:errorData encoding:NSUTF8StringEncoding];
-            NSLog(@"!!! Parser Warning: %@", warning);
+            BBLogRelease(@"Parser Warning: %@", warning);
         }
         
         return outputData;

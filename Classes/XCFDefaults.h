@@ -10,6 +10,7 @@ extern NSString * const XCFDefaultsFormatterValueClang;
 extern NSString * const XCFDefaultsFormatterValueUncrustify;
 
 extern NSString * const XCFDefaultsKeyXcodeIndentingEnabled;
+extern NSString * const XCFDefaultsKeyFormatOnSaveEnabled;
 extern NSString * const XCFDefaultsKeyClangStyle;
 
 extern NSString * const XCFDefaultsKeyClangFactoryBasedStyle;

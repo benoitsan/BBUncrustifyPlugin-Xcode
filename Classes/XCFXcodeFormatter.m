@@ -108,6 +108,15 @@ NSString * XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSC
     [XCFXcodeFormatter uncrustifyCodeAtRanges:selectedRanges document:document inWorkspace:currentWorkspace error:outError];
 }
 
++ (BOOL)canFormatDocument:(NSDocument *)document {
+    return [document isKindOfClass:NSClassFromString(@"IDESourceCodeDocument")];
+}
+
++ (void)formatDocument:(NSDocument *)document withError:(NSError **)outError {
+	IDEWorkspace *currentWorkspace = [XCFXcodeFormatter currentWorkspaceDocument].workspace;
+    [self uncrustifyCodeOfDocument:(IDESourceCodeDocument*)document inWorkspace:currentWorkspace error:outError];
+}
+
 #pragma mark Formatting
 
 + (CFOFormatter *)formatterForString:(NSString *)inputString presentedURL:(NSURL *)presentedURL error:(NSError **)outError {

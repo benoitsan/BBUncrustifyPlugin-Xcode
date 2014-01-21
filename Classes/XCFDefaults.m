@@ -11,6 +11,7 @@ NSString * const XCFDefaultsFormatterValueClang = @"clang";
 NSString * const XCFDefaultsFormatterValueUncrustify = @"uncrustify";
 
 NSString * const XCFDefaultsKeyXcodeIndentingEnabled = @"XCFXcodeIdentingEnabled";
+NSString * const XCFDefaultsKeyFormatOnSaveEnabled = @"XCFFormatOnSaveEnabled";
 NSString * const XCFDefaultsKeyClangStyle = @"XCFClangStyle";
 
 NSString * const XCFDefaultsKeyClangFactoryBasedStyle = @"XCFClangFactoryBasedStyle";
@@ -26,6 +27,7 @@ NSString * const XCFDefaultsKeyUncrustifyXEnabled = @"XCFUncrustifyXEnabled";
     return @{
          XCFDefaultsKeySelectedFormatter : XCFDefaultsFormatterValueUncrustify,
          XCFDefaultsKeyXcodeIndentingEnabled : @(NO),
+         XCFDefaultsKeyFormatOnSaveEnabled : @(NO),
          XCFDefaultsKeyClangStyle : CFOClangStylePredefinedLLVM,
          XCFDefaultsKeyUncrustifyXEnabled : @(YES),
          XCFDefaultsKeyClangFactoryBasedStyle : CFOClangStylePredefinedLLVM
@@ -46,6 +48,7 @@ NSString * const XCFDefaultsKeyUncrustifyXEnabled = @"XCFUncrustifyXEnabled";
 + (void)debug_clearPreferences {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:XCFDefaultsKeySelectedFormatter];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:XCFDefaultsKeyXcodeIndentingEnabled];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:XCFDefaultsKeyFormatOnSaveEnabled];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:XCFDefaultsKeyClangStyle];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:XCFDefaultsKeyClangFactoryBasedStyle];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:XCFDefaultsKeyConfigurationEditorIdentifier];

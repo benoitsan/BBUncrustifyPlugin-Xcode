@@ -38,6 +38,8 @@
 		149F2D6C183C073700DFB8CC /* sparkle_dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 1414D3C917116556002378C0 /* sparkle_dsa_pub.pem */; };
 		149F2D6D183C073700DFB8CC /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 147264371711732F002BC0BE /* icon.icns */; };
 		14A54E55188AF61900B154C6 /* XCFFormatterUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A54E54188AF61900B154C6 /* XCFFormatterUtilities.m */; };
+		14BEA1C1188F0EC2000CC52B /* NSDocument+XCFAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BEA1C0188F0EC2000CC52B /* NSDocument+XCFAdditions.m */; };
+		14BEA1C4188F107D000CC52B /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BEA1C3188F107D000CC52B /* JRSwizzle.m */; };
 		14C006C11884936A00488011 /* BBHyperLinkButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C006BF1884936A00488011 /* BBHyperLinkButtonCell.m */; };
 		14D323C21884980B00AB663E /* XCFDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D323C01884980500AB663E /* XCFDefaults.m */; };
 /* End PBXBuildFile section */
@@ -83,6 +85,7 @@
 		147572C9188C01AA00B3AF8D /* CFOUncrustifyFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFOUncrustifyFormatter.h; sourceTree = "<group>"; };
 		147572CA188C01AA00B3AF8D /* CFOUncrustifyFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFOUncrustifyFormatter.m; sourceTree = "<group>"; };
 		14767CE5188C0E1400080F69 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Externals/Sparkle.framework; sourceTree = "<group>"; };
+		14855EE9188F155200BD9C40 /* BBMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBMacros.h; sourceTree = "<group>"; };
 		1486F51C188C06AF003483D5 /* clang-format */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "clang-format"; sourceTree = "<group>"; };
 		14910D41188C0D1F005497C9 /* DiffMatchPatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiffMatchPatch.h; sourceTree = "<group>"; };
 		14910D42188C0D1F005497C9 /* DiffMatchPatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiffMatchPatch.m; sourceTree = "<group>"; };
@@ -103,6 +106,10 @@
 		14A54E53188AF61900B154C6 /* XCFFormatterUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCFFormatterUtilities.h; sourceTree = "<group>"; };
 		14A54E54188AF61900B154C6 /* XCFFormatterUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCFFormatterUtilities.m; sourceTree = "<group>"; };
 		14A54E56188AF6C800B154C6 /* XCFConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCFConstants.h; sourceTree = "<group>"; };
+		14BEA1BF188F0EC2000CC52B /* NSDocument+XCFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDocument+XCFAdditions.h"; sourceTree = "<group>"; };
+		14BEA1C0188F0EC2000CC52B /* NSDocument+XCFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDocument+XCFAdditions.m"; sourceTree = "<group>"; };
+		14BEA1C2188F107D000CC52B /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSwizzle.h; sourceTree = "<group>"; };
+		14BEA1C3188F107D000CC52B /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
 		14C006BE1884936A00488011 /* BBHyperLinkButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBHyperLinkButtonCell.h; sourceTree = "<group>"; };
 		14C006BF1884936A00488011 /* BBHyperLinkButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBHyperLinkButtonCell.m; sourceTree = "<group>"; };
 		14CE84D916F49A02008082AB /* uncrustify */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = uncrustify; sourceTree = "<group>"; };
@@ -190,6 +197,8 @@
 		147572BD188BFF2900B3AF8D /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				14BEA1BF188F0EC2000CC52B /* NSDocument+XCFAdditions.h */,
+				14BEA1C0188F0EC2000CC52B /* NSDocument+XCFAdditions.m */,
 				14A54E4B188AE09400B154C6 /* XCFXcodePrivate.h */,
 				149B117816F483D3000F9C01 /* XCFXcodeFormatter.h */,
 				141251A116F4AA8600A18D23 /* XCFXcodeFormatter.m */,
@@ -220,6 +229,9 @@
 				14C006BF1884936A00488011 /* BBHyperLinkButtonCell.m */,
 				1414D3C6171163CA002378C0 /* BBPluginUpdater.h */,
 				1414D3C7171163CA002378C0 /* BBPluginUpdater.m */,
+				14855EE9188F155200BD9C40 /* BBMacros.h */,
+				14BEA1C2188F107D000CC52B /* JRSwizzle.h */,
+				14BEA1C3188F107D000CC52B /* JRSwizzle.m */,
 			);
 			name = Misc;
 			sourceTree = "<group>";
@@ -385,7 +397,9 @@
 				149F2D5F183C073700DFB8CC /* BBPluginUpdater.m in Sources */,
 				14C006C11884936A00488011 /* BBHyperLinkButtonCell.m in Sources */,
 				147572CC188C01AA00B3AF8D /* CFOClangFormatter.m in Sources */,
+				14BEA1C4188F107D000CC52B /* JRSwizzle.m in Sources */,
 				14910D4F188C0D1F005497C9 /* DiffMatchPatchCFUtilities.c in Sources */,
+				14BEA1C1188F0EC2000CC52B /* NSDocument+XCFAdditions.m in Sources */,
 				147572BC188BFF0100B3AF8D /* XCFUncrustifyFormatter.m in Sources */,
 				147572CD188C01AA00B3AF8D /* CFOUncrustifyFormatter.m in Sources */,
 				14910D53188C0D1F005497C9 /* NSString+UriCompatibility.m in Sources */,

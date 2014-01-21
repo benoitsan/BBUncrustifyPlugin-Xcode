@@ -8,6 +8,7 @@
 #import "XCFDefaults.h"
 #import "XCFPreferencesWindowController.h"
 #import "BBPluginUpdater.h"
+#import "BBMacros.h"
 
 @interface XCFPlugin()
 @property (nonatomic, readonly) XCFPreferencesWindowController *preferencesWindowController;
@@ -74,7 +75,7 @@ static XCFPlugin *sharedPlugin = nil;
 
             [BBPluginUpdater sharedUpdater].delegate = self;
             
-            NSLog(@"BBUncrustifyPlugin (V%@) loaded", [[[NSBundle bundleForClass:[self class]] infoDictionary] objectForKey:@"CFBundleVersion"]);
+            BBLogRelease(@"Version %@ loaded", [[[NSBundle bundleForClass:[self class]] infoDictionary] objectForKey:@"CFBundleVersion"]);
         }
     }
     return self;
