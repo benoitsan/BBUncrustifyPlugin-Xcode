@@ -168,7 +168,7 @@
                 if (!errorString) {
                     errorString = NSLocalizedString(@"Unknown error while running the formatter.", nil);
                 }
-                NSDictionary *userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Uncrustify Formatter error:\n\n%@", nil), errorString]};
+                NSDictionary *userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Uncrustify Formatter error:\n%@", nil), errorString]};
                 *outError = [NSError errorWithDomain:CFOErrorDomain code:CFOFormatterFailureError userInfo:userInfo];
             }
             [[NSFileManager defaultManager] removeItemAtURL:temporaryFolderURL error:nil];
@@ -267,7 +267,7 @@
             if (!errorString) {
                 errorString = NSLocalizedString(@"Unknown Error", nil);
             }
-            NSDictionary *userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Uncrustify Formatter error:\n\n%@", nil), errorString]};
+            NSDictionary *userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Uncrustify Formatter error:\n%@", nil), errorString]};
             *outError = [NSError errorWithDomain:CFOErrorDomain code:CFOFormatterFailureError userInfo:userInfo];
         }
         return nil;

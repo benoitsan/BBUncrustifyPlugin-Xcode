@@ -9,7 +9,8 @@ extern NSString * const CFOErrorDomain;
 
 enum {
     CFOFileReadError,
-    CFOFormatterFailureError
+    CFOFormatterFailureError,
+    CFOFormatterTimeOutError
 };
 
 
