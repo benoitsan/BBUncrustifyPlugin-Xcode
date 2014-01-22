@@ -59,33 +59,7 @@ NSString * XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSC
     IDESourceCodeDocument *document = [XCFXcodeFormatter currentSourceCodeDocument];
     if (!document) return;
     
-    NSTextView *textView = [XCFXcodeFormatter currentSourceCodeTextView];
-    
-    DVTSourceTextStorage *textStorage = [document textStorage];
-    
-    // We try to restore the original cursor position after the uncrustification. We compute a percentage value
-    // expressing the actual selected line compared to the total number of lines of the document. After the uncrustification,
-    // we restore the position taking into account the modified number of lines of the document.
-    
-    NSRange originalCharacterRange = [textView selectedRange];
-    NSRange originalLineRange = [textStorage lineRangeForCharacterRange:originalCharacterRange];
-    NSRange originalDocumentLineRange = [textStorage lineRangeForCharacterRange:NSMakeRange(0, textStorage.string.length)];
-    
-    CGFloat verticalRelativePosition = (CGFloat)originalLineRange.location / (CGFloat)originalDocumentLineRange.length;
-    
-    IDEWorkspace *currentWorkspace = [XCFXcodeFormatter currentWorkspaceDocument].workspace;
-
-    [XCFXcodeFormatter uncrustifyCodeOfDocument:document inWorkspace:currentWorkspace error:outError];
-    
-    NSRange newDocumentLineRange = [textStorage lineRangeForCharacterRange:NSMakeRange(0, textStorage.string.length)];
-    NSUInteger restoredLine = roundf(verticalRelativePosition * (CGFloat)newDocumentLineRange.length);
-    
-    NSRange newCharacterRange = [textStorage characterRangeForLineRange:NSMakeRange(restoredLine, 0)];
-    
-    if (newCharacterRange.location < textStorage.string.length) {
-        [[XCFXcodeFormatter currentSourceCodeTextView] setSelectedRanges:@[[NSValue valueWithRange:newCharacterRange]]];
-        [textView scrollRangeToVisible:newCharacterRange];
-    }
+    [[self class] formatDocument:document withError:outError];
 }
 
 + (BOOL)canFormatSelectedLines {
@@ -108,13 +82,44 @@ NSString * XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSC
     [XCFXcodeFormatter uncrustifyCodeAtRanges:selectedRanges document:document inWorkspace:currentWorkspace error:outError];
 }
 
-+ (BOOL)canFormatDocument:(NSDocument *)document {
-    return [document isKindOfClass:NSClassFromString(@"IDESourceCodeDocument")];
-}
++ (void)formatDocument:(IDESourceCodeDocument *)document withError:(NSError **)outError {
 
-+ (void)formatDocument:(NSDocument *)document withError:(NSError **)outError {
-	IDEWorkspace *currentWorkspace = [XCFXcodeFormatter currentWorkspaceDocument].workspace;
-    [self uncrustifyCodeOfDocument:(IDESourceCodeDocument*)document inWorkspace:currentWorkspace error:outError];
+    NSTextView *textView = [XCFXcodeFormatter currentSourceCodeTextView];
+    
+    DVTSourceTextStorage *textStorage = [document textStorage];
+    
+    // We try to restore the original cursor position after the uncrustification. We compute a percentage value
+    // expressing the actual selected line compared to the total number of lines of the document. After the uncrustification,
+    // we restore the position taking into account the modified number of lines of the document.
+    
+    NSRange originalCharacterRange = [textView selectedRange];
+    NSRange originalLineRange = [textStorage lineRangeForCharacterRange:originalCharacterRange];
+    NSRange originalDocumentLineRange = [textStorage lineRangeForCharacterRange:NSMakeRange(0, textStorage.string.length)];
+    
+    CGFloat verticalRelativePosition = (CGFloat)originalLineRange.location / (CGFloat)originalDocumentLineRange.length;
+    
+    IDEWorkspace *currentWorkspace = [XCFXcodeFormatter currentWorkspaceDocument].workspace;
+    
+    [XCFXcodeFormatter uncrustifyCodeOfDocument:document inWorkspace:currentWorkspace error:outError];
+    
+    NSRange newDocumentLineRange = [textStorage lineRangeForCharacterRange:NSMakeRange(0, textStorage.string.length)];
+    NSUInteger restoredLine = roundf(verticalRelativePosition * (CGFloat)newDocumentLineRange.length);
+    
+    NSRange newCharacterRange = NSMakeRange(0, 0);
+    
+    newCharacterRange = [textStorage characterRangeForLineRange:NSMakeRange(restoredLine, 0)];
+    
+    // If the selected line didn't change, we try to restore the initial cursor position.
+    NSLog(@"%@ %lu",NSStringFromRange(originalLineRange), (unsigned long)restoredLine);
+    
+    if (originalLineRange.location == restoredLine && NSMaxRange(originalCharacterRange) < textStorage.string.length) {
+        newCharacterRange = originalCharacterRange;
+    }
+    
+    if (newCharacterRange.location < textStorage.string.length) {
+        [[XCFXcodeFormatter currentSourceCodeTextView] setSelectedRanges:@[[NSValue valueWithRange:newCharacterRange]]];
+        [textView scrollRangeToVisible:newCharacterRange];
+    }
 }
 
 #pragma mark Formatting

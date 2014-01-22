@@ -26,25 +26,35 @@
 
 - (void)xcf_documentWillSave {
     
-    BOOL shouldFormatBeforeSaving = [XCFXcodeFormatter canFormatDocument:self] && [[NSUserDefaults standardUserDefaults] boolForKey:XCFDefaultsKeyFormatOnSaveEnabled];
+    BOOL canFormatDocument = [self isKindOfClass:NSClassFromString(@"IDESourceCodeDocument")];
     
-	if (shouldFormatBeforeSaving) {
-		NSError *error;
-		[XCFXcodeFormatter formatDocument:self withError:&error];
-        //NSLog(@"%@: %@", self.presentedItemURL, error ? error : @"OK");
-        if (error) {
-            BBLogReleaseWithLocation(@"%@", error);
-        }
-	}
+    if (!canFormatDocument) {
+        return;
+    }
+    
+    BOOL shouldFormatBeforeSaving = [[NSUserDefaults standardUserDefaults] boolForKey:XCFDefaultsKeyFormatOnSaveEnabled];
+
+    if (!shouldFormatBeforeSaving) {
+        return;
+    }
+    
+    IDESourceCodeDocument *document = (IDESourceCodeDocument *)self;
+    NSError *error;
+    
+    [XCFXcodeFormatter formatDocument:document withError:&error];
+    //NSLog(@"%@: %@", self.presentedItemURL, error ? error : @"OK");
+    if (error) {
+        BBLogReleaseWithLocation(@"%@", error);
+    }
 }
 
 
 #pragma mark - Swizzled methods
 
 - (void)xcf_saveDocumentWithDelegate:(id)delegate didSaveSelector:(SEL)didSaveSelector contextInfo:(void *)contextInfo {
-	[self xcf_documentWillSave];
+    [self xcf_documentWillSave];
 
-	[self xcf_saveDocumentWithDelegate:delegate didSaveSelector:didSaveSelector contextInfo:contextInfo];
+    [self xcf_saveDocumentWithDelegate:delegate didSaveSelector:didSaveSelector contextInfo:contextInfo];
 }
 
 @end
