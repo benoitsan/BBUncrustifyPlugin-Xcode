@@ -68,12 +68,12 @@
                     <popUpButton verticalHuggingPriority="750" id="V7p-Yf-qKM">
                         <rect key="frame" x="261" y="508" width="145" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <popUpButtonCell key="cell" type="push" title="($loc)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="RhK-Rd-M8i" id="Pnc-mQ-1bC">
+                        <popUpButtonCell key="cell" type="push" title="&lt;noloc>" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="RhK-Rd-M8i" id="Pnc-mQ-1bC">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
                             <menu key="menu" title="OtherViews" id="55r-pC-d0f">
                                 <items>
-                                    <menuItem title="($loc)" state="on" id="RhK-Rd-M8i"/>
+                                    <menuItem title="&lt;noloc>" state="on" id="RhK-Rd-M8i"/>
                                 </items>
                             </menu>
                         </popUpButtonCell>
@@ -87,12 +87,12 @@
                     <popUpButton verticalHuggingPriority="750" id="UPm-5d-Jt6">
                         <rect key="frame" x="262" y="170" width="220" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <popUpButtonCell key="cell" type="push" title="($loc)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="8Ax-mq-gRS" id="cdw-UO-6Fd">
+                        <popUpButtonCell key="cell" type="push" title="&lt;noloc>" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="8Ax-mq-gRS" id="cdw-UO-6Fd">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
                             <menu key="menu" title="OtherViews" id="eu7-rq-TzT">
                                 <items>
-                                    <menuItem title="($loc)" state="on" id="8Ax-mq-gRS"/>
+                                    <menuItem title="&lt;noloc>" state="on" id="8Ax-mq-gRS"/>
                                 </items>
                             </menu>
                         </popUpButtonCell>
@@ -121,12 +121,12 @@
                     <popUpButton verticalHuggingPriority="750" id="c1l-eL-ArW">
                         <rect key="frame" x="261" y="357" width="145" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <popUpButtonCell key="cell" type="push" title="($loc)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" autoenablesItems="NO" selectedItem="HL7-TM-Hwc" id="ddN-rs-qPO">
+                        <popUpButtonCell key="cell" type="push" title="&lt;noloc>" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" autoenablesItems="NO" selectedItem="HL7-TM-Hwc" id="ddN-rs-qPO">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
                             <menu key="menu" title="OtherViews" autoenablesItems="NO" id="AQQ-CV-Y0R">
                                 <items>
-                                    <menuItem title="($loc)" state="on" id="HL7-TM-Hwc"/>
+                                    <menuItem title="&lt;noloc>" state="on" id="HL7-TM-Hwc"/>
                                 </items>
                             </menu>
                         </popUpButtonCell>
@@ -237,7 +237,7 @@
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="8nc-r7-Bg5">
                         <rect key="frame" x="263" y="20" width="218" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="($loc)" usesSingleLineMode="YES" id="HbX-mG-4YB">
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="&lt;noloc>" usesSingleLineMode="YES" id="HbX-mG-4YB">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
