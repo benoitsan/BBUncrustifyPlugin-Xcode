@@ -110,7 +110,6 @@ NSString * XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSC
     newCharacterRange = [textStorage characterRangeForLineRange:NSMakeRange(restoredLine, 0)];
     
     // If the selected line didn't change, we try to restore the initial cursor position.
-    NSLog(@"%@ %lu",NSStringFromRange(originalLineRange), (unsigned long)restoredLine);
     
     if (originalLineRange.location == restoredLine && NSMaxRange(originalCharacterRange) < textStorage.string.length) {
         newCharacterRange = originalCharacterRange;
