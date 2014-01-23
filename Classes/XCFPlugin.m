@@ -84,11 +84,10 @@ static XCFPlugin *sharedPlugin = nil;
 #pragma mark - Actions
 
 - (IBAction)formatSelectedFiles:(id)sender {
-    NSError *error = nil;
-    [XCFXcodeFormatter formatSelectedFilesWithError:&error];
-    if (error) {
-        [[NSAlert alertWithError:error] runModal];
-    }
+	[XCFXcodeFormatter formatSelectedFilesWithErrorBlock:^(NSError *error, BOOL *stop) {
+		[[NSAlert alertWithError:error] runModal];
+		*stop = NO;
+	}];
     [[BBPluginUpdater sharedUpdater] checkForUpdatesIfNeeded];
 }
 
