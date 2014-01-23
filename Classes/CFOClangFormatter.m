@@ -5,6 +5,7 @@
 
 #import "CFOClangFormatter.h"
 #import "DiffMatchPatch.h"
+#import "BBMacros.h"
 
 NSString * const CFOClangStyleFile = @"file";
 NSString * const CFOClangStylePredefinedLLVM = @"LLVM";
@@ -78,11 +79,22 @@ NSString * const CFOClangDumpConfigurationOptionsStyle = @"style";
     
     [[inputPipe fileHandleForWriting] writeData:[self.inputString dataUsingEncoding:NSUTF8StringEncoding]];
     [[inputPipe fileHandleForWriting] closeFile];
+
+    // Seems like there is a bug in clang-format. I found a source file where the process never completes.
+    // (It's not a Cocoa issue since executing the formatting in command line has the same result).
+    BOOL taskTimeOutReached = NO;
+    NSDate *terminateDate = [[NSDate date] dateByAddingTimeInterval:2.0];
+    while ([task isRunning])   {
+        if ([[NSDate date] compare:terminateDate] == NSOrderedDescending)   {
+            BBLogRelease(@"Error: terminating task with timeout.");
+            [task terminate];
+            taskTimeOutReached = YES;
+        }
+        [NSThread sleepForTimeInterval:.01];
+    }
     
     NSData *outputData = [[outputPipe fileHandleForReading] readDataToEndOfFile];
     NSData *errorData = [[errorPipe fileHandleForReading] readDataToEndOfFile];
-    
-    [task waitUntilExit];
     
     int status = [task terminationStatus];
     
@@ -90,7 +102,7 @@ NSString * const CFOClangDumpConfigurationOptionsStyle = @"style";
         
         if (errorData.length > 0) {
             NSString *warning = [[NSString alloc] initWithData:errorData encoding:NSUTF8StringEncoding];
-            NSLog(@"!!! Parser Warning: %@", warning);
+            BBLogRelease(@"Parser Warning: %@", warning);
         }
         
         
@@ -141,12 +153,18 @@ NSString * const CFOClangDumpConfigurationOptionsStyle = @"style";
     }
     else {
         if (outError) {
-            NSString *errorString = [[NSString alloc] initWithData:errorData encoding:NSUTF8StringEncoding];
-            if (!errorString) {
-                errorString = NSLocalizedString(@"Unknown Error", nil);
+            if (taskTimeOutReached) {
+                NSDictionary *userInfo = @{NSLocalizedDescriptionKey : NSLocalizedString(@"Clang Formatter error:\nTask was terminated because the time-out was reached.", nil)};
+                *outError = [NSError errorWithDomain:CFOErrorDomain code:CFOFormatterTimeOutError userInfo:userInfo];
             }
-            NSDictionary *userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Clang Formatter error:\n\n%@", nil), errorString]};
-            *outError = [NSError errorWithDomain:CFOErrorDomain code:CFOFormatterFailureError userInfo:userInfo];
+            else {
+                NSString *errorString = [[NSString alloc] initWithData:errorData encoding:NSUTF8StringEncoding];
+                if (errorString.length == 0) {
+                    errorString = NSLocalizedString(@"Unknown Error", nil);
+                }
+                NSDictionary *userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Clang Formatter error:\n%@", nil), errorString]};
+                *outError = [NSError errorWithDomain:CFOErrorDomain code:CFOFormatterFailureError userInfo:userInfo];
+            }
         }
         return nil;
     }
@@ -200,7 +218,7 @@ NSString * const CFOClangDumpConfigurationOptionsStyle = @"style";
         
         if (errorData.length > 0) {
             NSString *warning = [[NSString alloc] initWithData:errorData encoding:NSUTF8StringEncoding];
-            NSLog(@"!!! Parser Warning: %@", warning);
+            BBLogRelease(@"Parser Warning: %@", warning);
         }
         
         return outputData;
@@ -211,7 +229,7 @@ NSString * const CFOClangDumpConfigurationOptionsStyle = @"style";
             if (!errorString) {
                 errorString = NSLocalizedString(@"Unknown Error", nil);
             }
-            NSDictionary *userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Clang Formatter error:\n\n%@", nil), errorString]};
+            NSDictionary *userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Clang Formatter error:\n%@", nil), errorString]};
             *outError = [NSError errorWithDomain:CFOErrorDomain code:CFOFormatterFailureError userInfo:userInfo];
         }
         return nil;

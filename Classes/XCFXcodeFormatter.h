@@ -3,8 +3,10 @@
 //  Copyright (c) 2014 Pragmatic Code. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 #import "XCFConstants.h"
+
+@class IDESourceCodeDocument;
 
 @interface XCFXcodeFormatter : NSObject
 
@@ -20,9 +22,6 @@
 + (BOOL)canLaunchConfigurationEditor;
 + (void)launchConfigurationEditorWithError:(NSError **)outError;
 
-#pragma mark -
-
-+ (BOOL)canFormatDocument:(NSDocument*)document;
-+ (void)formatDocument:(NSDocument*)document withError:(NSError **)outError;
++ (void)formatDocument:(IDESourceCodeDocument *)document withError:(NSError **)outError;
 
 @end

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5037.2" systemVersion="13B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5037.3" systemVersion="13B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1080" identifier="macosx"/>
         <development version="5000" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5037.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5037.3"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="XCFPreferencesWindowController">
@@ -21,10 +21,10 @@
         <window title="BBUncrustifyPlugin Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <windowPositionMask key="initialPositionMask" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="723" y="645" width="744" height="525"/>
+            <rect key="contentRect" x="723" y="468" width="744" height="552"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1178"/>
             <view key="contentView" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="744" height="525"/>
+                <rect key="frame" x="0.0" y="0.0" width="744" height="552"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button id="ROI-76-en4">
@@ -39,7 +39,7 @@
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="qp3-iD-cbw">
-                        <rect key="frame" x="187" y="487" width="70" height="17"/>
+                        <rect key="frame" x="187" y="514" width="70" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Formatter:" id="Ltt-uL-fAo">
                             <font key="font" metaFont="system"/>
@@ -66,14 +66,14 @@
                         </textFieldCell>
                     </textField>
                     <popUpButton verticalHuggingPriority="750" id="V7p-Yf-qKM">
-                        <rect key="frame" x="261" y="481" width="145" height="26"/>
+                        <rect key="frame" x="261" y="508" width="145" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <popUpButtonCell key="cell" type="push" title="($loc)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="RhK-Rd-M8i" id="Pnc-mQ-1bC">
+                        <popUpButtonCell key="cell" type="push" title="&lt;noloc>" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="RhK-Rd-M8i" id="Pnc-mQ-1bC">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
                             <menu key="menu" title="OtherViews" id="55r-pC-d0f">
                                 <items>
-                                    <menuItem title="($loc)" state="on" id="RhK-Rd-M8i"/>
+                                    <menuItem title="&lt;noloc>" state="on" id="RhK-Rd-M8i"/>
                                 </items>
                             </menu>
                         </popUpButtonCell>
@@ -87,12 +87,12 @@
                     <popUpButton verticalHuggingPriority="750" id="UPm-5d-Jt6">
                         <rect key="frame" x="262" y="170" width="220" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <popUpButtonCell key="cell" type="push" title="($loc)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="8Ax-mq-gRS" id="cdw-UO-6Fd">
+                        <popUpButtonCell key="cell" type="push" title="&lt;noloc>" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="8Ax-mq-gRS" id="cdw-UO-6Fd">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
                             <menu key="menu" title="OtherViews" id="eu7-rq-TzT">
                                 <items>
-                                    <menuItem title="($loc)" state="on" id="8Ax-mq-gRS"/>
+                                    <menuItem title="&lt;noloc>" state="on" id="8Ax-mq-gRS"/>
                                 </items>
                             </menu>
                         </popUpButtonCell>
@@ -121,12 +121,12 @@
                     <popUpButton verticalHuggingPriority="750" id="c1l-eL-ArW">
                         <rect key="frame" x="261" y="357" width="145" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <popUpButtonCell key="cell" type="push" title="($loc)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" autoenablesItems="NO" selectedItem="HL7-TM-Hwc" id="ddN-rs-qPO">
+                        <popUpButtonCell key="cell" type="push" title="&lt;noloc>" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" autoenablesItems="NO" selectedItem="HL7-TM-Hwc" id="ddN-rs-qPO">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
                             <menu key="menu" title="OtherViews" autoenablesItems="NO" id="AQQ-CV-Y0R">
                                 <items>
-                                    <menuItem title="($loc)" state="on" id="HL7-TM-Hwc"/>
+                                    <menuItem title="&lt;noloc>" state="on" id="HL7-TM-Hwc"/>
                                 </items>
                             </menu>
                         </popUpButtonCell>
@@ -237,7 +237,7 @@
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="8nc-r7-Bg5">
                         <rect key="frame" x="263" y="20" width="218" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="($loc)" usesSingleLineMode="YES" id="HbX-mG-4YB">
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="&lt;noloc>" usesSingleLineMode="YES" id="HbX-mG-4YB">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -252,6 +252,17 @@
                         </buttonCell>
                         <connections>
                             <action selector="aboutPluginAction:" target="-2" id="HPM-rI-1l9"/>
+                        </connections>
+                    </button>
+                    <button id="Vmj-wi-7Kz">
+                        <rect key="frame" x="261" y="483" width="119" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="Format on Save" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="21h-yP-xuP">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <binding destination="ec3-mP-p1p" name="value" keyPath="values.XCFFormatOnSaveEnabled" id="XjD-Eu-bCO"/>
                         </connections>
                     </button>
                 </subviews>
