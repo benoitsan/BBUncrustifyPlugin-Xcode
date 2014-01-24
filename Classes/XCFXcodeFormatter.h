@@ -12,7 +12,7 @@
 
 + (BOOL)canFormatSelectedFiles;
 + (void)formatSelectedFilesWithError:(NSError **)outError;
-+ (void)formatSelectedFilesWithErrorBlock:(void(^)(NSError *error, BOOL *stop))errorBlock;
++ (void)formatSelectedFilesWithEnumerationBlock:(void(^)(NSURL *url, NSError *error, BOOL *stop))enumerationBlock;
 
 + (BOOL)canFormatActiveFile;
 + (void)formatActiveFileWithError:(NSError **)outError;
