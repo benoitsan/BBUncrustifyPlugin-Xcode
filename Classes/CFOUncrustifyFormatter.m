@@ -165,7 +165,11 @@
         else {
             if (outError) {
                 NSString *errorString = [[NSString alloc] initWithData:errorData encoding:NSUTF8StringEncoding];
-                if (!errorString) {
+                if (errorString) {
+                    // trick to avoid to have less verbose error messages.
+                    errorString = [errorString stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@/",temporaryFolderURL.path] withString:@""];
+                }
+                else {
                     errorString = NSLocalizedString(@"Unknown error while running the formatter.", nil);
                 }
                 NSDictionary *userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Uncrustify Formatter error:\n%@", nil), errorString]};
