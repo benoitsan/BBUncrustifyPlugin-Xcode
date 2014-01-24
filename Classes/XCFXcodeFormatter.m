@@ -27,6 +27,32 @@ NSString * XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSC
     return (selectedFiles.count > 0);
 }
 
++ (void)formatSelectedFilesWithErrorBlock:(void(^)(NSError *error, BOOL *stop))errorBlock
+{
+	NSArray *fileNavigableItems = [XCFXcodeFormatter selectedSourceCodeFileNavigableItems];
+    IDEWorkspace *currentWorkspace = [XCFXcodeFormatter currentWorkspaceDocument].workspace;
+    for (IDEFileNavigableItem *fileNavigableItem in fileNavigableItems) {
+		NSError *error = nil;
+        NSDocument *document = [IDEDocumentController retainedEditorDocumentForNavigableItem:fileNavigableItem error:nil];
+        if ([document isKindOfClass:NSClassFromString(@"IDESourceCodeDocument")]) {
+            IDESourceCodeDocument *sourceCodeDocument = (IDESourceCodeDocument *)document;
+            [XCFXcodeFormatter uncrustifyCodeOfDocument:sourceCodeDocument inWorkspace:currentWorkspace error:&error];
+            //[document saveDocument:nil];
+        }
+        [IDEDocumentController releaseEditorDocument:document];
+		
+		if (error) {
+			BOOL __block stop = NO;
+			if (errorBlock) {
+				errorBlock(error, &stop);
+			}
+			if (stop) {
+				break;
+			}
+		}
+    }
+}
+
 + (void)formatSelectedFilesWithError:(NSError **)outError {
     NSArray *fileNavigableItems = [XCFXcodeFormatter selectedSourceCodeFileNavigableItems];
     IDEWorkspace *currentWorkspace = [XCFXcodeFormatter currentWorkspaceDocument].workspace;
