@@ -27,6 +27,29 @@ NSString * XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSC
     return (selectedFiles.count > 0);
 }
 
++ (void)formatSelectedFilesWithEnumerationBlock:(void(^)(NSURL *url, NSError *error, BOOL *stop))enumerationBlock {
+    NSArray *fileNavigableItems = [XCFXcodeFormatter selectedSourceCodeFileNavigableItems];
+    IDEWorkspace *currentWorkspace = [XCFXcodeFormatter currentWorkspaceDocument].workspace;
+    for (IDEFileNavigableItem *fileNavigableItem in fileNavigableItems) {
+        NSError *error = nil;
+        NSDocument *document = [IDEDocumentController retainedEditorDocumentForNavigableItem:fileNavigableItem error:nil];
+        if ([document isKindOfClass:NSClassFromString(@"IDESourceCodeDocument")]) {
+            IDESourceCodeDocument *sourceCodeDocument = (IDESourceCodeDocument *)document;
+            [XCFXcodeFormatter formatCodeOfDocument:sourceCodeDocument inWorkspace:currentWorkspace error:&error];
+            //[document saveDocument:nil];
+        }
+        [IDEDocumentController releaseEditorDocument:document];
+        
+        BOOL __block stop = NO;
+        if (enumerationBlock) {
+            enumerationBlock(document.fileURL, error, &stop);
+        }
+        if (stop) {
+            break;
+        }
+    }
+}
+
 + (void)formatSelectedFilesWithError:(NSError **)outError {
     NSArray *fileNavigableItems = [XCFXcodeFormatter selectedSourceCodeFileNavigableItems];
     IDEWorkspace *currentWorkspace = [XCFXcodeFormatter currentWorkspaceDocument].workspace;
@@ -35,7 +58,7 @@ NSString * XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSC
         NSDocument *document = [IDEDocumentController retainedEditorDocumentForNavigableItem:fileNavigableItem error:nil];
         if ([document isKindOfClass:NSClassFromString(@"IDESourceCodeDocument")]) {
             IDESourceCodeDocument *sourceCodeDocument = (IDESourceCodeDocument *)document;
-            [XCFXcodeFormatter uncrustifyCodeOfDocument:sourceCodeDocument inWorkspace:currentWorkspace error:&error];
+            [XCFXcodeFormatter formatCodeOfDocument:sourceCodeDocument inWorkspace:currentWorkspace error:&error];
             //[document saveDocument:nil];
         }
         [IDEDocumentController releaseEditorDocument:document];
@@ -79,7 +102,7 @@ NSString * XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSC
     if (!document || !textView) return;
     IDEWorkspace *currentWorkspace = [XCFXcodeFormatter currentWorkspaceDocument].workspace;
     NSArray *selectedRanges = [textView selectedRanges];
-    [XCFXcodeFormatter uncrustifyCodeAtRanges:selectedRanges document:document inWorkspace:currentWorkspace error:outError];
+    [XCFXcodeFormatter formatCodeAtRanges:selectedRanges document:document inWorkspace:currentWorkspace error:outError];
 }
 
 + (void)formatDocument:(IDESourceCodeDocument *)document withError:(NSError **)outError {
@@ -100,7 +123,7 @@ NSString * XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSC
     
     IDEWorkspace *currentWorkspace = [XCFXcodeFormatter currentWorkspaceDocument].workspace;
     
-    [XCFXcodeFormatter uncrustifyCodeOfDocument:document inWorkspace:currentWorkspace error:outError];
+    [XCFXcodeFormatter formatCodeOfDocument:document inWorkspace:currentWorkspace error:outError];
     
     NSRange newDocumentLineRange = [textStorage lineRangeForCharacterRange:NSMakeRange(0, textStorage.string.length)];
     NSUInteger restoredLine = roundf(verticalRelativePosition * (CGFloat)newDocumentLineRange.length);
@@ -150,7 +173,7 @@ NSString * XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSC
     return nil;
 }
 
-+ (BOOL)uncrustifyCodeOfDocument:(IDESourceCodeDocument *)document inWorkspace:(IDEWorkspace *)workspace error:(NSError **)outError {
++ (BOOL)formatCodeOfDocument:(IDESourceCodeDocument *)document inWorkspace:(IDEWorkspace *)workspace error:(NSError **)outError {
     
     NSError *error = nil;
     
@@ -179,7 +202,7 @@ NSString * XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSC
     return codeHasChanged;
 }
 
-+ (BOOL)uncrustifyCodeAtRanges:(NSArray *)ranges document:(IDESourceCodeDocument *)document inWorkspace:(IDEWorkspace *)workspace error:(NSError **)outError {
++ (BOOL)formatCodeAtRanges:(NSArray *)ranges document:(IDESourceCodeDocument *)document inWorkspace:(IDEWorkspace *)workspace error:(NSError **)outError {
     DVTSourceTextStorage *textStorage = [document textStorage];
     
     NSError *error = nil;

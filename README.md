@@ -2,9 +2,9 @@
 
 Xcode plugin to format code using [Uncrustify](http://uncrustify.sourceforge.net) or [ClangFormat](http://clang.llvm.org/docs/ClangFormat.html). 
 
-![menu](http://f.cl.ly/items/2b2y1v403x2H3U2Y0l2K/BBUncrustifyPlugin-menu.png)
+![menu](http://f.cl.ly/items/1I0k0D1z0K3B0z2Z2X1N/BBUncrustifyPlugin-menu.png)
 
-![preferences](http://f.cl.ly/items/27080O1F3w3g2a3h0m32/BBUncrustifyPlugin.png)
+![preferences](http://f.cl.ly/items/1p3U2o1K1v361v0b1o1l/BBUncrustifyPlugin.png)
 
 ## BBUncrustifyPlugin 2.1 (unreleased)
 
@@ -21,6 +21,8 @@ Xcode plugin to format code using [Uncrustify](http://uncrustify.sourceforge.net
 * Option to format when saving.
 
 #### Changes from 1.0 to 2.0
+
+* Reorganization of the menu: menu items are now in `Edit > Format Code`.
 
 * Uncrustify configuration: The configuration file must be located in the current directory or any parent directories of the source file. The file is named `.uncrustifyconfig` or `uncrustify.cfg`. Uncrustify looks for the configuration in the additional folders: `Home Folder` and `~/.uncrustify/uncrustify.cfg`.
 
