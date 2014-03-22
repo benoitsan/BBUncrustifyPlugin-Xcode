@@ -75,7 +75,7 @@
 		147264371711732F002BC0BE /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		147572B7188BFEED00B3AF8D /* XCFClangFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCFClangFormatter.h; sourceTree = "<group>"; };
 		147572B8188BFEED00B3AF8D /* XCFClangFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCFClangFormatter.m; sourceTree = "<group>"; };
-		147572BA188BFF0100B3AF8D /* XCFUncrustifyFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCFUncrustifyFormatter.h; sourceTree = "<group>"; };
+		147572BA188BFF0100B3AF8D /* XCFUncrustifyFormatter.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = XCFUncrustifyFormatter.h; sourceTree = "<group>"; };
 		147572BB188BFF0100B3AF8D /* XCFUncrustifyFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCFUncrustifyFormatter.m; sourceTree = "<group>"; };
 		147572C3188C012900B3AF8D /* XCFPreferencesWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XCFPreferencesWindowController.xib; sourceTree = "<group>"; };
 		147572C5188C01AA00B3AF8D /* CFOFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFOFormatter.h; sourceTree = "<group>"; };

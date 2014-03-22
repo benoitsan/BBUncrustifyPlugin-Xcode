@@ -27,25 +27,32 @@
 - (void)xcf_documentWillSave {
     
     BOOL canFormatDocument = [self isKindOfClass:NSClassFromString(@"IDESourceCodeDocument")];
-    
     if (!canFormatDocument) {
         return;
     }
     
+    
     BOOL shouldFormatBeforeSaving = [[NSUserDefaults standardUserDefaults] boolForKey:XCFDefaultsKeyFormatOnSaveEnabled];
-
     if (!shouldFormatBeforeSaving) {
         return;
     }
     
+    NSString *patternsString = [[NSUserDefaults standardUserDefaults] stringForKey:XCFDefaultsKeyFormatOnSaveFiletypes];
+    if(patternsString.length) {
+        NSArray *extensions = [patternsString componentsSeparatedByString:@";"];
+        if (![extensions containsObject:self.fileURL.pathExtension]) {
+//            NSLog(@"Skip %@ due to extension mismatch: %@", self.fileURL, patternsString);
+            return;
+        }
+    }
+    
     IDESourceCodeDocument *document = (IDESourceCodeDocument *)self;
     NSError *error;
-    
     [XCFXcodeFormatter formatDocument:document withError:&error];
-    //NSLog(@"%@: %@", self.presentedItemURL, error ? error : @"OK");
     if (error) {
         BBLogReleaseWithLocation(@"%@", error);
     }
+//    NSLog(@"Formatted %@: %@", self.fileURL, error ? error : @"OK");
 }
 
 
