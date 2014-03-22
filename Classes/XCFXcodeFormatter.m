@@ -78,7 +78,7 @@ NSString * XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSC
 }
 
 + (void)formatActiveFileWithError:(NSError **)outError {
-        
+    
     IDESourceCodeDocument *document = [XCFXcodeFormatter currentSourceCodeDocument];
     if (!document) return;
     
@@ -106,7 +106,7 @@ NSString * XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSC
 }
 
 + (void)formatDocument:(IDESourceCodeDocument *)document withError:(NSError **)outError {
-
+    
     NSTextView *textView = [XCFXcodeFormatter currentSourceCodeTextView];
     
     DVTSourceTextStorage *textStorage = [document textStorage];
@@ -209,11 +209,11 @@ NSString * XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSC
     
     CFOFormatter *formatter = [[self class] formatterForString:textStorage.string presentedURL:document.fileURL error:&error];
     NSArray *fragments = [formatter fragmentsByFormattingInputAtRanges:ranges error:&error];
-
+    
     NSString *originalString = [NSString stringWithString:textStorage.string];
-
+    
     if (fragments) {
-
+        
         NSMutableArray *newSelectionRanges = [NSMutableArray array];
         
         [fragments enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(CFOFragment *fragment, NSUInteger idx, BOOL *stop) {
@@ -243,27 +243,27 @@ NSString * XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSC
             [[XCFXcodeFormatter currentSourceCodeTextView] setSelectedRanges:newSelectionRanges];
         }
         
-//        NSString *selectedFormatter = [[NSUserDefaults standardUserDefaults] stringForKey:XCFDefaultsKeySelectedFormatter];
-//        if (0 && [selectedFormatter isEqualToString:XCFDefaultsFormatterValueClang]) {
-//            NSArray *normalizedRanges = [formatter normalizedRangesForInputRanges:ranges];
-//            NSMutableArray *fixedRanges = [NSMutableArray array];
-//            for (NSValue *normalizedRangeValue in normalizedRanges) {
-//                NSRange normalizedRange = [normalizedRangeValue rangeValue];
-//                normalizedRange.length = MIN(normalizedRange.length, textStorage.string.length - normalizedRange.location);
-//                [fixedRanges addObject:normalizedRangeValue];
-//            }
-//            if (fixedRanges.count > 0) {
-//                [[XCFXcodeFormatter currentSourceCodeTextView] setSelectedRanges:fixedRanges];
-//                [[XCFXcodeFormatter currentSourceCodeTextView]scrollRangeToVisible:[fixedRanges.firstObject rangeValue]];
-//            }
-//        }
-//        else {
-//            if (newSelectionRanges.count > 0) {
-//                [[XCFXcodeFormatter currentSourceCodeTextView] setSelectedRanges:newSelectionRanges];
-//            }
-//        }
+        //        NSString *selectedFormatter = [[NSUserDefaults standardUserDefaults] stringForKey:XCFDefaultsKeySelectedFormatter];
+        //        if (0 && [selectedFormatter isEqualToString:XCFDefaultsFormatterValueClang]) {
+        //            NSArray *normalizedRanges = [formatter normalizedRangesForInputRanges:ranges];
+        //            NSMutableArray *fixedRanges = [NSMutableArray array];
+        //            for (NSValue *normalizedRangeValue in normalizedRanges) {
+        //                NSRange normalizedRange = [normalizedRangeValue rangeValue];
+        //                normalizedRange.length = MIN(normalizedRange.length, textStorage.string.length - normalizedRange.location);
+        //                [fixedRanges addObject:normalizedRangeValue];
+        //            }
+        //            if (fixedRanges.count > 0) {
+        //                [[XCFXcodeFormatter currentSourceCodeTextView] setSelectedRanges:fixedRanges];
+        //                [[XCFXcodeFormatter currentSourceCodeTextView]scrollRangeToVisible:[fixedRanges.firstObject rangeValue]];
+        //            }
+        //        }
+        //        else {
+        //            if (newSelectionRanges.count > 0) {
+        //                [[XCFXcodeFormatter currentSourceCodeTextView] setSelectedRanges:newSelectionRanges];
+        //            }
+        //        }
     }
-
+    
     if (error && outError) {
         *outError = error;
     }
@@ -277,7 +277,7 @@ NSString * XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSC
 + (void)normalizeCodeAtRange:(NSRange)range document:(IDESourceCodeDocument *)document {
     
     BOOL shouldNormalize = [[NSUserDefaults standardUserDefaults] boolForKey:XCFDefaultsKeyXcodeIndentingEnabled];
-
+    
     if (!shouldNormalize) return;
     
     DVTSourceTextStorage *textStorage = [document textStorage];
@@ -353,11 +353,11 @@ NSString * XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSC
     
     IDESourceCodeDocument *document = [XCFXcodeFormatter currentSourceCodeDocument];
     if (!document) return;
-
+    
     NSURL *configurationFileURL = nil;
     
     NSString *selectedFormatter = [[NSUserDefaults standardUserDefaults] stringForKey:XCFDefaultsKeySelectedFormatter];
-
+    
     if ([selectedFormatter isEqualToString:XCFDefaultsFormatterValueClang]) {
         configurationFileURL = [XCFClangFormatter configurationFileURLForPresentedURL:document.fileURL];
     }

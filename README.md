@@ -6,6 +6,11 @@ Xcode plugin to format code using [Uncrustify](http://uncrustify.sourceforge.net
 
 ![preferences](http://f.cl.ly/items/1p3U2o1K1v361v0b1o1l/BBUncrustifyPlugin.png)
 
+## BBUncrustifyPlugin 2.1 (unreleased)
+
+#### New
+* Added Format on save option
+
 ## BBUncrustifyPlugin 2.0
 
 #### New
@@ -73,6 +78,10 @@ You can create keyboard shortcuts for the menu items in the [Keyboard Preference
 [Benoît Bourdon](https://github.com/benoitsan) ([@benoitsan](https://twitter.com/benoitsan)). Thanks to the [Contributors](https://github.com/benoitsan/BBUncrustifyPlugin-Xcode/graphs/contributors)!
 
 Additional contributors actually not listed [here](https://github.com/benoitsan/BBUncrustifyPlugin-Xcode/graphs/contributors): [Dominik Pich](https://github.com/Daij-Djan).
+
+#####Contributors
+
+[Dominik Pich](https://github.com/daij-djan) ([@daijdjan](https://twitter.com/daijdjan)).
 
 ## License
 

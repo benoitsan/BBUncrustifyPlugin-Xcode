@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5037.3" systemVersion="13B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1080" identifier="macosx"/>
         <development version="5000" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5037.3"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5053"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="XCFPreferencesWindowController">
@@ -21,14 +21,14 @@
         <window title="BBUncrustifyPlugin Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <windowPositionMask key="initialPositionMask" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="723" y="468" width="744" height="552"/>
+            <rect key="contentRect" x="723" y="468" width="744" height="651"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1178"/>
             <view key="contentView" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="744" height="552"/>
+                <rect key="frame" x="0.0" y="0.0" width="744" height="651"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button id="ROI-76-en4">
-                        <rect key="frame" x="261" y="456" width="268" height="18"/>
+                        <rect key="frame" x="259" y="580" width="268" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Perform Xcode syntax-aware indenting" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="KIz-RR-sES">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -39,7 +39,7 @@
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="qp3-iD-cbw">
-                        <rect key="frame" x="187" y="514" width="70" height="17"/>
+                        <rect key="frame" x="187" y="613" width="70" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Formatter:" id="Ltt-uL-fAo">
                             <font key="font" metaFont="system"/>
@@ -66,7 +66,7 @@
                         </textFieldCell>
                     </textField>
                     <popUpButton verticalHuggingPriority="750" id="V7p-Yf-qKM">
-                        <rect key="frame" x="261" y="508" width="145" height="26"/>
+                        <rect key="frame" x="261" y="607" width="145" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <popUpButtonCell key="cell" type="push" title="&lt;noloc>" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="RhK-Rd-M8i" id="Pnc-mQ-1bC">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -135,7 +135,7 @@
                         </connections>
                     </popUpButton>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="sxu-jQ-Ctx">
-                        <rect key="frame" x="70" y="457" width="187" height="17"/>
+                        <rect key="frame" x="68" y="581" width="187" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="When Formatting Completes:" id="OFn-43-SJq">
                             <font key="font" metaFont="system"/>
@@ -179,6 +179,13 @@
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <font key="titleFont" metaFont="system"/>
                     </box>
+                    <box autoresizesSubviews="NO" verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="RQ3-bd-mdP">
+                        <rect key="frame" x="20" y="523" width="704" height="5"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <font key="titleFont" metaFont="system"/>
+                    </box>
                     <box autoresizesSubviews="NO" verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="u6w-mi-luy">
                         <rect key="frame" x="20" y="337" width="704" height="5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -206,7 +213,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="I9f-3p-yQM">
-                        <rect key="frame" x="262" y="422" width="439" height="28"/>
+                        <rect key="frame" x="259" y="546" width="439" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="When enabled, the plugin re-indents the code using Xcode. It can cause conflicts with the rules defined by the formatter." id="MvY-zA-4ob">
                             <font key="font" metaFont="smallSystem"/>
@@ -255,16 +262,48 @@
                         </connections>
                     </button>
                     <button id="Vmj-wi-7Kz">
-                        <rect key="frame" x="261" y="483" width="119" height="18"/>
+                        <rect key="frame" x="257" y="486" width="308" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="Format on Save" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="21h-yP-xuP">
+                        <buttonCell key="cell" type="check" title="Perform Format on Save of a Source code File" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="21h-yP-xuP">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <binding destination="ec3-mP-p1p" name="value" keyPath="values.XCFFormatOnSaveEnabled" id="XjD-Eu-bCO"/>
+                            <binding destination="ec3-mP-p1p" name="value" keyPath="values.XCFFormatOnSaveEnabled" id="KcF-S5-xnF"/>
                         </connections>
                     </button>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="KBu-Ps-JhV">
+                        <rect key="frame" x="148" y="488" width="107" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Format On Save:" id="lht-1f-w39">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" id="jkq-3R-vZv">
+                        <rect key="frame" x="261" y="458" width="306" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="*" drawsBackground="YES" id="wud-af-MTu">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <binding destination="ec3-mP-p1p" name="enabled" keyPath="values.XCFFormatOnSaveEnabled" id="9Js-MZ-R38"/>
+                            <binding destination="ec3-mP-p1p" name="value" keyPath="values.XCFFormatOnSaveFiletypes" id="AWR-Yx-PGZ"/>
+                        </connections>
+                    </textField>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="YH6-AO-1S3">
+                        <rect key="frame" x="261" y="422" width="432" height="28"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="W2G-X8-yGG">
+                            <font key="font" metaFont="smallSystem"/>
+                            <string key="title">This is a list of file extensions that will be considered for formating when saved. Typically, this will list your C-Style Source files. </string>
+                            <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
             </view>
             <connections>
