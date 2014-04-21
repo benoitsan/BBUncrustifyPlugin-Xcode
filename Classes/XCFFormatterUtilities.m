@@ -4,6 +4,8 @@
 //
 
 #import "XCFFormatterUtilities.h"
+#import "XCFXcodeFormatter.h"
+#import "BBMacros.h"
 
 @interface XCFFormatterUtilities : NSObject
 
@@ -77,6 +79,11 @@
     dispatch_once(&onceToken, ^{
         NSMutableArray *array = [NSMutableArray array];
         
+        NSURL *currentWorkspaceFilePath = [XCFXcodeFormatter currentWorkspaceFilePath];
+        currentWorkspaceFilePath = [currentWorkspaceFilePath URLByDeletingLastPathComponent];
+        currentWorkspaceFilePath = [currentWorkspaceFilePath URLByAppendingPathComponent:@"uncrustify.cfg"];
+        [array addObject:currentWorkspaceFilePath];
+        
         NSURL *homeDirectoryURL = [NSURL fileURLWithPath:NSHomeDirectory()];
         for (NSString *lookupFilename in lookupFilenames) {
             [array addObject:[homeDirectoryURL URLByAppendingPathComponent:lookupFilename isDirectory:NO]];
@@ -90,7 +97,7 @@
         }
         
         alternateURLs = [array copy];
-        
+        BBLogReleaseWithLocation(@"alternateURLs: %@", alternateURLs);
     });
     
     return [XCFFormatterUtilities configurationFileURLForPresentedURL:presentedURL lookupFilenames:lookupFilenames alternateURLs:alternateURLs];

@@ -133,6 +133,7 @@
         
         NSPipe *errorPipe = NSPipe.pipe;
         
+        BBLogReleaseWithLocation(@"args: %@", args);
         NSTask *task = [[NSTask alloc] init];
         task.launchPath = executableURL.path;
         task.arguments = args;

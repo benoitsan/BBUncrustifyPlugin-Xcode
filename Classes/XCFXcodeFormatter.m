@@ -411,6 +411,11 @@ NSString * XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSC
     }
 }
 
++ (NSURL *)currentWorkspaceFilePath {
+    IDEWorkspaceDocument *document = [self currentWorkspaceDocument];
+    return document.workspace.representingFilePath.fileURL;
+}
+
 #pragma mark - Helpers
 
 + (id)currentEditor {
