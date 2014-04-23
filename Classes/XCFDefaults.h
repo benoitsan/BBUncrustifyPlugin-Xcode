@@ -11,6 +11,7 @@ extern NSString * const XCFDefaultsFormatterValueUncrustify;
 
 extern NSString * const XCFDefaultsKeyXcodeIndentingEnabled;
 extern NSString * const XCFDefaultsKeyFormatOnSaveEnabled;
+extern NSString * const XCFDefaultsKeyFormatOnSaveFiletypes;//a string which ; separater file extensions
 extern NSString * const XCFDefaultsKeyClangStyle;
 
 extern NSString * const XCFDefaultsKeyClangFactoryBasedStyle;
