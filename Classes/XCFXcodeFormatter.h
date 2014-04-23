@@ -25,4 +25,6 @@
 
 + (void)formatDocument:(IDESourceCodeDocument *)document withError:(NSError **)outError;
 
++ (NSURL *)currentWorkspaceFilePath;
+
 @end
