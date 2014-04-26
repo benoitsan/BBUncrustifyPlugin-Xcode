@@ -163,21 +163,34 @@
             
         }
         else {
-            if (outError) {
+            if (errorData) {
                 NSString *errorString = [[NSString alloc] initWithData:errorData encoding:NSUTF8StringEncoding];
                 if (errorString) {
                     // trick to avoid to have less verbose error messages.
                     errorString = [errorString stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@/",temporaryFolderURL.path] withString:@""];
+                    BBLogRelease(@"Uncrustify error — exit code %d (%@)", status, errorString);
                 }
-                else {
-                    errorString = NSLocalizedString(@"Unknown error while running the formatter.", nil);
-                }
-                NSDictionary *userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Uncrustify Formatter error:\n%@", nil), errorString]};
-                *outError = [NSError errorWithDomain:CFOErrorDomain code:CFOFormatterFailureError userInfo:userInfo];
             }
-            [[NSFileManager defaultManager] removeItemAtURL:temporaryFolderURL error:nil];
-            return nil;
+            else {
+                BBLogRelease(@"Uncrustify error — exit code %d", status);
+            }
         }
+//        else {
+//            if (outError) {
+//                NSString *errorString = [[NSString alloc] initWithData:errorData encoding:NSUTF8StringEncoding];
+//                if (errorString) {
+//                    // trick to avoid to have less verbose error messages.
+//                    errorString = [errorString stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@/",temporaryFolderURL.path] withString:@""];
+//                }
+//                else {
+//                    errorString = NSLocalizedString(@"Unknown error while running the formatter.", nil);
+//                }
+//                NSDictionary *userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Uncrustify Formatter error:\n%@", nil), errorString]};
+//                *outError = [NSError errorWithDomain:CFOErrorDomain code:CFOFormatterFailureError userInfo:userInfo];
+//            }
+//            [[NSFileManager defaultManager] removeItemAtURL:temporaryFolderURL error:nil];
+//            return nil;
+//        }
     }
     
     [[NSFileManager defaultManager] removeItemAtURL:temporaryFolderURL error:nil];
