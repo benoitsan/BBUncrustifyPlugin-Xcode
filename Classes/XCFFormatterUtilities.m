@@ -69,7 +69,7 @@
 
 + (NSURL *)configurationFileURLForPresentedURL:(NSURL *)presentedURL {
     
-    NSArray *lookupFilenames = @[@"uncrustify.cfg", @".uncrustifyconfig"];
+    NSArray *lookupFilenames = @[@"uncrustify.cfg", @"_uncrustify.cfg", @".uncrustify.cfg", @".uncrustifyconfig"];
 
     static NSArray *alternateURLs = nil;
     
@@ -82,7 +82,9 @@
             [array addObject:[homeDirectoryURL URLByAppendingPathComponent:lookupFilename isDirectory:NO]];
         }
         
-        [array addObject:[[homeDirectoryURL URLByAppendingPathComponent:@".uncrustify" isDirectory:YES] URLByAppendingPathComponent:@"uncrustify.cfg" isDirectory:NO]];
+        [array addObject:[[homeDirectoryURL URLByAppendingPathComponent:@".uncrustify"
+                                                            isDirectory:YES]
+                          URLByAppendingPathComponent:@"uncrustify.cfg" isDirectory:NO]];
         
         NSURL *builtInConfigurationFileURL = [[self class] builtinConfigurationFileURL];
         if (builtInConfigurationFileURL) {
