@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6154.21" systemVersion="13D65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1080" identifier="macosx"/>
         <development version="5000" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6154.21"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="XCFPreferencesWindowController">
@@ -201,13 +201,13 @@
                         <font key="titleFont" metaFont="system"/>
                     </box>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="ClM-zt-hRr">
-                        <rect key="frame" x="261" y="178" width="442" height="112"/>
+                        <rect key="frame" x="261" y="206" width="440" height="84"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" id="efP-zs-V45">
                             <font key="font" metaFont="smallSystem"/>
-                            <mutableString key="title">The configuration file must be located in the current directory or any parent directories of the source file. BBUncrustifyPlugin looks for the following file name patterns, in the order shown:
+                            <string key="title">The configuration file must be located in the current directory or any parent directories of the source file. BBUncrustifyPlugin looks for the following file name patterns, in the order shown:
 - For Clang: _clang-format, .clang-format
-- For Uncrustify: uncrustify.cfg, _uncrustify.cfg, .uncrustify.cfg, .uncrustifyconfig    In addition: your Home Folder and ~/.uncrustify/uncrustify.cfg</mutableString>
+- For Uncrustify: uncrustify.cfg, _uncrustify.cfg, .uncrustify.cfg, .uncrustifyconfig    In addition: your Home Folder and ~/.uncrustify/uncrustify.cfg</string>
                             <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
