@@ -10,12 +10,11 @@
 		14626CD618832E5100F5B23F /* XCFPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14626CD318832E5100F5B23F /* XCFPreferencesWindowController.m */; };
 		147572B9188BFEED00B3AF8D /* XCFClangFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 147572B8188BFEED00B3AF8D /* XCFClangFormatter.m */; };
 		147572BC188BFF0100B3AF8D /* XCFUncrustifyFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 147572BB188BFF0100B3AF8D /* XCFUncrustifyFormatter.m */; };
-		147572C4188C012900B3AF8D /* XCFPreferencesWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 147572C3188C012900B3AF8D /* XCFPreferencesWindowController.xib */; };
 		147572CB188C01AA00B3AF8D /* CFOFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 147572C6188C01AA00B3AF8D /* CFOFormatter.m */; };
 		147572CC188C01AA00B3AF8D /* CFOClangFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 147572C8188C01AA00B3AF8D /* CFOClangFormatter.m */; };
 		147572CD188C01AA00B3AF8D /* CFOUncrustifyFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 147572CA188C01AA00B3AF8D /* CFOUncrustifyFormatter.m */; };
 		14767CE6188C0E1400080F69 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14767CE5188C0E1400080F69 /* Sparkle.framework */; };
-		14767CE7188C0E1B00080F69 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 14767CE5188C0E1400080F69 /* Sparkle.framework */; };
+		14767CE7188C0E1B00080F69 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 14767CE5188C0E1400080F69 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		1486F51D188C06AF003483D5 /* clang-format in Resources */ = {isa = PBXBuildFile; fileRef = 1486F51C188C06AF003483D5 /* clang-format */; };
 		14910D4E188C0D1F005497C9 /* DiffMatchPatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 14910D42188C0D1F005497C9 /* DiffMatchPatch.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		14910D4F188C0D1F005497C9 /* DiffMatchPatchCFUtilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 14910D43188C0D1F005497C9 /* DiffMatchPatchCFUtilities.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -42,6 +41,7 @@
 		14BEA1C4188F107D000CC52B /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BEA1C3188F107D000CC52B /* JRSwizzle.m */; };
 		14C006C11884936A00488011 /* BBHyperLinkButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C006BF1884936A00488011 /* BBHyperLinkButtonCell.m */; };
 		14D323C21884980B00AB663E /* XCFDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D323C01884980500AB663E /* XCFDefaults.m */; };
+		5AE7611D19D22E6600DF8FDA /* XCFPreferencesWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 147572C3188C012900B3AF8D /* XCFPreferencesWindowController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -324,7 +324,7 @@
 		089C1669FE841209C02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0600;
 			};
 			buildConfigurationList = 1DEB913E08733D840010E9CD /* Build configuration list for PBXProject "BBUncrustifyPlugin" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -350,10 +350,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AE7611D19D22E6600DF8FDA /* XCFPreferencesWindowController.xib in Resources */,
 				149F2D6A183C073700DFB8CC /* uncrustify.cfg in Resources */,
 				1486F51D188C06AF003483D5 /* clang-format in Resources */,
 				149F2D6B183C073700DFB8CC /* uncrustify in Resources */,
-				147572C4188C012900B3AF8D /* XCFPreferencesWindowController.xib in Resources */,
 				149F2D6C183C073700DFB8CC /* sparkle_dsa_pub.pem in Resources */,
 				149F2D6D183C073700DFB8CC /* icon.icns in Resources */,
 			);
