@@ -306,7 +306,6 @@
 				149F2D60183C073700DFB8CC /* Frameworks */,
 				149F2D69183C073700DFB8CC /* Resources */,
 				149F2D6E183C073700DFB8CC /* Copy Frameworks */,
-				1453E76F183C0D2B00AA9236 /* Code Signing */,
 			);
 			buildRules = (
 			);
@@ -360,23 +359,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		1453E76F183C0D2B00AA9236 /* Code Signing */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Code Signing";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ \"${CODE_SIGN_IDENTITY}\" != \"\" ] &&[ \"${CONFIGURATION}\" = \"Release\" ]; then\necho \"signing identity: ${CODE_SIGN_IDENTITY}\"\ncd \"${TARGET_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Frameworks/\"\nexport CODESIGN_ALLOCATE=\"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/codesign_allocate\"\ncodesign -f -v -s \"${CODE_SIGN_IDENTITY}\" Sparkle.framework\ncd \"${TARGET_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Frameworks/Sparkle.framework/Versions/A/Resources/\"\ncodesign -f -v -s \"${CODE_SIGN_IDENTITY}\" finish_installation.app\ncd \"${TARGET_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources/\"\ncodesign -f -v -s \"${CODE_SIGN_IDENTITY}\" uncrustify\ncodesign -f -v -s \"${CODE_SIGN_IDENTITY}\" clang-format\nfi";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		149F2D5B183C073700DFB8CC /* Sources */ = {
