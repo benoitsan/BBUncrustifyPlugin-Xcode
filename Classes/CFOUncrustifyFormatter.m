@@ -84,7 +84,7 @@
         
         NSURL *configurationFileURL = self.configurationFileURL;
         
-        if (!isFragmented) {
+        if (isFragmented) {
             NSString *configuration = [[NSString alloc] initWithContentsOfURL:self.configurationFileURL encoding:NSUTF8StringEncoding error:&error];
             if (!configuration) {
                 if (outError) {
