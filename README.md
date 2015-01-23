@@ -37,6 +37,14 @@ PS: [This fork](https://github.com/1951FDG/BBUncrustifyPlugin-Xcode) works with 
 * Unzip and copy `UncrustifyPlugin.xcplugin` to `~/Library/Application Support/Developer/Shared/Xcode/Plug-ins`.
 * Relaunch Xcode after the copy.
 
+#### Script Version
+
+Run on Terminal:
+```shell
+
+curl -SL http://raw.githubusercontent.com/benoitsan/BBUncrustifyPlugin-Xcode/master/install.sh | sh
+```
+
 #### Build from Source
 
 * Build the Xcode project. The plug-in will automatically be installed in `~/Library/Application Support/Developer/Shared/Xcode/Plug-ins`. 
