@@ -193,9 +193,7 @@ NSString * const CFOClangDumpConfigurationOptionsStyle = @"style";
         }
         return nil;
     }
-	
-	NSLog(@"%@", fragments);
-    
+	    
     return [fragments copy];
 }
 
