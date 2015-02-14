@@ -42,7 +42,7 @@ PS: [This fork](https://github.com/1951FDG/BBUncrustifyPlugin-Xcode) works with 
 Run on Terminal:
 ```shell
 
-curl -SL http://raw.githubusercontent.com/benoitsan/BBUncrustifyPlugin-Xcode/master/install.sh | sh
+curl -SL https://raw.githubusercontent.com/benoitsan/BBUncrustifyPlugin-Xcode/master/install.sh | sh
 ```
 
 #### Build from Source
