@@ -21,6 +21,7 @@
  */
 
 #import "NSString+UnicharUtilities.h"
+#import "JXArcCompatibilityMacros.h"
 
 
 @implementation NSString (UnicharUtilities)
@@ -28,8 +29,7 @@
 + (NSString *)diff_stringFromUnichar:(unichar)ch;
 {
   CFStringRef c = CFStringCreateWithCharacters(kCFAllocatorDefault, &ch, 1);
-  CFMakeCollectable(c);
-  return [(NSString *)c autorelease];
+  return JX_TRANSFER_CF_TO_OBJC(NSString *, c);
 }
 
 - (NSString *)diff_substringWithCharacterAtIndex:(NSUInteger)anIndex;

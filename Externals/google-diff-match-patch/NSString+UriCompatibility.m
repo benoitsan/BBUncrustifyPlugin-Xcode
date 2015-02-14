@@ -21,6 +21,7 @@
  */
 
 #import "NSString+UriCompatibility.h"
+#import "JXArcCompatibilityMacros.h"
 
 
 @implementation NSString (UriCompatibility)
@@ -35,12 +36,11 @@
 - (NSString *)diff_stringByAddingPercentEscapesForEncodeUriCompatibility;
 {
   CFStringRef urlString = CFURLCreateStringByAddingPercentEscapes(NULL,
-                                  (CFStringRef)self,
+                                  JX_BRIDGED_CAST(CFStringRef, self),
                                   CFSTR(" !~*'();/?:@&=+$,#"),
                                   NULL,
                                   kCFStringEncodingUTF8);
-  CFMakeCollectable(urlString);
-  return [(NSString *)urlString autorelease];
+  return JX_TRANSFER_CF_TO_OBJC(NSString *, urlString);
 }
 
 /**
@@ -53,11 +53,10 @@
 - (NSString *)diff_stringByReplacingPercentEscapesForEncodeUriCompatibility;
 {
   CFStringRef decodedString = CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL, 
-                                            (CFStringRef)self, 
+                                            JX_BRIDGED_CAST(CFStringRef, self), 
                                             CFSTR(""), 
                                             kCFStringEncodingUTF8);
-  CFMakeCollectable(decodedString);
-  return [(NSString *)decodedString autorelease];
+  return JX_TRANSFER_CF_TO_OBJC(NSString *, decodedString);
 }
 
 @end

@@ -16,12 +16,12 @@
 		14767CE6188C0E1400080F69 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14767CE5188C0E1400080F69 /* Sparkle.framework */; };
 		14767CE7188C0E1B00080F69 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 14767CE5188C0E1400080F69 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		1486F51D188C06AF003483D5 /* clang-format in Resources */ = {isa = PBXBuildFile; fileRef = 1486F51C188C06AF003483D5 /* clang-format */; };
-		14910D4E188C0D1F005497C9 /* DiffMatchPatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 14910D42188C0D1F005497C9 /* DiffMatchPatch.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		14910D4F188C0D1F005497C9 /* DiffMatchPatchCFUtilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 14910D43188C0D1F005497C9 /* DiffMatchPatchCFUtilities.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		14910D50188C0D1F005497C9 /* NSMutableDictionary+DMPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 14910D47188C0D1F005497C9 /* NSMutableDictionary+DMPExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		14910D51188C0D1F005497C9 /* NSString+JavaSubstring.m in Sources */ = {isa = PBXBuildFile; fileRef = 14910D49188C0D1F005497C9 /* NSString+JavaSubstring.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		14910D52188C0D1F005497C9 /* NSString+UnicharUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 14910D4B188C0D1F005497C9 /* NSString+UnicharUtilities.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		14910D53188C0D1F005497C9 /* NSString+UriCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 14910D4D188C0D1F005497C9 /* NSString+UriCompatibility.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		14887AD51A90133B001B332A /* DiffMatchPatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 14887AC81A90133B001B332A /* DiffMatchPatch.m */; };
+		14887AD61A90133B001B332A /* DiffMatchPatchCFUtilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 14887AC91A90133B001B332A /* DiffMatchPatchCFUtilities.c */; };
+		14887AD71A90133B001B332A /* NSMutableDictionary+DMPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 14887ACE1A90133B001B332A /* NSMutableDictionary+DMPExtensions.m */; };
+		14887AD81A90133B001B332A /* NSString+JavaSubstring.m in Sources */ = {isa = PBXBuildFile; fileRef = 14887AD01A90133B001B332A /* NSString+JavaSubstring.m */; };
+		14887AD91A90133B001B332A /* NSString+UnicharUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 14887AD21A90133B001B332A /* NSString+UnicharUtilities.m */; };
+		14887ADA1A90133B001B332A /* NSString+UriCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 14887AD41A90133B001B332A /* NSString+UriCompatibility.m */; };
 		149F2D5C183C073700DFB8CC /* XCFPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = DA37E2DB0E6291C8001BDFEF /* XCFPlugin.m */; };
 		149F2D5E183C073700DFB8CC /* XCFXcodeFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 141251A116F4AA8600A18D23 /* XCFXcodeFormatter.m */; };
 		149F2D5F183C073700DFB8CC /* BBPluginUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 1414D3C7171163CA002378C0 /* BBPluginUpdater.m */; };
@@ -87,19 +87,20 @@
 		14767CE5188C0E1400080F69 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Externals/Sparkle.framework; sourceTree = "<group>"; };
 		14855EE9188F155200BD9C40 /* BBMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBMacros.h; sourceTree = "<group>"; };
 		1486F51C188C06AF003483D5 /* clang-format */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "clang-format"; sourceTree = "<group>"; };
-		14910D41188C0D1F005497C9 /* DiffMatchPatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiffMatchPatch.h; sourceTree = "<group>"; };
-		14910D42188C0D1F005497C9 /* DiffMatchPatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiffMatchPatch.m; sourceTree = "<group>"; };
-		14910D43188C0D1F005497C9 /* DiffMatchPatchCFUtilities.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = DiffMatchPatchCFUtilities.c; sourceTree = "<group>"; };
-		14910D44188C0D1F005497C9 /* DiffMatchPatchCFUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiffMatchPatchCFUtilities.h; sourceTree = "<group>"; };
-		14910D45188C0D1F005497C9 /* MinMaxMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinMaxMacros.h; sourceTree = "<group>"; };
-		14910D46188C0D1F005497C9 /* NSMutableDictionary+DMPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+DMPExtensions.h"; sourceTree = "<group>"; };
-		14910D47188C0D1F005497C9 /* NSMutableDictionary+DMPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+DMPExtensions.m"; sourceTree = "<group>"; };
-		14910D48188C0D1F005497C9 /* NSString+JavaSubstring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+JavaSubstring.h"; sourceTree = "<group>"; };
-		14910D49188C0D1F005497C9 /* NSString+JavaSubstring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+JavaSubstring.m"; sourceTree = "<group>"; };
-		14910D4A188C0D1F005497C9 /* NSString+UnicharUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+UnicharUtilities.h"; sourceTree = "<group>"; };
-		14910D4B188C0D1F005497C9 /* NSString+UnicharUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+UnicharUtilities.m"; sourceTree = "<group>"; };
-		14910D4C188C0D1F005497C9 /* NSString+UriCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+UriCompatibility.h"; sourceTree = "<group>"; };
-		14910D4D188C0D1F005497C9 /* NSString+UriCompatibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+UriCompatibility.m"; sourceTree = "<group>"; };
+		14887AC71A90133B001B332A /* DiffMatchPatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiffMatchPatch.h; sourceTree = "<group>"; };
+		14887AC81A90133B001B332A /* DiffMatchPatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiffMatchPatch.m; sourceTree = "<group>"; };
+		14887AC91A90133B001B332A /* DiffMatchPatchCFUtilities.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = DiffMatchPatchCFUtilities.c; sourceTree = "<group>"; };
+		14887ACA1A90133B001B332A /* DiffMatchPatchCFUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiffMatchPatchCFUtilities.h; sourceTree = "<group>"; };
+		14887ACB1A90133B001B332A /* JXArcCompatibilityMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXArcCompatibilityMacros.h; sourceTree = "<group>"; };
+		14887ACC1A90133B001B332A /* MinMaxMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinMaxMacros.h; sourceTree = "<group>"; };
+		14887ACD1A90133B001B332A /* NSMutableDictionary+DMPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+DMPExtensions.h"; sourceTree = "<group>"; };
+		14887ACE1A90133B001B332A /* NSMutableDictionary+DMPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+DMPExtensions.m"; sourceTree = "<group>"; };
+		14887ACF1A90133B001B332A /* NSString+JavaSubstring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+JavaSubstring.h"; sourceTree = "<group>"; };
+		14887AD01A90133B001B332A /* NSString+JavaSubstring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+JavaSubstring.m"; sourceTree = "<group>"; };
+		14887AD11A90133B001B332A /* NSString+UnicharUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+UnicharUtilities.h"; sourceTree = "<group>"; };
+		14887AD21A90133B001B332A /* NSString+UnicharUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+UnicharUtilities.m"; sourceTree = "<group>"; };
+		14887AD31A90133B001B332A /* NSString+UriCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+UriCompatibility.h"; sourceTree = "<group>"; };
+		14887AD41A90133B001B332A /* NSString+UriCompatibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+UriCompatibility.m"; sourceTree = "<group>"; };
 		149B117816F483D3000F9C01 /* XCFXcodeFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCFXcodeFormatter.h; sourceTree = "<group>"; };
 		149F2D72183C073700DFB8CC /* UncrustifyPlugin.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UncrustifyPlugin.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		14A54E4B188AE09400B154C6 /* XCFXcodePrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XCFXcodePrivate.h; sourceTree = "<group>"; };
@@ -261,19 +262,20 @@
 		14910D40188C0D11005497C9 /* google-diff-match-patch */ = {
 			isa = PBXGroup;
 			children = (
-				14910D41188C0D1F005497C9 /* DiffMatchPatch.h */,
-				14910D42188C0D1F005497C9 /* DiffMatchPatch.m */,
-				14910D43188C0D1F005497C9 /* DiffMatchPatchCFUtilities.c */,
-				14910D44188C0D1F005497C9 /* DiffMatchPatchCFUtilities.h */,
-				14910D45188C0D1F005497C9 /* MinMaxMacros.h */,
-				14910D46188C0D1F005497C9 /* NSMutableDictionary+DMPExtensions.h */,
-				14910D47188C0D1F005497C9 /* NSMutableDictionary+DMPExtensions.m */,
-				14910D48188C0D1F005497C9 /* NSString+JavaSubstring.h */,
-				14910D49188C0D1F005497C9 /* NSString+JavaSubstring.m */,
-				14910D4A188C0D1F005497C9 /* NSString+UnicharUtilities.h */,
-				14910D4B188C0D1F005497C9 /* NSString+UnicharUtilities.m */,
-				14910D4C188C0D1F005497C9 /* NSString+UriCompatibility.h */,
-				14910D4D188C0D1F005497C9 /* NSString+UriCompatibility.m */,
+				14887AC71A90133B001B332A /* DiffMatchPatch.h */,
+				14887AC81A90133B001B332A /* DiffMatchPatch.m */,
+				14887AC91A90133B001B332A /* DiffMatchPatchCFUtilities.c */,
+				14887ACA1A90133B001B332A /* DiffMatchPatchCFUtilities.h */,
+				14887ACB1A90133B001B332A /* JXArcCompatibilityMacros.h */,
+				14887ACC1A90133B001B332A /* MinMaxMacros.h */,
+				14887ACD1A90133B001B332A /* NSMutableDictionary+DMPExtensions.h */,
+				14887ACE1A90133B001B332A /* NSMutableDictionary+DMPExtensions.m */,
+				14887ACF1A90133B001B332A /* NSString+JavaSubstring.h */,
+				14887AD01A90133B001B332A /* NSString+JavaSubstring.m */,
+				14887AD11A90133B001B332A /* NSString+UnicharUtilities.h */,
+				14887AD21A90133B001B332A /* NSString+UnicharUtilities.m */,
+				14887AD31A90133B001B332A /* NSString+UriCompatibility.h */,
+				14887AD41A90133B001B332A /* NSString+UriCompatibility.m */,
 			);
 			path = "google-diff-match-patch";
 			sourceTree = "<group>";
@@ -367,24 +369,24 @@
 			files = (
 				149F2D5C183C073700DFB8CC /* XCFPlugin.m in Sources */,
 				14D323C21884980B00AB663E /* XCFDefaults.m in Sources */,
-				14910D50188C0D1F005497C9 /* NSMutableDictionary+DMPExtensions.m in Sources */,
 				14A54E55188AF61900B154C6 /* XCFFormatterUtilities.m in Sources */,
+				14887ADA1A90133B001B332A /* NSString+UriCompatibility.m in Sources */,
 				147572CB188C01AA00B3AF8D /* CFOFormatter.m in Sources */,
 				147572B9188BFEED00B3AF8D /* XCFClangFormatter.m in Sources */,
-				14910D4E188C0D1F005497C9 /* DiffMatchPatch.m in Sources */,
 				14626CD618832E5100F5B23F /* XCFPreferencesWindowController.m in Sources */,
 				149F2D5E183C073700DFB8CC /* XCFXcodeFormatter.m in Sources */,
-				14910D51188C0D1F005497C9 /* NSString+JavaSubstring.m in Sources */,
-				14910D52188C0D1F005497C9 /* NSString+UnicharUtilities.m in Sources */,
+				14887AD61A90133B001B332A /* DiffMatchPatchCFUtilities.c in Sources */,
+				14887AD71A90133B001B332A /* NSMutableDictionary+DMPExtensions.m in Sources */,
 				149F2D5F183C073700DFB8CC /* BBPluginUpdater.m in Sources */,
+				14887AD51A90133B001B332A /* DiffMatchPatch.m in Sources */,
 				14C006C11884936A00488011 /* BBHyperLinkButtonCell.m in Sources */,
+				14887AD91A90133B001B332A /* NSString+UnicharUtilities.m in Sources */,
 				147572CC188C01AA00B3AF8D /* CFOClangFormatter.m in Sources */,
+				14887AD81A90133B001B332A /* NSString+JavaSubstring.m in Sources */,
 				14BEA1C4188F107D000CC52B /* JRSwizzle.m in Sources */,
-				14910D4F188C0D1F005497C9 /* DiffMatchPatchCFUtilities.c in Sources */,
 				14BEA1C1188F0EC2000CC52B /* NSDocument+XCFAdditions.m in Sources */,
 				147572BC188BFF0100B3AF8D /* XCFUncrustifyFormatter.m in Sources */,
 				147572CD188C01AA00B3AF8D /* CFOUncrustifyFormatter.m in Sources */,
-				14910D53188C0D1F005497C9 /* NSString+UriCompatibility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
