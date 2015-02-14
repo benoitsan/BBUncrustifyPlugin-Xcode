@@ -128,6 +128,31 @@ NSString * const CFOClangDumpConfigurationOptionsStyle = @"style";
                 j += diff.text.length;
             }
             else if (diff.operation == DIFF_EQUAL) {
+				// ---
+				/* 
+				 This step could be ignored without breaking the formatter but is here to work *like* the uncrustify 
+				 formatter when dealing with input ranges.
+				 It's needed to be able to update the text selection after the formatting to select the previous selected scope
+				 plus or minus the modified range.
+				 In Uncrustify formatter, for each input range, there is ONE and ONLY ONE corresponding fragment. It means
+				 that the previous selected range will be the range of the new fragment.
+				 For Clang, it's not the case because we DIFF the changes and we can have multiple fragments for
+				 1 input range and these ranges are only the changed ranges. 
+				 So if we return only the changes, this causes issues to be able to adapt the text selection
+				 after the formatting where only the changes are selected. So here, we add the unchanged text if the text
+				 is in the input ranges.
+				*/
+				NSRange diffRange = NSMakeRange(j, diff.text.length);
+				for (NSValue *rangeValue in normalizedRanges) {
+					NSRange range = [rangeValue rangeValue];
+					NSRange intersectionRange = NSIntersectionRange(range, diffRange);
+					if (intersectionRange.length != 0) {
+						CFOFragment *fragment = [CFOFragment fragmentWithInputRange:intersectionRange string:[self.inputString substringWithRange:intersectionRange]];
+						[replacementFragments addObject:fragment];
+					}
+				}
+				// ---
+				
                 j += diff.text.length;
             }
         }
@@ -168,6 +193,8 @@ NSString * const CFOClangDumpConfigurationOptionsStyle = @"style";
         }
         return nil;
     }
+	
+	NSLog(@"%@", fragments);
     
     return [fragments copy];
 }
