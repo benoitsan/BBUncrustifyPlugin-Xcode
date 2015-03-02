@@ -224,7 +224,7 @@
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="jTV-bl-nOE">
                         <rect key="frame" x="261" y="125" width="393" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="UncrustifyX is a Mac Application to edit an test Uncrustify configurations." id="aeD-29-jvY">
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="UncrustifyX is a Mac Application to edit and test Uncrustify configurations." id="aeD-29-jvY">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
