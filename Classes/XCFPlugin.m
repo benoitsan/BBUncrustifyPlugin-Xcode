@@ -7,8 +7,14 @@
 #import "XCFXcodeFormatter.h"
 #import "XCFDefaults.h"
 #import "XCFPreferencesWindowController.h"
+#import "XCFLoggingDefines.h"
+#import "XCFLoggingUtilities.h"
 #import "BBPluginUpdater.h"
 #import "BBMacros.h"
+
+@import CoreServices;
+
+DDLogLevel ddLogLevel;
 
 @interface XCFPlugin()
 @property (nonatomic, readonly) XCFPreferencesWindowController *preferencesWindowController;
@@ -30,16 +36,11 @@ static XCFPlugin *sharedPlugin = nil;
     });
 }
 
-- (XCFPreferencesWindowController *)preferencesWindowController {
-    if (!_preferencesWindowController) {
-        _preferencesWindowController = [[XCFPreferencesWindowController alloc] init];
-    }
-    return _preferencesWindowController;
-}
-
 - (id)init {
     self  = [super init];
     if (self) {
+		[XCFLoggingUtilities setUpLogger];
+		
         NSMenuItem *editMenuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
         if (editMenuItem) {
             [[editMenuItem submenu] addItem:[NSMenuItem separatorItem]];
@@ -69,6 +70,10 @@ static XCFPlugin *sharedPlugin = nil;
             [menuItem setTarget:self];
             [formatCodeMenu addItem:menuItem];
 
+			menuItem = [[NSMenuItem alloc] initWithTitle:@"View Log" action:@selector(viewLog:) keyEquivalent:@""];
+			[menuItem setTarget:self];
+			[formatCodeMenu addItem:menuItem];
+			
             NSMenuItem *formatCodeMenuItem = [[NSMenuItem alloc] initWithTitle:@"Format Code" action:nil keyEquivalent:@""];
             [formatCodeMenuItem setSubmenu:formatCodeMenu];
             [[editMenuItem submenu] addItem:formatCodeMenuItem];
@@ -136,6 +141,22 @@ static XCFPlugin *sharedPlugin = nil;
 
 - (IBAction)showPreferences:(id)sender {
     [self.preferencesWindowController showWindow:nil];
+}
+
+- (IBAction)viewLog:(id)sender {
+	NSURL *logFileURL = [XCFLoggingUtilities mostRecentLogFileURL];
+	if (logFileURL) {
+		[[NSWorkspace sharedWorkspace] openURL:logFileURL];
+	}
+}
+
+#pragma mark - Internal
+
+- (XCFPreferencesWindowController *)preferencesWindowController {
+	if (!_preferencesWindowController) {
+		_preferencesWindowController = [[XCFPreferencesWindowController alloc] init];
+	}
+	return _preferencesWindowController;
 }
 
 #pragma mark - NSMenuValidation
