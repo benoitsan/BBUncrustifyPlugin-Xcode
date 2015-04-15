@@ -8,6 +8,8 @@
 
 #import "DDFileLogger.h"
 
+extern NSString * const XCFLoggingFileApplicationName;
+
 @interface XCFLogFileManager : DDLogFileManagerDefault
 
 @end

@@ -6,6 +6,7 @@
 #import "CFOClangFormatter.h"
 #import "DiffMatchPatch.h"
 #import "BBMacros.h"
+#import "BBLogging.h"
 
 NSString * const CFOClangStyleFile = @"file";
 NSString * const CFOClangStylePredefinedLLVM = @"LLVM";
@@ -86,7 +87,7 @@ NSString * const CFOClangDumpConfigurationOptionsStyle = @"style";
     NSDate *terminateDate = [[NSDate date] dateByAddingTimeInterval:2.0];
     while ([task isRunning])   {
         if ([[NSDate date] compare:terminateDate] == NSOrderedDescending)   {
-            BBLogRelease(@"Error: terminating task with timeout.");
+            DDLogVerbose(@"Error: terminating task with timeout.");
             [task terminate];
             taskTimeOutReached = YES;
         }
@@ -102,7 +103,7 @@ NSString * const CFOClangDumpConfigurationOptionsStyle = @"style";
         
         if (errorData.length > 0) {
             NSString *warning = [[NSString alloc] initWithData:errorData encoding:NSUTF8StringEncoding];
-            BBLogRelease(@"Parser Warning: %@", warning);
+            DDLogVerbose(@"Parser Warning: %@", warning);
         }
         
         
@@ -243,7 +244,7 @@ NSString * const CFOClangDumpConfigurationOptionsStyle = @"style";
         
         if (errorData.length > 0) {
             NSString *warning = [[NSString alloc] initWithData:errorData encoding:NSUTF8StringEncoding];
-            BBLogRelease(@"Parser Warning: %@", warning);
+            DDLogVerbose(@"Parser Warning: %@", warning);
         }
         
         return outputData;

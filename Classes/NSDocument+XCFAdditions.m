@@ -9,6 +9,7 @@
 #import "XCFXcodeFormatter.h"
 #import "JRSwizzle.h"
 #import "BBMacros.h"
+#import "BBLogging.h"
 
 @implementation NSDocument (XCFAdditions)
 
@@ -17,7 +18,7 @@
 + (void)load {
     NSError *error = nil;
     if (![self jr_swizzleMethod:@selector(saveDocumentWithDelegate:didSaveSelector:contextInfo:) withMethod:@selector(xcf_saveDocumentWithDelegate:didSaveSelector:contextInfo:) error:&error]) {
-        BBLogReleaseWithLocation(@"%@", error);
+        DDLogVerbose(@"%@", error);
     }
     
 }
@@ -50,7 +51,7 @@
     NSError *error;
     [XCFXcodeFormatter formatDocument:document withError:&error];
     if (error) {
-        BBLogReleaseWithLocation(@"%@", error);
+        DDLogVerbose(@"%@", error);
     }
 //    NSLog(@"Formatted %@: %@", self.fileURL, error ? error : @"OK");
 }

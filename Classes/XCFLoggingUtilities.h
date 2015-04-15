@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "XCFLoggingDefines.h"
+#import "BBLogging.h"
 
 @interface XCFLoggingUtilities : NSObject
 

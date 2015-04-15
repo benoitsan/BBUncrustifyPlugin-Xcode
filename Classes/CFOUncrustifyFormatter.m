@@ -6,6 +6,7 @@
 #import "CFOUncrustifyFormatter.h"
 #import <Cocoa/Cocoa.h>
 #import "BBMacros.h"
+#import "BBLogging.h"
 
 @implementation CFOUncrustifyFormatter
 
@@ -168,11 +169,11 @@
                 if (errorString) {
                     // trick to avoid to have less verbose error messages.
                     errorString = [errorString stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@/",temporaryFolderURL.path] withString:@""];
-                    BBLogRelease(@"Uncrustify error — exit code %d (%@)", status, errorString);
+                    DDLogVerbose(@"Uncrustify error — exit code %d (%@)", status, errorString);
                 }
             }
             else {
-                BBLogRelease(@"Uncrustify error — exit code %d", status);
+                DDLogVerbose(@"Uncrustify error — exit code %d", status);
             }
         }
 //        else {
@@ -273,7 +274,7 @@
         
         if (errorData.length > 0) {
             NSString *warning = [[NSString alloc] initWithData:errorData encoding:NSUTF8StringEncoding];
-            BBLogRelease(@"Parser Warning: %@", warning);
+            DDLogVerbose(@"Parser Warning: %@", warning);
         }
         
         return outputData;

@@ -7,7 +7,8 @@
 //
 
 #import "XCFLogFileManager.h"
-#import "XCFLoggingDefines.h"
+
+NSString * const XCFLoggingFileApplicationName = @"BBUncrustifyLogging";
 
 @interface XCFLogFileManager()
 @property (nonatomic) NSDateFormatter *loggingFileDateFormatter;

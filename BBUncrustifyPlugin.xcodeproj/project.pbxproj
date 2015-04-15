@@ -19,7 +19,6 @@
 		1407F2651ADEFABB00AEC2B3 /* DDMultiFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1407F25A1ADEFABB00AEC2B3 /* DDMultiFormatter.m */; };
 		14464E251ADF08050085D1C9 /* XCFLogFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14464E241ADF08050085D1C9 /* XCFLogFileManager.m */; };
 		14464E2B1ADF0A3D0085D1C9 /* XCFLoggingUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 14464E2A1ADF0A3D0085D1C9 /* XCFLoggingUtilities.m */; };
-		14464E2E1ADF0A890085D1C9 /* XCFLoggingDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 14464E2D1ADF0A890085D1C9 /* XCFLoggingDefines.m */; };
 		14626CD618832E5100F5B23F /* XCFPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14626CD318832E5100F5B23F /* XCFPreferencesWindowController.m */; };
 		147572B9188BFEED00B3AF8D /* XCFClangFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 147572B8188BFEED00B3AF8D /* XCFClangFormatter.m */; };
 		147572BC188BFF0100B3AF8D /* XCFUncrustifyFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 147572BB188BFF0100B3AF8D /* XCFUncrustifyFormatter.m */; };
@@ -108,8 +107,7 @@
 		14464E241ADF08050085D1C9 /* XCFLogFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCFLogFileManager.m; sourceTree = "<group>"; };
 		14464E291ADF0A3D0085D1C9 /* XCFLoggingUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCFLoggingUtilities.h; sourceTree = "<group>"; };
 		14464E2A1ADF0A3D0085D1C9 /* XCFLoggingUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCFLoggingUtilities.m; sourceTree = "<group>"; };
-		14464E2C1ADF0A890085D1C9 /* XCFLoggingDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCFLoggingDefines.h; sourceTree = "<group>"; };
-		14464E2D1ADF0A890085D1C9 /* XCFLoggingDefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCFLoggingDefines.m; sourceTree = "<group>"; };
+		14464E2C1ADF0A890085D1C9 /* BBLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBLogging.h; sourceTree = "<group>"; };
 		14617B2F16FD9BDB00C7C91B /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTKit.framework; path = "/Users/benoit/Desktop/BBUncrustifyPlugin-Xcode/../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTKit.framework"; sourceTree = "<absolute>"; };
 		14617B3016FD9BDB00C7C91B /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTFoundation.framework; path = ../../../../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework; sourceTree = "<group>"; };
 		14617B3116FD9BDB00C7C91B /* IDEFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEFoundation.framework; path = ../../../../../../../Applications/Xcode.app/Contents/Frameworks/IDEFoundation.framework; sourceTree = "<group>"; };
@@ -378,8 +376,7 @@
 		1497D7EE1ADF0B910019E1C0 /* Logger */ = {
 			isa = PBXGroup;
 			children = (
-				14464E2C1ADF0A890085D1C9 /* XCFLoggingDefines.h */,
-				14464E2D1ADF0A890085D1C9 /* XCFLoggingDefines.m */,
+				14464E2C1ADF0A890085D1C9 /* BBLogging.h */,
 				14464E291ADF0A3D0085D1C9 /* XCFLoggingUtilities.h */,
 				14464E2A1ADF0A3D0085D1C9 /* XCFLoggingUtilities.m */,
 				14464E231ADF08050085D1C9 /* XCFLogFileManager.h */,
@@ -501,7 +498,6 @@
 				14C006C11884936A00488011 /* BBHyperLinkButtonCell.m in Sources */,
 				14887AD91A90133B001B332A /* NSString+UnicharUtilities.m in Sources */,
 				147572CC188C01AA00B3AF8D /* CFOClangFormatter.m in Sources */,
-				14464E2E1ADF0A890085D1C9 /* XCFLoggingDefines.m in Sources */,
 				14887AD81A90133B001B332A /* NSString+JavaSubstring.m in Sources */,
 				1407F25E1ADEFABB00AEC2B3 /* DDASLLogCapture.m in Sources */,
 				14BEA1C4188F107D000CC52B /* JRSwizzle.m in Sources */,

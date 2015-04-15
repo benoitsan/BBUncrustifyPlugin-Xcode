@@ -7,10 +7,10 @@
 #import "XCFXcodeFormatter.h"
 #import "XCFDefaults.h"
 #import "XCFPreferencesWindowController.h"
-#import "XCFLoggingDefines.h"
 #import "XCFLoggingUtilities.h"
 #import "BBPluginUpdater.h"
 #import "BBMacros.h"
+#import "BBLogging.h"
 
 @import CoreServices;
 
@@ -80,7 +80,7 @@ static XCFPlugin *sharedPlugin = nil;
 
             [BBPluginUpdater sharedUpdater].delegate = self;
             
-            BBLogRelease(@"Version %@ loaded", [[[NSBundle bundleForClass:[self class]] infoDictionary] objectForKey:@"CFBundleVersion"]);
+            DDLogVerbose(@"Version %@ loaded", [[[NSBundle bundleForClass:[self class]] infoDictionary] objectForKey:@"CFBundleVersion"]);
         }
     }
     return self;
