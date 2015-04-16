@@ -71,7 +71,15 @@ NSString * const CFOClangDumpConfigurationOptionsStyle = @"style";
     NSTask *task = [[NSTask alloc] init];
     task.launchPath = executableURL.path;
     task.arguments = args;
-    
+	// When using -style=file to load style configuration, clang searches the config in one of the parent directories of the current directory for stdin).
+	if (self.presentedURL.path) {
+		NSURL *currentDirectoryURL = [self.presentedURL URLByDeletingLastPathComponent];
+		NSNumber *isDirectoryValue = nil;
+		[currentDirectoryURL getResourceValue:&isDirectoryValue forKey:NSURLIsDirectoryKey error:nil];
+		if (isDirectoryValue.boolValue) { // setting a non directory url generates an exception
+			task.currentDirectoryPath = currentDirectoryURL.path;
+		}
+	}
     task.standardInput = inputPipe;
     task.standardOutput = outputPipe;
     task.standardError = errorPipe;
