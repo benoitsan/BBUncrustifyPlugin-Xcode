@@ -87,7 +87,7 @@ NSString * const CFOClangDumpConfigurationOptionsStyle = @"style";
     NSDate *terminateDate = [[NSDate date] dateByAddingTimeInterval:2.0];
     while ([task isRunning])   {
         if ([[NSDate date] compare:terminateDate] == NSOrderedDescending)   {
-            DDLogVerbose(@"Error: terminating task with timeout.");
+            DDLogError(@"Error: terminating task with timeout.");
             [task terminate];
             taskTimeOutReached = YES;
         }
@@ -103,7 +103,7 @@ NSString * const CFOClangDumpConfigurationOptionsStyle = @"style";
         
         if (errorData.length > 0) {
             NSString *warning = [[NSString alloc] initWithData:errorData encoding:NSUTF8StringEncoding];
-            DDLogVerbose(@"Parser Warning: %@", warning);
+            DDLogError(@"Parser Warning: %@", warning);
         }
         
         
@@ -244,7 +244,7 @@ NSString * const CFOClangDumpConfigurationOptionsStyle = @"style";
         
         if (errorData.length > 0) {
             NSString *warning = [[NSString alloc] initWithData:errorData encoding:NSUTF8StringEncoding];
-            DDLogVerbose(@"Parser Warning: %@", warning);
+            DDLogError(@"Parser Warning: %@", warning);
         }
         
         return outputData;

@@ -169,11 +169,11 @@
                 if (errorString) {
                     // trick to avoid to have less verbose error messages.
                     errorString = [errorString stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@/",temporaryFolderURL.path] withString:@""];
-                    DDLogVerbose(@"Uncrustify error — exit code %d (%@)", status, errorString);
+                    DDLogError(@"Uncrustify error — exit code %d (%@)", status, errorString);
                 }
             }
             else {
-                DDLogVerbose(@"Uncrustify error — exit code %d", status);
+                DDLogError(@"Uncrustify error — exit code %d", status);
             }
         }
 //        else {
@@ -274,7 +274,7 @@
         
         if (errorData.length > 0) {
             NSString *warning = [[NSString alloc] initWithData:errorData encoding:NSUTF8StringEncoding];
-            DDLogVerbose(@"Parser Warning: %@", warning);
+            DDLogError(@"Parser Warning: %@", warning);
         }
         
         return outputData;

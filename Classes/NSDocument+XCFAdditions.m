@@ -18,7 +18,7 @@
 + (void)load {
     NSError *error = nil;
     if (![self jr_swizzleMethod:@selector(saveDocumentWithDelegate:didSaveSelector:contextInfo:) withMethod:@selector(xcf_saveDocumentWithDelegate:didSaveSelector:contextInfo:) error:&error]) {
-        DDLogVerbose(@"%@", error);
+        DDLogError(@"swizzling error %@", error);
     }
     
 }
@@ -51,7 +51,7 @@
     NSError *error;
     [XCFXcodeFormatter formatDocument:document withError:&error];
     if (error) {
-        DDLogVerbose(@"%@", error);
+        DDLogError(@"%@", error);
     }
 //    NSLog(@"Formatted %@: %@", self.fileURL, error ? error : @"OK");
 }

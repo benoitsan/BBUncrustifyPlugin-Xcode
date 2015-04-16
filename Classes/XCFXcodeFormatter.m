@@ -9,6 +9,7 @@
 #import "XCFUncrustifyFormatter.h"
 #import "XCFFormatterUtilities.h"
 #import "XCFDefaults.h"
+#import "BBLogging.h"
 
 static NSString * const XCFUncrustifyXIdentifier = @"nz.co.xwell.UncrustifyX";
 
@@ -45,28 +46,6 @@ NSString * XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSC
             enumerationBlock(document.fileURL, error, &stop);
         }
         if (stop) {
-            break;
-        }
-    }
-}
-
-+ (void)formatSelectedFilesWithError:(NSError **)outError {
-    NSArray *fileNavigableItems = [XCFXcodeFormatter selectedSourceCodeFileNavigableItems];
-    IDEWorkspace *currentWorkspace = [XCFXcodeFormatter currentWorkspaceDocument].workspace;
-    for (IDEFileNavigableItem *fileNavigableItem in fileNavigableItems) {
-        NSError *error = nil;
-        NSDocument *document = [IDEDocumentController retainedEditorDocumentForNavigableItem:fileNavigableItem error:nil];
-        if ([document isKindOfClass:NSClassFromString(@"IDESourceCodeDocument")]) {
-            IDESourceCodeDocument *sourceCodeDocument = (IDESourceCodeDocument *)document;
-            [XCFXcodeFormatter formatCodeOfDocument:sourceCodeDocument inWorkspace:currentWorkspace error:&error];
-            //[document saveDocument:nil];
-        }
-        [IDEDocumentController releaseEditorDocument:document];
-        
-        if (error) {
-            if (outError) {
-                *outError = error;
-            }
             break;
         }
     }
@@ -152,6 +131,15 @@ NSString * XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSC
     if ([selectedFormatter isEqualToString:XCFDefaultsFormatterValueClang]) {
         XCFClangFormatter *formatter = [[XCFClangFormatter alloc] initWithInputString:inputString presentedURL:presentedURL];
         formatter.style = [[NSUserDefaults standardUserDefaults] stringForKey:XCFDefaultsKeyClangStyle];
+		
+		if ([[[NSUserDefaults standardUserDefaults] stringForKey:XCFDefaultsKeyClangStyle] isEqualToString:CFOClangStyleFile]) {
+			NSURL *configurationFileURL = [XCFClangFormatter configurationFileURLForPresentedURL:presentedURL];
+			DDLogVerbose(@"Formatting using Clang Format at path “%@“ with configuration at path “%@“", [[formatter class] resolvedExecutableURLWithError:nil].path, configurationFileURL.path);
+		}
+		else {
+			DDLogVerbose(@"Formatting using Clang Format at path “%@“ with style “%@“", [[formatter class] resolvedExecutableURLWithError:nil].path, formatter.style);
+		}
+
         return formatter;
     }
     else if ([selectedFormatter isEqualToString:XCFDefaultsFormatterValueUncrustify]) {
@@ -166,7 +154,7 @@ NSString * XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSC
             }
             return nil;
         }
-        
+		DDLogVerbose(@"Formatting using Uncrustify at path “%@“ with configuration file at path “%@“", [[formatter class] resolvedExecutableURLWithError:nil].path, formatter.configurationFileURL.path);
         return formatter;
     }
     else NSAssert(NO, @"Missing case");
