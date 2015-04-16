@@ -54,16 +54,6 @@
 	</array>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2012 Pragmatic Code. All rights reserved.</string>
-	<key>SUAllowsAutomaticUpdates</key>
-	<false/>
-	<key>SUEnableAutomaticChecks</key>
-	<false/>
-	<key>SUFeedURL</key>
-	<string>http://www.pragmaticcode.com/uncrustifyplugin/download/appcast.xml</string>
-	<key>SUPromptUserOnFirstLaunchKey</key>
-	<false/>
-	<key>SUPublicDSAKeyFile</key>
-	<string>sparkle_dsa_pub.pem</string>
 	<key>XC4Compatible</key>
 	<true/>
 	<key>XCGCReady</key>

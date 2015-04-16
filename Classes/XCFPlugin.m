@@ -8,7 +8,6 @@
 #import "XCFDefaults.h"
 #import "XCFPreferencesWindowController.h"
 #import "XCFLoggingUtilities.h"
-#import "BBPluginUpdater.h"
 #import "BBMacros.h"
 #import "BBLogging.h"
 
@@ -77,9 +76,7 @@ static XCFPlugin *sharedPlugin = nil;
             NSMenuItem *formatCodeMenuItem = [[NSMenuItem alloc] initWithTitle:@"Format Code" action:nil keyEquivalent:@""];
             [formatCodeMenuItem setSubmenu:formatCodeMenu];
             [[editMenuItem submenu] addItem:formatCodeMenuItem];
-
-            [BBPluginUpdater sharedUpdater].delegate = self;
-            
+			
             DDLogVerbose(@"Version %@ loaded", [[[NSBundle bundleForClass:[self class]] infoDictionary] objectForKey:@"CFBundleVersion"]);
         }
     }
@@ -94,7 +91,6 @@ static XCFPlugin *sharedPlugin = nil;
             [[NSAlert alertWithError:error] runModal];
         }
     }];
-    [[BBPluginUpdater sharedUpdater] checkForUpdatesIfNeeded];
 }
 
 - (IBAction)formatActiveFile:(id)sender {
@@ -104,7 +100,6 @@ static XCFPlugin *sharedPlugin = nil;
     if (error) {
         [[NSAlert alertWithError:error] runModal];
     }
-    [[BBPluginUpdater sharedUpdater] checkForUpdatesIfNeeded];
 }
 
 - (IBAction)formatSelectedLines:(id)sender {
@@ -113,7 +108,6 @@ static XCFPlugin *sharedPlugin = nil;
     if (error) {
         [[NSAlert alertWithError:error] runModal];
     }
-    [[BBPluginUpdater sharedUpdater] checkForUpdatesIfNeeded];
 }
 
 - (IBAction)launchConfigurationEditor:(id)sender {
@@ -136,7 +130,6 @@ static XCFPlugin *sharedPlugin = nil;
             [[NSAlert alertWithError:error] runModal];
         }
     }
-    [[BBPluginUpdater sharedUpdater] checkForUpdatesIfNeeded];
 }
 
 - (IBAction)showPreferences:(id)sender {
@@ -187,12 +180,6 @@ static XCFPlugin *sharedPlugin = nil;
         return [XCFXcodeFormatter canLaunchConfigurationEditor];
     }
     return YES;
-}
-
-#pragma mark - SUUpdater Delegate
-
-- (NSString *)pathToRelaunchForUpdater:(SUUpdater *)updater {
-    return [[NSBundle mainBundle].bundleURL path];
 }
 
 @end
