@@ -358,8 +358,16 @@ NSString * XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSC
     
     NSString *selectedFormatter = [[NSUserDefaults standardUserDefaults] stringForKey:XCFDefaultsKeySelectedFormatter];
 
+	NSError *error = nil;
+	
     if ([selectedFormatter isEqualToString:XCFDefaultsFormatterValueClang]) {
-        configurationFileURL = [XCFClangFormatter configurationFileURLForPresentedURL:document.fileURL];
+		if ([[[NSUserDefaults standardUserDefaults] stringForKey:XCFDefaultsKeyClangStyle] isEqualToString:CFOClangStyleFile]) {
+			configurationFileURL = [XCFClangFormatter configurationFileURLForPresentedURL:document.fileURL];
+		}
+		else {
+			NSDictionary *userInfo = @{NSLocalizedDescriptionKey : @"ClangFormat is using a predefined non editable style. In order to use a custom style, select “Custom Style (File)“ for “Clang Style“ in the Preferences."};
+			error = [NSError errorWithDomain:XCFErrorDomain code:XCFFormatterMissingConfigurationError userInfo:userInfo];
+		}
     }
     else if ([selectedFormatter isEqualToString:XCFDefaultsFormatterValueUncrustify]) {
         configurationFileURL = [XCFUncrustifyFormatter configurationFileURLForPresentedURL:document.fileURL];
@@ -370,15 +378,19 @@ NSString * XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSC
     else {
         return;
     }
-    
-    if (!configurationFileURL) {
-        if (outError) {
-            NSDictionary *userInfo = @{NSLocalizedDescriptionKey : @"No configuration file was found. To create a configuration file, open the Preferences."};
-            *outError = [NSError errorWithDomain:XCFErrorDomain code:XCFFormatterMissingConfigurationError userInfo:userInfo];
-        }
-        return;
-    }
-    
+	
+	if (error == nil && !configurationFileURL) {
+		NSDictionary *userInfo = @{NSLocalizedDescriptionKey : @"No configuration file was found. To create a configuration file, open the Preferences."};
+		error = [NSError errorWithDomain:XCFErrorDomain code:XCFFormatterMissingConfigurationError userInfo:userInfo];
+	}
+
+	if (error) {
+		if (outError) {
+			*outError = error;
+		}
+		return;
+	}
+	
     if ([selectedFormatter isEqualToString:XCFDefaultsFormatterValueUncrustify]
         && [[NSUserDefaults standardUserDefaults] boolForKey:XCFDefaultsKeyUncrustifyXEnabled]
         && [[self class] canOpenApplicationWithIdentifier:XCFUncrustifyXIdentifier]) {
