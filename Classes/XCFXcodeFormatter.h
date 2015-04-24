@@ -24,4 +24,6 @@
 
 + (void)formatDocument:(IDESourceCodeDocument *)document withError:(NSError **)outError;
 
++ (BOOL)canEnableIndentEmptyLinesToCodeLevel;
+
 @end

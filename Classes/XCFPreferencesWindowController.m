@@ -7,6 +7,7 @@
 #import "XCFDefaults.h"
 #import "XCFClangFormatter.h"
 #import "XCFUncrustifyFormatter.h"
+#import "XCFXcodeFormatter.h"
 
 static NSString * const kFormatterKeyTitle = @"title";
 static NSString * const kFormatterKeyIdentifier = @"identifier";
@@ -16,6 +17,7 @@ static NSString * const kFormatterStyleKeyIdentifier = @"identifier";
 
 @interface XCFPreferencesWindowController ()
 @property (nonatomic, readonly) NSArray *formatters;
+@property (nonatomic) BOOL canEnableIndentEmptyLinesToCodeLevel;
 
 @property (nonatomic, weak) IBOutlet NSPopUpButton *clangStylePopUpButton;
 @property (nonatomic, weak) IBOutlet NSPopUpButton *configurationEditorPopUpButton;
@@ -47,6 +49,9 @@ static NSString * const kFormatterStyleKeyIdentifier = @"identifier";
     return _formatters;
 }
 
+- (void)updateUI {
+	self.canEnableIndentEmptyLinesToCodeLevel = [XCFXcodeFormatter canEnableIndentEmptyLinesToCodeLevel];
+}
 
 - (void)updateClangStyles {
     
@@ -276,8 +281,15 @@ static NSString * const kFormatterStyleKeyIdentifier = @"identifier";
 
 - (void)windowDidLoad {
     [super windowDidLoad];
-    
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+	[self updateUI];
+}
+
+- (void)windowDidBecomeKey:(NSNotification *)notification {
+	[self updateUI];
+}
+
+- (void)windowDidBecomeMain:(NSNotification *)notification {
+	[self updateUI];
 }
 
 @end

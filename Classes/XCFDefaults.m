@@ -11,6 +11,7 @@ NSString * const XCFDefaultsFormatterValueClang = @"clang";
 NSString * const XCFDefaultsFormatterValueUncrustify = @"uncrustify";
 
 NSString * const XCFDefaultsKeyXcodeIndentingEnabled = @"XCFXcodeIdentingEnabled";
+NSString * const XCFDefaultsKeyShouldIndentEmptyLinesToCodeLevel = @"XCFDefaultsKeyShouldIndentEmptyLinesToCodeLevel";
 NSString * const XCFDefaultsKeyFormatOnSaveEnabled = @"XCFFormatOnSaveEnabled";
 NSString *const XCFDefaultsKeyFormatOnSaveFiletypes = @"XCFFormatOnSaveFiletypes";
 NSString * const XCFDefaultsKeyClangStyle = @"XCFClangStyle";
@@ -32,7 +33,8 @@ NSString * const XCFDefaultsKeyUncrustifyXEnabled = @"XCFUncrustifyXEnabled";
          XCFDefaultsKeyFormatOnSaveFiletypes : @"c;m;mm;cpp;h;hpp",
          XCFDefaultsKeyClangStyle : CFOClangStylePredefinedLLVM,
          XCFDefaultsKeyUncrustifyXEnabled : @(YES),
-         XCFDefaultsKeyClangFactoryBasedStyle : CFOClangStylePredefinedLLVM
+         XCFDefaultsKeyClangFactoryBasedStyle : CFOClangStylePredefinedLLVM,
+		 XCFDefaultsKeyShouldIndentEmptyLinesToCodeLevel : @(NO),
     };
     
 }

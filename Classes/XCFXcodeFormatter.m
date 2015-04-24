@@ -262,29 +262,49 @@ NSString * XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSC
 
 #pragma mark Normalizing Formatting
 
++ (BOOL)canEnableIndentEmptyLinesToCodeLevel {
+	DVTTextPreferences *preferences = [DVTTextPreferences preferences];
+	BOOL trimTrailingWhitespace = preferences.trimTrailingWhitespace;
+	BOOL trimWhitespaceOnlyLines = trimTrailingWhitespace && preferences.trimWhitespaceOnlyLines; // only enabled in Xcode preferences if trimTrailingWhitespace is enabled
+	return !trimWhitespaceOnlyLines;
+}
+
 + (void)normalizeCodeAtRange:(NSRange)range document:(IDESourceCodeDocument *)document {
     
-    BOOL shouldNormalize = [[NSUserDefaults standardUserDefaults] boolForKey:XCFDefaultsKeyXcodeIndentingEnabled];
+	
+	DVTTextPreferences *preferences = [DVTTextPreferences preferences];
+
+	BOOL trimTrailingWhitespace = preferences.trimTrailingWhitespace;
+	BOOL trimWhitespaceOnlyLines = trimTrailingWhitespace && preferences.trimWhitespaceOnlyLines; // only enabled in Xcode preferences if trimTrailingWhitespace is enabled
+
+	// we indent empty lines if trimming whitespace line in Xcode preferences is disabled and if it's enabled in the plugin preferences.
+	BOOL shouldIndentEmptyLinesToCodeLevel = [[self class] canEnableIndentEmptyLinesToCodeLevel] && [[NSUserDefaults standardUserDefaults] boolForKey:XCFDefaultsKeyShouldIndentEmptyLinesToCodeLevel];
+	
+	DVTSourceTextStorage *textStorage = [document textStorage];
+	const NSRange scopeLineRange = [textStorage lineRangeForCharacterRange:range];  // the line range STAYS UNCHANGED during the normalization (we don't add or remove lines)
+	NSRange characterRange = [textStorage characterRangeForLineRange:scopeLineRange]; // the character range WILL CHANGE during the normalization
+
+	// 1. EMPTY LINE INDENTATION
+	
+	if (shouldIndentEmptyLinesToCodeLevel) {
+		NSString *trimString = [self.class stringByIndentingEmptyLinesToCodeLevelForString:textStorage.string inRange:characterRange];
+		[textStorage replaceCharactersInRange:characterRange withString:trimString withUndoManager:[document undoManager]];
+		characterRange = [textStorage characterRangeForLineRange:scopeLineRange]; // adjust the character range
+	}
+	
+	// 2. NORMALIZATION.
+	
+	BOOL shouldNormalize = [[NSUserDefaults standardUserDefaults] boolForKey:XCFDefaultsKeyXcodeIndentingEnabled];
 
     if (!shouldNormalize) return;
-    
-    DVTSourceTextStorage *textStorage = [document textStorage];
-    
-    const NSRange scopeLineRange = [textStorage lineRangeForCharacterRange:range]; // the line range stays unchanged during the normalization
-    
-    NSRange characterRange = [textStorage characterRangeForLineRange:scopeLineRange];
-    
-    DVTTextPreferences *preferences = [DVTTextPreferences preferences];
-    
+	
     if (preferences.useSyntaxAwareIndenting) {
         // PS: The method [DVTSourceTextStorage indentCharacterRange:undoManager:] always indents empty lines to the same level as code (ignoring the preferences in Xcode concerning the identation of whitespace only lines).
         [textStorage indentCharacterRange:characterRange undoManager:[document undoManager]];
-        characterRange = [textStorage characterRangeForLineRange:scopeLineRange];
+        characterRange = [textStorage characterRangeForLineRange:scopeLineRange]; // adjust the character range
     }
     
-    if (preferences.trimTrailingWhitespace) {
-        BOOL trimTrailingWhitespace = preferences.trimTrailingWhitespace;
-        BOOL trimWhitespaceOnlyLines = trimTrailingWhitespace && preferences.trimWhitespaceOnlyLines; // only enabled in Xcode preferences if trimTrailingWhitespace is enabled
+    if (trimTrailingWhitespace) {
         NSString *string = [textStorage.string substringWithRange:characterRange];
         NSString *trimString = [XCFXcodeFormatter stringByTrimmingString:string trimWhitespaceOnlyLines:trimWhitespaceOnlyLines trimTrailingWhitespace:trimTrailingWhitespace];
         [textStorage replaceCharactersInRange:characterRange withString:trimString withUndoManager:[document undoManager]];
@@ -322,6 +342,92 @@ NSString * XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSC
     
     return [NSString stringWithString:mResultString];
 }
+
++ (NSString *)stringByIndentingEmptyLinesToCodeLevelForString:(NSString *)string inRange:(NSRange)range {
+	if (!string) {
+		return nil;
+	}
+	
+	NSRange lineRange = [string lineRangeForRange:range];
+	
+	NSString *allLinesString = [string substringWithRange:lineRange];
+	
+	NSArray *lines = [allLinesString componentsSeparatedByString:@"\n"];
+	
+	NSMutableString *formattedString = [NSMutableString string];
+	
+	NSCharacterSet *nonWhiteSpaceCharacterSet = [[NSCharacterSet whitespaceCharacterSet] invertedSet];
+	
+	__block NSUInteger currentPosition = lineRange.location;
+	__block NSString *lastSuggestedIndentation = nil;
+	
+
+	[lines enumerateObjectsUsingBlock:^(NSString *line, NSUInteger idx, BOOL *stop) {
+		if (idx > 0) {
+			NSString *newLine = @"\n";
+			[formattedString appendString:newLine];
+			currentPosition += newLine.length;
+		}
+		
+		NSRange nonWhiteSpaceRange = [line rangeOfCharacterFromSet:nonWhiteSpaceCharacterSet options:0];
+		
+		if (nonWhiteSpaceRange.location == NSNotFound) { // if it's an empty line
+			NSString *suggestedIndentation = nil;
+			
+			if (lastSuggestedIndentation) { // for consecutive empty lines, we can use the cached indentation
+				suggestedIndentation = lastSuggestedIndentation;
+			}
+			else {
+				suggestedIndentation = [self.class suggestedWhitespaceIndentationForCharacterAtIndex:currentPosition inString:string];
+			}
+			[formattedString appendString:suggestedIndentation];
+			lastSuggestedIndentation = suggestedIndentation;
+		}
+		else {
+			[formattedString appendString:line];
+			lastSuggestedIndentation = nil; // reset the cache if the line is not empty
+		}
+		
+		currentPosition += line.length;
+	}];
+	
+	NSString *newString = [string stringByReplacingCharactersInRange:lineRange withString:formattedString];
+	
+	return newString;
+}
+
++ (NSString *)suggestedWhitespaceIndentationForCharacterAtIndex:(NSUInteger)characterIndex inString:(NSString *)string {
+	if (!string) {
+		return nil;
+	}
+	// This method returns the indentation (left whitespaces found before the first non whitespace character) of the first
+	// non empty line preceding the line at the given `characterIndex`.
+	
+	NSRange lineRange = [string lineRangeForRange:NSMakeRange(characterIndex, 0)];
+
+	// if it's the first line, then there is no indentation.
+	if (lineRange.location == 0) {
+		return @"";
+	}
+	
+	NSCharacterSet *nonWhiteSpaceCharacterSet = [[NSCharacterSet whitespaceCharacterSet] invertedSet];
+	
+	NSString *spacing = nil;
+	
+	do {
+		lineRange = [string lineRangeForRange:NSMakeRange(lineRange.location - 1, 0)]; // preceding line
+		NSString *line = [string substringWithRange:lineRange];
+		NSRange range = [line rangeOfCharacterFromSet:nonWhiteSpaceCharacterSet options:0];
+		
+		if (range.location != NSNotFound) { // it's a non emty line
+			spacing = [line substringWithRange:NSMakeRange(0, range.location)];
+			break; // we can break since we got the spacing
+		}
+	} while (lineRange.location != 0); // iterate until the first line until we find a non empty line
+	
+	return (spacing) ? spacing : @"";
+}
+
 
 #pragma mark - Configuration Editor
 
