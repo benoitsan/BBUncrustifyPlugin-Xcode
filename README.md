@@ -91,7 +91,7 @@ root project folder
 		| config_file -> team2
 ```
 
-### ClangFormat: Predefined style or Custom style file
+#### ClangFormat: Predefined style or Custom style file
 
 When using ClangFormat, you can use a predefined non editable style or a custom file. **The plugin will use the style defined in the preferences window in the "Clang Style" section**: LLVM, Google, Chromium, Mozilla, WebKit, or, Custom File.
 
@@ -99,11 +99,11 @@ When using ClangFormat, you can use a predefined non editable style or a custom 
 
 In the plugin preferences, you can activate some post formatting operations:
 
-### Perform Xcode syntax-aware indenting
+#### Perform Xcode syntax-aware indenting
 
 When enabled, the plugin re-indents the code using Xcode. **Avoid to use this feature since it can cause conflicts with the rules defined by the formatter.**
 
-### Indent whitespace-only lines to code level
+#### Indent whitespace-only lines to code level
 
 Both ClangFormat and Uncrustify always trim whitespace-only lines. When enabled, the plugin re-indents empty lines to code level. This option is disabled if "Including Whitespace-only lines" is enabled in Xcode preferences (Xcode Preferences > Text Editing Tab > Editing Panel > While Editing).
 
