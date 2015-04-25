@@ -23,6 +23,7 @@ PS: [This fork](https://github.com/1951FDG/BBUncrustifyPlugin-Xcode) works with 
 #### Script Version
 
 Run on Terminal:
+
 ```shell
 
 curl -SL https://raw.githubusercontent.com/benoitsan/BBUncrustifyPlugin-Xcode/master/install.sh | sh
@@ -44,13 +45,13 @@ All the commands are in the menu `Edit > Format Code`.
 
 * Use the menu `Format Active File` to format the source file actually opened in the editor. 
 
-* Use the menu `Format Selected Lines` to format the selected source code (multiple selection is supported). The selection is automatically extended in full lines. If the selection is empty, it uses the line under the cursor.
+* Use the menu `Format Selected Lines` to format the selected source code (multiple selection is supported). The selection is automatically extended in full lines. If the selection is empty, it uses the line under the cursor. *Keep in mind that formatting selected lines can fail depending of the selected scope*.
 
 * Use the menu `Edit Configuration` to edit the formatter configuration in an external editor.
 
 * Use the menu `BBUncrustifyPlugin Preferences` to change the plugin preferences.
 
-## Notes
+## Tips
 
 When the code is reformated, the modifications are recorded in the undo. So undo reverts the modifications.
 
@@ -58,6 +59,74 @@ The Preferences window contains detailed informations to customize the formatter
 
 You can create keyboard shortcuts for the menu items in the [Keyboard Preferences](http://support.apple.com/kb/ph3957) of OS X System Preferences.
 
+Use the menu `Edit > Format Code > View Log` to identify issues when formatting.
+
+## Style configuration
+
+To create the initial configuration file, you can use the button "Create Configuration File" in the preferences window.
+
+The configuration file must be located in the current directory or any parent directories of the source file. The search is started from the current directory. The plugin looks for the following file name patterns, in the order priority shown:
+
+- For ClangFormat: 
+
+	1. `_clang-format`
+	2. `.clang-format`
+
+- For Uncrustify: 
+	1. `uncrustify.cfg`
+	2. `_uncrustify.cfg`
+	3. `.uncrustify.cfg`
+	4. `.uncrustifyconfig`
+	5. In addition: your Home Folder and `~/.uncrustify/uncrustify.cfg`
+	
+
+So lets say you have a project with subproject1 (team1) and subproject2 (team2), you can use a structure like that:
+
+```
+root project folder
+	| subproject1
+		| config_file -> team1
+
+	| subproject2
+		| config_file -> team2
+```
+
+### ClangFormat: Predefined style or Custom style file
+
+When using ClangFormat, you can use a predefined non editable style or a custom file. **The plugin will use the style defined in the preferences window in the "Clang Style" section**: LLVM, Google, Chromium, Mozilla, WebKit, or, Custom File.
+
+## Post Formatting options
+
+In the plugin preferences, you can activate some post formatting operations:
+
+### Perform Xcode syntax-aware indenting
+
+When enabled, the plugin re-indents the code using Xcode. **Avoid to use this feature since it can cause conflicts with the rules defined by the formatter.**
+
+### Indent whitespace-only lines to code level
+
+Both ClangFormat and Uncrustify always trim whitespace-only lines. When enabled, the plugin re-indents empty lines to code level. This option is disabled if "Including Whitespace-only lines" is enabled in Xcode preferences (Xcode Preferences > Text Editing Tab > Editing Panel > While Editing).
+
+## ClangFormat or Uncrustify
+
+At this time, I recommend to use Uncrustify because it's more stable. ClangFormat fails to format code inside blocks and has weird bugs when formatting text selections. 
+
+## Some Objective-C Style Guides
+
+Using Uncrustify:
+
+- [apps-ios-wikipedia](https://github.com/wikimedia/apps-ios-wikipedia)
+- [CocoaLumberjack](https://github.com/CocoaLumberjack/CocoaLumberjack)
+- [inbox-ios](https://github.com/nylas/inbox-ios)
+- [wonderful-objective-c-style-guide](https://github.com/markeissler/wonderful-objective-c-style-guide)
+
+Some Style Guides:
+
+- [GitHub](https://github.com/github/objective-c-style-guide)
+- [raywenderlich](https://github.com/raywenderlich/objective-c-style-guide)
+- [Realm](https://github.com/realm/realm-cocoa/wiki/Objective-C-Style-Guide)
+- [Spotify](https://github.com/spotify/ios-style)
+- [The New York Times](https://github.com/NYTimes/objective-c-style-guide)
 
 ## Creator
 
