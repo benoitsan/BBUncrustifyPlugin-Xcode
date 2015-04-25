@@ -11,8 +11,6 @@
 #import "XCFDefaults.h"
 #import "BBLogging.h"
 
-static NSString *const XCFUncrustifyXIdentifier = @"nz.co.xwell.UncrustifyX";
-
 NSString *XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSCharacterSet *characterSet)
 {
 	NSRange rangeOfLastWantedCharacter = [string rangeOfCharacterFromSet:[characterSet invertedSet] options:NSBackwardsSearch];
@@ -491,17 +489,6 @@ NSString *XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSCh
 
 #pragma mark - Configuration Editor
 
-+ (BOOL)canOpenApplicationWithIdentifier:(NSString *)identifier
-{
-	BOOL appExists = NO;
-	NSURL *appURL = [[NSWorkspace sharedWorkspace] URLForApplicationWithBundleIdentifier:identifier];
-	
-	if (appURL) {
-		appExists = [[NSFileManager defaultManager] fileExistsAtPath:appURL.path];
-	}
-	return appExists;
-}
-
 + (BOOL)canLaunchConfigurationEditor
 {
 	IDESourceCodeDocument *document = [XCFXcodeFormatter currentSourceCodeDocument];
@@ -555,36 +542,16 @@ NSString *XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSCh
 		return;
 	}
 	
-	if ([selectedFormatter isEqualToString:XCFDefaultsFormatterValueUncrustify]
-		&& [[NSUserDefaults standardUserDefaults] boolForKey:XCFDefaultsKeyUncrustifyXEnabled]
-		&& [[self class] canOpenApplicationWithIdentifier:XCFUncrustifyXIdentifier]) {
-		IDESourceCodeDocument *document = [XCFXcodeFormatter currentSourceCodeDocument];
-		
-		if (document) {
-			DVTSourceTextStorage *textStorage = [document textStorage];
-			[[NSPasteboard pasteboardWithName:@"BBUncrustifyPlugin-source-code"] clearContents];
-			
-			if (textStorage.string) {
-				[[NSPasteboard pasteboardWithName:@"BBUncrustifyPlugin-source-code"] writeObjects:@[textStorage.string]];
-			}
-		}
-		NSDictionary *configuration = @{NSWorkspaceLaunchConfigurationArguments : @[@"-bbuncrustifyplugin", @"-configpath", configurationFileURL.path]};
-		NSURL *appURL = [[NSWorkspace sharedWorkspace] URLForApplicationWithBundleIdentifier:XCFUncrustifyXIdentifier];
-		
-		[[NSWorkspace sharedWorkspace]launchApplicationAtURL:appURL options:0 configuration:configuration error:nil];
+	BOOL succeeds = NO;
+	
+	NSString *editorIdentifier = [[NSUserDefaults standardUserDefaults] stringForKey:XCFDefaultsKeyConfigurationEditorIdentifier];
+	
+	if (editorIdentifier) {
+		succeeds = [[NSWorkspace sharedWorkspace] openURLs:@[configurationFileURL] withAppBundleIdentifier:editorIdentifier options:NSWorkspaceLaunchDefault additionalEventParamDescriptor:nil launchIdentifiers:nil];
 	}
-	else {
-		BOOL succeeds = NO;
-		
-		NSString *editorIdentifier = [[NSUserDefaults standardUserDefaults] stringForKey:XCFDefaultsKeyConfigurationEditorIdentifier];
-		
-		if (editorIdentifier) {
-			succeeds = [[NSWorkspace sharedWorkspace] openURLs:@[configurationFileURL] withAppBundleIdentifier:editorIdentifier options:NSWorkspaceLaunchDefault additionalEventParamDescriptor:nil launchIdentifiers:nil];
-		}
-		
-		if (!succeeds) {
-			[[NSWorkspace sharedWorkspace] openURL:configurationFileURL];
-		}
+	
+	if (!succeeds) {
+		[[NSWorkspace sharedWorkspace] openURL:configurationFileURL];
 	}
 }
 

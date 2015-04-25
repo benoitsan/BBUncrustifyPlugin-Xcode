@@ -21,14 +21,14 @@
         <window title="BBUncrustifyPlugin Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <windowPositionMask key="initialPositionMask" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="723" y="468" width="744" height="665"/>
+            <rect key="contentRect" x="723" y="468" width="744" height="596"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1178"/>
             <view key="contentView" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="-5" width="744" height="665"/>
+                <rect key="frame" x="0.0" y="7" width="744" height="596"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button id="ROI-76-en4">
-                        <rect key="frame" x="259" y="594" width="268" height="18"/>
+                        <rect key="frame" x="259" y="525" width="268" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Perform Xcode syntax-aware indenting" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="KIz-RR-sES">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -39,7 +39,7 @@
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="qp3-iD-cbw">
-                        <rect key="frame" x="187" y="627" width="70" height="17"/>
+                        <rect key="frame" x="187" y="558" width="70" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Formatter:" id="Ltt-uL-fAo">
                             <font key="font" metaFont="system"/>
@@ -48,7 +48,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="G3t-Ix-uqp">
-                        <rect key="frame" x="179" y="331" width="78" height="17"/>
+                        <rect key="frame" x="179" y="262" width="78" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Clang Style:" id="FWJ-Ed-wU1">
                             <font key="font" metaFont="system"/>
@@ -57,7 +57,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="9hZ-gW-5af">
-                        <rect key="frame" x="136" y="285" width="121" height="17"/>
+                        <rect key="frame" x="136" y="216" width="121" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Configuration File:" id="gwB-Rz-yOH">
                             <font key="font" metaFont="system"/>
@@ -66,7 +66,7 @@
                         </textFieldCell>
                     </textField>
                     <popUpButton verticalHuggingPriority="750" id="V7p-Yf-qKM">
-                        <rect key="frame" x="261" y="621" width="145" height="26"/>
+                        <rect key="frame" x="261" y="552" width="145" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <popUpButtonCell key="cell" type="push" title="&lt;noloc&gt;" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="RhK-Rd-M8i" id="Pnc-mQ-1bC">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -85,7 +85,7 @@
                         </connections>
                     </popUpButton>
                     <popUpButton verticalHuggingPriority="750" id="UPm-5d-Jt6">
-                        <rect key="frame" x="262" y="154" width="220" height="26"/>
+                        <rect key="frame" x="262" y="85" width="220" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <popUpButtonCell key="cell" type="push" title="&lt;noloc&gt;" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="8Ax-mq-gRS" id="cdw-UO-6Fd">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -101,7 +101,7 @@
                         </connections>
                     </popUpButton>
                     <popUpButton verticalHuggingPriority="750" id="hmF-Jb-6Cg">
-                        <rect key="frame" x="260" y="279" width="222" height="26"/>
+                        <rect key="frame" x="260" y="210" width="222" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <popUpButtonCell key="cell" type="push" title="Create Configuration File" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="oAS-CE-fbV" id="hGj-Um-eeO">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -119,7 +119,7 @@
                         </connections>
                     </popUpButton>
                     <popUpButton verticalHuggingPriority="750" id="c1l-eL-ArW">
-                        <rect key="frame" x="261" y="325" width="145" height="26"/>
+                        <rect key="frame" x="261" y="256" width="145" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <popUpButtonCell key="cell" type="push" title="&lt;noloc&gt;" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" autoenablesItems="NO" selectedItem="HL7-TM-Hwc" id="ddN-rs-qPO">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -135,7 +135,7 @@
                         </connections>
                     </popUpButton>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="sxu-jQ-Ctx">
-                        <rect key="frame" x="68" y="595" width="187" height="17"/>
+                        <rect key="frame" x="68" y="526" width="187" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="When Formatting Completes:" id="OFn-43-SJq">
                             <font key="font" metaFont="system"/>
@@ -144,7 +144,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="PU7-hZ-jgt">
-                        <rect key="frame" x="120" y="160" width="137" height="17"/>
+                        <rect key="frame" x="120" y="91" width="137" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Configuration Editor:" id="jOG-Fa-zfV">
                             <font key="font" metaFont="system"/>
@@ -161,33 +161,22 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button id="1Zq-l2-Lq4">
-                        <rect key="frame" x="261" y="129" width="334" height="18"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="Use UncrustifyX to edit Uncrustify Configurations." bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Vu8-Nd-Rlm">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <binding destination="ec3-mP-p1p" name="value" keyPath="values.XCFUncrustifyXEnabled" id="nV2-Us-bnv"/>
-                        </connections>
-                    </button>
                     <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="1T0-XC-qy0">
-                        <rect key="frame" x="20" y="359" width="704" height="5"/>
+                        <rect key="frame" x="20" y="290" width="704" height="5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <font key="titleFont" metaFont="system"/>
                     </box>
                     <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="RQ3-bd-mdP">
-                        <rect key="frame" x="20" y="467" width="704" height="5"/>
+                        <rect key="frame" x="20" y="398" width="704" height="5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <font key="titleFont" metaFont="system"/>
                     </box>
                     <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="u6w-mi-luy">
-                        <rect key="frame" x="20" y="313" width="704" height="5"/>
+                        <rect key="frame" x="20" y="244" width="704" height="5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -201,7 +190,7 @@
                         <font key="titleFont" metaFont="system"/>
                     </box>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="ClM-zt-hRr">
-                        <rect key="frame" x="261" y="190" width="440" height="84"/>
+                        <rect key="frame" x="261" y="121" width="440" height="84"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" id="efP-zs-V45">
                             <font key="font" metaFont="smallSystem"/>
@@ -213,7 +202,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="I9f-3p-yQM">
-                        <rect key="frame" x="259" y="560" width="324" height="28"/>
+                        <rect key="frame" x="259" y="491" width="324" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="MvY-zA-4ob">
                             <font key="font" metaFont="smallSystem"/>
@@ -223,26 +212,6 @@ It can cause conflicts with the rules defined by the formatter.</string>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="jTV-bl-nOE">
-                        <rect key="frame" x="261" y="109" width="393" height="14"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="UncrustifyX is a Mac Application to edit and test Uncrustify configurations." id="aeD-29-jvY">
-                            <font key="font" metaFont="smallSystem"/>
-                            <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <button id="3K7-QG-oSR">
-                        <rect key="frame" x="261" y="88" width="122" height="14"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="smallSquare" title="Download UncrustifyX" bezelStyle="smallSquare" alignment="left" imageScaling="proportionallyDown" inset="2" id="KHQ-ih-UtG" customClass="BBHyperLinkButtonCell">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="smallSystem"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="downloadUncrustifXAction:" target="-2" id="RAA-gP-M4b"/>
-                        </connections>
-                    </button>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="8nc-r7-Bg5">
                         <rect key="frame" x="263" y="20" width="218" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -264,7 +233,7 @@ It can cause conflicts with the rules defined by the formatter.</string>
                         </connections>
                     </button>
                     <button id="Vmj-wi-7Kz">
-                        <rect key="frame" x="257" y="438" width="308" height="18"/>
+                        <rect key="frame" x="257" y="369" width="308" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Perform Format on Save of a Source code File" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="21h-yP-xuP">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -275,7 +244,7 @@ It can cause conflicts with the rules defined by the formatter.</string>
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="KBu-Ps-JhV">
-                        <rect key="frame" x="148" y="440" width="107" height="17"/>
+                        <rect key="frame" x="148" y="371" width="107" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Format On Save:" id="lht-1f-w39">
                             <font key="font" metaFont="system"/>
@@ -284,7 +253,7 @@ It can cause conflicts with the rules defined by the formatter.</string>
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="jkq-3R-vZv">
-                        <rect key="frame" x="261" y="410" width="306" height="22"/>
+                        <rect key="frame" x="261" y="341" width="306" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="*" drawsBackground="YES" id="wud-af-MTu">
                             <font key="font" metaFont="system"/>
@@ -297,7 +266,7 @@ It can cause conflicts with the rules defined by the formatter.</string>
                         </connections>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="YH6-AO-1S3">
-                        <rect key="frame" x="261" y="374" width="432" height="28"/>
+                        <rect key="frame" x="261" y="305" width="432" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="W2G-X8-yGG">
                             <font key="font" metaFont="smallSystem"/>
@@ -307,7 +276,7 @@ It can cause conflicts with the rules defined by the formatter.</string>
                         </textFieldCell>
                     </textField>
                     <button id="82S-8X-NWg">
-                        <rect key="frame" x="259" y="530" width="281" height="18"/>
+                        <rect key="frame" x="259" y="461" width="281" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Indent whitespace-only lines to code level" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="diL-16-5Ia">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -319,7 +288,7 @@ It can cause conflicts with the rules defined by the formatter.</string>
                         </connections>
                     </button>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="2GX-Ch-v4Q">
-                        <rect key="frame" x="259" y="482" width="443" height="42"/>
+                        <rect key="frame" x="259" y="413" width="443" height="42"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="Ltd-Vl-FL2">
                             <font key="font" metaFont="smallSystem"/>
@@ -334,7 +303,7 @@ This option is disabled if "Including Whitespace-only lines" is enabled in Xcode
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="264" y="381.5"/>
+            <point key="canvasLocation" x="264" y="347"/>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="ec3-mP-p1p"/>
         <arrayController objectClassName="NSDictionary" id="3MW-Ta-Eer" userLabel="Formatters">

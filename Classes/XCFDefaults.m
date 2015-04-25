@@ -20,7 +20,6 @@ NSString *const XCFDefaultsKeyClangFactoryBasedStyle = @"XCFClangFactoryBasedSty
 NSString *const XCFDefaultsClangFactoryBasedStyleValueNone = @"none";
 
 NSString *const XCFDefaultsKeyConfigurationEditorIdentifier = @"XCFConfigEditorIdentifier";
-NSString *const XCFDefaultsKeyUncrustifyXEnabled = @"XCFUncrustifyXEnabled";
 
 @implementation XCFDefaults
 
@@ -32,7 +31,6 @@ NSString *const XCFDefaultsKeyUncrustifyXEnabled = @"XCFUncrustifyXEnabled";
 		XCFDefaultsKeyFormatOnSaveEnabled : @(NO),
 		XCFDefaultsKeyFormatOnSaveFiletypes : @"c;m;mm;cpp;h;hpp",
 		XCFDefaultsKeyClangStyle : CFOClangStylePredefinedLLVM,
-		XCFDefaultsKeyUncrustifyXEnabled : @(YES),
 		XCFDefaultsKeyClangFactoryBasedStyle : CFOClangStylePredefinedLLVM,
 		XCFDefaultsKeyShouldIndentEmptyLinesToCodeLevel : @(NO),
 	};
@@ -58,7 +56,6 @@ NSString *const XCFDefaultsKeyUncrustifyXEnabled = @"XCFUncrustifyXEnabled";
 	[[NSUserDefaults standardUserDefaults] removeObjectForKey:XCFDefaultsKeyClangStyle];
 	[[NSUserDefaults standardUserDefaults] removeObjectForKey:XCFDefaultsKeyClangFactoryBasedStyle];
 	[[NSUserDefaults standardUserDefaults] removeObjectForKey:XCFDefaultsKeyConfigurationEditorIdentifier];
-	[[NSUserDefaults standardUserDefaults] removeObjectForKey:XCFDefaultsKeyUncrustifyXEnabled];
 }
 
 @end

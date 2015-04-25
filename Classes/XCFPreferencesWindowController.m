@@ -152,11 +152,6 @@ static NSString *const kFormatterStyleKeyIdentifier = @"identifier";
 	}
 }
 
-- (IBAction)downloadUncrustifXAction:(id)sender
-{
-	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://github.com/ryanmaxwell/UncrustifyX"]];
-}
-
 - (IBAction)aboutPluginAction:(id)sender
 {
 	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://github.com/benoitsan/BBUncrustifyPlugin-Xcode"]];

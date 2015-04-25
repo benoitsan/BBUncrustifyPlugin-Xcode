@@ -19,7 +19,6 @@ extern NSString *const XCFDefaultsKeyClangFactoryBasedStyle;
 extern NSString *const XCFDefaultsClangFactoryBasedStyleValueNone;
 
 extern NSString *const XCFDefaultsKeyConfigurationEditorIdentifier;
-extern NSString *const XCFDefaultsKeyUncrustifyXEnabled;
 
 @interface XCFDefaults : NSObject
 
