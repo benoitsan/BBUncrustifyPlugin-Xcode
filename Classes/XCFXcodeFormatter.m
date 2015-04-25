@@ -287,8 +287,9 @@ NSString * XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSC
 	// 1. EMPTY LINE INDENTATION
 	
 	if (shouldIndentEmptyLinesToCodeLevel) {
-		NSString *trimString = [self.class stringByIndentingEmptyLinesToCodeLevelForString:textStorage.string inRange:characterRange];
-		[textStorage replaceCharactersInRange:characterRange withString:trimString withUndoManager:[document undoManager]];
+		NSRange outputRange;
+		NSString *trimString = [self.class stringByIndentingEmptyLinesToCodeLevelForString:textStorage.string inRange:characterRange outputRange:&outputRange];
+		[textStorage replaceCharactersInRange:outputRange withString:trimString withUndoManager:[document undoManager]];
 		characterRange = [textStorage characterRangeForLineRange:scopeLineRange]; // adjust the character range
 	}
 	
@@ -343,12 +344,25 @@ NSString * XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSC
     return [NSString stringWithString:mResultString];
 }
 
-+ (NSString *)stringByIndentingEmptyLinesToCodeLevelForString:(NSString *)string inRange:(NSRange)range {
++ (NSString *)stringByIndentingEmptyLinesToCodeLevelForString:(NSString *)string inRange:(NSRange)range outputRange:(NSRange *)outputRange {
 	if (!string) {
 		return nil;
 	}
 	
-	NSRange lineRange = [string lineRangeForRange:range];
+	NSRange lineRange;
+	
+	// if we make a selection up to the end of the string, we don't use getLineStart:end:contentsEnd:forRange: because
+	// it will ignore the last line if this one is empty.
+	if (NSMaxRange(range) == string.length) {
+		lineRange = [string lineRangeForRange:range];
+	}
+	else {
+		// we use getLineStart:end:contentsEnd:forRange: because for an inner selection, lineRangeForRange: returns lines
+		// including a carriage return for the last line.
+		NSUInteger start, contentEnd;
+		[string getLineStart:&start end:NULL contentsEnd:&contentEnd forRange:range];
+		lineRange = NSMakeRange(start, contentEnd - start);
+	}
 	
 	NSString *allLinesString = [string substringWithRange:lineRange];
 	
@@ -380,7 +394,14 @@ NSString * XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSC
 			else {
 				suggestedIndentation = [self.class suggestedWhitespaceIndentationForCharacterAtIndex:currentPosition inString:string];
 			}
-			[formattedString appendString:suggestedIndentation];
+
+			if (suggestedIndentation) {
+				[formattedString appendString:suggestedIndentation];
+			}
+			else {
+				[formattedString appendString:line];
+			}
+			
 			lastSuggestedIndentation = suggestedIndentation;
 		}
 		else {
@@ -391,9 +412,11 @@ NSString * XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSC
 		currentPosition += line.length;
 	}];
 	
-	NSString *newString = [string stringByReplacingCharactersInRange:lineRange withString:formattedString];
+	if (outputRange) {
+		*outputRange = lineRange;
+	}
 	
-	return newString;
+	return formattedString.copy;
 }
 
 + (NSString *)suggestedWhitespaceIndentationForCharacterAtIndex:(NSUInteger)characterIndex inString:(NSString *)string {
@@ -402,12 +425,13 @@ NSString * XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSC
 	}
 	// This method returns the indentation (left whitespaces found before the first non whitespace character) of the first
 	// non empty line preceding the line at the given `characterIndex`.
+	// If it returns nil, it means that the original string should be kept intact.
 	
 	NSRange lineRange = [string lineRangeForRange:NSMakeRange(characterIndex, 0)];
 
-	// if it's the first line, then there is no indentation.
+	// if it's the first line, we can't deduce the indentation.
 	if (lineRange.location == 0) {
-		return @"";
+		return nil;
 	}
 	
 	NSCharacterSet *nonWhiteSpaceCharacterSet = [[NSCharacterSet whitespaceCharacterSet] invertedSet];
@@ -415,7 +439,9 @@ NSString * XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSC
 	NSString *spacing = nil;
 	
 	do {
-		lineRange = [string lineRangeForRange:NSMakeRange(lineRange.location - 1, 0)]; // preceding line
+		NSUInteger start, end, contentEnd;
+		[string getLineStart:&start end:&end contentsEnd:&contentEnd forRange:NSMakeRange(lineRange.location - 1, 0)]; // preceding line
+		lineRange = NSMakeRange(start, contentEnd - start);
 		NSString *line = [string substringWithRange:lineRange];
 		NSRange range = [line rangeOfCharacterFromSet:nonWhiteSpaceCharacterSet options:0];
 		
@@ -425,7 +451,7 @@ NSString * XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSC
 		}
 	} while (lineRange.location != 0); // iterate until the first line until we find a non empty line
 	
-	return (spacing) ? spacing : @"";
+	return spacing;
 }
 
 
