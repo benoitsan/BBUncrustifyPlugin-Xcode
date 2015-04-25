@@ -61,6 +61,10 @@ You can create keyboard shortcuts for the menu items in the [Keyboard Preference
 
 Use the menu `Edit > Format Code > View Log` to identify issues when formatting.
 
+At this time, I recommend to use Uncrustify because it's more stable. ClangFormat fails to format code inside blocks and has weird bugs when formatting text selections. 
+
+The plugin includes binaries for ClangFormat and Uncrustify. To use your own version, install the binary to: `/usr/local/bin/clang-format` or `/usr/bin/clang-format` for ClangFormat, `/usr/local/bin/uncrustify` or `/usr/bin/uncrustify` for Uncrustify.
+
 ## Style configuration
 
 To create the initial configuration file, you can use the button "Create Configuration File" in the preferences window.
@@ -107,9 +111,6 @@ When enabled, the plugin re-indents the code using Xcode. **Avoid to use this fe
 
 Both ClangFormat and Uncrustify always trim whitespace-only lines. When enabled, the plugin re-indents empty lines to code level. This option is disabled if "Including Whitespace-only lines" is enabled in Xcode preferences (Xcode Preferences > Text Editing Tab > Editing Panel > While Editing).
 
-## ClangFormat or Uncrustify
-
-At this time, I recommend to use Uncrustify because it's more stable. ClangFormat fails to format code inside blocks and has weird bugs when formatting text selections. 
 
 ## Some Objective-C Style Guides
 
