@@ -45,7 +45,7 @@ All the commands are in the menu `Edit > Format Code`.
 
 * Use the menu `Format Active File` to format the source file actually opened in the editor. 
 
-* Use the menu `Format Selected Lines` to format the selected source code (multiple selection is supported). The selection is automatically extended in full lines. If the selection is empty, it uses the line under the cursor. *Keep in mind that formatting selected lines can fail depending of the selected scope*.
+* Use the menu `Format Selected Lines` to format the selected source code (multiple selection is supported). The selection is automatically extended in full lines. If the selection is empty, it uses the line under the cursor.
 
 * Use the menu `Edit Configuration` to edit the formatter configuration in an external editor.
 
@@ -64,6 +64,12 @@ Use the menu `Edit > Format Code > View Log` to identify issues when formatting.
 At this time, I recommend to use Uncrustify because it's more stable. ClangFormat fails to format code inside blocks and has weird bugs when formatting text selections. 
 
 The plugin includes binaries for ClangFormat and Uncrustify. To use your own version, install the binary to: `/usr/local/bin/clang-format` or `/usr/bin/clang-format` for ClangFormat, `/usr/local/bin/uncrustify` or `/usr/bin/uncrustify` for Uncrustify.
+
+When formatting a code selection, keep in mind that formatting selected lines can fail depending of the selected scope. 
+
+- Uncrustify assumes the first selected line is indented correctly. 
+
+- ClangFormat takes in account the scope around the selection and should give better results (but in practice, ClangFormat is pretty buggy for formatting a selection).
 
 ## Style configuration
 
