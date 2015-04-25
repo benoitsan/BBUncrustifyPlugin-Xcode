@@ -149,6 +149,19 @@ static XCFPlugin *sharedPlugin = nil;
 - (IBAction)showPreferences:(id)sender
 {
 	[self.preferencesWindowController showWindow:nil];
+	
+	NSURL *url = [[NSBundle bundleForClass:[self class]] URLForResource:@"XCFPreferencesWindowController" withExtension:@"nib"];
+	if (!url) {
+		NSAlert *alert = [[NSAlert alloc] init];
+		alert.messageText = @"BBUncrustify preferences could not be shown because the plugin is corrupted.";
+		alert.informativeText = @"If you built the plugin from sources using Xcode, make sure to perform “Clean Build Folder“ in Xcode and then build the plugin again.\n\nIf you installed the plugin via Alctraz, there is a pending issue causing some files to be missing in the plugin. Prefer to install it via the plugin releases webpage.";
+		[alert addButtonWithTitle:@"Download Latest Release"];
+		[alert addButtonWithTitle:@"Cancel"];
+		NSModalResponse result = [alert runModal];
+		if (result == NSAlertFirstButtonReturn) {
+			[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://github.com/benoitsan/BBUncrustifyPlugin-Xcode/releases"]];
+		}
+	}
 }
 
 - (IBAction)viewLog:(id)sender
