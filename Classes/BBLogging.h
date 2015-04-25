@@ -6,6 +6,8 @@
 //
 //
 
+// This file must be imported in any file using the logger
+
 #import "CocoaLumberjack.h"
 
 extern DDLogLevel ddLogLevel;

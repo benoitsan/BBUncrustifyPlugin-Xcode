@@ -7,4 +7,8 @@
 
 @interface XCFUncrustifyFormatter : CFOUncrustifyFormatter
 
++ (NSURL *)builtinConfigurationFileURL;
+
++ (NSURL *)configurationFileURLForPresentedURL:(NSURL *)presentedURL;
+
 @end

@@ -5,7 +5,6 @@
 
 #import "CFOUncrustifyFormatter.h"
 #import <Cocoa/Cocoa.h>
-#import "BBMacros.h"
 #import "BBLogging.h"
 
 @implementation CFOUncrustifyFormatter

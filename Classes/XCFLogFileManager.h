@@ -8,6 +8,8 @@
 
 #import "DDFileLogger.h"
 
+// Subclass of DDLogFileManagerDefault is needed for customizing the log filename
+
 extern NSString *const XCFLoggingFileApplicationName;
 
 @interface XCFLogFileManager : DDLogFileManagerDefault

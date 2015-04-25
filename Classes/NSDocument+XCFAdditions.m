@@ -8,7 +8,6 @@
 #import "XCFXcodePrivate.h"
 #import "XCFXcodeFormatter.h"
 #import "JRSwizzle.h"
-#import "BBMacros.h"
 #import "BBLogging.h"
 
 @implementation NSDocument (XCFAdditions)

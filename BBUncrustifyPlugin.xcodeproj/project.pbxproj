@@ -17,6 +17,7 @@
 		1407F2631ADEFABB00AEC2B3 /* DDContextFilterLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1407F2561ADEFABB00AEC2B3 /* DDContextFilterLogFormatter.m */; };
 		1407F2641ADEFABB00AEC2B3 /* DDDispatchQueueLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1407F2581ADEFABB00AEC2B3 /* DDDispatchQueueLogFormatter.m */; };
 		1407F2651ADEFABB00AEC2B3 /* DDMultiFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1407F25A1ADEFABB00AEC2B3 /* DDMultiFormatter.m */; };
+		144442A01AEBDCA1000CE97A /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 1444429F1AEBDCA1000CE97A /* JRSwizzle.m */; };
 		14464E251ADF08050085D1C9 /* XCFLogFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14464E241ADF08050085D1C9 /* XCFLogFileManager.m */; };
 		14464E2B1ADF0A3D0085D1C9 /* XCFLoggingUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 14464E2A1ADF0A3D0085D1C9 /* XCFLoggingUtilities.m */; };
 		14626CD618832E5100F5B23F /* XCFPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14626CD318832E5100F5B23F /* XCFPreferencesWindowController.m */; };
@@ -46,8 +47,6 @@
 		149F2D6D183C073700DFB8CC /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 147264371711732F002BC0BE /* icon.icns */; };
 		14A54E55188AF61900B154C6 /* XCFFormatterUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A54E54188AF61900B154C6 /* XCFFormatterUtilities.m */; };
 		14BEA1C1188F0EC2000CC52B /* NSDocument+XCFAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BEA1C0188F0EC2000CC52B /* NSDocument+XCFAdditions.m */; };
-		14BEA1C4188F107D000CC52B /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BEA1C3188F107D000CC52B /* JRSwizzle.m */; };
-		14C006C11884936A00488011 /* BBHyperLinkButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C006BF1884936A00488011 /* BBHyperLinkButtonCell.m */; };
 		14D323C21884980B00AB663E /* XCFDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D323C01884980500AB663E /* XCFDefaults.m */; };
 		5AE7611D19D22E6600DF8FDA /* XCFPreferencesWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 147572C3188C012900B3AF8D /* XCFPreferencesWindowController.xib */; };
 /* End PBXBuildFile section */
@@ -95,6 +94,8 @@
 		141251A116F4AA8600A18D23 /* XCFXcodeFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCFXcodeFormatter.m; sourceTree = "<group>"; };
 		1435669516FD0E0000FECDEB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		1435669716FD0E0400FECDEB /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		1444429E1AEBDCA1000CE97A /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSwizzle.h; sourceTree = "<group>"; };
+		1444429F1AEBDCA1000CE97A /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
 		14464E231ADF08050085D1C9 /* XCFLogFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCFLogFileManager.h; sourceTree = "<group>"; };
 		14464E241ADF08050085D1C9 /* XCFLogFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCFLogFileManager.m; sourceTree = "<group>"; };
 		14464E291ADF0A3D0085D1C9 /* XCFLoggingUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCFLoggingUtilities.h; sourceTree = "<group>"; };
@@ -118,7 +119,6 @@
 		147572C8188C01AA00B3AF8D /* CFOClangFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFOClangFormatter.m; sourceTree = "<group>"; };
 		147572C9188C01AA00B3AF8D /* CFOUncrustifyFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFOUncrustifyFormatter.h; sourceTree = "<group>"; };
 		147572CA188C01AA00B3AF8D /* CFOUncrustifyFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFOUncrustifyFormatter.m; sourceTree = "<group>"; };
-		14855EE9188F155200BD9C40 /* BBMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBMacros.h; sourceTree = "<group>"; };
 		1486F51C188C06AF003483D5 /* clang-format */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "clang-format"; sourceTree = "<group>"; };
 		14887AC71A90133B001B332A /* DiffMatchPatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiffMatchPatch.h; sourceTree = "<group>"; };
 		14887AC81A90133B001B332A /* DiffMatchPatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiffMatchPatch.m; sourceTree = "<group>"; };
@@ -142,10 +142,6 @@
 		14A54E56188AF6C800B154C6 /* XCFConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCFConstants.h; sourceTree = "<group>"; };
 		14BEA1BF188F0EC2000CC52B /* NSDocument+XCFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDocument+XCFAdditions.h"; sourceTree = "<group>"; };
 		14BEA1C0188F0EC2000CC52B /* NSDocument+XCFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDocument+XCFAdditions.m"; sourceTree = "<group>"; };
-		14BEA1C2188F107D000CC52B /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSwizzle.h; sourceTree = "<group>"; };
-		14BEA1C3188F107D000CC52B /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
-		14C006BE1884936A00488011 /* BBHyperLinkButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBHyperLinkButtonCell.h; sourceTree = "<group>"; };
-		14C006BF1884936A00488011 /* BBHyperLinkButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBHyperLinkButtonCell.m; sourceTree = "<group>"; };
 		14CE84D916F49A02008082AB /* uncrustify */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = uncrustify; sourceTree = "<group>"; };
 		14CE84DA16F49D6F008082AB /* uncrustify.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = uncrustify.cfg; sourceTree = "<group>"; };
 		14D323BF1884980500AB663E /* XCFDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCFDefaults.h; sourceTree = "<group>"; };
@@ -261,6 +257,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		1444429D1AEBDC90000CE97A /* JRSwizzle */ = {
+			isa = PBXGroup;
+			children = (
+				1444429E1AEBDCA1000CE97A /* JRSwizzle.h */,
+				1444429F1AEBDCA1000CE97A /* JRSwizzle.m */,
+			);
+			path = JRSwizzle;
+			sourceTree = "<group>";
+		};
 		147572B5188BFD2900B3AF8D /* CFOFormatter */ = {
 			isa = PBXGroup;
 			children = (
@@ -282,12 +287,12 @@
 				14A54E4B188AE09400B154C6 /* XCFXcodePrivate.h */,
 				149B117816F483D3000F9C01 /* XCFXcodeFormatter.h */,
 				141251A116F4AA8600A18D23 /* XCFXcodeFormatter.m */,
-				14A54E53188AF61900B154C6 /* XCFFormatterUtilities.h */,
-				14A54E54188AF61900B154C6 /* XCFFormatterUtilities.m */,
 				147572B7188BFEED00B3AF8D /* XCFClangFormatter.h */,
 				147572B8188BFEED00B3AF8D /* XCFClangFormatter.m */,
 				147572BA188BFF0100B3AF8D /* XCFUncrustifyFormatter.h */,
 				147572BB188BFF0100B3AF8D /* XCFUncrustifyFormatter.m */,
+				14A54E53188AF61900B154C6 /* XCFFormatterUtilities.h */,
+				14A54E54188AF61900B154C6 /* XCFFormatterUtilities.m */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -302,23 +307,10 @@
 			name = Definitions;
 			sourceTree = "<group>";
 		};
-		147572BF188BFFB300B3AF8D /* Misc */ = {
-			isa = PBXGroup;
-			children = (
-				14C006BE1884936A00488011 /* BBHyperLinkButtonCell.h */,
-				14C006BF1884936A00488011 /* BBHyperLinkButtonCell.m */,
-				14855EE9188F155200BD9C40 /* BBMacros.h */,
-				14BEA1C2188F107D000CC52B /* JRSwizzle.h */,
-				14BEA1C3188F107D000CC52B /* JRSwizzle.m */,
-			);
-			name = Misc;
-			sourceTree = "<group>";
-		};
 		147572C0188C004000B3AF8D /* Plugin */ = {
 			isa = PBXGroup;
 			children = (
 				1497D7EE1ADF0B910019E1C0 /* Logger */,
-				147572BF188BFFB300B3AF8D /* Misc */,
 				147572BE188BFF8C00B3AF8D /* Definitions */,
 				147572BD188BFF2900B3AF8D /* Core */,
 				7F2B355F15FA59D000DB3249 /* XCFPlugin.h */,
@@ -332,6 +324,7 @@
 		14910D3F188C0CD0005497C9 /* Externals */ = {
 			isa = PBXGroup;
 			children = (
+				1444429D1AEBDC90000CE97A /* JRSwizzle */,
 				140526451ADEF1660040DF0A /* CocoaLumberjack */,
 				14910D40188C0D11005497C9 /* google-diff-match-patch */,
 			);
@@ -473,18 +466,17 @@
 				149F2D5E183C073700DFB8CC /* XCFXcodeFormatter.m in Sources */,
 				14887AD61A90133B001B332A /* DiffMatchPatchCFUtilities.c in Sources */,
 				14887AD71A90133B001B332A /* NSMutableDictionary+DMPExtensions.m in Sources */,
+				144442A01AEBDCA1000CE97A /* JRSwizzle.m in Sources */,
 				1407F2651ADEFABB00AEC2B3 /* DDMultiFormatter.m in Sources */,
 				1407F2641ADEFABB00AEC2B3 /* DDDispatchQueueLogFormatter.m in Sources */,
 				1407F25B1ADEFABB00AEC2B3 /* CLIColor.m in Sources */,
 				14464E2B1ADF0A3D0085D1C9 /* XCFLoggingUtilities.m in Sources */,
 				14887AD51A90133B001B332A /* DiffMatchPatch.m in Sources */,
 				14464E251ADF08050085D1C9 /* XCFLogFileManager.m in Sources */,
-				14C006C11884936A00488011 /* BBHyperLinkButtonCell.m in Sources */,
 				14887AD91A90133B001B332A /* NSString+UnicharUtilities.m in Sources */,
 				147572CC188C01AA00B3AF8D /* CFOClangFormatter.m in Sources */,
 				14887AD81A90133B001B332A /* NSString+JavaSubstring.m in Sources */,
 				1407F25E1ADEFABB00AEC2B3 /* DDASLLogCapture.m in Sources */,
-				14BEA1C4188F107D000CC52B /* JRSwizzle.m in Sources */,
 				14BEA1C1188F0EC2000CC52B /* NSDocument+XCFAdditions.m in Sources */,
 				147572BC188BFF0100B3AF8D /* XCFUncrustifyFormatter.m in Sources */,
 				147572CD188C01AA00B3AF8D /* CFOUncrustifyFormatter.m in Sources */,

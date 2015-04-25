@@ -290,7 +290,7 @@ NSString *XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSCh
 
 #pragma mark Normalizing Formatting
 
-+ (BOOL)canEnableIndentEmptyLinesToCodeLevel
++ (BOOL)canEnableIndentationOfEmptyLinesToCodeLevel
 {
 	DVTTextPreferences *preferences = [DVTTextPreferences preferences];
 	BOOL trimTrailingWhitespace = preferences.trimTrailingWhitespace;
@@ -307,7 +307,7 @@ NSString *XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSCh
 	BOOL trimWhitespaceOnlyLines = trimTrailingWhitespace && preferences.trimWhitespaceOnlyLines; // only enabled in Xcode preferences if trimTrailingWhitespace is enabled
 	
 	// we indent empty lines if trimming whitespace line in Xcode preferences is disabled and if it's enabled in the plugin preferences.
-	BOOL shouldIndentEmptyLinesToCodeLevel = [[self class] canEnableIndentEmptyLinesToCodeLevel] && [[NSUserDefaults standardUserDefaults] boolForKey:XCFDefaultsKeyShouldIndentEmptyLinesToCodeLevel];
+	BOOL shouldIndentEmptyLinesToCodeLevel = [[self class] canEnableIndentationOfEmptyLinesToCodeLevel] && [[NSUserDefaults standardUserDefaults] boolForKey:XCFDefaultsKeyShouldIndentEmptyLinesToCodeLevel];
 	
 	DVTSourceTextStorage *textStorage = [document textStorage];
 	const NSRange scopeLineRange = [textStorage lineRangeForCharacterRange:range];      // the line range STAYS UNCHANGED during the normalization (we don't add or remove lines)

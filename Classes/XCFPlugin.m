@@ -8,12 +8,9 @@
 #import "XCFDefaults.h"
 #import "XCFPreferencesWindowController.h"
 #import "XCFLoggingUtilities.h"
-#import "BBMacros.h"
 #import "BBLogging.h"
 
 @import CoreServices;
-
-DDLogLevel ddLogLevel;
 
 @interface XCFPlugin ()
 @property (nonatomic, readonly) XCFPreferencesWindowController *preferencesWindowController;
@@ -151,6 +148,7 @@ static XCFPlugin *sharedPlugin = nil;
 	[self.preferencesWindowController showWindow:nil];
 	
 	NSURL *url = [[NSBundle bundleForClass:[self class]] URLForResource:@"XCFPreferencesWindowController" withExtension:@"nib"];
+	
 	if (!url) {
 		NSAlert *alert = [[NSAlert alloc] init];
 		alert.messageText = @"BBUncrustify preferences could not be shown because the plugin is corrupted.";
@@ -158,6 +156,7 @@ static XCFPlugin *sharedPlugin = nil;
 		[alert addButtonWithTitle:@"Download Latest Release"];
 		[alert addButtonWithTitle:@"Cancel"];
 		NSModalResponse result = [alert runModal];
+		
 		if (result == NSAlertFirstButtonReturn) {
 			[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://github.com/benoitsan/BBUncrustifyPlugin-Xcode/releases"]];
 		}

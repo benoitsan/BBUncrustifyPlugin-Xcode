@@ -5,7 +5,6 @@
 
 #import "CFOClangFormatter.h"
 #import "DiffMatchPatch.h"
-#import "BBMacros.h"
 #import "BBLogging.h"
 
 NSString *const CFOClangStyleFile = @"file";

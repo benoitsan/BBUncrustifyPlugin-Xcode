@@ -7,4 +7,6 @@
 
 @interface XCFClangFormatter : CFOClangFormatter
 
++ (NSURL *)configurationFileURLForPresentedURL:(NSURL *)presentedURL;
+
 @end

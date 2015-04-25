@@ -9,6 +9,8 @@
 #import "XCFLoggingUtilities.h"
 #import "XCFLogFileManager.h"
 
+DDLogLevel ddLogLevel;
+
 @implementation XCFLoggingUtilities
 
 + (void)setUpLogger
@@ -18,8 +20,8 @@
 	XCFLogFileManager *fileManager = [[XCFLogFileManager alloc] initWithLogsDirectory:self.fileLoggerDirectoryURL.path];
 	
 	DDFileLogger *fileLogger = [[DDFileLogger alloc] initWithLogFileManager:fileManager];
-	fileLogger.maximumFileSize = 1 * 1024 * 1024;       // 1 MB
-	fileLogger.rollingFrequency = 10 * 60 * 60 * 24;    // 10 days
+	fileLogger.maximumFileSize = 1 * 1024 * 1024;   // 1 MB
+	fileLogger.rollingFrequency = 4 * 60 * 60 * 24; // 4 days
 	fileLogger.logFileManager.maximumNumberOfLogFiles = 2;
 	
 	[DDLog addLogger:[DDASLLogger sharedInstance]];

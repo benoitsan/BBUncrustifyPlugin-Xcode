@@ -3,19 +3,10 @@
 // Copyright (c) 2014 Pragmatic Code. All rights reserved.
 //
 
-#import "CFOClangFormatter.h"
-#import "CFOUncrustifyFormatter.h"
+@import Foundation;
 
-@interface CFOClangFormatter (XCFAdditions)
+@interface XCFFormatterUtilities : NSObject
 
-+ (NSURL *)configurationFileURLForPresentedURL:(NSURL *)presentedURL;
-
-@end
-
-@interface CFOUncrustifyFormatter (XCFAdditions)
-
-+ (NSURL *)builtinConfigurationFileURL;
-
-+ (NSURL *)configurationFileURLForPresentedURL:(NSURL *)presentedURL;
++ (NSURL *)configurationFileURLForPresentedURL:(NSURL *)presentedURL lookupFilenames:(NSArray *)lookupFilenames alternateURLs:(NSArray *)alternateURLs;
 
 @end

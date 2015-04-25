@@ -4,8 +4,11 @@
 //
 
 #import "XCFClangFormatter.h"
+#import "XCFFormatterUtilities.h"
 
 @implementation XCFClangFormatter
+
+#pragma mark - Overrided
 
 + (NSArray *)searchedURLsForExecutable
 {
@@ -21,6 +24,15 @@
 	});
 	
 	return array;
+}
+
+#pragma mark -
+
++ (NSURL *)configurationFileURLForPresentedURL:(NSURL *)presentedURL
+{
+	NSArray *lookupFilenames = @[@"_clang-format", @".clang-format"];
+	
+	return [XCFFormatterUtilities configurationFileURLForPresentedURL:presentedURL lookupFilenames:lookupFilenames alternateURLs:nil];
 }
 
 @end

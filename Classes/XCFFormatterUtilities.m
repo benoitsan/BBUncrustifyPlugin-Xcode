@@ -5,10 +5,6 @@
 
 #import "XCFFormatterUtilities.h"
 
-@interface XCFFormatterUtilities : NSObject
-
-@end
-
 @implementation XCFFormatterUtilities
 
 + (NSURL *)configurationFileURLForPresentedURL:(NSURL *)presentedURL lookupFilenames:(NSArray *)lookupFilenames alternateURLs:(NSArray *)alternateURLs
@@ -42,65 +38,6 @@
 	}
 	
 	return nil;
-}
-
-@end
-
-@implementation CFOClangFormatter (XCFAdditions)
-
-+ (NSURL *)configurationFileURLForPresentedURL:(NSURL *)presentedURL
-{
-	NSArray *lookupFilenames = @[@"_clang-format", @".clang-format"];
-	
-	return [XCFFormatterUtilities configurationFileURLForPresentedURL:presentedURL lookupFilenames:lookupFilenames alternateURLs:nil];
-}
-
-@end
-
-@implementation CFOUncrustifyFormatter (XCFAdditions)
-
-+ (NSURL *)builtinConfigurationFileURL
-{
-	static NSURL *builtInConfigurationFileURL = nil;
-	static dispatch_once_t onceToken;
-	
-	dispatch_once(&onceToken, ^{
-		builtInConfigurationFileURL = [[NSBundle bundleForClass:[self class]] URLForResource:@"uncrustify" withExtension:@"cfg"];
-	});
-	return builtInConfigurationFileURL;
-}
-
-+ (NSURL *)configurationFileURLForPresentedURL:(NSURL *)presentedURL
-{
-	NSArray *lookupFilenames = @[@"uncrustify.cfg", @"_uncrustify.cfg", @".uncrustify.cfg", @".uncrustifyconfig"];
-	
-	static NSArray *alternateURLs = nil;
-	
-	static dispatch_once_t onceToken;
-	
-	dispatch_once(&onceToken, ^{
-		NSMutableArray *array = [NSMutableArray array];
-		
-		NSURL *homeDirectoryURL = [NSURL fileURLWithPath:NSHomeDirectory()];
-		
-		for (NSString *lookupFilename in lookupFilenames) {
-			[array addObject:[homeDirectoryURL URLByAppendingPathComponent:lookupFilename isDirectory:NO]];
-		}
-		
-		[array addObject:[[homeDirectoryURL URLByAppendingPathComponent:@".uncrustify"
-		isDirectory:YES]
-		URLByAppendingPathComponent:@"uncrustify.cfg" isDirectory:NO]];
-		
-		NSURL *builtInConfigurationFileURL = [[self class] builtinConfigurationFileURL];
-		
-		if (builtInConfigurationFileURL) {
-			[array addObject:builtInConfigurationFileURL];
-		}
-		
-		alternateURLs = [array copy];
-	});
-	
-	return [XCFFormatterUtilities configurationFileURLForPresentedURL:presentedURL lookupFilenames:lookupFilenames alternateURLs:alternateURLs];
 }
 
 @end

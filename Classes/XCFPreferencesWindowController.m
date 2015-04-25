@@ -17,7 +17,7 @@ static NSString *const kFormatterStyleKeyIdentifier = @"identifier";
 
 @interface XCFPreferencesWindowController ()
 @property (nonatomic, readonly) NSArray *formatters;
-@property (nonatomic) BOOL canEnableIndentEmptyLinesToCodeLevel;
+@property (nonatomic) BOOL canEnableIndentationOfEmptyLinesToCodeLevel;
 
 @property (nonatomic, weak) IBOutlet NSPopUpButton *clangStylePopUpButton;
 @property (nonatomic, weak) IBOutlet NSPopUpButton *configurationEditorPopUpButton;
@@ -31,13 +31,47 @@ static NSString *const kFormatterStyleKeyIdentifier = @"identifier";
 
 @synthesize formatters = _formatters;
 
-- (void)awakeFromNib
+#pragma mark - Setup and Teardown
+
+- (id)initWithWindow:(NSWindow *)window
 {
+	self = [super initWithWindow:window];
+	
+	if (self) {
+		// Initialization code here.
+	}
+	return self;
+}
+
+- (NSString *)windowNibName
+{
+	return NSStringFromClass(self.class);
+}
+
+#pragma mark - NSWindowController
+
+- (void)windowDidLoad
+{
+	[super windowDidLoad];
 	[self updateClangStyles];
 	[self updateConfigurationsEditors];
-	
 	self.pluginVersionTextField.stringValue = [NSString stringWithFormat:@"Version %@", [[[NSBundle bundleForClass:[self class]] infoDictionary] objectForKey:@"CFBundleVersion"]];
+	[self updateUI];
 }
+
+#pragma mark - NSWindow Delegate
+
+- (void)windowDidBecomeKey:(NSNotification *)notification
+{
+	[self updateUI];
+}
+
+- (void)windowDidBecomeMain:(NSNotification *)notification
+{
+	[self updateUI];
+}
+
+#pragma mark - Internal
 
 - (NSArray *)formatters
 {
@@ -52,7 +86,7 @@ static NSString *const kFormatterStyleKeyIdentifier = @"identifier";
 
 - (void)updateUI
 {
-	self.canEnableIndentEmptyLinesToCodeLevel = [XCFXcodeFormatter canEnableIndentEmptyLinesToCodeLevel];
+	self.canEnableIndentationOfEmptyLinesToCodeLevel = [XCFXcodeFormatter canEnableIndentationOfEmptyLinesToCodeLevel];
 }
 
 - (void)updateClangStyles
@@ -151,6 +185,8 @@ static NSString *const kFormatterStyleKeyIdentifier = @"identifier";
 		}
 	}
 }
+
+#pragma mark - Actions
 
 - (IBAction)aboutPluginAction:(id)sender
 {
@@ -261,37 +297,6 @@ static NSString *const kFormatterStyleKeyIdentifier = @"identifier";
 			}
 		}];
 	}
-}
-
-- (id)initWithWindow:(NSWindow *)window
-{
-	self = [super initWithWindow:window];
-	
-	if (self) {
-		// Initialization code here.
-	}
-	return self;
-}
-
-- (NSString *)windowNibName
-{
-	return NSStringFromClass(self.class);
-}
-
-- (void)windowDidLoad
-{
-	[super windowDidLoad];
-	[self updateUI];
-}
-
-- (void)windowDidBecomeKey:(NSNotification *)notification
-{
-	[self updateUI];
-}
-
-- (void)windowDidBecomeMain:(NSNotification *)notification
-{
-	[self updateUI];
 }
 
 @end

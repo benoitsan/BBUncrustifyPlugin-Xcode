@@ -48,7 +48,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="G3t-Ix-uqp">
-                        <rect key="frame" x="179" y="262" width="78" height="17"/>
+                        <rect key="frame" x="176" y="262" width="79" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Clang Style:" id="FWJ-Ed-wU1">
                             <font key="font" metaFont="system"/>
@@ -66,7 +66,7 @@
                         </textFieldCell>
                     </textField>
                     <popUpButton verticalHuggingPriority="750" id="V7p-Yf-qKM">
-                        <rect key="frame" x="261" y="552" width="145" height="26"/>
+                        <rect key="frame" x="261" y="552" width="221" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <popUpButtonCell key="cell" type="push" title="&lt;noloc&gt;" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="RhK-Rd-M8i" id="Pnc-mQ-1bC">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -119,7 +119,7 @@
                         </connections>
                     </popUpButton>
                     <popUpButton verticalHuggingPriority="750" id="c1l-eL-ArW">
-                        <rect key="frame" x="261" y="256" width="145" height="26"/>
+                        <rect key="frame" x="261" y="256" width="221" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <popUpButtonCell key="cell" type="push" title="&lt;noloc&gt;" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" autoenablesItems="NO" selectedItem="HL7-TM-Hwc" id="ddN-rs-qPO">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -275,18 +275,6 @@ It can cause conflicts with the rules defined by the formatter.</string>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button id="82S-8X-NWg">
-                        <rect key="frame" x="259" y="461" width="281" height="18"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="Indent whitespace-only lines to code level" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="diL-16-5Ia">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <binding destination="-2" name="enabled" keyPath="canEnableIndentEmptyLinesToCodeLevel" id="sU1-tO-ajn"/>
-                            <binding destination="ec3-mP-p1p" name="value" keyPath="values.XCFDefaultsKeyShouldIndentEmptyLinesToCodeLevel" id="4JP-ff-VHK"/>
-                        </connections>
-                    </button>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="2GX-Ch-v4Q">
                         <rect key="frame" x="259" y="413" width="443" height="42"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -298,6 +286,18 @@ This option is disabled if "Including Whitespace-only lines" is enabled in Xcode
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <button id="82S-8X-NWg">
+                        <rect key="frame" x="259" y="461" width="281" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="Indent whitespace-only lines to code level" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="diL-16-5Ia">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <binding destination="-2" name="enabled" keyPath="canEnableIndentationOfEmptyLinesToCodeLevel" id="ORj-G9-Aq0"/>
+                            <binding destination="ec3-mP-p1p" name="value" keyPath="values.XCFDefaultsKeyShouldIndentEmptyLinesToCodeLevel" id="4JP-ff-VHK"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <connections>
