@@ -1,16 +1,16 @@
 //
-//  XCFLogFileManager.m
-//  BBUncrustifyPlugin
+// XCFLogFileManager.m
+// BBUncrustifyPlugin
 //
-//  Created by Benoît Bourdon on 15/04/15.
+// Created by Benoît Bourdon on 15/04/15.
 //
 //
 
 #import "XCFLogFileManager.h"
 
-NSString * const XCFLoggingFileApplicationName = @"BBUncrustifyPlugin";
+NSString *const XCFLoggingFileApplicationName = @"BBUncrustifyPlugin";
 
-@interface XCFLogFileManager()
+@interface XCFLogFileManager ()
 @property (nonatomic) NSDateFormatter *loggingFileDateFormatter;
 @end
 
@@ -18,11 +18,13 @@ NSString * const XCFLoggingFileApplicationName = @"BBUncrustifyPlugin";
 
 @synthesize loggingFileDateFormatter = _loggingFileDateFormatter;
 
-- (NSString *)appName {
+- (NSString *)appName
+{
 	return XCFLoggingFileApplicationName;
 }
 
-- (NSString *)newLogFileName {
+- (NSString *)newLogFileName
+{
 	NSString *appName = [self appName];
 	
 	NSDateFormatter *dateFormatter = [self loggingFileDateFormatter];
@@ -31,7 +33,8 @@ NSString * const XCFLoggingFileApplicationName = @"BBUncrustifyPlugin";
 	return [NSString stringWithFormat:@"%@ %@.log", appName, formattedDate];
 }
 
-- (BOOL)isLogFile:(NSString *)fileName {
+- (BOOL)isLogFile:(NSString *)fileName
+{
 	NSString *appName = [self appName];
 	
 	BOOL hasProperPrefix = [fileName hasPrefix:appName];
@@ -52,9 +55,9 @@ NSString * const XCFLoggingFileApplicationName = @"BBUncrustifyPlugin";
 			// Thats why here we can have three or four components. For details see createNewLogFile method.
 			//
 			// Components:
-			//     "", "2013-12-03", "17-14"
+			// "", "2013-12-03", "17-14"
 			// or
-			//     "", "2013-12-03", "17-14", "1"
+			// "", "2013-12-03", "17-14", "1"
 			if (components.count == 3 || components.count == 4) {
 				NSString *dateString = [NSString stringWithFormat:@"%@ %@", components[1], components[2]];
 				NSDateFormatter *dateFormatter = [self loggingFileDateFormatter];
@@ -71,7 +74,8 @@ NSString * const XCFLoggingFileApplicationName = @"BBUncrustifyPlugin";
 	return (hasProperPrefix && hasProperDate && hasProperSuffix);
 }
 
-- (NSDateFormatter *)loggingFileDateFormatter {
+- (NSDateFormatter *)loggingFileDateFormatter
+{
 	if (!_loggingFileDateFormatter) {
 		NSString *dateFormat = @"yyyy'-'MM'-'dd' 'HH'-'mm'";
 		

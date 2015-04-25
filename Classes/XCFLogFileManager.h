@@ -1,14 +1,14 @@
 //
-//  XCFLogFileManager.h
-//  BBUncrustifyPlugin
+// XCFLogFileManager.h
+// BBUncrustifyPlugin
 //
-//  Created by Benoît Bourdon on 15/04/15.
+// Created by Benoît Bourdon on 15/04/15.
 //
 //
 
 #import "DDFileLogger.h"
 
-extern NSString * const XCFLoggingFileApplicationName;
+extern NSString *const XCFLoggingFileApplicationName;
 
 @interface XCFLogFileManager : DDLogFileManagerDefault
 

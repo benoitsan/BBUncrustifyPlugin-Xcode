@@ -1,18 +1,17 @@
 //
-//  Created by Benoît on 11/01/14.
-//  Copyright (c) 2014 Pragmatic Code. All rights reserved.
+// Created by Benoît on 11/01/14.
+// Copyright (c) 2014 Pragmatic Code. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-extern NSString * const CFOErrorDomain;
+extern NSString *const CFOErrorDomain;
 
 enum {
-    CFOFileReadError,
-    CFOFormatterFailureError,
-    CFOFormatterTimeOutError
+	CFOFileReadError,
+	CFOFormatterFailureError,
+	CFOFormatterTimeOutError
 };
-
 
 @interface CFOFragment : NSObject
 
@@ -23,14 +22,12 @@ enum {
 
 @end
 
-
 @protocol CFOFormatterProtocol <NSObject>
 
 + (NSArray *)searchedURLsForExecutable;
 - (NSArray *)fragmentsByFormattingInputAtRanges:(NSArray *)ranges error:(NSError **)error;
 
 @end
-
 
 // CFOFormatter: An abstract "code formatter". Should not be used directly.
 
@@ -52,5 +49,3 @@ enum {
 - (NSArray *)normalizedRangesForInputRanges:(NSArray *)inputRanges;
 
 @end
-
-

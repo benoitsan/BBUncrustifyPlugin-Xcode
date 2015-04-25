@@ -1,6 +1,6 @@
 //
-//  Created by Benoît on 11/01/14.
-//  Copyright (c) 2014 Pragmatic Code. All rights reserved.
+// Created by Benoît on 11/01/14.
+// Copyright (c) 2014 Pragmatic Code. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -11,7 +11,7 @@
 @interface XCFXcodeFormatter : NSObject
 
 + (BOOL)canFormatSelectedFiles;
-+ (void)formatSelectedFilesWithEnumerationBlock:(void(^)(NSURL *url, NSError *error, BOOL *stop))enumerationBlock;
++ (void)formatSelectedFilesWithEnumerationBlock:(void (^)(NSURL *url, NSError *error, BOOL *stop))enumerationBlock;
 
 + (BOOL)canFormatActiveFile;
 + (void)formatActiveFileWithError:(NSError **)outError;

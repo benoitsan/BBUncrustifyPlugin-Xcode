@@ -1,8 +1,8 @@
 //
-//  XCFLoggingUtilities.h
-//  BBUncrustifyPlugin
+// XCFLoggingUtilities.h
+// BBUncrustifyPlugin
 //
-//  Created by Benoît Bourdon on 15/04/15.
+// Created by Benoît Bourdon on 15/04/15.
 //
 //
 
