@@ -61,15 +61,13 @@ You can create keyboard shortcuts for the menu items in the [Keyboard Preference
 
 Use the menu `Edit > Format Code > View Log` to identify issues when formatting.
 
-At this time, I recommend to use Uncrustify because it's more stable. ClangFormat fails to format code inside blocks and has weird bugs when formatting text selections. 
-
 The plugin includes binaries for ClangFormat and Uncrustify. To use your own version, install the binary to: `/usr/local/bin/clang-format` or `/usr/bin/clang-format` for ClangFormat, `/usr/local/bin/uncrustify` or `/usr/bin/uncrustify` for Uncrustify.
 
 When formatting a code selection, keep in mind that formatting selected lines can fail depending of the selected scope. 
 
 - Uncrustify assumes the first selected line is indented correctly. 
 
-- ClangFormat takes in account the scope around the selection and should give better results (but in practice, ClangFormat is pretty buggy for formatting a selection).
+- ClangFormat takes in account the scope around the selection.
 
 ## Style configuration
 
@@ -111,11 +109,11 @@ In the plugin preferences, you can activate some post formatting operations:
 
 #### Perform Xcode syntax-aware indenting
 
-When enabled, the plugin re-indents the code using Xcode. **Avoid to use this feature since it can cause conflicts with the rules defined by the formatter.**
+When enabled, the plugin re-indents the code using Xcode. By default, this feature is not selected because it overwrites the indentation performed by the formatter.
 
 #### Indent whitespace-only lines to code level
 
-Both ClangFormat and Uncrustify always trim whitespace-only lines. When enabled, the plugin re-indents empty lines to code level. This option is disabled if "Including Whitespace-only lines" is enabled in Xcode preferences (Xcode Preferences > Text Editing Tab > Editing Panel > While Editing).
+Both ClangFormat and Uncrustify always trim whitespace-only lines. When enabled, the plugin re-indents empty lines to the code level. This option is disabled if "Including Whitespace-only lines" is enabled in Xcode preferences (Xcode Preferences > Text Editing Tab > Editing Panel > While Editing).
 
 
 ## Some Objective-C Style Guides
