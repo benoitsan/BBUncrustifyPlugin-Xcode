@@ -41,48 +41,16 @@ static XCFPlugin *sharedPlugin = nil;
 	if (self) {
 		[XCFLoggingUtilities setUpLogger];
 		
-		NSMenuItem *editMenuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidFinishLaunchingNotification:) name:NSApplicationDidFinishLaunchingNotification object:nil];
 		
-		if (editMenuItem) {
-			[[editMenuItem submenu] addItem:[NSMenuItem separatorItem]];
-			
-			NSMenu *formatCodeMenu = [[NSMenu alloc] initWithTitle:@"Format Code"];
-			
-			NSMenuItem *menuItem;
-			menuItem = [[NSMenuItem alloc] initWithTitle:@"Format Selected Files" action:@selector(formatSelectedFiles:) keyEquivalent:@""];
-			[menuItem setTarget:self];
-			[formatCodeMenu addItem:menuItem];
-			
-			menuItem = [[NSMenuItem alloc] initWithTitle:@"Format Active File" action:@selector(formatActiveFile:) keyEquivalent:@""];
-			[menuItem setTarget:self];
-			[formatCodeMenu addItem:menuItem];
-			
-			menuItem = [[NSMenuItem alloc] initWithTitle:@"Format Selected Lines" action:@selector(formatSelectedLines:) keyEquivalent:@""];
-			[menuItem setTarget:self];
-			[formatCodeMenu addItem:menuItem];
-			
-			[formatCodeMenu addItem:[NSMenuItem separatorItem]];
-			
-			menuItem = [[NSMenuItem alloc] initWithTitle:@"Edit Configuration…" action:@selector(launchConfigurationEditor:) keyEquivalent:@""];
-			[menuItem setTarget:self];
-			[formatCodeMenu addItem:menuItem];
-			
-			menuItem = [[NSMenuItem alloc] initWithTitle:@"BBUncrustifyPlugin Preferences…" action:@selector(showPreferences:) keyEquivalent:@""];
-			[menuItem setTarget:self];
-			[formatCodeMenu addItem:menuItem];
-			
-			menuItem = [[NSMenuItem alloc] initWithTitle:@"View Log" action:@selector(viewLog:) keyEquivalent:@""];
-			[menuItem setTarget:self];
-			[formatCodeMenu addItem:menuItem];
-			
-			NSMenuItem *formatCodeMenuItem = [[NSMenuItem alloc] initWithTitle:@"Format Code" action:nil keyEquivalent:@""];
-			[formatCodeMenuItem setSubmenu:formatCodeMenu];
-			[[editMenuItem submenu] addItem:formatCodeMenuItem];
-			
-			DDLogVerbose(@"Version %@ loaded", [[[NSBundle bundleForClass:[self class]] infoDictionary] objectForKey:@"CFBundleVersion"]);
-		}
+		DDLogVerbose(@"BBUncrustifyPlugin Version %@ loaded", [[[NSBundle bundleForClass:[self class]] infoDictionary] objectForKey:@"CFBundleVersion"]);
 	}
 	return self;
+}
+
+- (void)dealloc
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - Actions
@@ -174,6 +142,48 @@ static XCFPlugin *sharedPlugin = nil;
 
 #pragma mark - Internal
 
+- (void)initializeMenu
+{
+	NSMenuItem *editMenuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
+	
+	if (editMenuItem) {
+		[[editMenuItem submenu] addItem:[NSMenuItem separatorItem]];
+		
+		NSMenu *formatCodeMenu = [[NSMenu alloc] initWithTitle:@"Format Code"];
+		
+		NSMenuItem *menuItem;
+		menuItem = [[NSMenuItem alloc] initWithTitle:@"Format Selected Files" action:@selector(formatSelectedFiles:) keyEquivalent:@""];
+		[menuItem setTarget:self];
+		[formatCodeMenu addItem:menuItem];
+		
+		menuItem = [[NSMenuItem alloc] initWithTitle:@"Format Active File" action:@selector(formatActiveFile:) keyEquivalent:@""];
+		[menuItem setTarget:self];
+		[formatCodeMenu addItem:menuItem];
+		
+		menuItem = [[NSMenuItem alloc] initWithTitle:@"Format Selected Lines" action:@selector(formatSelectedLines:) keyEquivalent:@""];
+		[menuItem setTarget:self];
+		[formatCodeMenu addItem:menuItem];
+		
+		[formatCodeMenu addItem:[NSMenuItem separatorItem]];
+		
+		menuItem = [[NSMenuItem alloc] initWithTitle:@"Edit Configuration…" action:@selector(launchConfigurationEditor:) keyEquivalent:@""];
+		[menuItem setTarget:self];
+		[formatCodeMenu addItem:menuItem];
+		
+		menuItem = [[NSMenuItem alloc] initWithTitle:@"BBUncrustifyPlugin Preferences…" action:@selector(showPreferences:) keyEquivalent:@""];
+		[menuItem setTarget:self];
+		[formatCodeMenu addItem:menuItem];
+		
+		menuItem = [[NSMenuItem alloc] initWithTitle:@"View Log" action:@selector(viewLog:) keyEquivalent:@""];
+		[menuItem setTarget:self];
+		[formatCodeMenu addItem:menuItem];
+		
+		NSMenuItem *formatCodeMenuItem = [[NSMenuItem alloc] initWithTitle:@"Format Code" action:nil keyEquivalent:@""];
+		[formatCodeMenuItem setSubmenu:formatCodeMenu];
+		[[editMenuItem submenu] addItem:formatCodeMenuItem];
+	}
+}
+
 - (XCFPreferencesWindowController *)preferencesWindowController
 {
 	if (!_preferencesWindowController) {
@@ -211,6 +221,17 @@ static XCFPlugin *sharedPlugin = nil;
 		return [XCFXcodeFormatter canLaunchConfigurationEditor];
 	}
 	return YES;
+}
+
+#pragma mark - Notifications
+
+- (void)applicationDidFinishLaunchingNotification:(NSNotification *)notification
+{
+	static dispatch_once_t onceToken;
+	
+	dispatch_once(&onceToken, ^{
+		[self initializeMenu];
+	});
 }
 
 @end
