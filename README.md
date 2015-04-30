@@ -16,7 +16,7 @@ PS: [This fork](https://github.com/1951FDG/BBUncrustifyPlugin-Xcode) works with 
 
 #### Compiled Version
 
-* The easiest way to install the plugin is to [download the last available release](https://github.com/benoitsan/BBUncrustifyPlugin-Xcode/releases) (Click on the **green button** corresponding to the last version).
+* The easiest way to install the plugin is to [download the lastest release](https://github.com/benoitsan/BBUncrustifyPlugin-Xcode/releases/latest).
 * Unzip and copy `UncrustifyPlugin.xcplugin` to `~/Library/Application Support/Developer/Shared/Xcode/Plug-ins`.
 * Relaunch Xcode after the copy.
 
