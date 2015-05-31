@@ -521,10 +521,6 @@ NSString *XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSCh
 	}
 	else if ([selectedFormatter isEqualToString:XCFDefaultsFormatterValueUncrustify]) {
 		configurationFileURL = [XCFUncrustifyFormatter configurationFileURLForPresentedURL:document.fileURL];
-		
-		if ([configurationFileURL isEqualTo:[XCFUncrustifyFormatter builtinConfigurationFileURL]]) {
-			configurationFileURL = nil; // forbid to edit the configuration file in the plugin bundle
-		}
 	}
 	else {
 		return;

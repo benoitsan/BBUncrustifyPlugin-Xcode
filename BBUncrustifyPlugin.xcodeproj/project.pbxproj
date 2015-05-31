@@ -42,7 +42,6 @@
 		149F2D65183C073700DFB8CC /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14617B3016FD9BDB00C7C91B /* DVTFoundation.framework */; };
 		149F2D66183C073700DFB8CC /* IDEFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14617B3116FD9BDB00C7C91B /* IDEFoundation.framework */; };
 		149F2D67183C073700DFB8CC /* IDEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14617B3216FD9BDB00C7C91B /* IDEKit.framework */; };
-		149F2D6A183C073700DFB8CC /* uncrustify.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 14CE84DA16F49D6F008082AB /* uncrustify.cfg */; };
 		149F2D6B183C073700DFB8CC /* uncrustify in Resources */ = {isa = PBXBuildFile; fileRef = 14CE84D916F49A02008082AB /* uncrustify */; };
 		149F2D6D183C073700DFB8CC /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 147264371711732F002BC0BE /* icon.icns */; };
 		14A54E55188AF61900B154C6 /* XCFFormatterUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A54E54188AF61900B154C6 /* XCFFormatterUtilities.m */; };
@@ -143,7 +142,6 @@
 		14BEA1BF188F0EC2000CC52B /* NSDocument+XCFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDocument+XCFAdditions.h"; sourceTree = "<group>"; };
 		14BEA1C0188F0EC2000CC52B /* NSDocument+XCFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDocument+XCFAdditions.m"; sourceTree = "<group>"; };
 		14CE84D916F49A02008082AB /* uncrustify */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = uncrustify; sourceTree = "<group>"; };
-		14CE84DA16F49D6F008082AB /* uncrustify.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = uncrustify.cfg; sourceTree = "<group>"; };
 		14D323BF1884980500AB663E /* XCFDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCFDefaults.h; sourceTree = "<group>"; };
 		14D323C01884980500AB663E /* XCFDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCFDefaults.m; sourceTree = "<group>"; };
 		7F2B355F15FA59D000DB3249 /* XCFPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XCFPlugin.h; sourceTree = "<group>"; };
@@ -201,7 +199,6 @@
 				147572C3188C012900B3AF8D /* XCFPreferencesWindowController.xib */,
 				8D5B49B7048680CD000E48DA /* Info.plist */,
 				147264371711732F002BC0BE /* icon.icns */,
-				14CE84DA16F49D6F008082AB /* uncrustify.cfg */,
 				14CE84D916F49A02008082AB /* uncrustify */,
 				1486F51C188C06AF003483D5 /* clang-format */,
 			);
@@ -436,7 +433,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5AE7611D19D22E6600DF8FDA /* XCFPreferencesWindowController.xib in Resources */,
-				149F2D6A183C073700DFB8CC /* uncrustify.cfg in Resources */,
 				1486F51D188C06AF003483D5 /* clang-format in Resources */,
 				149F2D6B183C073700DFB8CC /* uncrustify in Resources */,
 				149F2D6D183C073700DFB8CC /* icon.icns in Resources */,
