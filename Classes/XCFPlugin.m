@@ -57,22 +57,30 @@ static XCFPlugin *sharedPlugin = nil;
 
 - (IBAction)formatSelectedFiles:(id)sender
 {
+	// should be improved to show all generated errors and not only the last one
+	__block NSError *lastError = nil;
+	
 	[XCFXcodeFormatter formatSelectedFilesWithEnumerationBlock:^(NSURL *url, NSError *error, BOOL *stop) {
 		if (error) {
-			[[NSAlert alertWithError:error] runModal];
+			DDLogError(@"%@", error);
+			lastError = error;
 		}
 	}];
+	
+	if (lastError) {
+		[self presentFormattingError:lastError];
+	}
 }
 
 - (IBAction)formatActiveFile:(id)sender
 {
-	// [self.preferencesWindowController showWindow:nil];
 	NSError *error = nil;
 	
 	[XCFXcodeFormatter formatActiveFileWithError:&error];
 	
 	if (error) {
-		[[NSAlert alertWithError:error] runModal];
+		DDLogError(@"%@", error);
+		[self presentFormattingError:error];
 	}
 }
 
@@ -83,7 +91,8 @@ static XCFPlugin *sharedPlugin = nil;
 	[XCFXcodeFormatter formatSelectedLinesWithError:&error];
 	
 	if (error) {
-		[[NSAlert alertWithError:error] runModal];
+		DDLogError(@"%@", error);
+		[self presentFormattingError:error];
 	}
 }
 
@@ -94,20 +103,8 @@ static XCFPlugin *sharedPlugin = nil;
 	[XCFXcodeFormatter launchConfigurationEditorWithError:&error];
 	
 	if (error) {
-		if ([error.domain isEqualToString:XCFErrorDomain] && error.code == XCFFormatterMissingConfigurationError) {
-			NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"Configuration File Not Found", nil)
-				defaultButton:NSLocalizedString(@"Open Preferences…", nil)
-				alternateButton:NSLocalizedString(@"Cancel", nil)
-				otherButton:nil
-				informativeTextWithFormat:error.localizedDescription, nil];
-				
-			if ([alert runModal] == NSAlertDefaultReturn) {
-				[self.preferencesWindowController showWindow:nil];
-			}
-		}
-		else {
-			[[NSAlert alertWithError:error] runModal];
-		}
+		DDLogError(@"%@", error);
+		[self presentFormattingError:error];
 	}
 }
 
@@ -190,6 +187,26 @@ static XCFPlugin *sharedPlugin = nil;
 		_preferencesWindowController = [[XCFPreferencesWindowController alloc] init];
 	}
 	return _preferencesWindowController;
+}
+
+- (void)presentFormattingError:(NSError *)error
+{
+	if (error) {
+		if ([error.domain isEqualToString:XCFErrorDomain] && error.code == XCFFormatterMissingConfigurationError) {
+			NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"Configuration File Not Found", nil)
+				defaultButton:NSLocalizedString(@"Open Preferences…", nil)
+				alternateButton:NSLocalizedString(@"Cancel", nil)
+				otherButton:nil
+				informativeTextWithFormat:error.localizedDescription, nil];
+				
+			if ([alert runModal] == NSAlertDefaultReturn) {
+				[self.preferencesWindowController showWindow:nil];
+			}
+		}
+		else {
+			[[NSAlert alertWithError:error] runModal];
+		}
+	}
 }
 
 #pragma mark - NSMenuValidation
