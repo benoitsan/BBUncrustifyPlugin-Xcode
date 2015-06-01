@@ -28,17 +28,6 @@
 
 #pragma mark -
 
-+ (NSURL *)builtinConfigurationFileURL
-{
-	static NSURL *builtInConfigurationFileURL = nil;
-	static dispatch_once_t onceToken;
-	
-	dispatch_once(&onceToken, ^{
-		builtInConfigurationFileURL = [[NSBundle bundleForClass:[self class]] URLForResource:@"uncrustify" withExtension:@"cfg"];
-	});
-	return builtInConfigurationFileURL;
-}
-
 + (NSURL *)configurationFileURLForPresentedURL:(NSURL *)presentedURL
 {
 	NSArray *lookupFilenames = @[@"uncrustify.cfg", @"_uncrustify.cfg", @".uncrustify.cfg", @".uncrustifyconfig"];
@@ -57,13 +46,7 @@
 		}
 		
 		[array addObject:[[homeDirectoryURL URLByAppendingPathComponent:@".uncrustify" isDirectory:YES] URLByAppendingPathComponent:@"uncrustify.cfg" isDirectory:NO]];
-		
-		NSURL *builtInConfigurationFileURL = [[self class] builtinConfigurationFileURL];
-		
-		if (builtInConfigurationFileURL) {
-			[array addObject:builtInConfigurationFileURL];
-		}
-		
+
 		alternateURLs = [array copy];
 	});
 	
