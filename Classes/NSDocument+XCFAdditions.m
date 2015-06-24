@@ -52,7 +52,13 @@
 	
 	IDESourceCodeDocument *document = (IDESourceCodeDocument *)self;
 	NSError *error;
-	[XCFXcodeFormatter formatDocument:document withError:&error];
+	
+	BOOL isTemporaryFile = (document && [document.fileURL.path hasPrefix:@"/var/folders/"]);
+	
+	// When formatting on save is enabled, when using the Xcode refactoring tools, the document is temporary saved in the temporary directory
+	if (!isTemporaryFile) {
+		[XCFXcodeFormatter formatDocument:document withError:&error];
+	}
 	
 	if (error) {
 		DDLogError(@"%@", error);
