@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DOWNLOAD_URI=https://github.com/benoitsan/BBUncrustifyPlugin-Xcode/releases/download/2.1.2/UncrustifyPlugin-2.1.2.zip
+DOWNLOAD_URI=https://github.com/benoitsan/BBUncrustifyPlugin-Xcode/releases/download/2.1.3/UncrustifyPlugin-2.1.3.zip
 PLUGINS_DIR="${HOME}/Library/Application Support/Developer/Shared/Xcode/Plug-ins"
 
 mkdir -p "${PLUGINS_DIR}"
