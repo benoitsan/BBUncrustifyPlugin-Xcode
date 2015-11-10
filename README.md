@@ -120,7 +120,7 @@ Both ClangFormat and Uncrustify always trim whitespace-only lines. When enabled,
 
 Using Uncrustify:
 
-- [apps-ios-wikipedia](https://github.com/wikimedia/apps-ios-wikipedia)
+- [apps-ios-wikipedia](https://github.com/wikimedia/wikipedia-ios)
 - [CocoaLumberjack](https://github.com/CocoaLumberjack/CocoaLumberjack)
 - [inbox-ios](https://github.com/nylas/inbox-ios)
 - [wonderful-objective-c-style-guide](https://github.com/markeissler/wonderful-objective-c-style-guide)
