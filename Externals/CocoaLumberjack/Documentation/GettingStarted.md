@@ -21,13 +21,12 @@ pod 'CocoaLumberjack'
 
 	git submodule add git@github.com:CocoaLumberjack/CocoaLumberjack.git
 
-* Drag `CocoaLumberjack/Framework/{Desktop/Mobile}/Lumberjack.xcodeproj` into your project
+* Drag `CocoaLumberjack/Lumberjack.xcodeproj` into your project
 * In your App target Build Settings
 	* Add to 'User Header Search Paths' `$(BUILD_ROOT)/../IntermediateBuildFilesPath/UninstalledProducts/include`
 	* Set 'Always Search User Paths' to YES
 * In your App target Build Phases
-	* Add CocoaLumberjack static library target to 'Target Dependencies'
-	* Add `libCocoaLumberjack.a` to 'Link Binary With Libraries'
+	* Add the framework you need (`CocoaLumberjack` or `CocoaLumberjackSwift` for MacOS, `CocoaLumberjack-iOS` or `CocoaLumberjackSwift-iOS` for iOS, `CocoaLumberjack-watchOS` or `CocoaLumberjackSwift-watchOS` for WatchOS)
 * Include the framework in your source files with 
 
 ```objective-c
@@ -58,6 +57,16 @@ fileLogger.logFileManager.maximumNumberOfLogFiles = 7;
 ```
 
 The above code tells the application to keep a week's worth of log files on the system.
+
+You will also need to set a global log level for your application. This can be modified in different manners later (see the bottom of this document for more information).
+
+To do this, simply define the `ddLogLevel` constant. One example of this may be in your .pch file like so:
+
+```objective-c
+static const int ddLogLevel = DDLogLevelDebug;
+```
+
+This global log level will be used as a default unless stated otherwise. See below for possible levels you can set this to.
 
 ### Convert your NSLog statements to DDLog
 

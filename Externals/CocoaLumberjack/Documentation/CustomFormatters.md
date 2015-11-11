@@ -77,11 +77,11 @@ MyCustomFormatter.m
 - (NSString *)formatLogMessage:(DDLogMessage *)logMessage {
     NSString *logLevel;
     switch (logMessage->_flag) {
-        case DDLogFlagError : logLevel = @"E"; break;
-        case DDLogFlagWarn  : logLevel = @"W"; break;
-        case DDLogFlagInfo  : logLevel = @"I"; break;
-        case DDLogFlagDebug : logLevel = @"D"; break;
-        default             : logLevel = @"V"; break;
+        case DDLogFlagError    : logLevel = @"E"; break;
+        case DDLogFlagWarning  : logLevel = @"W"; break;
+        case DDLogFlagInfo     : logLevel = @"I"; break;
+        case DDLogFlagDebug    : logLevel = @"D"; break;
+        default                : logLevel = @"V"; break;
     }
     
     return [NSString stringWithFormat:@"%@ | %@\n", logLevel, logMessage->_message];
@@ -92,7 +92,7 @@ MyCustomFormatter.m
 
 # Thread-safety (simple)
 
-Let's update our example formatter to also include the timestamp. To do this we'll use `NSDateFormatter`. But... `NSDateFormatter` is NOT thread-safe. Does this pose any problems for us?
+Let's update our example formatter to also include the timestamp. To do this we'll use `NSDateFormatter`. But... `NSDateFormatter` is NOT thread-safe (unless you're targeting iOS 7+, or OSX 10.9+ with modern behavior on 64-bit architecture, see [NSDateFormatter](https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Classes/NSDateFormatter_Class/])). Does this pose any problems for us?
 
 Log formatters are applied individually to loggers. If you instantiate a log formatter instance, **and apply it to a single logger**, then you don't have to worry about thread-safety. All log messages are sent to the logger (and thus to its log formatter) via the serial dispatch queue of the logger. Thus, in this scenario, the formatLogMessage method is guaranteed to run on only a single thread at a time.
 
@@ -173,11 +173,11 @@ MyCustomFormatter.m
 - (NSString *)formatLogMessage:(DDLogMessage *)logMessage {
     NSString *logLevel;
     switch (logMessage->_flag) {
-        case DDLogFlagError : logLevel = @"E"; break;
-        case DDLogFlagWarn  : logLevel = @"W"; break;
-        case DDLogFlagInfo  : logLevel = @"I"; break;
-        case DDLogFlagDebug : logLevel = @"D"; break;
-        default             : logLevel = @"V"; break;
+        case DDLogFlagError    : logLevel = @"E"; break;
+        case DDLogFlagWarning  : logLevel = @"W"; break;
+        case DDLogFlagInfo     : logLevel = @"I"; break;
+        case DDLogFlagDebug    : logLevel = @"D"; break;
+        default                : logLevel = @"V"; break;
     }
 
     NSString *dateAndTime = [threadUnsafeDateFormatter stringFromDate:(logMessage->_timestamp)];
@@ -272,11 +272,11 @@ MyCustomFormatter.m
 - (NSString *)formatLogMessage:(DDLogMessage *)logMessage {
     NSString *logLevel;
     switch (logMessage->_flag) {
-        case DDLogFlagError : logLevel = @"E"; break;
-        case DDLogFlagWarn  : logLevel = @"W"; break;
-        case DDLogFlagInfo  : logLevel = @"I"; break;
-        case DDLogFlagDebug : logLevel = @"D"; break;
-        default             : logLevel = @"V"; break;
+        case DDLogFlagError    : logLevel = @"E"; break;
+        case DDLogFlagWarning  : logLevel = @"W"; break;
+        case DDLogFlagInfo     : logLevel = @"I"; break;
+        case DDLogFlagDebug    : logLevel = @"D"; break;
+        default                : logLevel = @"V"; break;
     }
 
     NSString *dateAndTime = [self stringFromDate:(logMessage.timestamp)];

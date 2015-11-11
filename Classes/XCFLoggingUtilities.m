@@ -15,7 +15,7 @@ DDLogLevel ddLogLevel;
 
 + (void)setUpLogger
 {
-	ddLogLevel = DDLogLevelVerbose;
+	ddLogLevel = DDLogLevelDebug;
 	
 	XCFLogFileManager *fileManager = [[XCFLogFileManager alloc] initWithLogsDirectory:self.fileLoggerDirectoryURL.path];
 	

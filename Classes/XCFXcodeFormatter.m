@@ -155,10 +155,10 @@ NSString *XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSCh
 		
 		if ([[[NSUserDefaults standardUserDefaults] stringForKey:XCFDefaultsKeyClangStyle] isEqualToString:CFOClangStyleFile]) {
 			NSURL *configurationFileURL = [XCFClangFormatter configurationFileURLForPresentedURL:presentedURL];
-			DDLogVerbose(@"Formatting using Clang Format at path “%@“ with configuration at path “%@“", [[formatter class] resolvedExecutableURLWithError:nil].path, configurationFileURL.path);
+			DDLogInfo(@"Formatting using Clang Format at path “%@“ with configuration at path “%@“", [[formatter class] resolvedExecutableURLWithError:nil].path, configurationFileURL.path);
 		}
 		else {
-			DDLogVerbose(@"Formatting using Clang Format at path “%@“ with style “%@“", [[formatter class] resolvedExecutableURLWithError:nil].path, formatter.style);
+			DDLogInfo(@"Formatting using Clang Format at path “%@“ with style “%@“", [[formatter class] resolvedExecutableURLWithError:nil].path, formatter.style);
 		}
 		
 		return formatter;
@@ -176,7 +176,7 @@ NSString *XCFStringByTrimmingTrailingCharactersFromString(NSString *string, NSCh
 			}
 			return nil;
 		}
-		DDLogVerbose(@"Formatting using Uncrustify at path “%@“ with configuration file at path “%@“", [[formatter class] resolvedExecutableURLWithError:nil].path, formatter.configurationFileURL.path);
+		DDLogInfo(@"Formatting using Uncrustify at path “%@“ with configuration file at path “%@“", [[formatter class] resolvedExecutableURLWithError:nil].path, formatter.configurationFileURL.path);
 		return formatter;
 	}
 	else {
