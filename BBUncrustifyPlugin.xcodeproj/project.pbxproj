@@ -406,7 +406,7 @@
 		089C1669FE841209C02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0710;
 			};
 			buildConfigurationList = 1DEB913E08733D840010E9CD /* Build configuration list for PBXProject "BBUncrustifyPlugin" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -542,6 +542,7 @@
 				LD_RUNPATH_SEARCH_PATHS = /Developer;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_CFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pragmaticcode.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = UncrustifyPlugin;
 				WRAPPER_EXTENSION = xcplugin;
 			};
@@ -579,6 +580,7 @@
 				LD_RUNPATH_SEARCH_PATHS = /Developer;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_CFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pragmaticcode.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = UncrustifyPlugin;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = xcplugin;
@@ -599,6 +601,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
