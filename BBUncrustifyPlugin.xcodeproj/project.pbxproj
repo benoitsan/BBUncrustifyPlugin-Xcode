@@ -48,6 +48,7 @@
 		14BEA1C1188F0EC2000CC52B /* NSDocument+XCFAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BEA1C0188F0EC2000CC52B /* NSDocument+XCFAdditions.m */; };
 		14D323C21884980B00AB663E /* XCFDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D323C01884980500AB663E /* XCFDefaults.m */; };
 		5AE7611D19D22E6600DF8FDA /* XCFPreferencesWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 147572C3188C012900B3AF8D /* XCFPreferencesWindowController.xib */; };
+		E460C9041C7F390E0064F461 /* XCFOutputPipe.m in Sources */ = {isa = PBXBuildFile; fileRef = E460C9031C7F390E0064F461 /* XCFOutputPipe.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -147,6 +148,8 @@
 		7F2B355F15FA59D000DB3249 /* XCFPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XCFPlugin.h; sourceTree = "<group>"; };
 		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA37E2DB0E6291C8001BDFEF /* XCFPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCFPlugin.m; sourceTree = "<group>"; };
+		E460C9021C7F390E0064F461 /* XCFOutputPipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCFOutputPipe.h; sourceTree = "<group>"; };
+		E460C9031C7F390E0064F461 /* XCFOutputPipe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCFOutputPipe.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -290,6 +293,8 @@
 				147572BB188BFF0100B3AF8D /* XCFUncrustifyFormatter.m */,
 				14A54E53188AF61900B154C6 /* XCFFormatterUtilities.h */,
 				14A54E54188AF61900B154C6 /* XCFFormatterUtilities.m */,
+				E460C9021C7F390E0064F461 /* XCFOutputPipe.h */,
+				E460C9031C7F390E0064F461 /* XCFOutputPipe.m */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -459,6 +464,7 @@
 				147572B9188BFEED00B3AF8D /* XCFClangFormatter.m in Sources */,
 				14626CD618832E5100F5B23F /* XCFPreferencesWindowController.m in Sources */,
 				1407F25D1ADEFABB00AEC2B3 /* DDAbstractDatabaseLogger.m in Sources */,
+				E460C9041C7F390E0064F461 /* XCFOutputPipe.m in Sources */,
 				149F2D5E183C073700DFB8CC /* XCFXcodeFormatter.m in Sources */,
 				14887AD61A90133B001B332A /* DiffMatchPatchCFUtilities.c in Sources */,
 				14887AD71A90133B001B332A /* NSMutableDictionary+DMPExtensions.m in Sources */,
