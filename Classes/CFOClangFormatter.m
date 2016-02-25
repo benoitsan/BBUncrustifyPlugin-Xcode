@@ -6,6 +6,7 @@
 #import "CFOClangFormatter.h"
 #import "DiffMatchPatch.h"
 #import "BBLogging.h"
+#import "XCFOutputPipe.h"
 
 NSString *const CFOClangStyleFile = @"file";
 NSString *const CFOClangStylePredefinedLLVM = @"LLVM";
@@ -69,9 +70,9 @@ NSString *const CFOClangDumpConfigurationOptionsStyle = @"style";
 		[args addObject:[NSString stringWithFormat:@"-length=%lu", (unsigned long)range.length]];
 	}
 	
-	NSPipe *inputPipe = NSPipe.pipe;
-	NSPipe *outputPipe = NSPipe.pipe;
-	NSPipe *errorPipe = NSPipe.pipe;
+	NSPipe *inputPipe = [NSPipe pipe];
+	NSPipe *outputPipe = [XCFOutputPipe pipe];
+	NSPipe *errorPipe = [NSPipe pipe];
 	
 	NSTask *task = [[NSTask alloc] init];
 	task.launchPath = executableURL.path;
