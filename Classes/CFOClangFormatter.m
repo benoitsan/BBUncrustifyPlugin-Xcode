@@ -99,7 +99,7 @@ NSString *const CFOClangDumpConfigurationOptionsStyle = @"style";
 	// Seems like there is a bug in clang-format. I found a source file where the process never completes.
 	// (It's not a Cocoa issue since executing the formatting in command line has the same result).
 	BOOL taskTimeOutReached = NO;
-	NSDate *terminateDate = [[NSDate date] dateByAddingTimeInterval:2.0];
+	NSDate *terminateDate = [[NSDate date] dateByAddingTimeInterval:5.0];
 	
 	while ([task isRunning]) {
 		if ([[NSDate date] compare:terminateDate] == NSOrderedDescending) {
