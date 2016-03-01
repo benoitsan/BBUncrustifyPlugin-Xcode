@@ -101,10 +101,10 @@
 		14464E291ADF0A3D0085D1C9 /* XCFLoggingUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCFLoggingUtilities.h; sourceTree = "<group>"; };
 		14464E2A1ADF0A3D0085D1C9 /* XCFLoggingUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCFLoggingUtilities.m; sourceTree = "<group>"; };
 		14464E2C1ADF0A890085D1C9 /* BBLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBLogging.h; sourceTree = "<group>"; };
-		14617B2F16FD9BDB00C7C91B /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTKit.framework; path = "/Users/benoit/Desktop/BBUncrustifyPlugin-Xcode/../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTKit.framework"; sourceTree = "<absolute>"; };
-		14617B3016FD9BDB00C7C91B /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTFoundation.framework; path = ../../../../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework; sourceTree = "<group>"; };
-		14617B3116FD9BDB00C7C91B /* IDEFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEFoundation.framework; path = ../../../../../../../Applications/Xcode.app/Contents/Frameworks/IDEFoundation.framework; sourceTree = "<group>"; };
-		14617B3216FD9BDB00C7C91B /* IDEKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEKit.framework; path = ../../../../../../../Applications/Xcode.app/Contents/Frameworks/IDEKit.framework; sourceTree = "<group>"; };
+		14617B2F16FD9BDB00C7C91B /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTKit.framework; path = ../SharedFrameworks/DVTKit.framework; sourceTree = DEVELOPER_DIR; };
+		14617B3016FD9BDB00C7C91B /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTFoundation.framework; path = ../SharedFrameworks/DVTFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		14617B3116FD9BDB00C7C91B /* IDEFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEFoundation.framework; path = ../Frameworks/IDEFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		14617B3216FD9BDB00C7C91B /* IDEKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEKit.framework; path = ../Frameworks/IDEKit.framework; sourceTree = DEVELOPER_DIR; };
 		14626CD218832E5100F5B23F /* XCFPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCFPreferencesWindowController.h; sourceTree = "<group>"; };
 		14626CD318832E5100F5B23F /* XCFPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCFPreferencesWindowController.m; sourceTree = "<group>"; };
 		147264371711732F002BC0BE /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
@@ -531,12 +531,13 @@
 				DSTROOT = "$(HOME)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks\"",
-					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks\"",
 					"$(SRCROOT)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Externals",
+					"\"$(DEVELOPER_DIR)/../SharedFrameworks\"",
+					"\"$(DEVELOPER_DIR)/../OtherFrameworks\"",
+					"\"$(DEVELOPER_DIR)/../Frameworks\"",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				HEADER_SEARCH_PATHS = (
@@ -566,12 +567,13 @@
 				DSTROOT = "$(HOME)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks\"",
-					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks\"",
 					"$(SRCROOT)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Externals",
+					"\"$(DEVELOPER_DIR)/../SharedFrameworks\"",
+					"\"$(DEVELOPER_DIR)/../OtherFrameworks\"",
+					"\"$(DEVELOPER_DIR)/../Frameworks\"",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
