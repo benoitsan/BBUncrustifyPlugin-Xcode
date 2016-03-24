@@ -142,6 +142,7 @@
 		14A54E56188AF6C800B154C6 /* XCFConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCFConstants.h; sourceTree = "<group>"; };
 		14BEA1BF188F0EC2000CC52B /* NSDocument+XCFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDocument+XCFAdditions.h"; sourceTree = "<group>"; };
 		14BEA1C0188F0EC2000CC52B /* NSDocument+XCFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDocument+XCFAdditions.m"; sourceTree = "<group>"; };
+		14C326111CA4774E0003ED0B /* install.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = install.sh; sourceTree = "<group>"; };
 		14CE84D916F49A02008082AB /* uncrustify */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = uncrustify; sourceTree = "<group>"; };
 		14D323BF1884980500AB663E /* XCFDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCFDefaults.h; sourceTree = "<group>"; };
 		14D323C01884980500AB663E /* XCFDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCFDefaults.m; sourceTree = "<group>"; };
@@ -176,6 +177,7 @@
 				7F411B0C15FABAC6002F77B6 /* Classes */,
 				14910D3F188C0CD0005497C9 /* Externals */,
 				089C167CFE841241C02AAC07 /* Resources */,
+				14C326101CA4773F0003ED0B /* Installer */,
 				089C1671FE841209C02AAC07 /* Frameworks and Libraries */,
 				19C28FB8FE9D52D311CA2CBB /* Products */,
 			);
@@ -364,6 +366,14 @@
 				14464E241ADF08050085D1C9 /* XCFLogFileManager.m */,
 			);
 			name = Logger;
+			sourceTree = "<group>";
+		};
+		14C326101CA4773F0003ED0B /* Installer */ = {
+			isa = PBXGroup;
+			children = (
+				14C326111CA4774E0003ED0B /* install.sh */,
+			);
+			name = Installer;
 			sourceTree = "<group>";
 		};
 		19C28FB8FE9D52D311CA2CBB /* Products */ = {
