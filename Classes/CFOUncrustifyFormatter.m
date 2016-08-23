@@ -68,7 +68,7 @@
 			|| [[NSWorkspace sharedWorkspace] type:uti conformsToType:(NSString *)kUTTypeCHeader]);
 			
 		if (isObjectiveCFile) {
-			[args addObjectsFromArray:@[@"-l", @"OC"]];
+			[args addObjectsFromArray:@[@"-l", @"OC+"]];
 		}
 	}
 	
