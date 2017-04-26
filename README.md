@@ -1,4 +1,4 @@
-#BBUncrustifyPlugin-Xcode
+# BBUncrustifyPlugin-Xcode
 
 Xcode plugin to format code using [Uncrustify](http://uncrustify.sourceforge.net) or [ClangFormat](http://clang.llvm.org/docs/ClangFormat.html). 
 
